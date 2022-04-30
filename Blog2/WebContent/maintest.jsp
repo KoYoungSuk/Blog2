@@ -789,8 +789,10 @@ But typing your birthday your name(First name, Last name)  is optional.
        <c:choose>
        <c:when test="${sessionScope.id ne null }">
        <p>Based Language: HTML5, CSS, JavaScript, JSP(Java Server Page)</p>
-       <p>Server Operating System: Ubuntu 18.04 LTS 64-bit</p>
-       <p>This site uses OpenJDK, Apache Tomcat, W3CSS and Bootstrap! </p>
+       <p>Server Operating System: <% out.println(System.getProperty("os.name")); %></p>
+       <p>Server Info: <%= application.getServerInfo() %></p>
+       <p>OpenJDK Version: OpenJDK Ver 8(Development)/OpenJDK Ver 11(Real Server) </p>
+       <p>DataBase: Oracle DataBase 18c Express Edition </p>
        <p>
        <a href="http://www.dnsever.com" target="dnsever"><img src="http://banner.dnsever.com/dnsever-banner_170x35.gif" border="0" alt="DNS server, DNS service"></a>
        </p>
