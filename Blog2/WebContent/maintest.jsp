@@ -795,7 +795,7 @@ But typing your birthday your name(First name, Last name)  is optional.
        <a href="http://www.dnsever.com" target="dnsever"><img src="http://banner.dnsever.com/dnsever-banner_170x35.gif" border="0" alt="DNS server, DNS service"></a>
        </p>
        <p><a href="/download"> Download Center(Source and Tools)</a><p>
-       <p><a href="https://github.com/KoYoungSuk2/Blog2.git">GitHub Source</a></p>
+       <p><a href="https://github.com/KoYoungSuk/Blog2.git">GitHub Source</a></p>
        </c:when>
        </c:choose>
        <p>This is not copyrighted. But don't use this illegally.</p>
