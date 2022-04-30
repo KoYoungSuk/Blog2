@@ -1,0 +1,17 @@
+/*  error_404.html, error_500.html CSS Stylesheet */
+
+ .header{
+        text-align: center;
+       background-color: yellow;
+  }
+  .divbody{
+    text-align: center;
+  }
+  .checkver{
+    text-align: center;
+    background-color: lightblue;
+  }
+  .footer {
+    background-color: lightgreen;
+    text-align: center;
+  }

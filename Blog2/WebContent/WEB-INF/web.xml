@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name>Blog2</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>maintest.jsp</welcome-file>
+  </welcome-file-list>
+  <context-param>
+    <param-name>jdbc_driver</param-name>
+    <param-value>oracle.jdbc.driver.OracleDriver</param-value>
+  </context-param>
+  <context-param>
+    <param-name>db_url</param-name>
+    <param-value>jdbc:oracle:thin:@koyoungsuk2.iptime.org:1521/XE</param-value>
+  </context-param>
+  <!-- DataBase ID and Password are covered due to security issue. -->
+  <context-param>
+    <param-name>db_userid</param-name>
+    <param-value>id</param-value>
+  </context-param>
+  <context-param>
+    <param-name>db_password</param-name>
+    <param-value>pw</param-value>
+  </context-param>
+   <!-- DataBase ID and Password are covered due to security issue. -->
+  <error-page>
+    <error-code>418</error-code>
+    <location>/oldmain.jsp?num=3702</location>
+  </error-page>
+  <error-page>
+    <error-code>403</error-code>
+    <location>/error_403.html</location>
+  </error-page>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/error_404.html</location>
+  </error-page>
+  <!--  <error-page>
+    <error-code>500</error-code>
+    <location>/error_500.html</location>
+  </error-page> -->
+</web-app>
