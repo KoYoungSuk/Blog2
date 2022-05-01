@@ -87,7 +87,7 @@
        <ul class="navbar-nav ml-auto">
       <c:choose>
       <c:when test="${sessionScope.id ne null}">
-      <button class="btn btn-default" onclick="location.href='totalmember.do?id=${id}'"> Current User ID: ${id}, Current User Name: ${sessionScope.fullname} </button>
+      <button class="btn btn-default" onclick="location.href='totalmember.do'"> Current User ID: ${id}, Current User Name: ${sessionScope.fullname} </button>
       <button class="btn btn-danger" onclick="location.href='signout.do'">Logout</button>
       </c:when>
       <c:otherwise>

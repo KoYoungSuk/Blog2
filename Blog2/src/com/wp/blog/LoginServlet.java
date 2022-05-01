@@ -3,6 +3,8 @@ package com.wp.blog;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -92,7 +94,7 @@ public class LoginServlet extends HttpServlet {
 			     	    session.setAttribute("lastname", "'" + lastname + "'");
 			     	    session.setAttribute("fullname", firstname + lastname);
 			     	    session.setAttribute("birthday","'" + birthday + "'");
-			     	    response.sendRedirect(viewName);
+			     		response.sendRedirect(viewName);
 			        }
 			        else{
 			        	g.jsmessage("Login Error: ID and Password are not corrected.");
