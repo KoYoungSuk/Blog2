@@ -40,15 +40,24 @@ public class ModifyDiaryServlet extends HttpServlet {
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
 		Global g = new Global(response);
+		String viewName = null;
 		try {
 		   DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
 		   List<String> diarylist = diarydao.getDiaryListByTitle(title);
-		   request.setAttribute("diarylist", diarylist);
-		   RequestDispatcher view = request.getRequestDispatcher("diary.jsp?page=4");
- 		    view.forward(request, response);
+		   if(diarylist != null) {
+			   request.setAttribute("diarylist", diarylist);
+			   viewName = "diary.jsp?page=4";
+		   }
+		   else {
+			   g.jsmessage("Null Error");
+		   }
 		}
 		catch(Exception e) {
 		   g.jsmessage(e.getMessage());
+		}
+		if(viewName != null) {
+	        RequestDispatcher view = request.getRequestDispatcher(viewName);
+	 		view.forward(request, response);
 		}
 	}
 

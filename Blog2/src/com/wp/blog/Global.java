@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 public class Global {
 
 	HttpServletResponse response;
-	
 	public Global(HttpServletResponse response) {
 		response.setContentType("text/html; charset=UTF-8");
 		this.response = response;

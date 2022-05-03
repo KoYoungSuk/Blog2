@@ -1,6 +1,7 @@
 package com.wp.blog;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -9,7 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class BoardListServlet
  */
@@ -32,6 +33,8 @@ public class BoardListServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession();
+		session.removeAttribute("boardlist");
 		String access= request.getParameter("access");
 		String viewName = null;
 		try {
@@ -41,12 +44,22 @@ public class BoardListServlet extends HttpServlet {
 	  	    String db_id = application.getInitParameter("db_userid");
 	  	    String db_pw = application.getInitParameter("db_password");  
 	  	    BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
-			List<BoardDO> boardlist = null;
+			List<BoardDO> newboardlist = new ArrayList<BoardDO>();
 			Global g = new Global(response);
 			try {
-				boardlist = boarddao.getBoardList();
+				List<BoardDO> boardlist = boarddao.getBoardList();
+				for(BoardDO boarddo: boardlist) {
+					if(access.equals("admin")) {
+						newboardlist.add(boarddo);
+					}
+					else {
+						if(access.equals(boarddo.getAnonymous())) {
+							newboardlist.add(boarddo);
+						}
+					}
+				}
 				if(boardlist != null){
-					request.setAttribute("boardlist", boardlist);
+				    session.setAttribute("boardlist", newboardlist);
 					if(access.equals("admin")) {
 						viewName = "main.do?page=3";
 					}

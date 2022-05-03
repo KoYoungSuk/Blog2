@@ -38,9 +38,10 @@
 	<hr>
 	<c:choose>
 	 <c:when test="${page.param == 1}">
-	  <input type="button" type="button" onclick="location.href='diary.jsp?page=3'" class="btn btn-primary" value="Write" />
+	<input type="button" type="button" onclick="location.href='diary.jsp?page=3'" class="btn btn-primary" value="Write" />
 	<input type="button" type="button" onclick="history.go(-1);" class="btn btn-primary" value="Back" />
-	<input type="button" type="button" onclick="location.href='maintest.jsp'" class="btn btn-primary" value="Back To The Main Page" />
+	<input type="button" type="button" onclick="location.href='../main.do'" class="btn btn-primary" value="Back To Main Page" />
+	<input type="button" type="button" onclick="location.href='../signout.do'" class="btn btn-primary" value="Logout" />
 	<hr>
 	<c:choose>
 	  <c:when test="${sessionScope.id eq 'admin'}">
@@ -76,7 +77,9 @@
     <hr>
 	 </c:when>
 	 <c:when test="${param.page == 2}">
-	  <table border="1">
+	 <c:choose>
+	    <c:when test="${sessionScope.id eq 'admin' }">
+	    <table border="1">
 	<tr>
 	  <td><label for="title">제목:</label></td>
 	  <td><c:out value="${requestScope.diarylist[0]}" /></td>
@@ -95,13 +98,20 @@
 	</tr>
 	</table>
 	<hr> 
-	<button class="btn btn-primary" onclick="location.href='modifydiary?title=${sessionScope.title}'" type="button">Modify</button>
+	<button class="btn btn-primary" onclick="location.href='modifydiary?title=${requestScope.title}'" type="button">Modify</button>
 	<button class="btn btn-primary" onclick="history.go(-1);" type="button">Back</button>
-	<button class="btn btn-primary" onclick="location.href='diary.jsp?page=1'" type="button">Back To The Main Page(PersonalDiary)</button>
-	<button class="btn btn-primary" onclick="location.href='maintest.jsp'" type="button">Back To The Main Page(MyBlog)</button>
+	<button class="btn btn-primary" onclick="location.href='diary.jsp?page=1'" type="button">Back To Main Page(PersonalDiary)</button>
+	<button class="btn btn-primary" onclick="location.href='../main.do'" type="button">Back To Main Page(MyBlog)</button>
+	  </c:when>
+	 <c:otherwise>
+	   <p>Administrator Only.</p>
+	 </c:otherwise>
+	 </c:choose>
 	</c:when>
 	<c:when test="${param.page == 3}">
-	 <form action="modifydiary" method="POST">
+	<c:choose>
+	 <c:when test="${sessionScope.id eq 'admin' }">
+	   <form action="writediary" method="POST">
 	  <table>
 	<tr>
 	  <td><label for="title">제목:</label></td>
@@ -116,15 +126,22 @@
 	<button class="btn btn-primary" type="submit">Write</button>
 	<button class="btn btn-primary" onclick="history.go(-1);" type="button">Back</button>
 	<button class="btn btn-primary" onclick="location.href='diarylist.jsp'" type="button">Back To The Main Page(PersonalDiary)</button>
-	<button class="btn btn-primary" onclick="location.href='maintest.jsp'" type="button">Back To The Main Page(MyBlog)</button>
+	<button class="btn btn-primary" onclick="location.href='../maintest.jsp'" type="button">Back To The Main Page(MyBlog)</button>
 	</form>
+	 </c:when>
+	 <c:otherwise>
+	  <p>Administrator Only</p>
+	 </c:otherwise>
+	</c:choose>
 	</c:when>
 	<c:when test="${param.page == 4}">
-	    <form action="writediary" method="POST">
+    <c:choose>
+	 <c:when test="${sessionScope.id eq 'admin' }">
+	 <form action="modifydiary" method="POST">
 	  <table>
 	<tr>
 	  <td><label for="title">제목:</label></td>
-	  <td><input type="text" name="title" value="${requestScope.diarylist[0]}" readonly /></td>
+	  <td><input type="text" name="title" value= "${requestScope.diarylist[0]}" readonly /></td>
 	</tr>
 	<tr>
 	  <td><label for="context">내용:</label></td>
@@ -135,16 +152,28 @@
 	<button class="btn btn-primary" type="submit">Modify</button>
 	<button class="btn btn-primary" onclick="history.go(-1);" type="button">Back</button>
 	<button class="btn btn-primary" onclick="location.href='diarylist.jsp'" type="button">Back To The Main Page(PersonalDiary)</button>
-	<button class="btn btn-primary" onclick="location.href='maintest.jsp'" type="button">Back To The Main Page(MyBlog)</button>
+	<button class="btn btn-primary" onclick="location.href='../maintest.jsp'" type="button">Back To The Main Page(MyBlog)</button>
 	</form>
+	 </c:when>
+	 <c:otherwise>
+	  <p>Administrator Only</p>
+	 </c:otherwise>
+	</c:choose>
 	</c:when>
     <c:when test="${param.page == 5}">
-     
+     <c:choose>
+      <c:when test="${sessionScope.id eq 'admin' }">
+       Delete 
+      </c:when>
+      <c:otherwise>
+      <p>Administrator Only</p>
+      </c:otherwise>
+     </c:choose>
     </c:when>
     <c:otherwise>
       <input type="button" type="button" onclick="location.href='diary.jsp?page=3'" class="btn btn-primary" value="Write" />
 	<input type="button" type="button" onclick="history.go(-1);" class="btn btn-primary" value="Back" />
-	<input type="button" type="button" onclick="location.href='maintest.jsp'" class="btn btn-primary" value="Back To The Main Page" />
+	<input type="button" type="button" onclick="location.href='../maintest.jsp'" class="btn btn-primary" value="Back To The Main Page" />
 	<hr>
 	<c:choose>
 	  <c:when test="${sessionScope.id eq 'admin'}">

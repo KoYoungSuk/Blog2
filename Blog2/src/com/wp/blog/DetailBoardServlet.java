@@ -53,6 +53,9 @@ public class DetailBoardServlet extends HttpServlet {
 				request.setAttribute("boardlist", boardlist);
 				viewName = "main.do?page=14";
 			}
+			else {
+				g.jsmessage("Null Error");
+			}
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			g.jsmessage(e.getMessage());

@@ -156,4 +156,19 @@ public class BoardDAO {
 		   disconnectDB();
 		   return result;
 	   }
+	   
+	   public int MaxBoardNumber() throws ClassNotFoundException, SQLException {
+		   connectDB();
+		   int maxboardnumber = 0;
+		   ResultSet rs = null;
+		   Statement sm = null;
+		   sm = conn.createStatement();
+		   String sql = "select max(serial) from board";
+		   rs = sm.executeQuery(sql);
+		   while(rs.next()) {
+			   maxboardnumber = Integer.parseInt((String) rs.getObject(0));
+		   }
+		   disconnectDB();
+		   return maxboardnumber;
+	   }
 }

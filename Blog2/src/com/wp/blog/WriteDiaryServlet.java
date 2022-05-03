@@ -55,10 +55,10 @@ public class WriteDiaryServlet extends HttpServlet {
 		   DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
 		   int rowsInserted = diarydao.insertDiary(diarydo);
 		   if(rowsInserted == 0) {
-			   g.jsmessage("Unknown Error Message");
+			   response.sendRedirect("diarylist");
 		   }
 		   else {
-			   response.sendRedirect("diarylist");
+			   g.jsmessage("Unknown Error Message"); 
 		   }
 		}catch(Exception e) {
 			g.jsmessage(e.getMessage());

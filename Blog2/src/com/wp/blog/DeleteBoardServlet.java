@@ -75,7 +75,7 @@ public class DeleteBoardServlet extends HttpServlet {
   	    try {
 			int result = boardDAO.DeleteBoard(number);
 			if(result == 1) {
-			viewName = "boardlist.do?access=admin";
+			    viewName = "boardlist.do?access=admin";
 			}else {
 				g.jsmessage("Unknown Error Message");
 			}

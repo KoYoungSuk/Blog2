@@ -66,8 +66,9 @@ public class DiaryDAO {
 	   connectDB();
 	   int result = 0;
 	   PreparedStatement psm = null;
-	   String sql = "delete from board where title = '" + title + "'";
+	   String sql = "delete from board where title = ?";
 	   psm = conn.prepareStatement(sql);
+	   psm.setString(1, title);
 	   result = psm.executeUpdate();
 	   disconnectDB();
 	   return result; 
@@ -77,7 +78,6 @@ public class DiaryDAO {
 	   List<DiaryDO> diarylist = null;
 	   connectDB();
 	   String sql = "select * from diary order by title";
-	   
 	   Statement sm = conn.createStatement();
 	   ResultSet rs = sm.executeQuery(sql);
 	   if(rs.isBeforeFirst())
@@ -101,9 +101,11 @@ public class DiaryDAO {
    public List<String> getDiaryListByTitle(String title) throws ClassNotFoundException, SQLException {
 	   List<String> diarylist = new ArrayList<String>();
 	   connectDB();
-	   String sql = "select * from diary where title='" + title + "'";
-	   Statement sm = conn.createStatement();
-	   ResultSet rs = sm.executeQuery(sql);
+	   PreparedStatement psm = null;
+	   String sql = "select * from diary where title= ?";
+	   psm = conn.prepareStatement(sql);
+	   psm.setString(1, title);
+	   ResultSet rs = psm.executeQuery();
 	   if(rs.next()) {
 		   diarylist.add(rs.getString("title"));
 		   diarylist.add(rs.getString("context"));

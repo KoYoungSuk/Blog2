@@ -1,5 +1,9 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:import url="MyBlogContent/default.jsp" var="defaultcontent"></c:import>
+<c:import url="MyBlogContent/signup.jsp" var="signupcontent"></c:import>
+<c:import url="MyBlogContent/about.jsp" var="aboutcontent"></c:import>
+<c:import url="MyBlogContent/boardlist.jsp" var="boardlistcontent"></c:import>
 <c:choose>
 <c:when test="${param.page == 1}"><c:set var="titlename" value="Main Page" /></c:when>
 <c:when test="${param.page == 2}"><c:set var="titlename" value="Sign up" /></c:when>
@@ -87,7 +91,7 @@
        <ul class="navbar-nav ml-auto">
       <c:choose>
       <c:when test="${sessionScope.id ne null}">
-      <button class="btn btn-default" onclick="location.href='totalmember.do'"> Current User ID: ${id}, Current User Name: ${sessionScope.fullname} </button>
+      <button class="btn btn-default" onclick="location.href='totalmember.do?id=${id}'"> Current User ID: ${id}, Current User Name: ${sessionScope.fullname} </button>
       <button class="btn btn-danger" onclick="location.href='signout.do'">Logout</button>
       </c:when>
       <c:otherwise>
@@ -109,90 +113,10 @@
 </div>
 <c:choose>
 <c:when test="${param.page == 1}">
- <div class="container" style="margin-top:20px">
-<div class="row">
-   <div class="col-md-6">
-     <h2>Welcome to MyBlog! </h2>
-     <hr>
-     <h5> This Web Site is designed for Personal Blog Site. </h5>
-     <h5> This Web Site is being developed yet. </h5>
-   </div>
-   <div class="col-md-6">
-     <h2>Why I make this?</h2>
-     <hr>
-     <h5>Under Construction</h5>
-  </div>
-</div>
-<hr>
- <div class="row">
-  <div class="col-md-12">
-  <h2>Under Construction</h2>
-  <hr>
-  <h5>Under Construction</h5>
-  </div>
- </div>
-</div>
-</div>
+${defaultcontent}
 </c:when>
 <c:when test="${param.page ==2}"> 
-<div class="container" style="margin-top:20px">
-<div class="row">
-  <div class="col-sm-12">
-<c:choose>
-<c:when test="${sessionScope.id eq null}">
-<form class="signup-content" method="post" action="./checksignup.do">
-<H2> Sign-up Menu. </H2>
-<hr>
-<p> if you use this website perfectly,  you need to make your account. </p>
-<p> you need to type id, password, confirmed password to make your account. </p>
-<p>  
-But typing your birthday your name(First name, Last name)  is optional. 
-</p>
-<p>Birthday: for example: 1999-12-31 or 2000-01-01 </p>
-<p>
-<hr>
-<table>
-   <thead>
-     <tr>
-       <td><label for="id"><b>ID:</b></label></td>
-       <td><input type="text" placeholder="ID" name="id" ></td>
-     </tr>
-     <tr>
-       <td><label for="password"><b>Password:</b></label></td>
-       <td><input type="password" placeholder="password" name="password" required></td>
-     </tr>
-     <tr>
-      <td><label for="password"><b>Confirmed Password:</b></label></td>
-      <td><input type="password" placeholder="Confirmed Password" name="cpassword" required></td>
-     </tr>
-     <tr>
-       <td><label for="first_name"><b>First Name(optional):</b></label></td>
-       <td><input type="text" placeholder="First Name" name="first_name"></td>
-     </tr>
-     <tr>
-      <td><label for="last_name"><b>Last Name(optional):</b></label></td>
-      <td><input type="text" placeholder="Last Name" name="last_name"></td>
-     </tr>  
-     <tr>
-     <td> <label for="birthday"><b> Your Birthday(optional/YYYY-MM-DD): </b></label> </td>
-     <td> <input type="text" placeholder="Birthday(YYYY-MM-DD)" name="birthday"> </td>
-     </tr>
-   </tbody>
-</table>
-<hr>
-  <button class="btn btn-success" type="submit"> Sign up </button>
- <button class="btn btn-warning" type="button" onclick="location.href='./maintest.jsp' "> Back to Main Page </button>
-</form>
-</c:when>
-<c:otherwise>
-   <p>Logined User can't use Signup Page. </p>
-   <hr>
-   <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
-   <button class="btn btn-danger" onclick="location.href='signout.do'">Logout</button>
-</c:otherwise>
-</c:choose>
-</div>
-</div>
+${signupcontent}
 </c:when>
 <c:when test="${param.page == 3}">
     <div class="container" style="margin-top:20px"> 
@@ -204,6 +128,7 @@ But typing your birthday your name(First name, Last name)  is optional.
        <c:when test="${sessionScope.id eq 'admin'}">
        <p> Current User: ${sessionScope.id} </p>
        <hr>
+       <!-- 
         <table>
             <thead>
                          <tr>
@@ -230,6 +155,8 @@ But typing your birthday your name(First name, Last name)  is optional.
                              </c:forEach>
            </tbody>
         </table>
+        -->
+        ${boardlistcontent}
        <hr>
        <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
        <button class="btn btn-success" onclick="location.href='main.do?page=12'">Go To Write</button>
@@ -258,6 +185,7 @@ But typing your birthday your name(First name, Last name)  is optional.
      <c:otherwise></c:otherwise>
    </c:choose>
   <hr>
+  <!-- 
     <table>
           <thead>
               <tr>
@@ -289,6 +217,8 @@ But typing your birthday your name(First name, Last name)  is optional.
                   </table>
                   <hr>
                   <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
+     -->
+     ${boardlistcontent}
 </div>
 </div>
 </div>
@@ -303,6 +233,7 @@ But typing your birthday your name(First name, Last name)  is optional.
      <c:when test="${sessionScope.id ne null}">
      <p> Current User: ${sessionScope.id} </p>
      <hr>
+     <!-- 
      <table>
           <thead>
               <tr>
@@ -331,7 +262,9 @@ But typing your birthday your name(First name, Last name)  is optional.
                   </c:choose>
                   </c:forEach>
                   </tbody>
-                  </table>
+            </table>
+            -->
+           ${boardlistcontent}
           <hr>
          <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
      </c:when> 
@@ -497,7 +430,7 @@ But typing your birthday your name(First name, Last name)  is optional.
                          <p></p>
                          <p>If you click Delete Button, this Member is Deleted. Continue? </p>
                          <button class="btn btn-success" type="button" onclick="location.href='deleteMember.do?id=${id}'">Yes!, Delete </button>
-                         <button class="btn btn-success" type="button" onclick="location.href='maintest.jsp'">NO! Back to Main Page</button>
+                         <button class="btn btn-success" type="button" onclick="location.href='main.do'">NO! Back to Main Page</button>
                          <button class="btn btn-success" type="button" onclick="history.go(-1)">NO! Back</button>
                       </c:when>
                       <c:otherwise>
@@ -703,7 +636,7 @@ But typing your birthday your name(First name, Last name)  is optional.
           </c:when>
           <c:otherwise>
            <c:choose>
-           <c:when test="${param.access eq sessionScope.boardlist[6]}">
+           <c:when test="${param.access eq requestScope.boardlist[6]}">
            <c:choose>
            <c:when test="${param.access eq 'anonymous' }">
            <table border=1>
@@ -779,33 +712,7 @@ But typing your birthday your name(First name, Last name)  is optional.
   </div>
 </c:when>
 <c:when test="${param.page == 16}">
-   <div class="container" style="margin-top:20px">
-    <div class="row">
-     <div class="col-sm-12">
-       <H1>About</H1>
-       <hr>
-       <p>First Updated: Tuesday, February 25th 2020 </p>
-       <p>Last Updated: Thursday, January 27th 2022 </p>
-       <c:choose>
-       <c:when test="${sessionScope.id ne null }">
-       <p>Based Language: HTML5, CSS, JavaScript, JSP(Java Server Page)</p>
-       <p>Server Operating System: <% out.println(System.getProperty("os.name")); %></p>
-       <p>Server Info: <%= application.getServerInfo() %></p>
-       <p>OpenJDK Version: OpenJDK Ver 8(Development)/OpenJDK Ver 11(Real Server) </p>
-       <p>DataBase: Oracle DataBase 18c Express Edition </p>
-       <p>
-       <a href="http://www.dnsever.com" target="dnsever"><img src="http://banner.dnsever.com/dnsever-banner_170x35.gif" border="0" alt="DNS server, DNS service"></a>
-       </p>
-       <p><a href="/download"> Download Center(Source and Tools)</a><p>
-       <p><a href="https://github.com/KoYoungSuk/Blog2.git">GitHub Source</a></p>
-       </c:when>
-       </c:choose>
-       <p>This is not copyrighted. But don't use this illegally.</p>
-       <hr>
-       <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
-     </div>
-    </div>
-   </div>
+${aboutcontent}
 </c:when>
 <c:when test="${param.page == 17}">
  <div class="container" style="margin-top:20px">
@@ -835,7 +742,7 @@ But typing your birthday your name(First name, Last name)  is optional.
            </tr>
             <tr>
            <td><label for="anonymous">Choose Access Mode</label></td>
-           <td><input type="radio" name="access" value="admin" checked>Administrater Mode&nbsp;&nbsp;<input type="radio" name="access" value="member">Member Mode
+           <td><input type="radio" name="access" value="admin" checked>Administrator Mode&nbsp;&nbsp;<input type="radio" name="access" value="member">Member Mode
            &nbsp;&nbsp;<input type="radio" name="access" value="anonymous">NonMember Mode</td>
           </tr>
           </table>
@@ -909,7 +816,7 @@ But typing your birthday your name(First name, Last name)  is optional.
           <button type="submit" class="btn btn-danger" >YES, DELETE!</button>
           <button type="button" class="btn btn-primary" onclick="history.go(-1);">NO, BACK!</button>
           <button type="button" class="btn btn-primary" onclick="location.href='boardlist.do?access=admin'">NO, BACK TO BOARD LIST!</button>
-          <button type="button" class="btn btn-primary" onclick="location.href='maintest.jsp?page=1'">NO, BACK TO MAIN PAGE!</button>
+          <button type="button" class="btn btn-primary" onclick="location.href='main.do?page=1'">NO, BACK TO MAIN PAGE!</button>
           <hr>
            </form>
            </c:when>
@@ -923,29 +830,7 @@ But typing your birthday your name(First name, Last name)  is optional.
   </div>
 </c:when>
 <c:otherwise>
-   <div class="container" style="margin-top:20px">
-   <div class="row">
-   <div class="col-md-6">
-     <h2> Welcome to MyBlog! </h2>
-     <hr>
-     <h5> This Web Site is designed for Personal Blog Site. </h5>
-     <h5> This Web Site is being developed yet. </h5>
-   </div>
-   <div class="col-md-6">
-     <h2>Why I make this? </h2>
-     <hr>
-     <h5>Under Construction.</h5>
-  </div>
-</div>
-<hr>
- <div class="row">
-  <div class="col-md-12">
-  <h2>Under Construction</h2>
-  <hr>
-  <h5>Under Construction.</h5>
-  </div>
- </div>
-</div>
+${defaultcontent}
 </c:otherwise>
 </c:choose>
 <hr>
@@ -981,4 +866,3 @@ But typing your birthday your name(First name, Last name)  is optional.
      init();
   </script>
   <!--Clock JavaScript Ends -->
-
