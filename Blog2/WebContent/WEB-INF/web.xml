@@ -14,11 +14,11 @@
   </context-param>
   <context-param>
     <param-name>db_userid</param-name>
-    <param-value>kys</param-value>
+    <param-value>dbid</param-value>
   </context-param>
   <context-param>
     <param-name>db_password</param-name>
-    <param-value>sme62112011</param-value>
+    <param-value>dbpw</param-value>
   </context-param>
   <error-page>
     <error-code>418</error-code>
