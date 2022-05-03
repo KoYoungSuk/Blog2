@@ -128,34 +128,6 @@ ${signupcontent}
        <c:when test="${sessionScope.id eq 'admin'}">
        <p> Current User: ${sessionScope.id} </p>
        <hr>
-       <!-- 
-        <table>
-            <thead>
-                         <tr>
-                            <th>Number</th>
-                            <th>Title</th>
-                            <th>Save Date</th>
-                            <th>Modify Date</th>
-                            <th>Access</th>
-                            <th>Clicks</th>
-                            <th>Delete</th>
-                         </tr>
-                         </thead>
-                         <tbody>
-                             <c:forEach var="boardDO" items="${requestScope.boardlist}" varStatus="status">
-                            <tr>
-                            <td><c:out value="${boardDO.serialnumber}" /></td>
-                            <td><a href="detailboard.do?number=${boardDO.serialnumber}&access=admin&clicks=${boardDO.clicks}"><c:out value="${boardDO.title}" /></a></td>
-                            <td><c:out value="${boardDO.savedate}" /></td>
-                            <td><c:out value="${boardDO.modifydate}" /></td>
-                            <td><c:out value="${boardDO.anonymous}" /></td>
-                            <td><c:out value="${boardDO.clicks}" /></td>
-                            <td><a href="deleteboard.do?number=${boardDO.serialnumber}">Delete</a></td>
-                            </tr>
-                             </c:forEach>
-           </tbody>
-        </table>
-        -->
         ${boardlistcontent}
        <hr>
        <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
@@ -185,40 +157,7 @@ ${signupcontent}
      <c:otherwise></c:otherwise>
    </c:choose>
   <hr>
-  <!-- 
-    <table>
-          <thead>
-              <tr>
-                  <th>Number</th>
-                  <th>Title</th>
-                  <th>Save Date</th>
-                  <th>Modify Date</th>
-                  <th>Access</th>
-                  <th>Clicks</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <c:forEach var="boardDO" items="${requestScope.boardlist}" varStatus="status">       
-                  <c:choose>
-                  <c:when test="${boardDO.anonymous eq 'anonymous'}">
-                  <tr>
-                  <td><c:out value="${boardDO.serialnumber}" /></td>
-                  <td><a href="detailboard.do?number=${boardDO.serialnumber}&access=anonymous&clicks=${boardDO.clicks}"><c:out value="${boardDO.title}" /></a></td>
-                  <td><c:out value="${boardDO.savedate}" /></td>
-                  <td><c:out value="${boardDO.modifydate}" /></td>
-                  <td><c:out value="${boardDO.anonymous}" /></td>
-                  <td><c:out value="${boardDO.clicks}" /></td>
-                  </tr>
-                  </c:when>
-                  <c:otherwise></c:otherwise>
-                  </c:choose>
-                  </c:forEach>
-                  </tbody>
-                  </table>
-                  <hr>
-                  <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
-     -->
-     ${boardlistcontent}
+   ${boardlistcontent}
 </div>
 </div>
 </div>
@@ -233,40 +172,9 @@ ${signupcontent}
      <c:when test="${sessionScope.id ne null}">
      <p> Current User: ${sessionScope.id} </p>
      <hr>
-     <!-- 
-     <table>
-          <thead>
-              <tr>
-                  <th>Number</th>
-                  <th>Title</th>
-                  <th>Save Date</th>
-                  <th>Modify Date</th>
-                  <th>Access</th>
-                  <th>Clicks</th>
-                  </tr>
-                  </thead>
-                  <tbody>
-                  <c:forEach var="boardDO" items="${requestScope.boardlist}" varStatus="status">
-                  <c:choose>
-                  <c:when test="${boardDO.anonymous eq 'member'}">
-                  <tr>
-                  <td><c:out value="${boardDO.serialnumber}" /></td>
-                  <td><a href="detailboard.do?number=${boardDO.serialnumber}&access=member&clicks=${boardDO.clicks}"><c:out value="${boardDO.title}" /></a></td>
-                  <td><c:out value="${boardDO.savedate}" /></td>
-                  <td><c:out value="${boardDO.modifydate}" /></td>
-                  <td><c:out value="${boardDO.anonymous}" /></td>
-                  <td><c:out value="${boardDO.clicks}" /></td>
-                  </tr>
-                  </c:when>
-                  <c:otherwise></c:otherwise>
-                  </c:choose>
-                  </c:forEach>
-                  </tbody>
-            </table>
-            -->
-           ${boardlistcontent}
-          <hr>
-         <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
+     ${boardlistcontent}
+     <hr>
+     <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
      </c:when> 
      <c:otherwise>
      <p>You need Login.</p>
