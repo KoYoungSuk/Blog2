@@ -37,6 +37,8 @@ public class LoginServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		Global g = new Global(response);
+		HttpSession session = request.getSession();
+		session.invalidate();
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
@@ -48,7 +50,6 @@ public class LoginServlet extends HttpServlet {
 		String lastname = null;
 		String birthday = null;
 		String viewName = null;
-		HttpSession session = request.getSession();
 		MemberDAO memberdao = new MemberDAO(JDBC_Driver, db_url, db_id, db_pw);
 		List<MemberDO> memberlist;
 		try{
@@ -61,7 +62,7 @@ public class LoginServlet extends HttpServlet {
 									firstname = memberdo.getFirstname();
 									lastname =  memberdo.getLastname();
 									birthday = memberdo.getBirthday();
-									viewName = "maintest.jsp";
+									viewName = "main.do";
 									break;
 								}
 							}
@@ -92,7 +93,7 @@ public class LoginServlet extends HttpServlet {
 			     	    session.setAttribute("lastname", "'" + lastname + "'");
 			     	    session.setAttribute("fullname", firstname + lastname);
 			     	    session.setAttribute("birthday","'" + birthday + "'");
-			     	    response.sendRedirect("main.do");
+			     	    response.sendRedirect(viewName);
 			        }
 			        else{
 			        	g.jsmessage("Login Error: ID and Password are not corrected.");

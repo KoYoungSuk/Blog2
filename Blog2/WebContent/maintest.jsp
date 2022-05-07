@@ -4,6 +4,12 @@
 <c:import url="MyBlogContent/signup.jsp" var="signupcontent"></c:import>
 <c:import url="MyBlogContent/about.jsp" var="aboutcontent"></c:import>
 <c:import url="MyBlogContent/boardlist.jsp" var="boardlistcontent"></c:import>
+<c:import url="MyBlogContent/manage.jsp" var="homepagemanagecontent"></c:import>
+<c:import url="MyBlogContent/writeboard.jsp" var="writeboardcontent"></c:import>
+<c:import url="MyBlogContent/etc.jsp" var="etccontent"></c:import>
+<c:import url="MyBlogContent/memberinfo.jsp" var="memberinfocontent"></c:import>
+<c:import url="MyBlogContent/membermodify.jsp" var="membermodifycontent"></c:import>
+<c:import url="MyBlogContent/memberdelete.jsp" var="memberdeletecontent"></c:import>
 <c:choose>
 <c:when test="${param.page == 1}"><c:set var="titlename" value="Main Page" /></c:when>
 <c:when test="${param.page == 2}"><c:set var="titlename" value="Sign up" /></c:when>
@@ -21,7 +27,6 @@
 <c:when test="${param.page == 15}"><c:set var="titlename" value="Modify Bulletin Board" /></c:when>
 <c:when test="${param.page == 16}"><c:set var="titlename" value="About" /></c:when>
 <c:when test="${param.page == 17}"><c:set var="titlename" value="Bulletin Board" /></c:when>
-<c:when test="${param.page == 19}"><c:set var="titlename" value="Open Source" /></c:when>
 <c:when test="${param.page == 0}"><script>window.location.href="https://home.yspersonal.com/non.htm";</script></c:when>
 <c:otherwise><c:set var="titlename" value="Main Page" /></c:otherwise></c:choose>
 <!DOCTYPE HTML>
@@ -187,167 +192,16 @@ ${signupcontent}
 </div>
 </c:when> 
 <c:when test="${param.page ==6}">
-<div class="container" style="margin-top:20px">
-<div class="row">
-<div class="col-sm-12">
- <h3>HomePage Manage Center </h3>
-   <hr>  
-    <c:choose>
-     <c:when test="${sessionScope.id eq 'admin'}">
-       <p>Current User: ${sessionScope.id} </p>
-       <p><a href="/manager/status">Tomcat Server Status(ID: ${id})</a></p>
-       <p><a href="/dbmanager">JSPOracleManager</a></p>
-       <p><a href="/totaldb.do">DataBase Administration Center</a>
-      </c:when>
-     <c:otherwise>
-       <p>Administrator Only. </p> 
-    </c:otherwise>
-   </c:choose> 
-</div>
-</div>
-</div>
+${homepagemanagecontent}
 </c:when> 
 <c:when test="${param.page ==7}">
-  <div class="container" style="margin-top:20px">
-   <div class="row">
-   <div class="col-sm-12">
- <h3>Member Info </h3>
-       <hr> 
-     <c:choose> 
-     <c:when test="${sessionScope.id ne null}">
-        <table border=1>
-         <tr>
-            <td>ID:</td>
-            <td><c:out value="${sessionScope.memberidlist[0]}" /></td>
-         </tr>
-         <tr>
-            <td>First Name:</td>
-            <td><c:out value="${sessionScope.memberidlist[2]}" /></td>
-         </tr>    
-         <tr>
-            <td>Last Name:</td>
-            <td><c:out value="${sessionScope.memberidlist[3]}" /></td>
-         </tr>    
-         <tr>
-            <td>Full Name:</td>
-            <td><c:out value="${sessionScope.memberidlist[2]}" /><c:out value="${sessionScope.memberidlist[3]}" /></td>
-         </tr>
-         <tr>
-            <td>Birthday:</td>
-            <td><c:out value="${sessionScope.memberidlist[4]}" /></td>
-         </tr>   
-         <tr>
-            <td>Join Date:</td>
-            <td><c:out value="${sessionScope.memberidlist[5]}" /></td>
-         </tr>        
-        </table>
-     <hr>
-     <button class="btn btn-success" onclick="location.href='main.do?page=8'">Modify Member</button>            
-     <button class="btn btn-danger"onclick="location.href='main.do?page=9'">Delete Member</button>
-     </c:when>
-     <c:otherwise>
-       <p>Please Login. </p> 
-    </c:otherwise>
-   </c:choose>
- </div>
- </div>
-</div>
+${memberinfocontent}
 </c:when> 
 <c:when test="${param.page == 8}">
-  <div class="container" style="margin-top:20px">
-         <div class="row">
-             <div class="col-sm-12">
-                  <H3> Modify Member Information </H3>
-                  <h6>NOTICE: After modify member, You must login again.</h6>
-                  <hr>
-                 <c:choose>
-                       <c:when test="${sessionScope.id ne null}">
-                           <form action="modifymember.do" method="POST">
-                           <table>
-                              <tr>
-                               <td><label for="id">ID:</label></td>
-                               <td><input type="text" value= ${sessionScope.id} name="ID"  readonly /></td>
-                              </tr>
-                              <tr>
-                                <td><label for="password">New Password:</label></td>
-                                <td><input type="password" name="password" required /></td>
-                              </tr>
-                              <tr>
-                                <td><label for="cpassword">New Password Confirmed:</label></td>
-                                <td><input type="password" name="cpassword" required /></td>
-                              </tr>
-                              <tr>
-                              <td><label for="firstname">First Name:</label></td>
-                              <td><input type="text" name="firstname" value= ${sessionScope.firstname}   /></td>
-                              </tr>
-                              <tr>
-                              <td><label for="lastname">Last Name:</label></td>
-                              <td><input type="text" name="lastname" value= ${sessionScope.lastname} /></td>
-                              </tr>
-                              <tr>
-                              <td><label for="birthday">Birthday:</label></td>
-                              <td><input type="text" name="birthday" value= ${sessionScope.birthday} /></td>
-                              </tr>
-                           </table>
-                           <hr>
-                            <button class="btn btn-success" type="submit">Modify</button>
-                           <button class="btn btn-primary" type="button" onclick="history.go(-1);">Back</button>
-                           <button class="btn btn-primary" type="button" onclick="location.href='maintest.jsp'">Back to Main Page</button>
-                            </form>
-                       </c:when>
-                       <c:otherwise> <p> You need to Login. </p> </c:otherwise>
-                      </c:choose>
-           </div>
-        </div>
-   </div>
+${membermodifycontent}
 </c:when> 
 <c:when test="${param.page == 9}">
-     <div class="container" style="margin-top:20px">
-          <div class="row">
-                 <div class="col-sm-12">
-                       <H3> Delete Member Information </H3>
-                       <hr>
-                       <c:choose>
-                      <c:when test="${sessionScope.id ne null}">
-                         <table border="1">           
-                         <tr>
-                         <td>ID:</td>
-                         <td><c:out value="${sessionScope.memberidlist[0]}" /></td>
-                         </tr>  
-                         <tr>
-                         <td>First Name:</td>
-                          <td><c:out value="${sessionScope.memberidlist[2]}" /></td>
-                         </tr>    
-                          <tr>
-                         <td>Last Name:</td>
-                          <td><c:out value="${sessionScope.memberidlist[3]}" /></td>
-                        </tr> 
-                           <tr>
-                         <td>Full Name:</td>
-                          <td><c:out value="${sessionScope.memberidlist[2]}" /><c:out value="${sessionScope.memberidlist[3]}" /></td>
-                           </tr>   
-                        <tr>
-                         <td>Birthday:</td>
-                         <td><c:out value="${sessionScope.memberidlist[4]}" /></td>
-                        </tr>   
-                        <tr>
-                         <td>Join Date:</td>
-                         <td><c:out value="${sessionScope.memberidlist[5]}" /></td>
-                        </tr>        
-                        </table>
-                         <p></p>
-                         <p>If you click Delete Button, this Member is Deleted. Continue? </p>
-                         <button class="btn btn-success" type="button" onclick="location.href='deleteMember.do?id=${id}'">Yes!, Delete </button>
-                         <button class="btn btn-success" type="button" onclick="location.href='main.do'">NO! Back to Main Page</button>
-                         <button class="btn btn-success" type="button" onclick="history.go(-1)">NO! Back</button>
-                      </c:when>
-                      <c:otherwise>
-                          <p>You need to Login. </p>
-                      </c:otherwise>
-                     </c:choose>
-                 </div>
-          </div>
-    </div>
+${memberdeletecontent}
 </c:when>
 <c:when test="${param.page == 11 }">
     <div class="container" style="margin-top: 20px">
@@ -401,58 +255,10 @@ ${signupcontent}
     </div>
 </c:when>
 <c:when test="${param.page == 12}">
-    <div class="container" style="margin-top:20px">
-         <div class="row">
-             <div class="col-sm-12">
-                 <h1>Write Board</h1> 
-                <hr>
-                 <c:choose>
-                    <c:when test="${sessionScope.id eq 'admin'}">
-                           <form action="board.do" method="POST">
-                            <table>
-                           <tr>
-                           <td><p><label for="title">Title:</label></td><td><input type="text" name="title" style="width:500px;" required /></p></td>
-                           </tr>
-                           <tr>
-                           <td><p><label for="user">User ID:</label></td><td><input type="text" name="id" value='${sessionScope.id}'  style="width:500px;"  readonly  /></p></td>
-                            <tr>
-                            <td> <p><label for="content">Content:</label></p></td>
-                           <td><p><textarea rows="15" cols="68" autofocus name="content" wrap="hard" ></textarea></p></td>
-                            </tr>
-                            <tr>
-                           <td><p><label for="anonymous">Choose Access Mode</label></p></td>
-                           <td><input type="radio" name="access" value="admin" checked>Administrater Mode&nbsp;&nbsp;<input type="radio" name="access" value="member">Member Mode
-                           &nbsp;&nbsp;<input type="radio" name="access" value="anonymous">NonMember Mode</td>
-                           </tr>
-                           </table>
-                           <hr>
-                           <button class="btn btn-success" type="submit">Post Board</button>
-                          <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
-                           </form>
-                    </c:when>
-                   <c:otherwise>
-                        <p>Administrator Only</p>
-                        <hr>
-                        <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
-                    </c:otherwise>
-                 </c:choose>
-            </div>
-        </div> 
-    </div>
+  ${writeboardcontent}
 </c:when> 
 <c:when test="${param.page == 13}">
-  <div class="container" style="margin-top: 20px">
-    <div class="row">
-       <div class="col-sm-12">
-          <h1>ETC Service Link</h1>
-          <hr>
-         <p><a href="timer.html">Timer Page</a></p>
-         <p><a href="/diary">PersonalDiary Web Mode</a>
-         <p><a href="https://kysot.yspersonal.com:1443">Total DataBase Administrate System</a></p>
-         <p><a href="https://kysot.yspersonal.com">MyBlog&ETC(Second Server)</a></p>
-      </div>
-    </div>
-    </div>
+${etccontent}
 </c:when>
 <c:when test="${param.page == 14}">
     <div class="container" style="margin-top: 20px">

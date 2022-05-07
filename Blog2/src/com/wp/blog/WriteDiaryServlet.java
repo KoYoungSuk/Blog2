@@ -54,7 +54,7 @@ public class WriteDiaryServlet extends HttpServlet {
 		   DiaryDO diarydo = new DiaryDO(title, context, savedate, savedate);
 		   DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
 		   int rowsInserted = diarydao.insertDiary(diarydo);
-		   if(rowsInserted == 0) {
+		   if(rowsInserted == 1) {
 			   response.sendRedirect("diarylist");
 		   }
 		   else {
