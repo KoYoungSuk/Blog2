@@ -35,6 +35,7 @@ public class MainServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		Global g = new Global(response);
 		HttpSession session = request.getSession();
+		session.removeAttribute("newboardlist");
 		String id = (String) session.getAttribute("id");
 		String access = "admin";
 		if(id == null) {
@@ -53,7 +54,7 @@ public class MainServlet extends HttpServlet {
   	    String viewName = null;
   	    try {
   	    	BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
-  	    	List<BoardDO> boardlist = boarddao.getBoardList();
+  	    	List<BoardDO> boardlist = boarddao.getBoardList(true);
   	    	List<BoardDO> newboardlist = new ArrayList<BoardDO>();
   	    	int count = 0;	    
   	    	for(BoardDO boarddo : boardlist) {

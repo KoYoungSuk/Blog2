@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ModifyBoardServlet
@@ -34,6 +35,9 @@ public class ModifyBoardServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		String number = request.getParameter("serial");
+		HttpSession session = request.getSession();
+		session.removeAttribute("boardlist");
+		session.removeAttribute("totalboardlist");
 		ServletContext application = request.getSession().getServletContext();
 		String JDBC_Driver = application.getInitParameter("jdbc_driver");
 	  	String db_url = application.getInitParameter("db_url");
@@ -42,8 +46,8 @@ public class ModifyBoardServlet extends HttpServlet {
 		Global g = new Global(response);
 		try {
 		  BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
-		  List<String> boardlist = boarddao.getBoardByNum(Integer.parseInt(number), false);
-		  request.setAttribute("boardlist", boardlist);
+		  List<String> totalboardlist = boarddao.getBoardByNum(Integer.parseInt(number), false);
+		  session.setAttribute("totalboardlist", totalboardlist);
 		  RequestDispatcher view = request.getRequestDispatcher("main.do?page=17");
 		  view.forward(request, response);
 		}catch(Exception ex) {

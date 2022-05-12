@@ -56,15 +56,20 @@ public class BoardDAO {
 		   return result;
 	   }
 	   
-	   public List<BoardDO> getBoardList() throws ClassNotFoundException, SQLException
+	   public List<BoardDO> getBoardList(Boolean desc) throws ClassNotFoundException, SQLException
 	   {
 		   ArrayList<BoardDO> boardlist = null;
-		   
+		   String sql = null;
 		   connectDB();
 		   ResultSet rs = null;
 		   Statement sm = null;
 		   sm = conn.createStatement();
-		   String sql = "select * from board order by serial";
+		   if(desc) {
+			   sql = "select * from board order by serial desc";
+		   }
+		   else {
+			   sql = "select * from board order by serial";
+		   }
 		   rs = sm.executeQuery(sql);
 		   if(rs.isBeforeFirst())
 		   {
@@ -111,8 +116,11 @@ public class BoardDAO {
 			   boardlist.add(rs.getString("savedate"));
 			   boardlist.add(rs.getString("modifydate"));
 			   boardlist.add(rs.getString("anonymous"));
-			   boardlist.add(rs.getInt("clicks") + "");
+			   boardlist.add((rs.getInt("clicks") + 1) + "");
 		   }
+		   disconnectDB();
+		   BoardDO boarddo = new BoardDO(number, null, null, null, null, null, null, Integer.parseInt(boardlist.get(7)));
+		   UpdateBoard(boarddo, true);
 		   return boardlist;
 	   } 
 	   public int DeleteBoard(int number) throws ClassNotFoundException, SQLException
@@ -135,7 +143,14 @@ public class BoardDAO {
 		   int result = 0; 
 		   PreparedStatement psm = null;
 		   String sql = "";
-		   if(!clicks) { //false 
+		   
+		   if(clicks) {
+			   sql = "update board set clicks=? where serial=?";
+			   psm = conn.prepareStatement(sql);
+			   psm.setInt(1, boarddo.getClicks());
+			   psm.setInt(2, boarddo.getSerialnumber());
+		   }
+		   else {
 			   sql = "update board set title=?, content2=?, modifydate=?, userid=?, anonymous=? where serial=?";
 			   psm = conn.prepareStatement(sql);
 			   psm.setString(1, boarddo.getTitle());
@@ -145,12 +160,6 @@ public class BoardDAO {
 			   psm.setString(5, boarddo.getAnonymous());
 			   psm.setInt(6, boarddo.getSerialnumber());
 		   }
-		   else {   //true 
-			   sql = "update board set clicks=? where serial=?";
-			   psm = conn.prepareStatement(sql);
-			   psm.setInt(1, boarddo.getClicks());
-			   psm.setInt(2, boarddo.getSerialnumber());
-		   }
 		   //String sql = String.format("update board set title='%s',content2='%s', modifydate='%s', userid='%s', anonymous='%s' where serial=%d" , title, content2, modifydate, userid, access,number);
 		   result = psm.executeUpdate();
 		   disconnectDB();
@@ -158,17 +167,39 @@ public class BoardDAO {
 	   }
 	   
 	   public int MaxBoardNumber() throws ClassNotFoundException, SQLException {
-		   connectDB();
-		   int maxboardnumber = 0;
-		   ResultSet rs = null;
-		   Statement sm = null;
-		   sm = conn.createStatement();
-		   String sql = "select max(serial) from board";
-		   rs = sm.executeQuery(sql);
-		   while(rs.next()) {
-			   maxboardnumber = Integer.parseInt((String) rs.getObject(0));
+		   
+		  connectDB();
+		  ResultSet rs = null;
+		  Statement sm = null;
+		  sm = conn.createStatement();
+		  String sql = "select max(serial) maxnumber from board";
+		  rs = sm.executeQuery(sql);
+		  int maxnumber = 0;
+		  if(rs.isBeforeFirst())
+		   {
+			   while(rs.next())
+			   {
+				   maxnumber = rs.getInt("maxnumber");
+			   }
 		   }
-		   disconnectDB();
-		   return maxboardnumber;
+		  return maxnumber;
+	   }
+	   
+	   public int getBoardCount() throws ClassNotFoundException, SQLException {
+		   connectDB();
+		   ResultSet rs = null;
+	       Statement sm = null;
+		   sm = conn.createStatement();
+		   String sql = "select count(*) countnumber from board";
+		   rs = sm.executeQuery(sql);
+		   int countnumber = 0;
+		   if(rs.isBeforeFirst())
+		   {
+			  while(rs.next())
+		      {
+				 countnumber = rs.getInt("countnumber");
+			  }
+		   }
+		   return countnumber;
 	   }
 }

@@ -7,6 +7,7 @@
           <hr>
          <p><a href="timer.html">Timer Page</a></p>
          <p><a href="/diary">PersonalDiary Web Mode</a>
+         <p><a href="/product">ProductManager for MyHome</a>
          <!-- <p><a href="https://kysot.yspersonal.com:1443">Total DataBase Administrate System</a></p>-->
          <p><a href="https://kysot.yspersonal.com">MyBlog/ETC(Second Server)</a></p>
       </div>

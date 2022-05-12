@@ -51,7 +51,7 @@ public class DeleteMemberServlet extends HttpServlet {
 					viewName = "totaldb.do";
 				}
 				else {
-					viewName = "maintest.jsp";
+					viewName = "main.do";
 				}				
 			}
 			else 

@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class DetailBoardServlet
@@ -34,23 +35,56 @@ public class DetailBoardServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		Global g = new Global(response);
-		//HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
+		session.removeAttribute("boardlist");
+		session.removeAttribute("detailboardlist");
+		session.removeAttribute("accessbool");
+		String id = (String)session.getAttribute("id");
 		int number = Integer.parseInt(request.getParameter("number"));
-		int clicks = Integer.parseInt(request.getParameter("clicks"));
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
-  	    clicks++;
-  	    BoardDO boarddo = new BoardDO(number, null, null, null, null, null, null, clicks);
 		BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
 		String viewName = null;
+		String accessbool = null;
+		String access = null;
+		if(id != null) {
+			if(id.equals("admin")) {  //관리자 모드로 접속한 경우 
+				access = "admin";
+			}
+			else {  //회원 모드로 접속한 경우
+				access = "member"; 
+			}
+		}
+		else { //비회원 모드로 접속한 경우
+			access = "anonymous";
+		}
 		try {
-			List<String> boardlist = boarddao.getBoardByNum(number, true); //<br> �±׸� �߰��Ѵ�. -> HTML ��Ű ������� 
-			boarddao.UpdateBoard(boarddo, true);
-			if(boardlist != null) {
-				request.setAttribute("boardlist", boardlist);
+			List<String> detailboardlist = boarddao.getBoardByNum(number, true); //<br> �±׸� �߰��Ѵ�. -> HTML ��Ű ������� 
+			if(access.equals("admin")) { //관리자 모드에서는 모든 게시물을 볼 수 있다. 
+				accessbool = "t";
+			}
+			else if(access.equals("member")) { //회원 모드에서는 관리자 모드로 작성된 게시물을 제외하고 볼 수 있다.
+			   if(!detailboardlist.get(6).equals("admin")) {
+				  accessbool = "t";
+			   }
+			   else {
+				  accessbool = "f";
+			   }
+			}
+			else {  //비회원 모드에서는 비회원 모드로 작성된 게시물만 볼 수 있다. 
+				if(detailboardlist.get(6).equals(access)) {
+					accessbool = "t";
+				}
+				else {
+					accessbool = "f";
+				}
+			}
+			if(detailboardlist != null) {
+				session.setAttribute("detailboardlist", detailboardlist);
+				session.setAttribute("accessbool", accessbool);
 				viewName = "main.do?page=14";
 			}
 			else {

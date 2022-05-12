@@ -58,23 +58,23 @@ public class BoardServlet extends HttpServlet {
   	    String db_pw = application.getInitParameter("db_password");
   	    String viewName = null;
   	    int number = 0;
-  	    int number2 = 0;
+  	    //int number2 = 0;
 			try {
 			    BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
-			  	List<BoardDO> boardlist;
+			    /* List<BoardDO> boardlist;
 			  	List<Integer> seriallist = new ArrayList<Integer>(); 
-			  	boardlist = boarddao.getBoardList();
+			  	boardlist = boarddao.getBoardList(true);
 				if(boardlist != null){
 					for(BoardDO bdo : boardlist){
 					 seriallist.add(bdo.getSerialnumber());
 					 number2++;
 			       }
-				}
-				number = seriallist.get(number2-1) + 1; 
+				} */
+				number = boarddao.MaxBoardNumber() + 1;
 			  	BoardDO boarddo = new BoardDO(number, title, userid, content, savedate, savedate, anonymous, 0);
 				int result = boarddao.insertBoard(boarddo);
 				if(result == 1) {
-					viewName = "boardlist.do?access=admin";
+					viewName = "boardlist.do";
 				}
 				else {
 					g.jsmessage("Unknown Error Message");

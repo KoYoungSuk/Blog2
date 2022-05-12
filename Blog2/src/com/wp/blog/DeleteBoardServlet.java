@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class DeleteBoardServlet
@@ -36,7 +37,10 @@ public class DeleteBoardServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		Global g = new Global(response);
-		int number = Integer.parseInt(request.getParameter("number"));
+		HttpSession session = request.getSession();
+		session.removeAttribute("boardlist");
+		session.removeAttribute("totalboardlist");
+		int number = Integer.parseInt(request.getParameter("serial"));
 		ServletContext application = request.getSession().getServletContext();
 		String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
@@ -44,8 +48,8 @@ public class DeleteBoardServlet extends HttpServlet {
   	    String db_pw = application.getInitParameter("db_password");
 		BoardDAO boardDAO = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
   	    try {
-			List<String> boardlist = boardDAO.getBoardByNum(number, false);
-			request.setAttribute("boardlist", boardlist);
+			List<String> totalboardlist = boardDAO.getBoardByNum(number, false);
+			session.setAttribute("totalboardlist", totalboardlist);
 			RequestDispatcher view = request.getRequestDispatcher("main.do?page=20");
 			view.forward(request, response);
 		} catch (ClassNotFoundException | SQLException e) {
@@ -75,7 +79,7 @@ public class DeleteBoardServlet extends HttpServlet {
   	    try {
 			int result = boardDAO.DeleteBoard(number);
 			if(result == 1) {
-			    viewName = "boardlist.do?access=admin";
+			    viewName = "boardlist.do";
 			}else {
 				g.jsmessage("Unknown Error Message");
 			}

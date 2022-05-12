@@ -1,6 +1,7 @@
 package com.wp.blog;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ModifyDiaryServlet
@@ -34,6 +36,8 @@ public class ModifyDiaryServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		String title = request.getParameter("title");
+		HttpSession session = request.getSession();
+		session.removeAttribute("diarylist");
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
@@ -68,6 +72,32 @@ public class ModifyDiaryServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		Timestamp modifydate = new Timestamp(System.currentTimeMillis());
+		ServletContext application = request.getSession().getServletContext();
+		String JDBC_Driver = application.getInitParameter("jdbc_driver");
+  	    String db_url = application.getInitParameter("db_url");
+  	    String db_id = application.getInitParameter("db_userid");
+  	    String db_pw = application.getInitParameter("db_password");
+		Global g = new Global(response);
+		String viewName = null;
+		try {
+	      DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
+	      DiaryDO diarydo = new DiaryDO(title, content, null, modifydate);
+	      int result = diarydao.updateDiary(diarydo);
+	      if(result == 1) {
+	    	  viewName = "diary.jsp";
+	      }
+	      else {
+	    	  g.jsmessage("Unknown Error Message");
+	      }
+		}catch(Exception e) {
+			g.jsmessage(e.getMessage());
+		}
+		if(viewName != null) {
+			response.sendRedirect("diary.jsp");
+		}
 	}
 
 }

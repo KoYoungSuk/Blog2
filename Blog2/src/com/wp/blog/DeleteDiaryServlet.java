@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class DeleteDiaryServlet
@@ -34,6 +35,8 @@ public class DeleteDiaryServlet extends HttpServlet {
 	   request.setCharacterEncoding("UTF-8");
 	   response.setCharacterEncoding("UTF-8");
 	   String title = request.getParameter("title");
+	   HttpSession session = request.getSession();
+	   session.removeAttribute("diarylist");
 	   ServletContext application = request.getSession().getServletContext();
    	   String JDBC_Driver = application.getInitParameter("jdbc_driver");
  	   String db_url = application.getInitParameter("db_url");
