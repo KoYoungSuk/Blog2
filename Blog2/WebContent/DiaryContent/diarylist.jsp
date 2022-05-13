@@ -1,13 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-	<input type="button" type="button" onclick="location.href='diary.jsp?page=3'" class="btn btn-primary" value="Write" />
-	<input type="button" type="button" onclick="history.go(-1);" class="btn btn-primary" value="Back" />
-	<input type="button" type="button" onclick="location.href='../main.do'" class="btn btn-primary" value="Back To Main Page" />
-	<input type="button" type="button" onclick="location.href='../signout.do'" class="btn btn-primary" value="Logout" />
-	<hr>
 	<c:choose>
 	  <c:when test="${sessionScope.id eq 'admin'}">
 	   <p> Current User: ${sessionScope.id} </p>
+	   <p> Diary Number: ${sessionScope.diarynumber} </p>
        <hr>
         <table border="1">
             <thead>

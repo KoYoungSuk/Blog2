@@ -10,19 +10,19 @@
                          <table border="1">           
                          <tr>
                          <td>ID:</td>
-                         <td><c:out value="${sessionScope.memberidlist[0]}" /></td>
+                         <td><c:out value="${sessionScope.id}" /></td>
                          </tr>  
                          <tr>
                          <td>First Name:</td>
-                          <td><c:out value="${sessionScope.memberidlist[2]}" /></td>
+                          <td><c:out value="${sessionScope.firstname}" /></td>
                          </tr>    
                           <tr>
                          <td>Last Name:</td>
-                          <td><c:out value="${sessionScope.memberidlist[3]}" /></td>
+                          <td><c:out value="${sessionScope.lastname}" /></td>
                         </tr> 
                            <tr>
                          <td>Full Name:</td>
-                          <td><c:out value="${sessionScope.memberidlist[2]}" /><c:out value="${sessionScope.memberidlist[3]}" /></td>
+                          <td><c:out value="${sessionScope.fullname}" /></td>
                            </tr>   
                         <tr>
                          <td>Birthday:</td>
@@ -35,7 +35,7 @@
                         </table>
                          <p></p>
                          <p>If you click Delete Button, this Member is Deleted. Continue? </p>
-                         <button class="btn btn-success" type="button" onclick="location.href='deleteMember.do?id=${id}'">Yes!, Delete </button>
+                         <button class="btn btn-success" type="button" onclick="location.href='deleteMember.do'">Yes!, Delete </button>
                          <button class="btn btn-success" type="button" onclick="location.href='main.do'">NO! Back to Main Page</button>
                          <button class="btn btn-success" type="button" onclick="history.go(-1)">NO! Back</button>
                       </c:when>

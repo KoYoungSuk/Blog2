@@ -36,8 +36,6 @@ public class ModifyBoardServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		String number = request.getParameter("serial");
 		HttpSession session = request.getSession();
-		session.removeAttribute("boardlist");
-		session.removeAttribute("totalboardlist");
 		ServletContext application = request.getSession().getServletContext();
 		String JDBC_Driver = application.getInitParameter("jdbc_driver");
 	  	String db_url = application.getInitParameter("db_url");

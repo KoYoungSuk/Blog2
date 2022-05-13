@@ -121,4 +121,22 @@ public class DiaryDAO {
 	   disconnectDB();
 	   return diarylist;
    }
+   
+   public int getDiarynumber() throws ClassNotFoundException, SQLException{
+	   connectDB();
+	   String sql = "select count(*) diarynumber from diary";
+	   Statement sm = conn.createStatement();
+	   ResultSet rs = sm.executeQuery(sql);
+	   int diarynumber = 0;
+	   if(rs.isBeforeFirst())
+	   {
+		   while(rs.next())
+		   {
+			   diarynumber = rs.getInt("diarynumber");
+		   }
+	   }
+	   rs.close();
+	   disconnectDB();
+	   return diarynumber;
+   }
 }

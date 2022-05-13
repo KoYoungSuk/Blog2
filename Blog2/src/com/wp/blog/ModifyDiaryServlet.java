@@ -37,7 +37,6 @@ public class ModifyDiaryServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		String title = request.getParameter("title");
 		HttpSession session = request.getSession();
-		session.removeAttribute("diarylist");
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
@@ -47,9 +46,9 @@ public class ModifyDiaryServlet extends HttpServlet {
 		String viewName = null;
 		try {
 		   DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
-		   List<String> diarylist = diarydao.getDiaryListByTitle(title);
-		   if(diarylist != null) {
-			   request.setAttribute("diarylist", diarylist);
+		   List<String> detaildiarylist = diarydao.getDiaryListByTitle(title);
+		   if(detaildiarylist != null) {
+			   session.setAttribute("detaildiarylist", detaildiarylist);
 			   viewName = "diary.jsp?page=4";
 		   }
 		   else {
@@ -87,7 +86,7 @@ public class ModifyDiaryServlet extends HttpServlet {
 	      DiaryDO diarydo = new DiaryDO(title, content, null, modifydate);
 	      int result = diarydao.updateDiary(diarydo);
 	      if(result == 1) {
-	    	  viewName = "diary.jsp";
+	    	  viewName = "diarylist";
 	      }
 	      else {
 	    	  g.jsmessage("Unknown Error Message");

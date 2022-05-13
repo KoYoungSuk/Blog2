@@ -2,7 +2,6 @@ package com.wp.blog;
 
 import java.io.IOException;
 import java.util.List;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -41,14 +40,25 @@ public class DiaryListServlet extends HttpServlet {
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
+  	    String viewName = null;
   	    try {
   	    	DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
   	    	List<DiaryDO> diarylist = diarydao.getDiaryList();
-  	    	session.setAttribute("diarylist", diarylist);
-  	    	RequestDispatcher view = request.getRequestDispatcher("diary.jsp?page=1");
-  		    view.forward(request, response);
+  	    	int diarynumber = diarydao.getDiarynumber();
+  	    	if(diarylist != null) {
+  	    		viewName = "diary.jsp?page=1";
+  	    		session.setAttribute("diarylist", diarylist);
+  	    		session.setAttribute("diarynumber", diarynumber);
+  	    	}
+  	    	else {
+  	    		g.jsmessage("Null Error");
+  	    	}
   	    }catch(Exception ex) {
   	    	g.jsmessage(ex.getMessage());
+  	    }
+  	    if(viewName != null) {
+  	    	RequestDispatcher view = request.getRequestDispatcher("diary.jsp?page=1");
+  		    view.forward(request, response);
   	    }
 	}
 

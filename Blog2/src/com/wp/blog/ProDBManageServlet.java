@@ -35,22 +35,37 @@ public class ProDBManageServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		Global g = new Global(response);
 		HttpSession session = request.getSession();
-    	String jdbc_driver = (String) session.getAttribute("jdbcdriver");
-  	    String db_url = (String) session.getAttribute("dburl");
-  	    String db_id = (String) session.getAttribute("dbid");
-  	    String db_pw = (String) session.getAttribute("dbpw");
+		/*
+    	String jdbc_driver = (String) request.getAttribute("jdbcdriver");
+  	    String db_url = (String) request.getAttribute("dburl");
+  	    String db_id = (String) request.getAttribute("dbid");
+  	    String db_pw = (String) request.getAttribute("dbpw");
+  	    */
 		String sqlcommand = request.getParameter("sqlcommand");
+		/* System.out.println(jdbc_driver);
+		System.out.println(db_url);
+		System.out.println(db_id);
+		System.out.println(db_pw); */
 		String viewName = null;
-  	    try {
+  	    try { 
+  	       DTO d = new DTO();
+  	       String jdbc_driver = d.getDbdriver();
+  	       String db_url = d.getDburl();
+  	       String db_id = d.getDbid();
+  	       String db_pw = d.getDbpw();
   	       DAO dao = new DAO(jdbc_driver, db_url, db_id, db_pw);
-  	       
   		   List<Object> header = dao.processheader(sqlcommand);
   		   List<List<Object>> tablelist = dao.processColumn(sqlcommand);
-		   viewName = "professional.jsp";
-		   request.setAttribute("time", LocalDateTime.now());
-		   request.setAttribute("sqlcommand", sqlcommand);
-		   request.setAttribute("tableheaderlist", header);
-		   request.setAttribute("tablenamelist", tablelist);
+  		   if(header != null && tablelist != null) {
+  			 viewName = "professional.jsp";
+  		     request.setAttribute("time", LocalDateTime.now());
+  		     request.setAttribute("sqlcommand", sqlcommand);
+  		     request.setAttribute("tableheaderlist", header);
+  		     request.setAttribute("tablenamelist", tablelist);
+  		   }
+  		   else {
+  			   g.jsmessage("Null Error");
+  		   }
   	    }catch(Exception e) {
   	       g.jsmessage(e.getMessage());
   	    }

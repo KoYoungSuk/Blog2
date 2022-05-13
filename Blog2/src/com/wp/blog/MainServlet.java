@@ -35,7 +35,6 @@ public class MainServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		Global g = new Global(response);
 		HttpSession session = request.getSession();
-		session.removeAttribute("newboardlist");
 		String id = (String) session.getAttribute("id");
 		String access = "admin";
 		if(id == null) {
@@ -83,8 +82,10 @@ public class MainServlet extends HttpServlet {
   	    }catch(Exception e) {
   	    	g.jsmessage(e.getMessage());
   	    }
-		RequestDispatcher view = request.getRequestDispatcher(viewName);
-	    view.forward(request, response);
+  	    if(viewName != null) {
+  	    	RequestDispatcher view = request.getRequestDispatcher(viewName);
+  		    view.forward(request, response);
+  	    }
 	}
 
 	/**

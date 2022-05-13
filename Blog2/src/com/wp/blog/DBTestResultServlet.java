@@ -54,14 +54,21 @@ public class DBTestResultServlet extends HttpServlet {
 		Boolean connection = false;
 	    try {
 	      DAO dao = new DAO(jdbcdriver, dburl, dbid, dbpw);
+	      DTO dto = new DTO();
 	      dao.connectDB();
 	      connection = true;
 	      if(connection) {
-	    	session.setAttribute("testcode", "success");
-	        session.setAttribute("jdbcdriver", jdbcdriver);
-	    	session.setAttribute("dburl", dburl);
-	   	    session.setAttribute("dbid", dbid);
-	   	    session.setAttribute("dbpw", dbpw);
+	    	request.setAttribute("testcode", "success");
+	    	dto.setDbdriver(jdbcdriver);
+	    	dto.setDburl(dburl);
+	    	dto.setDbid(dbid);
+	    	dto.setDbpw(dbpw);
+	    	/*
+	        request.setAttribute("jdbcdriver", jdbcdriver);
+	    	request.setAttribute("dburl", dburl);
+	   	    request.setAttribute("dbid", dbid);
+	   	    request.setAttribute("dbpw", dbpw);
+	   	    */
 	   	    dao.disconnectDB();
 	   	    if(mode.equals("easy")) {
 	    	  viewName = "/dbmanager/easy.jsp";

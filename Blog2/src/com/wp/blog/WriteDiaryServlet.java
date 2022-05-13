@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class WriteDiaryServlet
@@ -42,6 +43,12 @@ public class WriteDiaryServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		Global g = new Global(response);
+		HttpSession session = request.getSession();
+		//Remove Previous Session
+		session.removeAttribute("diarylist");
+		session.removeAttribute("detaildiarylist");
+		session.removeAttribute("diarynumber");
+		//Remove Previous Session
 		String title = request.getParameter("title");
 		String context = request.getParameter("context");
 		Timestamp savedate = new Timestamp(System.currentTimeMillis());

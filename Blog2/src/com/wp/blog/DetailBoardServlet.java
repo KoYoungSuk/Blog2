@@ -36,9 +36,6 @@ public class DetailBoardServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		Global g = new Global(response);
 		HttpSession session = request.getSession();
-		session.removeAttribute("boardlist");
-		session.removeAttribute("detailboardlist");
-		session.removeAttribute("accessbool");
 		String id = (String)session.getAttribute("id");
 		int number = Integer.parseInt(request.getParameter("number"));
 		ServletContext application = request.getSession().getServletContext();

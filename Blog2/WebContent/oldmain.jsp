@@ -1,16 +1,13 @@
-﻿<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" %>
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <c:set var="id" value="${sessionScope.id}" />
 <c:choose>
    <c:when test="${param.page == 1}"><c:set var="titlename" value="Main Page" /></c:when>
    <c:when test="${param.page == 2}"><c:set var="titlename" value="Sign up Page " /></c:when>
    <c:when test="${param.page == 3}"><c:set var="titlename" value="Login Page " /></c:when>
-   <c:when test="${param.page == 4}"> <c:set var="titlename" value="NonMember Mode Page" /></c:when>
-   <c:when test="${param.page == 5}"><c:set var="titlename" value="ETC Service Link" /></c:when>
+   <c:when test="${param.page == 4}"><c:set var="titlename" value="" /></c:when>
+   <c:when test="${param.page == 5}"><c:set var="titlename" value="ETC" /></c:when>
    <c:when test="${param.page == 6}"><c:set var="titlename" value="A B O U T" /></c:when>
-   <c:when test="${param.page == 7}"><c:set var="titlename" value="Board(Administrator Mode)" /></c:when>
-   <c:when test="${param.page == 8}"><c:set var="titlename" value="Board(Member Mode)" /></c:when>
    <c:when test="${param.page == 9}"><c:set var="titlename" value="HomePage Manage Center(Administrator Only)" /></c:when>
    <c:otherwise><c:set var="titlename" value="Main Page" /></c:otherwise>
 </c:choose>
@@ -70,14 +67,11 @@
      <li><a href="./oldmain.jsp?num=3702&page=1"> Home </a></li> 
      <c:choose>
      <c:when test="${id ne null}">
-       <li><a href="./oldmain.jsp?num=3702&page=7">Board(Administrator Mode)</a></li>
-       <li><a href="./oldmain.jsp?num=3702&page=8">Board(Member Mode)</a></li>
-       <li><a href="./oldmain.jsp?num=3702&page=9">HomePage Manage Center(Administrator Only)</a></li>
+     <li><a href="./oldmain.jsp?num=3702&page=9">HomePage Manage Center(Administrator Only)</a></li>
      </c:when>
      <c:otherwise>
-     <li><a href="./oldmain.jsp?num=3702&page=2">Signup Page </a>  </li>
-     <li><a href="./oldmain.jsp?num=3702&page=3">Login Page </a>  </li>
-     <li><a href="./oldmain.jsp?num=3702&page=4">NonMember Mode </a> </li>
+     <li><a href="./oldmain.jsp?num=3702&page=2">Signup Page </a></li>
+     <li><a href="./oldmain.jsp?num=3702&page=3">Login Page </a></li>
      </c:otherwise>
      </c:choose>
      <li><a href="./oldmain.jsp?num=3702&page=5">ETC Service Page </a></li>
@@ -85,7 +79,7 @@
      <c:choose>
      <c:when test="${id ne null }">
        <li><a href="#">Current User: ${id}</a></li>
-       <li><a href="oldsignout.do">Logout</a></li>
+       <li><a href="signout.do?check=1">Logout</a></li>
      </c:when>
      </c:choose>
   </ul>
@@ -100,8 +94,8 @@
      <hr>
        <p>Latest Web Browser Download Link</p>
      <hr>
-       <p><a href="http://kysot.yspersonal.com/ChromeSetup(2018).exe">Google Chrome(Windows 7 or Higher)</a></p>
-       <p><a href="http://kysot.yspersonal.com/FireFox52Setup.exe">Mozilla FireFox(Windows XP)</a></p>
+       <p><a href="http://kysot.yspersonal.com/download/ChromeSetup(2018).exe">Google Chrome(Windows 7 or Higher)</a></p>
+       <p><a href="http://kysot.yspersonal.com/download/FireFox52Setup.exe">Mozilla FireFox(Windows XP)</a></p>
        <hr>
        <p>NOTICE: if you use Windows Me Millennium Edition or older Operating System, Please Upgrade. </p> 
  </div>
@@ -110,10 +104,9 @@
 <c:choose>
 <c:when test="${id ne null }">
     <p>Loginned User can't use Signup Page. You must logout. </p>
-    <p><a href="oldsignout.do">Logout</a>
 </c:when>
 <c:otherwise>
-<form class="signup-content" method="post" action="./oldchecksignup.do">
+<form class="signup-content" method="post" action="./checksignup.do">
 <H2> Sign-up Menu. </H2>
 <p> if you use this website perfectly,  you need to make your account. </p>
 <p> you need to type id, password, confirmed password to make your account. </p>
@@ -158,7 +151,6 @@ But typing your birthday your name(First name, Last name)  is optional.
    <c:choose>
    <c:when test="${id ne null}">
       <p>Already Loginned!! Current User: ${id}</p>
-      <p><a href="signout.do">Logout</a>
    </c:when>
    <c:otherwise>
     <form action="./login.do" method="post">
@@ -176,9 +168,18 @@ But typing your birthday your name(First name, Last name)  is optional.
 </c:when> 
 
 <c:when test="${param.page == 4}">
-   <h3>Non Member Mode Page </h3>
-    <hr>
-    Under Construction
+   <h3> 가급적이면 사용금지 </h3>
+   <hr>
+   <c:choose>
+   <c:when test="${id eq 'admin'}">
+     <p>가급적이면 사용금지</p>
+     <table>
+     
+     </table>
+     <hr>
+   </c:when>
+   <c:otherwise></c:otherwise>
+   </c:choose>
 </c:when> 
 <c:when test="${param.page == 5}">
    <H3>ETC Service Link</H3>
@@ -186,73 +187,43 @@ But typing your birthday your name(First name, Last name)  is optional.
     <a href="./timer.html">Timer(JavaScript&HTML5 Clock)</a>
      <br>
     <a href="./Classic.html">Classic Web Archive Page(Administrator Only)</a>
-      <br>
-          <a href="http://kyshome.iptime.org:81">Adminstrate Home DataBase</a>
-         <br>
-        <a href="http://kysot.yspersonal.com">Under Construction</a>
-       <br>
+     <br>
+    <a href="http://kyshome.iptime.org:81">Adminstrate Home DataBase</a>
+     <br>
+    <a href="http://kysot.yspersonal.com">Under Construction</a>
+     <br>
   <hr>
 </c:when> 
 <c:when test="${param.page == 6}">
-   <H3>About</H3>
+    <H3>About</H3>
     <hr>
-    <p>First Updated: Feb 2020  </p>
+    <p>First Updated: Feb 25 2020  </p>
     <p>Last Updated:    </p>
-   <p>NO Copyright Required, But Don't use this for illegal purpose. </p>
-   <p> <%= application.getServerInfo() %></p> 
-    <hr>
-      <c:choose> 
-          <c:when test="${id ne null}">
-    <p><a href="./About.jsp">Full Ver(HTTPS Required)</a></p>      
-    </c:when>
-      <c:otherwise> </c:otherwise>
-     </c:choose>
-</c:when> 
-<c:when test="${param.page == 7}">
-         <H3>Board(Administrator Mode)</H3>
-        <hr>
-     <c:choose> 
-      <c:when test="${id eq 'admin'}">
-        <p>Current User: ${id} </p> 
-    </c:when>
-   <c:otherwise> <p>Administrator Only. </p> </c:otherwise>
-  </c:choose>
-</c:when> 
-<c:when test="${param.page == 8}">
-        <H3>Board(Member Mode)</H3>
-        <hr>
-     <c:choose> 
-      <c:when test="${id ne null}">
-        <p>Current User: ${id} </p> 
-    </c:when>
-   <c:otherwise> <p>You need Login. </p> </c:otherwise>
-  </c:choose>
+    <p>NO Copyright Required, But Don't use this for illegal purpose. </p>
 </c:when> 
 <c:when test="${param.page == 9}">
-       <H3>HomePage Manage Center(Administrator Only)</H3>
-        <hr>
+     <H3>HomePage Manage Center(Administrator Only)</H3>
+     <hr>
      <c:choose> 
       <c:when test="${id eq 'admin'}">
         <p>Current User: ${id} </p> 
         <p><a href="./manager/status">Tomcat Server Status(ID: ${id})</a></p> 
-    </c:when>
-   <c:otherwise> <p>Administrator Only. </p> </c:otherwise>
+      </c:when>
+      <c:otherwise> <p>Administrator Only. </p> </c:otherwise>
   </c:choose>
 </c:when> 
 <c:otherwise>
    <div class="divbody" id="divbody">
-  <p>This Site is designed for My Personal Blog </p>
-        <p>And This Site is for Old Web Browser User!! </p>
-       <p>If You use Modern Browser Like IE11, Latest Version of FireFox and Chrome, Please use <a href="./maintest.jsp?page=1">this ver of MyBlog</a></p>
-      <p></p>
+      <p>This Site is designed for My Personal Blog </p>
+      <p>And This Site is for Old Web Browser User!! </p>
+      <p>If You use Modern Browser Like IE11, Latest Version of FireFox and Chrome, Please use <a href="./maintest.jsp?page=1">this ver of MyBlog</a></p>
      <hr>
-        <p>Latest Web Browser Download Link</p>
-            <hr>
-           <p><a href="./ChromeSetup(2018).exe">Google Chrome(Windows 7 or Higher)</a></p>
-          <p><a href="./FireFox52Setup.exe">Mozilla FireFox(Windows XP)</a></p>
-         <hr>
-       <p>NOTICE: if you use Windows Me Millennium Edition or older Operating System, Please Upgrade. </p> 
-
+     <p>Latest Web Browser Download Link</p>
+     <hr>
+     <p><a href="http://kysot.yspersonal.com/download/ChromeSetup(2018).exe">Google Chrome(Windows 7 or Higher)</a></p>
+     <p><a href="http://kysot.yspersonal.com/download/FireFox52Setup.exe">Mozilla FireFox(Windows XP)</a></p>
+     <hr>
+     <p>NOTICE: if you use Windows Me Millennium Edition or older Operating System, Please Upgrade. </p> 
  </div>
 </c:otherwise>
 </c:choose>

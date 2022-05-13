@@ -12,7 +12,7 @@
                            <table>
                               <tr>
                                <td><label for="id">ID:</label></td>
-                               <td><input type="text" value= ${sessionScope.id} name="ID"  readonly /></td>
+                               <td><input type="text" value= "${sessionScope.id}" name="ID"  readonly /></td>
                               </tr>
                               <tr>
                                 <td><label for="password">New Password:</label></td>
@@ -24,21 +24,21 @@
                               </tr>
                               <tr>
                               <td><label for="firstname">First Name:</label></td>
-                              <td><input type="text" name="firstname" value= ${sessionScope.firstname}  /></td>
+                              <td><input type="text" name="firstname" value= "${sessionScope.firstname}"  /></td>
                               </tr>
                               <tr>
                               <td><label for="lastname">Last Name:</label></td>
-                              <td><input type="text" name="lastname" value= ${sessionScope.lastname} /></td>
+                              <td><input type="text" name="lastname" value= "${sessionScope.lastname}" /></td>
                               </tr>
                               <tr>
                               <td><label for="birthday">Birthday:</label></td>
-                              <td><input type="text" name="birthday" value= ${sessionScope.memberidlist[4]} /></td>
+                              <td><input type="text" name="birthday" value= "${sessionScope.memberidlist[4]}" /></td>
                               </tr>
                            </table>
                            <hr>
                            <button class="btn btn-success" type="submit">Modify</button>
                            <button class="btn btn-primary" type="button" onclick="history.go(-1);">Back</button>
-                           <button class="btn btn-primary" type="button" onclick="location.href='maintest.jsp'">Back to Main Page</button>
+                           <button class="btn btn-primary" type="button" onclick="location.href='main.do'">Back to Main Page</button>
                             </form>
                        </c:when>
                        <c:otherwise> <p> You need to Login. </p> </c:otherwise>

@@ -18,6 +18,7 @@
 <c:when test="${param.page == 1}"><c:set var="titlename" value="Main Page" /></c:when>
 <c:when test="${param.page == 2}"><c:set var="titlename" value="Sign up" /></c:when>
 <c:when test="${param.page == 3}"><c:set var="titlename" value="Board" /></c:when>
+<c:when test="${param.page == 4}"><c:set var="titlename" value="Why I make this?" /></c:when>
 <c:when test="${param.page == 6}"><c:set var="titlename" value="HomePage Manage Center" /></c:when>
 <c:when test="${param.page == 7}"><c:set var="titlename" value="Member Info" /></c:when>
 <c:when test="${param.page == 8}"> <c:set var="titlename" value="Modify Member" /></c:when>
@@ -26,8 +27,8 @@
 <c:when test="${param.page == 12}"><c:set var="titlename" value="Write Bulletin Board" /></c:when>
 <c:when test="${param.page == 13}"><c:set var="titlename" value="ETC Service Link" /></c:when>
 <c:when test="${param.page == 14}"><c:set var="titlename" value="Bulletin Board Detail" /></c:when>
-<c:when test="${param.page == 17}"><c:set var="titlename" value="Modify Bulletin Board" /></c:when>
 <c:when test="${param.page == 16}"><c:set var="titlename" value="About" /></c:when>
+<c:when test="${param.page == 17}"><c:set var="titlename" value="Modify Bulletin Board" /></c:when>
 <c:when test="${param.page == 0}"><script>window.location.href="https://home.yspersonal.com/non.htm";</script></c:when>
 <c:otherwise><c:set var="titlename" value="Main Page" /></c:otherwise></c:choose>
 <!DOCTYPE HTML>
@@ -96,7 +97,7 @@
       <c:choose>
       <c:when test="${sessionScope.id ne null}">
       <button class="btn btn-default" onclick="location.href='totalmember.do?id=${id}'"> Current User ID: ${id}, Current User Name: ${sessionScope.fullname} </button>
-      <button class="btn btn-danger" onclick="location.href='signout.do'">Logout</button>
+      <button class="btn btn-danger" onclick="location.href='signout.do?check=1'">Logout</button>
       </c:when>
       <c:otherwise>
       <form class="form-inline" action="login.do" method="post" >
@@ -125,6 +126,9 @@ ${signupcontent}
 <c:when test="${param.page == 3}">
 ${boardlistcontent}
 </c:when> 
+<c:when test="${param.page == 4}">
+
+</c:when>
 <c:when test="${param.page ==6}">
 ${homepagemanagecontent}
 </c:when> 

@@ -31,8 +31,8 @@ public class ModifyMemberServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		Global g = new Global(response);
-		g.errorcode(403);
+	    Global g = new Global(response);
+	    g.errorcode(403);
 	}
 
 	/**
@@ -56,14 +56,13 @@ public class ModifyMemberServlet extends HttpServlet {
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
-		response.setContentType("text/html; charset=UTF-8");
 		try {
 			 try {
 				    MemberDO memberdo = new MemberDO(id, password_hass, firstname, lastname, birthday, null);
 					MemberDAO memberdao = new MemberDAO(JDBC_Driver, db_url, db_id, db_pw);
 					int result = memberdao.UpdateMember(memberdo);
 					if(result == 1){
-						viewName = "maintest.jsp";
+						viewName = "main.do";
 						session.invalidate();
 					}
 					else{

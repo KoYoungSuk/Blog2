@@ -31,8 +31,8 @@
                             <td><c:out value="${memberDO.lastname}" /></td>
                             <td><c:out value="${memberDO.birthday}" /></td>
                             <td><c:out value="${memberDO.joindate}" /></td>
-                            <td><a href="totalmember.do?id=${memberDO.id}">Detail</a></td>
-                            <td><a href="deleteMember.do?id=${memberDO.id}&number=2">Delete</a></td>
+                            <td><a href="totalmember_old.do?id=${memberDO.id}">Detail</a></td>
+                            <td><a href="deleteMember_old.do?id=${memberDO.id}&number=2">Delete</a></td>
                             </tr>
                              </c:forEach>
                          </tbody>

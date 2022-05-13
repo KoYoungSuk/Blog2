@@ -14,15 +14,15 @@
          </tr>
          <tr>
             <td>First Name:</td>
-            <td><c:out value="${sessionScope.memberidlist[2]}" /></td>
+            <td><c:out value="${sessionScope.firstname}" /></td>
          </tr>    
          <tr>
             <td>Last Name:</td>
-            <td><c:out value="${sessionScope.memberidlist[3]}" /></td>
+            <td><c:out value="${sessionScope.lastname}" /></td>
          </tr>    
          <tr>
             <td>Full Name:</td>
-            <td><c:out value="${sessionScope.memberidlist[2]}" /><c:out value="${sessionScope.memberidlist[3]}" /></td>
+            <td><c:out value="${sessionScope.fullname}" /></td>
          </tr>
          <tr>
             <td>Birthday:</td>

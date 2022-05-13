@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <c:import url="../DiaryContent/diarylist.jsp" var="diarylistcontent"></c:import>
+<c:import url="../DiaryContent/detail.jsp" var="detailcontent"></c:import>
 <c:import url="../DiaryContent/write.jsp" var="writecontent"></c:import>
+<c:import url="../DiaryContent/modify.jsp" var="modifycontent"></c:import>
+<c:import url="../DiaryContent/delete.jsp" var="deletecontent"></c:import>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,80 +41,26 @@
    <div class="col-sm-12">
 	<p>Only Administrator can use PersonalDiary Web Mode. Sorry.... </p>
 	<hr>
+	<input type="button" type="button" onclick="location.href='diary.jsp?page=3'" class="btn btn-primary" value="Write" />
+	<input type="button" type="button" onclick="history.go(-1);" class="btn btn-primary" value="Back" />
+	<input type="button" type="button" onclick="location.href='../main.do'" class="btn btn-primary" value="Back To Main Page" />
+	<input type="button" type="button" onclick="location.href='../signout.do?check=2'" class="btn btn-primary" value="Logout" />
+	<hr>
 	<c:choose>
 	 <c:when test="${page.param == 1}">
       ${diarylistcontent}
 	 </c:when>
 	 <c:when test="${param.page == 2}">
-	 <c:choose>
-	 <c:when test="${sessionScope.id eq 'admin' }">
-	 <table border="1">
-	 <tr>
-	  <td><label for="title">제목:</label></td>
-	  <td><c:out value="${requestScope.diarylist[0]}" /></td>
-	</tr>
-	<tr>
-	  <td><label for="context">내용:</label></td>
-	  <td><c:out value="${requestScope.diarylist[1]}" /></td>
-	</tr>
-	<tr>
-	  <td><label for="savedate">작성 날짜:</label></td>
-	  <td><c:out value="${requestScope.diarylist[2]}" /></td>
-	</tr>
-	<tr>
-	  <td><label for="modifydate">수정 날짜:</label></td>
-	  <td><c:out value="${requestScope.diarylist[3]}" /></td>
-	</tr>
-	</table>
-	<hr> 
-	<button class="btn btn-primary" onclick="location.href='modifydiary?title=${requestScope.diarylist[0]}'" type="button">Modify</button>
-	<button class="btn btn-primary" onclick="history.go(-1);" type="button">Back</button>
-	<button class="btn btn-primary" onclick="location.href='diary.jsp?page=1'" type="button">Back To Main Page(PersonalDiary)</button>
-	<button class="btn btn-primary" onclick="location.href='../main.do'" type="button">Back To Main Page(MyBlog)</button>
-	  </c:when>
-	 <c:otherwise>
-	   <p>Administrator Only.</p>
-	 </c:otherwise>
-	 </c:choose>
+	 ${detailcontent}
 	</c:when>
 	<c:when test="${param.page == 3}">
 	 ${writecontent}
 	</c:when>
 	<c:when test="${param.page == 4}">
-    <c:choose>
-	 <c:when test="${sessionScope.id eq 'admin' }">
-	 <form action="modifydiary" method="POST">
-	  <table>
-	<tr>
-	  <td><label for="title">제목:</label></td>
-	  <td><input type="text" name="title" value= "${requestScope.diarylist[0]}" readonly /></td>
-	</tr>
-	<tr>
-	  <td><label for="context">내용:</label></td>
-	  <td><textarea rows="15" cols="61" name="context" autofocus wrap="hard">${requestScope.diarylist[1]}</textarea></td>
-	</tr>
-	</table>
-	<hr> 
-	<button class="btn btn-primary" type="submit">Modify</button>
-	<button class="btn btn-primary" onclick="history.go(-1);" type="button">Back</button>
-	<button class="btn btn-primary" onclick="location.href='diarylist.jsp'" type="button">Back To The Main Page(PersonalDiary)</button>
-	<button class="btn btn-primary" onclick="location.href='../maintest.jsp'" type="button">Back To The Main Page(MyBlog)</button>
-	</form>
-	 </c:when>
-	 <c:otherwise>
-	  <p>Administrator Only</p>
-	 </c:otherwise>
-	</c:choose>
+     ${modifycontent}
 	</c:when>
     <c:when test="${param.page == 5}">
-     <c:choose>
-      <c:when test="${sessionScope.id eq 'admin' }">
-       Delete 
-      </c:when>
-      <c:otherwise>
-      <p>Administrator Only</p>
-      </c:otherwise>
-     </c:choose>
+     ${deletecontent}
     </c:when>
     <c:otherwise>
      ${diarylistcontent}
@@ -121,8 +70,8 @@
  </div>
  <hr>
   <div class="footer">
-	<p>Last updated:  </p>
-	<p>This is not copyrighted.</p>
+	<p>Last updated: May 13th, 2022 </p>
+	<p>This is not copyrighted. But Don't use this illegally.</p>
 </div>
 </body>
 </html>

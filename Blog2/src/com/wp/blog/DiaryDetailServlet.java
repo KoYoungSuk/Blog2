@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class DiaryDetailServlet
@@ -33,20 +34,36 @@ public class DiaryDetailServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		Global g = new Global(response);
+		HttpSession session = request.getSession();
+		//Remove Previous Session
+		session.removeAttribute("detaildiarylist");
+		session.removeAttribute("diarynumber");
+		session.removeAttribute("diarylist");
+		//Remove Previous Session
 		String title = request.getParameter("title");
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
+  	    String viewName = null;
 		try {
 			DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
-			List<String> diarylist = diarydao.getDiaryListByTitle(title);
-			request.setAttribute("diarylist", diarylist);
-			RequestDispatcher view = request.getRequestDispatcher("diary.jsp?page=2");
-		    view.forward(request, response);
+			List<String> detaildiarylist = diarydao.getDiaryListByTitle(title);
+			if(detaildiarylist != null) {
+				session.setAttribute("detaildiarylist", detaildiarylist);
+				viewName = "diary.jsp?page=2";
+			}
+			else {
+				g.jsmessage("Null Error");
+			}
+			
 		}catch(Exception e) {
 			g.jsmessage(e.getMessage());
+		}
+		if(viewName != null) {
+			RequestDispatcher view = request.getRequestDispatcher(viewName);
+		    view.forward(request, response);
 		}
 	}
 

@@ -3,8 +3,6 @@ package com.wp.blog;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -48,8 +46,6 @@ public class BoardServlet extends HttpServlet {
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		String anonymous = request.getParameter("access");
-		/* String content_html = content.replace("\r\n", "<br>");
-		String content_html2 = content_html.replace("\n", "<br>"); */
 		Timestamp savedate = new Timestamp(System.currentTimeMillis());
 		ServletContext application = request.getSession().getServletContext();
 		String JDBC_Driver = application.getInitParameter("jdbc_driver");
@@ -58,18 +54,8 @@ public class BoardServlet extends HttpServlet {
   	    String db_pw = application.getInitParameter("db_password");
   	    String viewName = null;
   	    int number = 0;
-  	    //int number2 = 0;
 			try {
 			    BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
-			    /* List<BoardDO> boardlist;
-			  	List<Integer> seriallist = new ArrayList<Integer>(); 
-			  	boardlist = boarddao.getBoardList(true);
-				if(boardlist != null){
-					for(BoardDO bdo : boardlist){
-					 seriallist.add(bdo.getSerialnumber());
-					 number2++;
-			       }
-				} */
 				number = boarddao.MaxBoardNumber() + 1;
 			  	BoardDO boarddo = new BoardDO(number, title, userid, content, savedate, savedate, anonymous, 0);
 				int result = boarddao.insertBoard(boarddo);

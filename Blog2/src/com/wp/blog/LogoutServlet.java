@@ -32,8 +32,22 @@ public class LogoutServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
+		int check = Integer.parseInt(request.getParameter("check"));
+		String viewName = null;
+		//check 1 : MyBlog
+		//check 2: Diary
+		//check 3: 
+		if(check == 1) {
+			viewName = "main.do";
+		}
+		else if(check == 2) {
+			viewName = "diary";
+		}
+		else {
+			viewName = "main.do";
+		}
 		session.invalidate();
-		response.sendRedirect("main.do");
+		response.sendRedirect(viewName);
 	}
 
 	/**

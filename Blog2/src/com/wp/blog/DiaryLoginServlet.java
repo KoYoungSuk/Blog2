@@ -44,6 +44,7 @@ public class DiaryLoginServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		Global g = new Global(response);
 		HttpSession session = request.getSession();
+		session.removeAttribute("id");
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
 		ServletContext application = request.getSession().getServletContext();

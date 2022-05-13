@@ -1,7 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<c:set var="testcode" value="${sessionScope.testcode}" />
+<c:set var="testcode" value="${requestScope.testcode}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,8 +24,8 @@
       <c:when test="${testcode eq 'success'}">
         <h3>Professional Mode</h3>
         <hr>
-        <p>DataBase Address: ${sessionScope.dburl} </p>
-        <p>DataBase ID: ${sessionScope.dbid} </p>
+        <p>DataBase Address: ${requestScope.dburl} </p>
+        <p>DataBase ID: ${requestScope.dbid} </p>
         <hr>
          <form action="prodbmanage.do" method="GET">
          <table>

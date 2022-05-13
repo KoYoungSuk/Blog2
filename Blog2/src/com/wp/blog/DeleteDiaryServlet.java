@@ -36,7 +36,11 @@ public class DeleteDiaryServlet extends HttpServlet {
 	   response.setCharacterEncoding("UTF-8");
 	   String title = request.getParameter("title");
 	   HttpSession session = request.getSession();
+	   //Remove Previous Session
 	   session.removeAttribute("diarylist");
+	   session.removeAttribute("detaildiarylist");
+	   session.removeAttribute("diarynumber");
+	   //Remove Previous Session
 	   ServletContext application = request.getSession().getServletContext();
    	   String JDBC_Driver = application.getInitParameter("jdbc_driver");
  	   String db_url = application.getInitParameter("db_url");
@@ -71,6 +75,7 @@ public class DeleteDiaryServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		String title = request.getParameter("title");
+		HttpSession session = request.getSession();
 		ServletContext application = request.getSession().getServletContext();
 	   	String JDBC_Driver = application.getInitParameter("jdbc_driver");
 	 	String db_url = application.getInitParameter("db_url");
@@ -81,7 +86,8 @@ public class DeleteDiaryServlet extends HttpServlet {
 	 		DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
 	 		int result = diarydao.deleteDiary(title);
 	 		if(result == 1) {
-	 			response.sendRedirect("diary.jsp?page=1");
+	 			session.removeAttribute("detaildiarylist");
+	 			response.sendRedirect("diarylist");
 	 		}
 	 		else {
 	 			g.jsmessage("Unknown Error Message");
