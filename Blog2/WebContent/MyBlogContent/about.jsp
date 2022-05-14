@@ -26,6 +26,8 @@
        </c:when>
        </c:choose>
        <p>This is not copyrighted. But don't use this illegally.</p>
+       <p>Java, Oracle,  Oracle DataBase and JSP(Java Server Page) are trademark of Oracle Corporation of America. </p>
+       <p>So Some context are copyrighted by Oracle Corporation. You must notice this. </p>
        <hr>
        <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
      </div>

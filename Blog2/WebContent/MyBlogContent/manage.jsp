@@ -10,7 +10,7 @@
        <p>Current User: ${sessionScope.id} </p>
        <p><a href="/manager/status">Tomcat Server Status(ID: ${id})</a></p>
        <p><a href="/dbmanager">JSPOracleManager</a></p>
-       <p><a href="/totaldb.do">DataBase Administration Center</a>
+       <p><a href="/totaldb.do">Member Management Center</a>
       </c:when>
      <c:otherwise>
        <p>Administrator Only. </p> 

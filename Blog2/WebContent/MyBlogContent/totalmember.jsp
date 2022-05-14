@@ -3,7 +3,7 @@
  <div class="container" style="margin-top: 20px">
         <div class="row">
              <div class="col-sm-12">
-                 <H3>DataBase Administration Center </H3>
+                 <H3>Member Management Center </H3>
                  <hr>
                  <c:choose>
                    <c:when test="${sessionScope.id eq 'admin'}">
