@@ -23,7 +23,7 @@ NOTICE: DataBase ID and Password are censored due to Security issue.
         You must make own Oracle DataBase Server and Account and Table.
         (Sorry...)
         
-Sorry for My Bad English.(I am Not American, Canadian, British or Australian!) -> If you are foreigner(Non-Korean), Notice This. 
+Sorry for My Bad English.(I am not from English-speaking countries!) -> If you are foreigner(Non-Korean), Notice This. 
 
 This Source code is not copyrighted to Me. But Don't use this illegally.
 
