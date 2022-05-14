@@ -22,6 +22,7 @@
 	</table>
 	<hr> 
 	<button class="btn btn-primary" onclick="location.href='modifydiary?title=${sessionScope.detaildiarylist[0]}'" type="button">Modify</button>
+	<button class="btn btn-primary" onclick="location.href='deletediary?title=${sessionScope.detaildiarylist[0]}'" type="button">Delete</button>
 	<button class="btn btn-primary" onclick="history.go(-1);" type="button">Back</button>
 	<button class="btn btn-primary" onclick="location.href='diary.jsp?page=1'" type="button">Back To Main Page(PersonalDiary)</button>
 	<button class="btn btn-primary" onclick="location.href='../main.do'" type="button">Back To Main Page(MyBlog)</button>

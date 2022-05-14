@@ -14,6 +14,7 @@
 <c:import url="MyBlogContent/detailboard.jsp" var="detailboardcontent"></c:import>
 <c:import url="MyBlogContent/modifyboard.jsp" var="modifyboardcontent"></c:import>
 <c:import url="MyBlogContent/deleteboard.jsp" var="deleteboardcontent"></c:import>
+<c:import url="MyBlogContent/whyimakethis.jsp" var="whyimakethiscontent"></c:import>
 <c:choose>
 <c:when test="${param.page == 1}"><c:set var="titlename" value="Main Page" /></c:when>
 <c:when test="${param.page == 2}"><c:set var="titlename" value="Sign up" /></c:when>
@@ -127,7 +128,7 @@ ${signupcontent}
 ${boardlistcontent}
 </c:when> 
 <c:when test="${param.page == 4}">
-
+${whyimakethiscontent}
 </c:when>
 <c:when test="${param.page ==6}">
 ${homepagemanagecontent}
@@ -168,7 +169,7 @@ ${defaultcontent}
 </c:choose>
 <hr>
    <div class="footer" style="margin-bottom:0">
-   <p> Last updated: Thursday, December 16th, 2021 </p>
+   <p> Last updated: Monday, May 16th 2022 </p>
    <p> This is not copyrighted. But Don't use this web site to make illegal stuff </p>
    <p id=currentDate></p>
    </div>

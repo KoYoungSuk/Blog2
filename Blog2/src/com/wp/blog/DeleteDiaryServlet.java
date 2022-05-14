@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class DeleteDiaryServlet
  */
-@WebServlet("/deletediary")
+@WebServlet("/diary/deletediary")
 public class DeleteDiaryServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,11 +36,6 @@ public class DeleteDiaryServlet extends HttpServlet {
 	   response.setCharacterEncoding("UTF-8");
 	   String title = request.getParameter("title");
 	   HttpSession session = request.getSession();
-	   //Remove Previous Session
-	   session.removeAttribute("diarylist");
-	   session.removeAttribute("detaildiarylist");
-	   session.removeAttribute("diarynumber");
-	   //Remove Previous Session
 	   ServletContext application = request.getSession().getServletContext();
    	   String JDBC_Driver = application.getInitParameter("jdbc_driver");
  	   String db_url = application.getInitParameter("db_url");
@@ -52,7 +47,7 @@ public class DeleteDiaryServlet extends HttpServlet {
 		  DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
 		  List<String> diarylist = diarydao.getDiaryListByTitle(title);
 		  if(diarylist != null) {
-			  request.setAttribute("diarylist", diarylist);
+			  session.setAttribute("detaildiarylist", diarylist);
 			  viewName = "diary.jsp?page=5";
 		  }
 		  else {
@@ -82,18 +77,22 @@ public class DeleteDiaryServlet extends HttpServlet {
 	 	String db_id = application.getInitParameter("db_userid");
 	 	String db_pw = application.getInitParameter("db_password");
 	 	Global g = new Global(response);
+	 	String viewName = null;
 	 	try {
 	 		DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
 	 		int result = diarydao.deleteDiary(title);
 	 		if(result == 1) {
 	 			session.removeAttribute("detaildiarylist");
-	 			response.sendRedirect("diarylist");
+	 			viewName = "diarylist";
 	 		}
 	 		else {
 	 			g.jsmessage("Unknown Error Message");
 	 		}
 	 	}catch(Exception e) {
 	 		g.jsmessage(e.getMessage());
+	 	}
+	 	if(viewName != null) {
+	 		response.sendRedirect(viewName);
 	 	}
 	}
 

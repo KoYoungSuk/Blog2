@@ -15,7 +15,6 @@
     <param-name>db_url</param-name>
     <param-value>jdbc:oracle:thin:@koyoungsuk2.iptime.org:1521/XE</param-value>
   </context-param>
-  <!-- DATABASE ID AND PASSWORD ARE CENSORED DUE TO SECURITY ISSUE. -->
   <context-param>
     <param-name>db_userid</param-name>
     <param-value>dbid</param-value>
@@ -24,7 +23,6 @@
     <param-name>db_password</param-name>
     <param-value>dbpw</param-value>
   </context-param>
-  <!-- DATABASE ID AND PASSWORD ARE CENSORED DUE TO SECURITY ISSUE. -->
   <error-page>
     <error-code>418</error-code>
     <location>/oldmain.jsp?num=3702</location>

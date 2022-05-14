@@ -44,7 +44,7 @@ public class ModifyBoardServlet extends HttpServlet {
 		Global g = new Global(response);
 		try {
 		  BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
-		  List<String> totalboardlist = boarddao.getBoardByNum(Integer.parseInt(number), false);
+		  List<String> totalboardlist = boarddao.getBoardByNum(Integer.parseInt(number), false, false);
 		  session.setAttribute("totalboardlist", totalboardlist);
 		  RequestDispatcher view = request.getRequestDispatcher("main.do?page=17");
 		  view.forward(request, response);

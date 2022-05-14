@@ -168,15 +168,43 @@ But typing your birthday your name(First name, Last name)  is optional.
 </c:when> 
 
 <c:when test="${param.page == 4}">
-   <h3> 가급적이면 사용금지 </h3>
+   <h3> CAUTION  </h3>
    <hr>
    <c:choose>
    <c:when test="${id eq 'admin'}">
-     <p>가급적이면 사용금지</p>
-     <table>
-     
-     </table>
-     <hr>
+     <p> CAUTION </p>
+      <form action="deleteMember_old.do" method="POST">
+         <table border=1>
+         <tr>
+            <td><label for="id">ID:</label></td>
+            <td><input type="text" name="id" value="${requestScope.newmemberidlist[0]}" readonly /></td>
+         </tr>
+         <tr>
+            <td><label for="firstname">First Name:</label></td>
+            <td><input type="text" name="firstname" value="${requestScope.newmemberidlist[2]}" readonly /></td>
+         </tr>    
+         <tr>
+            <td><label for="lastname">Last Name:</label></td>
+            <td><input type="text" name="lastname" value="${requestScope.newmemberidlist[3]}" readonly /></td>
+         </tr>    
+         <tr>
+            <td><label for="fullname">Full Name:</label></td>
+            <td><input type="text" name="fullname" value="${requestScope.newmemberidlist[2]}${requestScope.newmemberidlist[3]}" readonly /></td>
+         </tr>
+         <tr>
+            <td><label for="birthday">Birthday:</label></td>
+            <td><input type="text" name="birthday" value="${requestScope.newmemberidlist[4]}" readonly /></td>
+         </tr>   
+         <tr>
+            <td><label for="joindate">Join Date:</label></td>
+            <td><input type="text" name="lastname" value="${requestScope.newmemberidlist[5]}" readonly /></td>
+         </tr>        
+        </table>
+        <hr>
+        <button type="submit">Delete</button>
+        <button type="button" onclick="history.go(-1);">Back</button>
+        <button type="button" onclick="location.href='main.do?page=1'">Back To Main Page</button>
+       </form>
    </c:when>
    <c:otherwise></c:otherwise>
    </c:choose>
@@ -185,20 +213,13 @@ But typing your birthday your name(First name, Last name)  is optional.
    <H3>ETC Service Link</H3>
     <hr>
     <a href="./timer.html">Timer(JavaScript&HTML5 Clock)</a>
-     <br>
-    <a href="./Classic.html">Classic Web Archive Page(Administrator Only)</a>
-     <br>
-    <a href="http://kyshome.iptime.org:81">Adminstrate Home DataBase</a>
-     <br>
-    <a href="http://kysot.yspersonal.com">Under Construction</a>
-     <br>
-  <hr>
+    <hr>
 </c:when> 
 <c:when test="${param.page == 6}">
     <H3>About</H3>
     <hr>
     <p>First Updated: Feb 25 2020  </p>
-    <p>Last Updated:    </p>
+    <p>Last Updated: May 14 2022  </p>
     <p>NO Copyright Required, But Don't use this for illegal purpose. </p>
 </c:when> 
 <c:when test="${param.page == 9}">
@@ -214,9 +235,9 @@ But typing your birthday your name(First name, Last name)  is optional.
 </c:when> 
 <c:otherwise>
    <div class="divbody" id="divbody">
-      <p>This Site is designed for My Personal Blog </p>
-      <p>And This Site is for Old Web Browser User!! </p>
-      <p>If You use Modern Browser Like IE11, Latest Version of FireFox and Chrome, Please use <a href="./maintest.jsp?page=1">this ver of MyBlog</a></p>
+     <p>This Site is designed for My Personal Blog </p>
+     <p>And This Site is for Old Web Browser User!! </p>
+     <p>If You use Modern Browser Like IE11, Latest Version of FireFox and Chrome, Please use <a href="./maintest.jsp?page=1">this ver of MyBlog</a></p>
      <hr>
      <p>Latest Web Browser Download Link</p>
      <hr>
@@ -228,7 +249,7 @@ But typing your birthday your name(First name, Last name)  is optional.
 </c:otherwise>
 </c:choose>
    <div class="footer" style="margin-bottom:0">
-   <p> Last updated: July 18th, 2021 </p>
+   <p> Last updated: May 14th, 2022 </p>
    <p> NO Copyright Required. But Don't use this web site to make illegal stuff </p>
    <p id=currentDate></p>
    </div> 
@@ -245,7 +266,6 @@ But typing your birthday your name(First name, Last name)  is optional.
         var nowminute = currdate.getMinutes();
         var nowsecond = currdate.getSeconds();
         document.getElementById("currentDate").innerHTML = "현재 날짜/시간: " + nowyear + "년 " + nowmonth + "월 " + nowdate + "일 " + nowhour + "시 " + nowminute + "분 " + nowsecond + "초";
-          	   
      }
     function init(){
      	clock();

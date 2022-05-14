@@ -59,7 +59,7 @@ public class DetailBoardServlet extends HttpServlet {
 			access = "anonymous";
 		}
 		try {
-			List<String> detailboardlist = boarddao.getBoardByNum(number, true); //<br> �±׸� �߰��Ѵ�. -> HTML ��Ű ������� 
+			List<String> detailboardlist = boarddao.getBoardByNum(number, true, true); //<br> �±׸� �߰��Ѵ�. -> HTML ��Ű ������� 
 			if(access.equals("admin")) { //관리자 모드에서는 모든 게시물을 볼 수 있다. 
 				accessbool = "t";
 			}

@@ -66,7 +66,7 @@ public class DiaryDAO {
 	   connectDB();
 	   int result = 0;
 	   PreparedStatement psm = null;
-	   String sql = "delete from board where title = ?";
+	   String sql = "delete from diary where title = ?";
 	   psm = conn.prepareStatement(sql);
 	   psm.setString(1, title);
 	   result = psm.executeUpdate();

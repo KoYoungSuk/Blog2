@@ -48,7 +48,7 @@ public class DeleteBoardServlet extends HttpServlet {
   	    String db_pw = application.getInitParameter("db_password");
 		BoardDAO boardDAO = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
   	    try {
-			List<String> totalboardlist = boardDAO.getBoardByNum(number, false);
+			List<String> totalboardlist = boardDAO.getBoardByNum(number, false, false);
 			session.setAttribute("totalboardlist", totalboardlist);
 			RequestDispatcher view = request.getRequestDispatcher("main.do?page=20");
 			view.forward(request, response);

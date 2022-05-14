@@ -91,7 +91,7 @@ public class BoardDAO {
 		   disconnectDB();
 		   return boardlist;
 	   }
-	   public List<String> getBoardByNum(int number, boolean br) throws ClassNotFoundException, SQLException
+	   public List<String> getBoardByNum(int number, boolean br, boolean clicks) throws ClassNotFoundException, SQLException
 	   {
 		   List<String> boardlist = null;
 		   connectDB();
@@ -119,8 +119,10 @@ public class BoardDAO {
 			   boardlist.add((rs.getInt("clicks") + 1) + "");
 		   }
 		   disconnectDB();
-		   BoardDO boarddo = new BoardDO(number, null, null, null, null, null, null, Integer.parseInt(boardlist.get(7)));
-		   UpdateBoard(boarddo, true);
+		   if(clicks) {
+			   BoardDO boarddo = new BoardDO(number, null, null, null, null, null, null, Integer.parseInt(boardlist.get(7)));
+			   UpdateBoard(boarddo, true);
+		   }
 		   return boardlist;
 	   } 
 	   public int DeleteBoard(int number) throws ClassNotFoundException, SQLException
@@ -166,7 +168,8 @@ public class BoardDAO {
 		   return result;
 	   }
 	   
-	   public int MaxBoardNumber() throws ClassNotFoundException, SQLException {
+	   //Last Number of Board
+	   public int MaxBoardNumber() throws ClassNotFoundException, SQLException {  
 		   
 		  connectDB();
 		  ResultSet rs = null;

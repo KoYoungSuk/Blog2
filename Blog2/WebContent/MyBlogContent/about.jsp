@@ -6,7 +6,7 @@
        <H1>About</H1>
        <hr>
        <p>First Updated: Tuesday, February 25th 2020 </p>
-       <p>Last Updated: Thursday, January 27th 2022 </p>
+       <p>Last Updated: Monday, May 16th 2022 </p>
        <c:choose>
        <c:when test="${sessionScope.id ne null }">
        <p>Based Language: HTML5, CSS, JavaScript, JSP(Java Server Page)</p>
