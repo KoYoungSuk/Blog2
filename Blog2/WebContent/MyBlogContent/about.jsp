@@ -17,7 +17,7 @@
        <p>DataBase: Oracle DataBase 18c Express Edition </p>
        <hr>
        <p>
-       <a href="http://www.dnsever.com" target="dnsever"><img src="http://banner.dnsever.com/dnsever-banner_170x35.gif" border="0" alt="DNS server, DNS service"></a>
+       <a href="https://www.dnsever.com" target="dnsever"><img src="https://banner.dnsever.com/dnsever-banner_170x35.gif" border="0" alt="DNS server, DNS service"></a>
        </p>
        <hr>
        <p><a href="/download"> Download Center(Source and Tools)</a><p>
