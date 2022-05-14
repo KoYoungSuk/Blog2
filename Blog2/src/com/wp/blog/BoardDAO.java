@@ -188,12 +188,21 @@ public class BoardDAO {
 		  return maxnumber;
 	   }
 	   
-	   public int getBoardCount() throws ClassNotFoundException, SQLException {
+	   public int getBoardCount(String access) throws ClassNotFoundException, SQLException {
 		   connectDB();
 		   ResultSet rs = null;
 	       Statement sm = null;
-		   sm = conn.createStatement();
-		   String sql = "select count(*) countnumber from board";
+	       String sql = "";
+	       sm = conn.createStatement();
+		   if(access.equals("admin")) {
+			   sql = "select count(*) countnumber from board";
+		   }
+		   else if(access.equals("member")) {
+			   sql = "select count(*) countnumber from board where anonymous != 'admin'";
+		   }
+		   else {
+			   sql = "select count(*) countnumber from board where anonymous = 'anonymous'";
+		   }
 		   rs = sm.executeQuery(sql);
 		   int countnumber = 0;
 		   if(rs.isBeforeFirst())

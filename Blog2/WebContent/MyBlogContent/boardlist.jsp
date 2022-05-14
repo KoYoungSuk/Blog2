@@ -38,12 +38,12 @@
                   <c:forEach var="boardDO" items="${sessionScope.boardlist}" varStatus="status">       
                   <tr>
                   <td><c:out value="${boardDO.serialnumber}" /></td>
-                  <td><a href="detailboard.do?number=${boardDO.serialnumber}"><c:out value="${boardDO.title}" /></a></td>
+                  <td><a href="detailboard.do?serial=${boardDO.serialnumber}"><c:out value="${boardDO.title}" /></a></td>
                   <td><c:out value="${boardDO.savedate}" /></td>
                   <td><c:out value="${boardDO.modifydate}" /></td>
                   <td><c:out value="${boardDO.anonymous}" /></td>
                   <td><c:out value="${boardDO.clicks}" /></td>
-                  <td><a href="deleteboard.do?number=${boardDO.serialnumber}">Delete</a></td>
+                  <td><a href="deleteboard.do?serial=${boardDO.serialnumber}">Delete</a></td>
                   </tr>
                </c:forEach>
              </tbody>

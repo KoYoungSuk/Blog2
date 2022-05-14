@@ -37,7 +37,7 @@ public class DetailBoardServlet extends HttpServlet {
 		Global g = new Global(response);
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
-		int number = Integer.parseInt(request.getParameter("number"));
+		int number = Integer.parseInt(request.getParameter("serial"));
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");

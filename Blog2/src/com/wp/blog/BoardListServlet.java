@@ -58,7 +58,7 @@ public class BoardListServlet extends HttpServlet {
 	    }
 	    try {
 			  List<BoardDO> boardlist = boarddao.getBoardList(false);
-			  int count_board = boarddao.getBoardCount();
+			  int count_board = boarddao.getBoardCount(access);
 		      for(BoardDO boarddo: boardlist) {
 				if(access.equals("admin")) {  //관리자 모드로 접속한 경우 전체 게시물 조회 가능 
 				     newboardlist.add(boarddo);
