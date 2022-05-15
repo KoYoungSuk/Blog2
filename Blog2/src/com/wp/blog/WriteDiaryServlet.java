@@ -2,15 +2,12 @@ package com.wp.blog;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 /**
  * Servlet implementation class WriteDiaryServlet
  */
@@ -56,7 +53,7 @@ public class WriteDiaryServlet extends HttpServlet {
 		   DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
 		   int rowsInserted = diarydao.insertDiary(diarydo);
 		   if(rowsInserted == 1) {
-			   response.sendRedirect("diarylist");
+			   response.sendRedirect("diarylist?desc=0");
 		   }
 		   else {
 			   g.jsmessage("Unknown Error Message"); 

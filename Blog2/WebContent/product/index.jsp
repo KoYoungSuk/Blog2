@@ -1,3 +1,12 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:choose>
+<c:when test="${sessionScope.id ne eq 'admin'}">
+  <c:redirect url="productlist?desc=0"></c:redirect>
+</c:when>
+<c:otherwise>
+</c:otherwise>
+</c:choose>
 <!doctype html>
 <html>
 <head>
@@ -6,7 +15,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <link rel="stylesheet" href="../BS/bootstrap.min.css" />
 <link rel="stylesheet" href="../BS/bootstrap.css" />
-<title>PersonalDiary Web Mode</title>
+<title>ProductManager for MyHome Web Mode</title>
 <style>
 	.jumbotron{
         padding-top: 0px;
@@ -25,15 +34,15 @@
 </style>
 </head>
  <div class="jumbotron">
-	<h1>PersonalDiary Web Mode</h1>
-	<h5>2022-04-24</h5>
+	<h1>ProductManager for MyHome Web Mode</h1>
+	<h5>2022-05-18</h5>
 </div>
 <hr>
 <div class="container" style="margin-top: 15px">
    <div class="col-sm-12">
-	<p>Only Administrator can use PersonalDiary Web Mode. Sorry.... </p>
+	<p>Only Administrator can use ProductManager for MyHome Web Mode. Sorry.... </p>
 	<hr>
-	<form action="diarylogin" method="POST">
+	<form action="productlogin" method="POST">
 	<table>
 	  <tr>
 	    <td><label for="ID">ID:</label></td>
@@ -45,9 +54,9 @@
 	  </tr>
 	</table>
 	<hr>
-	  <input type="submit" class="btn btn-primary" value="LOGIN" />
-	  <input type="button" class="btn btn-primary" onclick="history.go(-1);" value="BACK" />
-	  <input type="button" class="btn btn-primary" onclick="location.href='../main.do'" value="BACK TO THE MAIN PAGE" />
+	  <input type="submit" class="btn btn-primary" value="Login" />
+	  <input type="button" class="btn btn-primary" onclick="history.go(-1);" value="Back" />
+	  <input type="button" class="btn btn-primary" onclick="location.href='main.do'" value="Back to main page" />
 	</form>
   </div>
  </div>

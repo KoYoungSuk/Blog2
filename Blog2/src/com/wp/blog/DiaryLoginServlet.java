@@ -62,7 +62,7 @@ public class DiaryLoginServlet extends HttpServlet {
   	    		   if(id.equals("admin")) {
   	    			  if(BCrypt.checkpw(password, memberdo.getPassword())) {
   	  	    			   session.setAttribute("id", id);
-  	  	    			   viewName = "diarylist";
+  	  	    			   viewName = "diarylist?desc=0";
   	  	    			   check = true;
   	  	    			   break;
   	  	    		   }

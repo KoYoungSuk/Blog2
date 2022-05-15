@@ -7,7 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BoardDAO {
 	public Connection conn = null;
@@ -91,9 +93,9 @@ public class BoardDAO {
 		   disconnectDB();
 		   return boardlist;
 	   }
-	   public List<String> getBoardByNum(int number, boolean br, boolean clicks) throws ClassNotFoundException, SQLException
+	   public Map<String, String> getBoardByNum(int number, boolean br, boolean clicks) throws ClassNotFoundException, SQLException
 	   {
-		   List<String> boardlist = null;
+		   Map<String, String> boardlist = null;
 		   connectDB();
 		   ResultSet rs = null;
 		   PreparedStatement psm = null;
@@ -101,26 +103,26 @@ public class BoardDAO {
 		   psm = conn.prepareStatement(sql);
 		   psm.setInt(1, number);
 		   rs = psm.executeQuery();
-		   boardlist = new ArrayList<String>();
+		   boardlist = new HashMap<String, String>();
 		   if(rs.next())
 		   {
-			   boardlist.add(number + "");
-			   boardlist.add(rs.getString("userid"));
-			   boardlist.add(rs.getString("title"));
+			   boardlist.put("number", number + "");
+			   boardlist.put("userid", rs.getString("userid"));
+			   boardlist.put("title", rs.getString("title"));
 			   if(br) {  //true 
-				   boardlist.add(rs.getString("content2").replace("\r\n", "<br>"));
+				   boardlist.put("content", rs.getString("content2").replace("\r\n", "<br>"));
 			   }
 			   else {  //false
-				   boardlist.add(rs.getString("content2"));
+				   boardlist.put("content", rs.getString("content2"));
 			   }
-			   boardlist.add(rs.getString("savedate"));
-			   boardlist.add(rs.getString("modifydate"));
-			   boardlist.add(rs.getString("anonymous"));
-			   boardlist.add((rs.getInt("clicks") + 1) + "");
+			   boardlist.put("savedate", rs.getString("savedate"));
+			   boardlist.put("modifydate", rs.getString("modifydate"));
+			   boardlist.put("anonymous", rs.getString("anonymous"));
+			   boardlist.put("clicks", (rs.getInt("clicks") + 1) + "");
 		   }
 		   disconnectDB();
 		   if(clicks) {
-			   BoardDO boarddo = new BoardDO(number, null, null, null, null, null, null, Integer.parseInt(boardlist.get(7)));
+			   BoardDO boarddo = new BoardDO(number, null, null, null, null, null, null, Integer.parseInt(boardlist.get("clicks")));
 			   UpdateBoard(boarddo, true);
 		   }
 		   return boardlist;

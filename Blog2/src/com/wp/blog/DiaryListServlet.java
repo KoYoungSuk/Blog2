@@ -36,14 +36,22 @@ public class DiaryListServlet extends HttpServlet {
 		Global g = new Global(response);
 		HttpSession session = request.getSession();
 		ServletContext application = request.getSession().getServletContext();
+		int desc = Integer.parseInt(request.getParameter("desc"));
+		Boolean descbool = false;
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
   	    String viewName = null;
+  	    if(desc == 0) {
+  	    	descbool = false;
+  	    }
+  	    else {
+  	    	descbool = true;
+  	    }
   	    try {
   	    	DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
-  	    	List<DiaryDO> diarylist = diarydao.getDiaryList();
+  	    	List<DiaryDO> diarylist = diarydao.getDiaryList(descbool);
   	    	int diarynumber = diarydao.getDiarynumber();
   	    	if(diarylist != null) {
   	    		viewName = "diary.jsp?page=1";

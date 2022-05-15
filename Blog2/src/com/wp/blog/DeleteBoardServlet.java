@@ -3,8 +3,7 @@ package com.wp.blog;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
-
+import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -48,7 +47,7 @@ public class DeleteBoardServlet extends HttpServlet {
   	    String db_pw = application.getInitParameter("db_password");
 		BoardDAO boardDAO = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
   	    try {
-			List<String> totalboardlist = boardDAO.getBoardByNum(number, false, false);
+			Map<String, String> totalboardlist = boardDAO.getBoardByNum(number, false, false);
 			session.setAttribute("totalboardlist", totalboardlist);
 			RequestDispatcher view = request.getRequestDispatcher("main.do?page=20");
 			view.forward(request, response);

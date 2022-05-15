@@ -1,7 +1,7 @@
 package com.wp.blog;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -45,7 +45,7 @@ public class DeleteDiaryServlet extends HttpServlet {
 	   String viewName = null;
 	   try {
 		  DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
-		  List<String> diarylist = diarydao.getDiaryListByTitle(title);
+		  Map<String, String> diarylist = diarydao.getDiaryListByTitle(title);
 		  if(diarylist != null) {
 			  session.setAttribute("detaildiarylist", diarylist);
 			  viewName = "diary.jsp?page=5";
@@ -83,7 +83,7 @@ public class DeleteDiaryServlet extends HttpServlet {
 	 		int result = diarydao.deleteDiary(title);
 	 		if(result == 1) {
 	 			session.removeAttribute("detaildiarylist");
-	 			viewName = "diarylist";
+	 			viewName = "diarylist?desc=0";
 	 		}
 	 		else {
 	 			g.jsmessage("Unknown Error Message");

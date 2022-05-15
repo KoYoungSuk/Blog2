@@ -11,19 +11,19 @@
           <table>
            <tr>
             <td><label for="Number">Number:</label></td>
-            <td><input type="text" name="number"  style="width:500px;" value="${sessionScope.totalboardlist[0]}" readonly /></td>
+            <td><input type="text" name="number"  style="width:500px;" value="${sessionScope.totalboardlist['number']}" readonly /></td>
            </tr>
            <tr>
             <td><label for="UserId">UserId:</label></td>
-            <td><input type="text" name="userid" style="width:500px;" value="${sessionScope.totalboardlist[1]}" readonly /></td>
+            <td><input type="text" name="userid" style="width:500px;" value="${sessionScope.totalboardlist['userid']}" readonly /></td>
            </tr>
            <tr>
             <td><label for="Title">Title:</label></td>
-            <td><input type="text" name="title" style="width:500px;" value='${sessionScope.totalboardlist[2]}' required /></td>
+            <td><input type="text" name="title" style="width:500px;" value="${sessionScope.totalboardlist['title']}" required /></td>
            </tr>
            <tr>
             <td><label for="content">Content:</label></td>
-           <td><textarea rows="15" cols="68" autofocus name="content" wrap="hard" >${sessionScope.totalboardlist[3]}</textarea></td>
+           <td><textarea rows="15" cols="68" autofocus name="content" wrap="hard" >${sessionScope.totalboardlist['content'] }</textarea></td>
            </tr>
             <tr>
            <td><label for="anonymous">Choose Access Mode</label></td>

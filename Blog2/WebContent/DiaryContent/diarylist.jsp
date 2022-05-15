@@ -5,6 +5,18 @@
 	   <p> Current User: ${sessionScope.id} </p>
 	   <p> Diary Number: ${sessionScope.diarynumber} </p>
        <hr>
+       <form action="detaildiary" method="POST">
+       SEARCH DIARY: <input type="text" name="title" />&nbsp;&nbsp;
+       <input type="submit" class="btn btn-success" value="Search" />&nbsp;&nbsp;
+       <c:choose>
+       <c:when test="${param.desc == 0}">
+       <input type="button" class="btn btn-success" value="Descend" onclick="location.href='diarylist?desc=1'" />
+       </c:when>
+       <c:otherwise>
+       <input type="button" class="btn btn-success" value="Ascend" onclick="location.href='diarylist?desc=0'" />
+       </c:otherwise>
+       </c:choose>
+       </form>
         <table border="1">
             <thead>
                 <tr>

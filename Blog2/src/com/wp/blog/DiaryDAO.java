@@ -7,7 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class DiaryDAO {
    private Connection conn  = null;
@@ -52,7 +54,7 @@ public class DiaryDAO {
 	   connectDB();
 	   int result = 0;
 	   PreparedStatement psm = null;
-	   String sql = "update diary set context=? modifydate=? where title=?";
+	   String sql = "update diary set context=?, modifydate=? where title = ?";
 	   psm = conn.prepareStatement(sql);
 	   psm.setString(1, diarydo.getContext());
 	   psm.setTimestamp(2, diarydo.getModifydate());
@@ -73,11 +75,17 @@ public class DiaryDAO {
 	   disconnectDB();
 	   return result; 
    }
-   public List<DiaryDO> getDiaryList() throws ClassNotFoundException, SQLException {
+   public List<DiaryDO> getDiaryList(Boolean desc) throws ClassNotFoundException, SQLException {
 	   
 	   List<DiaryDO> diarylist = null;
 	   connectDB();
-	   String sql = "select * from diary order by title";
+	   String sql = "";
+	   if(desc) {
+		   sql = "select * from diary order by title desc";
+	   }
+	   else {
+		   sql = "select * from diary order by title";
+	   }
 	   Statement sm = conn.createStatement();
 	   ResultSet rs = sm.executeQuery(sql);
 	   if(rs.isBeforeFirst())
@@ -98,8 +106,8 @@ public class DiaryDAO {
 	   return diarylist;
    }
    
-   public List<String> getDiaryListByTitle(String title) throws ClassNotFoundException, SQLException {
-	   List<String> diarylist = new ArrayList<String>();
+   public Map<String, String> getDiaryListByTitle(String title) throws ClassNotFoundException, SQLException {
+	   Map<String, String> diarylist = new HashMap<String, String>();
 	   connectDB();
 	   PreparedStatement psm = null;
 	   String sql = "select * from diary where title= ?";
@@ -107,14 +115,14 @@ public class DiaryDAO {
 	   psm.setString(1, title);
 	   ResultSet rs = psm.executeQuery();
 	   if(rs.next()) {
-		   diarylist.add(rs.getString("title"));
-		   diarylist.add(rs.getString("context"));
-		   diarylist.add(rs.getTimestamp("savedate").toString());
+		   diarylist.put("title", rs.getString("title"));
+		   diarylist.put("content", rs.getString("context"));
+		   diarylist.put("savedate", rs.getTimestamp("savedate").toString());
 		   if(rs.getTimestamp("modifydate") == null) {
-			   diarylist.add("NULL");
+			   diarylist.put("modifydate", "NULL");
 		   }
 		   else {
-			   diarylist.add(rs.getTimestamp("modifydate").toString());
+			   diarylist.put("modifydate", rs.getTimestamp("modifydate").toString());
 		   }
 	   }
 	   rs.close();

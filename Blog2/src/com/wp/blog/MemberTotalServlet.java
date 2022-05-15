@@ -2,9 +2,7 @@ package com.wp.blog;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -47,13 +45,7 @@ public class MemberTotalServlet extends HttpServlet {
 		String viewName = null;
 		Global g = new Global(response);
 		try {
-			List<String> memberlist = memberdao.getMemberById(id);
-			List<String> membername = new ArrayList<String>();
-			membername.add("ID");
-			membername.add("Password");
-			membername.add("First Name");
-			membername.add("Last Name");
-			membername.add("Birthday");
+			Map<String, String> memberlist = memberdao.getMemberById(id);
 			if(memberlist != null)
 			{
 				session.setAttribute("memberidlist", memberlist);

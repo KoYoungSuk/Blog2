@@ -16,7 +16,7 @@
 	<hr> 
 	<button class="btn btn-primary" type="submit">Write</button>
 	<button class="btn btn-primary" onclick="history.go(-1);" type="button">Back</button>
-	<button class="btn btn-primary" onclick="location.href='diarylist'" type="button">Back To The Main Page(PersonalDiary)</button>
+	<button class="btn btn-primary" onclick="location.href='diarylist?desc=0'" type="button">Back To The Main Page(PersonalDiary)</button>
 	<button class="btn btn-primary" onclick="location.href='../main.do'" type="button">Back To The Main Page(MyBlog)</button>
 	</form>
 	 </c:when>

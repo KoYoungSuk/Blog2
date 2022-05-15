@@ -2,7 +2,7 @@ package com.wp.blog;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
+import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -59,12 +59,12 @@ public class DetailBoardServlet extends HttpServlet {
 			access = "anonymous";
 		}
 		try {
-			List<String> detailboardlist = boarddao.getBoardByNum(number, true, true); //<br> �±׸� �߰��Ѵ�. -> HTML ��Ű ������� 
+			Map<String, String> detailboardlist = boarddao.getBoardByNum(number, true, true); //<br> �±׸� �߰��Ѵ�. -> HTML ��Ű ������� 
 			if(access.equals("admin")) { //관리자 모드에서는 모든 게시물을 볼 수 있다. 
 				accessbool = "t";
 			}
 			else if(access.equals("member")) { //회원 모드에서는 관리자 모드로 작성된 게시물을 제외하고 볼 수 있다.
-			   if(!detailboardlist.get(6).equals("admin")) {
+			   if(!detailboardlist.get("anonymous").equals("admin")) {
 				  accessbool = "t";
 			   }
 			   else {
@@ -72,7 +72,7 @@ public class DetailBoardServlet extends HttpServlet {
 			   }
 			}
 			else {  //비회원 모드에서는 비회원 모드로 작성된 게시물만 볼 수 있다. 
-				if(detailboardlist.get(6).equals(access)) {
+				if(detailboardlist.get("anonymous").equals(access)) {
 					accessbool = "t";
 				}
 				else {

@@ -3,7 +3,7 @@ package com.wp.blog;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -44,7 +44,7 @@ public class ModifyBoardServlet extends HttpServlet {
 		Global g = new Global(response);
 		try {
 		  BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
-		  List<String> totalboardlist = boarddao.getBoardByNum(Integer.parseInt(number), false, false);
+		  Map<String, String> totalboardlist = boarddao.getBoardByNum(Integer.parseInt(number), false, false);
 		  session.setAttribute("totalboardlist", totalboardlist);
 		  RequestDispatcher view = request.getRequestDispatcher("main.do?page=17");
 		  view.forward(request, response);
@@ -78,7 +78,7 @@ public class ModifyBoardServlet extends HttpServlet {
 	  	 try {
 			int result = boarddao.UpdateBoard(boarddo, false);
 			if(result == 1){
-				viewName = "maintest.jsp";
+				viewName = "main.do";
 			}
 			else{
 				g.jsmessage("Unknown Error Message");

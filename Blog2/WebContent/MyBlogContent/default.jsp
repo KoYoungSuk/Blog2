@@ -36,7 +36,7 @@
        <c:forEach var="boardDO" items="${sessionScope.newboardlist}">
           <tr>
            <td><c:out value="${boardDO.serialnumber}" /></td>
-            <td><a href="detailboard.do?number=${boardDO.serialnumber}"><c:out value="${boardDO.title}" /></a></td>
+            <td><a href="detailboard.do?serial=${boardDO.serialnumber}"><c:out value="${boardDO.title}" /></a></td>
             <td><c:out value="${boardDO.savedate}" /></td>
             <td><c:out value="${boardDO.modifydate}" /></td>
             <td><c:out value="${boardDO.anonymous}" /></td>

@@ -2,7 +2,7 @@ package com.wp.blog;
 
 import java.io.IOException;
 import java.sql.Timestamp;
-import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -46,7 +46,7 @@ public class ModifyDiaryServlet extends HttpServlet {
 		String viewName = null;
 		try {
 		   DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
-		   List<String> detaildiarylist = diarydao.getDiaryListByTitle(title);
+		   Map<String, String> detaildiarylist = diarydao.getDiaryListByTitle(title);
 		   if(detaildiarylist != null) {
 			   session.setAttribute("detaildiarylist", detaildiarylist);
 			   viewName = "diary.jsp?page=4";
@@ -86,7 +86,7 @@ public class ModifyDiaryServlet extends HttpServlet {
 	      DiaryDO diarydo = new DiaryDO(title, content, null, modifydate);
 	      int result = diarydao.updateDiary(diarydo);
 	      if(result == 1) {
-	    	  viewName = "diarylist";
+	    	  viewName = "diarylist?desc=0";
 	      }
 	      else {
 	    	  g.jsmessage("Unknown Error Message");

@@ -32,7 +32,7 @@
                               </tr>
                               <tr>
                               <td><label for="birthday">Birthday:</label></td>
-                              <td><input type="text" name="birthday" value= "${sessionScope.memberidlist[4]}" /></td>
+                              <td><input type="text" name="birthday" value= "${sessionScope.memberidlist['birthday']}" /></td>
                               </tr>
                            </table>
                            <hr>

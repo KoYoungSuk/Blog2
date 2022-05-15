@@ -35,25 +35,17 @@ public class ProDBManageServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		Global g = new Global(response);
 		HttpSession session = request.getSession();
-		/*
-    	String jdbc_driver = (String) request.getAttribute("jdbcdriver");
-  	    String db_url = (String) request.getAttribute("dburl");
-  	    String db_id = (String) request.getAttribute("dbid");
-  	    String db_pw = (String) request.getAttribute("dbpw");
-  	    */
 		String sqlcommand = request.getParameter("sqlcommand");
-		/* System.out.println(jdbc_driver);
-		System.out.println(db_url);
-		System.out.println(db_id);
-		System.out.println(db_pw); */
 		String viewName = null;
   	    try { 
-  	       DTO d = new DTO();
+  	       /*
   	       String jdbc_driver = d.getDbdriver();
   	       String db_url = d.getDburl();
   	       String db_id = d.getDbid();
   	       String db_pw = d.getDbpw();
   	       DAO dao = new DAO(jdbc_driver, db_url, db_id, db_pw);
+  	       */
+  	       DAO dao = new DAO();
   		   List<Object> header = dao.processheader(sqlcommand);
   		   List<List<Object>> tablelist = dao.processColumn(sqlcommand);
   		   if(header != null && tablelist != null) {

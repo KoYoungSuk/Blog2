@@ -2,7 +2,9 @@ package com.wp.blog;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 public class MemberDAO {
    public Connection conn = null;
    private String jdbc_driver;
@@ -80,9 +82,9 @@ public class MemberDAO {
    }
    
    
-   public List<String> getMemberById(String id) throws ClassNotFoundException, SQLException
+   public Map<String, String> getMemberById(String id) throws ClassNotFoundException, SQLException
    {
-	   List<String> memberlist = null;
+	   Map<String, String> memberlist = null;
 	   connectDB();
 	   ResultSet rs = null;
 	   PreparedStatement psm = null;
@@ -90,15 +92,15 @@ public class MemberDAO {
 	   psm = conn.prepareStatement(sql);
 	   psm.setString(1, id);
 	   rs = psm.executeQuery();
-	   memberlist = new ArrayList<String>();
+	   memberlist = new HashMap<String, String>();
 	   if(rs.next())
 	   {
-		   memberlist.add(id);
-		   memberlist.add(rs.getString("password"));
-		   memberlist.add(rs.getString("firstname"));
-		   memberlist.add(rs.getString("lastname"));
-		   memberlist.add(rs.getString("birthday"));
-		   memberlist.add(rs.getTimestamp("joindate").toString());
+		   memberlist.put("id", id);
+		   memberlist.put("password", rs.getString("password"));
+		   memberlist.put("firstname", rs.getString("firstname"));
+		   memberlist.put("lastname", rs.getString("lastname"));
+		   memberlist.put("birthday", rs.getString("birthday"));
+		   memberlist.put("joindate", rs.getTimestamp("joindate").toString());
 	   }
 	   return memberlist;
    } 

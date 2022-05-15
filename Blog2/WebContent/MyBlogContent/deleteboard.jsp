@@ -14,35 +14,35 @@
            <table border=1>
            <tr>
             <td><Label for="id">작성자 ID:</Label></td>
-            <td><input type="text" name="id" value="${sessionScope.totalboardlist[1]}" readonly /></td>
+            <td><input type="text" name="id" value="${sessionScope.totalboardlist['userid']}" readonly /></td>
            </tr>
            <tr>
             <td><Label for="number">글 번호:</Label></td>
-            <td><input type="text" name="number" value="${sessionScope.totalboardlist[0]}" readonly /></td>
+            <td><input type="text" name="number" value="${sessionScope.totalboardlist['number']}" readonly /></td>
            </tr>
            <tr>
             <td><Label for="title">제목:</Label></td>
-            <td><input type="text" name="title" value="${sessionScope.totalboardlist[2]}" readonly /></td>
+            <td><input type="text" name="title" value="${sessionScope.totalboardlist['title']}" readonly /></td>
            </tr>
            <tr>
             <td><Label for="content">내용:</Label></td>
-            <td><textarea rows="15" cols="68" autofocus name="content" wrap="hard" readonly>${sessionScope.totalboardlist[3]}</textarea></td>
+            <td><textarea rows="15" cols="68" autofocus name="content" wrap="hard" readonly>${sessionScope.totalboardlist['content']}</textarea></td>
            </tr>
            <tr>
             <td><Label for="savedate">작성 시간:</Label></td>
-            <td><input type="text" name="savedate" value="${sessionScope.totalboardlist[4]}" readonly /></td>
+            <td><input type="text" name="savedate" value="${sessionScope.totalboardlist['savedate']}" readonly /></td>
            </tr>
            <tr>
             <td><Label for="modifydate">수정 시간:</Label></td>
-            <td><input type="text" name="modifydate" value="${sessionScope.totalboardlist[5]}" readonly /></td>
+            <td><input type="text" name="modifydate" value="${sessionScope.totalboardlist['modifydate']}" readonly /></td>
            </tr>
            <tr>
             <td><Label for="access">접근 모드:</Label></td>
-            <td><input type="text" name="access" value="${sessionScope.totalboardlist[6]}" readonly /></td>
+            <td><input type="text" name="access" value="${sessionScope.totalboardlist['anonymous']}" readonly /></td>
            </tr>
             <tr>
              <td><Label for="clicks">조회수:</Label></td>
-             <td><input type="text" name="clicks" value="${sessionScope.totalboardlist[7]}" readonly /></td>
+             <td><input type="text" name="clicks" value="${sessionScope.totalboardlist['clicks']}" readonly /></td>
            </tr>
           </table>
           <hr>

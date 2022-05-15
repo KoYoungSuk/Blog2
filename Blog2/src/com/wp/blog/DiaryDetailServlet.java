@@ -1,7 +1,8 @@
 package com.wp.blog;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Map;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -44,7 +45,7 @@ public class DiaryDetailServlet extends HttpServlet {
   	    String viewName = null;
 		try {
 			DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
-			List<String> detaildiarylist = diarydao.getDiaryListByTitle(title);
+			Map<String, String> detaildiarylist = diarydao.getDiaryListByTitle(title);
 			if(detaildiarylist != null) {
 				session.setAttribute("detaildiarylist", detaildiarylist);
 				viewName = "diary.jsp?page=2";

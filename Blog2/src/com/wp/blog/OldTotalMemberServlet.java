@@ -1,7 +1,7 @@
 package com.wp.blog;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -43,7 +43,7 @@ public class OldTotalMemberServlet extends HttpServlet {
   	    String viewName = null;
   	    try {
   	    	MemberDAO memberdao = new MemberDAO(JDBC_Driver, db_url, db_id, db_pw);
-  	    	List<String> newmemberidlist = memberdao.getMemberById(id);
+  	    	Map<String, String> newmemberidlist = memberdao.getMemberById(id);
   	    	if(newmemberidlist != null) {
   	    		viewName = "oldmain.jsp?num=3702&page=4";
   	    		request.setAttribute("newmemberidlist", newmemberidlist);

@@ -26,11 +26,11 @@
                            </tr>   
                         <tr>
                          <td>Birthday:</td>
-                         <td><c:out value="${sessionScope.memberidlist[4]}" /></td>
+                         <td><c:out value="${sessionScope.memberidlist['birthday']}" /></td>
                         </tr>   
                         <tr>
                          <td>Join Date:</td>
-                         <td><c:out value="${sessionScope.memberidlist[5]}" /></td>
+                         <td><c:out value="${sessionScope.memberidlist['joindate']}" /></td>
                         </tr>        
                         </table>
                          <p></p>
