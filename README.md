@@ -1,3 +1,3 @@
-# Blog2
-MyBlog&amp;ETC Main Server(JSP/Ubuntu)
+# MyBlog&amp;ETC Main Server(JSP/Ubuntu)
+Respository Name: Blog2
 ------------------------------------------------------------------------------------------------------------------------------------------
