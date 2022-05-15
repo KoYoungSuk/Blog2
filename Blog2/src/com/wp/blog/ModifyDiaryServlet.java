@@ -72,7 +72,7 @@ public class ModifyDiaryServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		String title = request.getParameter("title");
-		String content = request.getParameter("content");
+		String content = request.getParameter("context");
 		Timestamp modifydate = new Timestamp(System.currentTimeMillis());
 		ServletContext application = request.getSession().getServletContext();
 		String JDBC_Driver = application.getInitParameter("jdbc_driver");
