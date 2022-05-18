@@ -30,6 +30,42 @@
 		background-color: lightblue;
 	}
 </style>
+<script>
+  function openTextFile(){
+	  var input = document.createElement("input");
+	  input.type = "file";
+	  input.accept = "text/plain";
+	  
+	  input.onchange = function (event) {
+		  processFile(event.target.files[0]);
+	  };
+	  
+	  input.click();
+  }
+  
+  function processFile(file){
+	  var reader = new FileReader();
+	  reader.onload = function() {
+		  txtcontext.innerHTML = reader.result;
+	  };
+	  reader.readAsText(file, "utf-8");
+  }
+  
+  function saveAsFile(){
+	  var fileName = document.getElementById("txttitle").innerText; 
+	  var content = document.getElementById("txtcontent").innerText;
+	  var blob = new Blob([content], {type: 'text/plain'});
+	  objURL = window.URL.createObjectURL(blob);
+	  if(window.__Xr_objURL_forCreatingFile__){
+		  window.URL.revokeObjURL(window.__Xr_objURL_forCreatingFile__);
+	  }
+	  window.__Xr_objURL_forCreatingFile__ = objURL;
+	  var a = document.createElement('a');
+	  a.download = fileName;
+	  a.href = objURL;
+	  a.click();
+  }
+</script>
 </head>
 <body>
  <div class="jumbotron">
