@@ -17,6 +17,7 @@
        </c:otherwise>
        </c:choose>
        </form>
+       <hr>
         <table border="1">
             <thead>
                 <tr>

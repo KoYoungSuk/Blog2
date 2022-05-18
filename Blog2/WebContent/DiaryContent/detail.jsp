@@ -5,27 +5,28 @@
 	 <table border="1">
 	 <tr>
 	  <td><label for="title">제목:</label></td>
-	  <td><c:out value="${sessionScope.detaildiarylist['title']}" /></td>
+	  <td id="txttitle">${sessionScope.detaildiarylist['title']}</td>
 	</tr>
 	<tr>
 	  <td><label for="context">내용:</label></td>
-	  <td><c:out value="${sessionScope.detaildiarylist['content']}" /></td>
+	  <td id="txtcontent">${sessionScope.detaildiarylist['content']}</td>
 	</tr>
 	<tr>
 	  <td><label for="savedate">작성 날짜:</label></td>
-	  <td><c:out value="${sessionScope.detaildiarylist['savedate']}" /></td>
+	  <td>${sessionScope.detaildiarylist['savedate']}</td>
 	</tr>
 	<tr>
 	  <td><label for="modifydate">수정 날짜:</label></td>
-	  <td><c:out value="${sessionScope.detaildiarylist['modifydate']}" /></td>
+	  <td>${sessionScope.detaildiarylist['modifydate']}</td>
 	</tr>
 	</table>
 	<hr> 
 	<button class="btn btn-primary" onclick="location.href='modifydiary?title=${sessionScope.detaildiarylist['title']}'" type="button">Modify</button>
 	<button class="btn btn-primary" onclick="location.href='deletediary?title=${sessionScope.detaildiarylist['title']}'" type="button">Delete</button>
+	<button class="btn btn-primary" onclick="saveAsFile();" type="button">Save As TXT</button>
 	<button class="btn btn-primary" onclick="history.go(-1);" type="button">Back</button>
-	<button class="btn btn-primary" onclick="location.href='diary.jsp?page=1'" type="button">Back To Main Page(PersonalDiary)</button>
-	<button class="btn btn-primary" onclick="location.href='../main.do'" type="button">Back To Main Page(MyBlog)</button>
+	<button class="btn btn-primary" onclick="location.href='diary.jsp?page=1'" type="button">Back To PersonalDiary</button>
+	<button class="btn btn-primary" onclick="location.href='../main.do'" type="button">Back To MyBlog</button>
 	  </c:when>
 	 <c:otherwise>
 	   <p>Administrator Only.</p>

@@ -77,6 +77,7 @@ public class ModifyBoardServlet extends HttpServlet {
 	  	 BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
 	  	 try {
 			int result = boarddao.UpdateBoard(boarddo, false);
+			System.out.println(result);
 			if(result == 1){
 				viewName = "main.do";
 			}

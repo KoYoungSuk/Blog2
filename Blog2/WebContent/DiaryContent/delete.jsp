@@ -24,7 +24,7 @@
 	  <button class="btn btn-danger" type="submit">Delete</button>
 	  <button class="btn btn-success" type="button" onclick="history.go(-1);">Back</button>
 	  <button class="btn btn-success" type="button" onclick="location.href='diarylist?desc=0'">Back To DiaryList</button>
-	  <button class="btn btn-success" type="button" onclick="location.href='../main.do'">Back To Main Page</button>
+	  <button class="btn btn-success" type="button" onclick="location.href='../main.do'">Back To MyBlog</button>
 	 </form>
 	 </c:when>
 	 <c:otherwise>

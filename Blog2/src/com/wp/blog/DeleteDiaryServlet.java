@@ -45,7 +45,7 @@ public class DeleteDiaryServlet extends HttpServlet {
 	   String viewName = null;
 	   try {
 		  DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
-		  Map<String, String> diarylist = diarydao.getDiaryListByTitle(title);
+		  Map<String, String> diarylist = diarydao.getDiaryListByTitle(title, false);
 		  if(diarylist != null) {
 			  session.setAttribute("detaildiarylist", diarylist);
 			  viewName = "diary.jsp?page=5";

@@ -45,7 +45,7 @@ public class DiaryDetailServlet extends HttpServlet {
   	    String viewName = null;
 		try {
 			DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
-			Map<String, String> detaildiarylist = diarydao.getDiaryListByTitle(title);
+			Map<String, String> detaildiarylist = diarydao.getDiaryListByTitle(title, true);
 			if(detaildiarylist != null) {
 				session.setAttribute("detaildiarylist", detaildiarylist);
 				viewName = "diary.jsp?page=2";
