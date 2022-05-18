@@ -85,8 +85,10 @@ public class BoardListServlet extends HttpServlet {
 		    // TODO Auto-generated catch block
 			g.jsmessage(e.getMessage());
 		}
-	    RequestDispatcher view = request.getRequestDispatcher(viewName);
-		view.forward(request, response);
+	    if(viewName != null) {
+	    	RequestDispatcher view = request.getRequestDispatcher(viewName);
+	 		view.forward(request, response);
+	    }
 	}
 
 	/**

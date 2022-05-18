@@ -102,6 +102,8 @@ public class MemberDAO {
 		   memberlist.put("birthday", rs.getString("birthday"));
 		   memberlist.put("joindate", rs.getTimestamp("joindate").toString());
 	   }
+	   rs.close();
+	   disconnectDB();
 	   return memberlist;
    } 
    

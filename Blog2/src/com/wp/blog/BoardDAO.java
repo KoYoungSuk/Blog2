@@ -110,7 +110,7 @@ public class BoardDAO {
 			   boardlist.put("userid", rs.getString("userid"));
 			   boardlist.put("title", rs.getString("title"));
 			   if(br) {  //true 
-				   boardlist.put("content", rs.getString("content2").replace("\r\n", "<br>"));
+				   boardlist.put("content", rs.getString("content2").replace(System.getProperty("line.separator"), "<br>"));
 			   }
 			   else {  //false
 				   boardlist.put("content", rs.getString("content2"));
@@ -120,6 +120,7 @@ public class BoardDAO {
 			   boardlist.put("anonymous", rs.getString("anonymous"));
 			   boardlist.put("clicks", (rs.getInt("clicks") + 1) + "");
 		   }
+		   rs.close();
 		   disconnectDB();
 		   if(clicks) {
 			   BoardDO boarddo = new BoardDO(number, null, null, null, null, null, null, Integer.parseInt(boardlist.get("clicks")));
@@ -187,6 +188,8 @@ public class BoardDAO {
 				   maxnumber = rs.getInt("maxnumber");
 			   }
 		   }
+		  rs.close();
+		  disconnectDB();
 		  return maxnumber;
 	   }
 	   
@@ -214,6 +217,8 @@ public class BoardDAO {
 				 countnumber = rs.getInt("countnumber");
 			  }
 		   }
+		   rs.close();
+		   disconnectDB();
 		   return countnumber;
 	   }
 }

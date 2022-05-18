@@ -106,7 +106,7 @@ public class DiaryDAO {
 	   return diarylist;
    }
    
-   public Map<String, String> getDiaryListByTitle(String title) throws ClassNotFoundException, SQLException {
+   public Map<String, String> getDiaryListByTitle(String title, Boolean br) throws ClassNotFoundException, SQLException {
 	   Map<String, String> diarylist = new HashMap<String, String>();
 	   connectDB();
 	   PreparedStatement psm = null;
@@ -116,7 +116,12 @@ public class DiaryDAO {
 	   ResultSet rs = psm.executeQuery();
 	   if(rs.next()) {
 		   diarylist.put("title", rs.getString("title"));
-		   diarylist.put("content", rs.getString("context"));
+		   if(br) {
+			   diarylist.put("content", rs.getString("context").replace(System.getProperty("line.separator"), "<br>"));
+		   }
+		   else {
+			   diarylist.put("content", rs.getString("context"));
+		   }
 		   diarylist.put("savedate", rs.getTimestamp("savedate").toString());
 		   if(rs.getTimestamp("modifydate") == null) {
 			   diarylist.put("modifydate", "NULL");
