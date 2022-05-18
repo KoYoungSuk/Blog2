@@ -43,6 +43,9 @@ public class LogoutServlet extends HttpServlet {
 		else if(check == 2) {
 			viewName = "diary";
 		}
+		else if(check == 3) {
+			viewName = "product";
+		}
 		else {
 			viewName = "main.do";
 		}

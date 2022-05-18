@@ -5,9 +5,7 @@
              <div class="col-sm-12">
                  <H3>Member Management Center </H3>
                  <hr>
-                 <c:choose>
-                   <c:when test="${sessionScope.id eq 'admin'}">
-                         <table border=1>
+                    <table border=1>
                          <thead>
                          <tr>
                             <th>Number</th>
@@ -37,13 +35,7 @@
                          </table>
                          <hr>
                         <button class="btn btn-primary" onclick="location.href='totaldb.do'">Refresh</button>
-                   </c:when>
-                   <c:otherwise>
-                     <p>Administrator Only.</p>
-                     <hr>
-                   </c:otherwise>
-                 </c:choose>
-                 <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
+                        <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
              </div>
         </div>
     </div>

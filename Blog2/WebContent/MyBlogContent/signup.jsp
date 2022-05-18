@@ -2,9 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <div class="container" style="margin-top:20px">
 <div class="row">
-  <div class="col-sm-12">
-<c:choose>
-<c:when test="${sessionScope.id eq null}">
+<div class="col-sm-12">
 <form class="signup-content" method="post" action="./checksignup.do">
 <H2> Sign-up Menu. </H2>
 <hr>
@@ -48,14 +46,6 @@ But typing your birthday your name(First name, Last name)  is optional.
   <button class="btn btn-success" type="submit"> Sign up </button>
  <button class="btn btn-warning" type="button" onclick="location.href='./main.do' "> Back to Main Page </button>
 </form>
-</c:when>
-<c:otherwise>
-   <p>Logined User can't use Signup Page. </p>
-   <hr>
-   <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
-   <button class="btn btn-danger" onclick="location.href='signout.do'">Logout</button>
-</c:otherwise>
-</c:choose>
 </div>
 </div>
 </div>

@@ -1,7 +1,7 @@
 package com.wp.blog;
 
 import java.io.IOException;
-import java.util.Map;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -13,16 +13,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class OldTotalMemberServlet
+ * Servlet implementation class ProductManageServlet
  */
-@WebServlet("/totalmember_old.do")
-public class OldTotalMemberServlet extends HttpServlet {
+@WebServlet("/product/productlist")
+public class ProductListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public OldTotalMemberServlet() {
+    public ProductListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,36 +32,43 @@ public class OldTotalMemberServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		String id = request.getParameter("id");
+		request.setCharacterEncoding("UTF-8");
+		int desc = Integer.parseInt(request.getParameter("desc"));
+		Boolean descbool = false;
+		String columnname = request.getParameter("columnname");
 		HttpSession session = request.getSession();
-		String admin_id = (String)session.getAttribute("id");
+		String id = (String)session.getAttribute("id");
 		Global g = new Global(response);
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
-  	    String db_pw = application.getInitParameter("db_password"); 
+  	    String db_pw = application.getInitParameter("db_password");
   	    String viewName = null;
+  	    if(desc == 0) {
+  	    	descbool = false;
+  	    }
+  	    else {
+  	    	descbool = true;
+  	    }
   	    try {
-  	    	if(admin_id != null & id != null) {
-  	    		if(admin_id.equals("admin")) {
-  	    			MemberDAO memberdao = new MemberDAO(JDBC_Driver, db_url, db_id, db_pw);
-  	    	    	Map<String, String> newmemberidlist = memberdao.getMemberById(id);
-  	    	    	if(newmemberidlist != null) {
-  	    	    		viewName = "oldmain.jsp?num=3702&page=4";
-  	    	    		request.setAttribute("newmemberidlist", newmemberidlist);
-  	    	    	}
-  	    	    	else {
-  	    	    		g.jsmessage("Null Error");
-  	    	    	}
-  	    		}
-  	    		else {
-  	    			g.errorcode(3217);
-  	    		}
+  	    	if(id != null) {
+  	    		if(id.equals("admin")) {
+  	  	    		ProductDAO productdao = new ProductDAO(JDBC_Driver, db_url, db_id, db_pw);
+  	  	  	    	List<ProductDO> totalproductlist = productdao.getProductTotalList(descbool, columnname);
+  	  	  	    	if(totalproductlist != null) {
+  	  	  	    		viewName = "product.jsp?page=1";
+  	  	  	    		session.setAttribute("totalproductlist", totalproductlist);
+  	  	  	    	}
+  	  	    	}
+  	  	    	else {
+  	  	    		session.invalidate();
+  	  	    		g.errorcode(3217);
+  	  	    	}
   	    	}
   	    	else {
+  	    		session.invalidate();
   	    		g.errorcode(3217);
   	    	}
   	    }catch(Exception e) {
@@ -69,7 +76,7 @@ public class OldTotalMemberServlet extends HttpServlet {
   	    }
   	    if(viewName != null) {
   	    	RequestDispatcher view = request.getRequestDispatcher(viewName);
-  		    view.forward(request, response);
+  			view.forward(request, response);
   	    }
 	}
 

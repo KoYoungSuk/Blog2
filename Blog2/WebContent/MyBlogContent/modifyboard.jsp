@@ -5,8 +5,6 @@
     <div class="col-sm-12">
      <h1>Modify Bulletin Board</h1>
      <hr>
-     <c:choose>
-      <c:when test="${sessionScope.id eq 'admin'}">
         <form action="modifyboard.do" method="POST">
           <table>
            <tr>
@@ -35,9 +33,6 @@
           <button class="btn btn-success" type="submit">Modify</button>
           <button class="btn btn-primary" type="button" onclick="history.go(-1);">Back</button>
         </form>
-      </c:when>
-      <c:otherwise><p>Administrator Only</p><hr><button class="btn btn-primary" type="button" onclick="history.go(-1);">Back</button></c:otherwise>
-     </c:choose>
     </div>
   </div>
  </div>

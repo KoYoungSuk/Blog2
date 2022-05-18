@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <c:choose>
-<c:when test="${sessionScope.id ne eq 'admin'}">
-  <c:redirect url="productlist?desc=0"></c:redirect>
+<c:when test="${sessionScope.id eq 'admin'}">
+  <c:redirect url="productlist?desc=0&columnname=product_no"></c:redirect>
 </c:when>
 <c:otherwise>
 </c:otherwise>

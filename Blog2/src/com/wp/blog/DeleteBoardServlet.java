@@ -37,20 +37,36 @@ public class DeleteBoardServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		Global g = new Global(response);
 		HttpSession session = request.getSession();
-		session.removeAttribute("boardlist");
-		session.removeAttribute("totalboardlist");
+		String id = (String)session.getAttribute("id");
 		int number = Integer.parseInt(request.getParameter("serial"));
 		ServletContext application = request.getSession().getServletContext();
 		String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
-		BoardDAO boardDAO = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
+		String viewName = null;
   	    try {
-			Map<String, String> totalboardlist = boardDAO.getBoardByNum(number, false, false);
-			session.setAttribute("totalboardlist", totalboardlist);
-			RequestDispatcher view = request.getRequestDispatcher("main.do?page=20");
-			view.forward(request, response);
+  	    	BoardDAO boardDAO = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
+  	    	if(id != null) {
+  	    		if(id.equals("admin")) {
+  	  	    		Map<String, String> totalboardlist = boardDAO.getBoardByNum(number, false, false);
+  	  				session.setAttribute("totalboardlist", totalboardlist);
+  	  				viewName = "main.do?page=20";
+  	  	    	}
+  	  	    	else {
+  	  	    		session.invalidate();
+  	  	    		g.errorcode(3217);
+  	  	    	}
+  	    	}
+  	    	else {
+  	    		session.invalidate();
+  	    		g.errorcode(3217);
+  	    	}
+  	    	if(viewName != null) {
+  	    		RequestDispatcher view = request.getRequestDispatcher(viewName);
+  				view.forward(request, response);
+  	    	}
+			
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			g.jsmessage(e.getMessage());
@@ -66,8 +82,11 @@ public class DeleteBoardServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		Global g = new Global(response);
+		HttpSession session = request.getSession();
 		try {
 		int number = Integer.parseInt(request.getParameter("number"));
+		String userid = request.getParameter("id");
+		String session_userid = (String)session.getAttribute("id");
 		ServletContext application = request.getSession().getServletContext();
 		String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
@@ -76,12 +95,22 @@ public class DeleteBoardServlet extends HttpServlet {
 		BoardDAO boardDAO = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
   	    String viewName = null;
   	    try {
-			int result = boardDAO.DeleteBoard(number);
-			if(result == 1) {
-			    viewName = "boardlist.do";
-			}else {
-				g.jsmessage("Unknown Error Message");
-			}
+  	    	if(session_userid != null && userid != null) {
+  	    		if(userid.equals(session_userid)) {
+  	  	    		int result = boardDAO.DeleteBoard(number);
+  	  				if(result == 1) {
+  	  				    viewName = "boardlist.do";
+  	  				}else {
+  	  					g.jsmessage("Unknown Error Message");
+  	  				}
+  	  	    	}
+  	  	    	else {
+  	  	    	    g.errorcode(3217);
+  	  	    	}
+  	    	}
+  	    	else {
+  	    		g.errorcode(3217);
+  	    	}
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			g.jsmessage(e.getMessage());

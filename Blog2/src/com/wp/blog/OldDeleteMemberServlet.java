@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class OldDeleteMemberServlet
@@ -41,7 +42,9 @@ public class OldDeleteMemberServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		Global g = new Global(response);
+		HttpSession session = request.getSession();
 		String id = request.getParameter("id");
+		String admin_id = (String)session.getAttribute("id");
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
@@ -49,14 +52,24 @@ public class OldDeleteMemberServlet extends HttpServlet {
   	    String db_pw = application.getInitParameter("db_password");
   	    String viewName = null;
   	    try {
-  	    	MemberDAO memberdao = new MemberDAO(JDBC_Driver, db_url, db_id, db_pw);
-  	    	int result = memberdao.DeleteMember(id);
-  	    	if(result == 1) {
-  	    		viewName = "totaldb.do";
-  	    	}
-  	    	else {
-  	    		g.jsmessage("Unknown Error Message");
-  	    	}
+  	        if(admin_id != null && id != null) {
+  	        	if(admin_id.equals("admin")) {
+  	        		MemberDAO memberdao = new MemberDAO(JDBC_Driver, db_url, db_id, db_pw);
+  	    	    	int result = memberdao.DeleteMember(id);
+  	    	    	if(result == 1) {
+  	    	    		viewName = "totaldb.do";
+  	    	    	}
+  	    	    	else {
+  	    	    		g.jsmessage("Unknown Error Message");
+  	    	    	}
+  	        	}
+  	        	else {
+  	        		g.errorcode(2804);
+  	        	}
+  	        }else {
+  	        	g.errorcode(2804);
+  	        }
+  	    	
   	    }catch(Exception e) {
   	    	g.jsmessage(e.getMessage());
   	    }

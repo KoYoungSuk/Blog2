@@ -5,8 +5,6 @@
    <div class="col-sm-12">
  <h3>Member Info </h3>
        <hr> 
-     <c:choose> 
-     <c:when test="${sessionScope.id ne null}">
         <table border=1>
          <tr>
             <td>ID:</td>
@@ -36,11 +34,6 @@
      <hr>
      <button class="btn btn-success" onclick="location.href='main.do?page=8'">Modify Member</button>            
      <button class="btn btn-danger"onclick="location.href='main.do?page=9'">Delete Member</button>
-     </c:when>
-     <c:otherwise>
-       <p>Please Login. </p> 
-    </c:otherwise>
-   </c:choose>
  </div>
  </div>
  </div>

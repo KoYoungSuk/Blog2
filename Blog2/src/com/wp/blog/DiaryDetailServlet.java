@@ -36,6 +36,7 @@ public class DiaryDetailServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		Global g = new Global(response);
 		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
 		String title = request.getParameter("title");
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
@@ -44,16 +45,25 @@ public class DiaryDetailServlet extends HttpServlet {
   	    String db_pw = application.getInitParameter("db_password");
   	    String viewName = null;
 		try {
-			DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
-			Map<String, String> detaildiarylist = diarydao.getDiaryListByTitle(title, true);
-			if(detaildiarylist != null) {
-				session.setAttribute("detaildiarylist", detaildiarylist);
-				viewName = "diary.jsp?page=2";
+			if(id != null) {
+				if(id.equals("admin")) {
+					DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
+					Map<String, String> detaildiarylist = diarydao.getDiaryListByTitle(title, true);
+					if(detaildiarylist != null) {
+						session.setAttribute("detaildiarylist", detaildiarylist);
+						viewName = "diary.jsp?page=2";
+					}
+					else {
+						g.jsmessage("Null Error");
+					}
+				}
+				else {
+					g.errorcode(3217);
+				}
 			}
 			else {
-				g.jsmessage("Null Error");
+				g.errorcode(3217);
 			}
-			
 		}catch(Exception e) {
 			g.jsmessage(e.getMessage());
 		}

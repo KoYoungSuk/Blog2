@@ -36,6 +36,7 @@ public class DeleteDiaryServlet extends HttpServlet {
 	   response.setCharacterEncoding("UTF-8");
 	   String title = request.getParameter("title");
 	   HttpSession session = request.getSession();
+	   String id = (String)session.getAttribute("id");
 	   ServletContext application = request.getSession().getServletContext();
    	   String JDBC_Driver = application.getInitParameter("jdbc_driver");
  	   String db_url = application.getInitParameter("db_url");
@@ -44,14 +45,24 @@ public class DeleteDiaryServlet extends HttpServlet {
 	   Global g = new Global(response);
 	   String viewName = null;
 	   try {
-		  DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
-		  Map<String, String> diarylist = diarydao.getDiaryListByTitle(title, false);
-		  if(diarylist != null) {
-			  session.setAttribute("detaildiarylist", diarylist);
-			  viewName = "diary.jsp?page=5";
+		  if(id != null) {
+			  if(id.equals("admin")) {
+				  DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
+				  Map<String, String> diarylist = diarydao.getDiaryListByTitle(title, false);
+				  if(diarylist != null) {
+					  session.setAttribute("detaildiarylist", diarylist);
+					  viewName = "diary.jsp?page=5";
+				  }
+				  else {
+					  g.jsmessage("Null Error");
+				  }
+			  }
+			  else {
+				  g.errorcode(3217);
+			  }
 		  }
 		  else {
-			  g.jsmessage("Null Error");
+			  g.errorcode(3217);
 		  }
 	   }catch(Exception e) {
 		   g.jsmessage(e.getMessage());

@@ -45,6 +45,7 @@ public class ModifyMemberServlet extends HttpServlet {
 		Global g = new Global(response);
 		HttpSession session = request.getSession();
 		String viewName = null; 
+		String s_id = (String)session.getAttribute("id");
 		String id = request.getParameter("ID");
 		String password = request.getParameter("password");
 		String firstname = request.getParameter("firstname");
@@ -58,16 +59,26 @@ public class ModifyMemberServlet extends HttpServlet {
   	    String db_pw = application.getInitParameter("db_password");
 		try {
 			 try {
-				    MemberDO memberdo = new MemberDO(id, password_hass, firstname, lastname, birthday, null);
-					MemberDAO memberdao = new MemberDAO(JDBC_Driver, db_url, db_id, db_pw);
-					int result = memberdao.UpdateMember(memberdo);
-					if(result == 1){
-						viewName = "main.do";
-						session.invalidate();
-					}
-					else{
-						g.jsmessage("Unknown Error Message");
-					}
+				   if(id != null && s_id != null) {
+					   if(id.equals(s_id)) {
+						   MemberDO memberdo = new MemberDO(id, password_hass, firstname, lastname, birthday, null);
+							MemberDAO memberdao = new MemberDAO(JDBC_Driver, db_url, db_id, db_pw);
+							int result = memberdao.UpdateMember(memberdo);
+							if(result == 1){
+								viewName = "main.do";
+								session.invalidate();
+							}
+							else{
+								g.jsmessage("Unknown Error Message");
+							}
+					   }
+					   else {
+						   g.errorcode(3217);
+					   }
+				   }
+				   else {
+					   g.errorcode(3217);
+				   }
 				} catch (ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					g.jsmessage(e.getMessage());

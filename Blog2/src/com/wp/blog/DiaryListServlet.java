@@ -35,6 +35,7 @@ public class DiaryListServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		Global g = new Global(response);
 		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
 		ServletContext application = request.getSession().getServletContext();
 		int desc = Integer.parseInt(request.getParameter("desc"));
 		Boolean descbool = false;
@@ -50,16 +51,26 @@ public class DiaryListServlet extends HttpServlet {
   	    	descbool = true;
   	    }
   	    try {
-  	    	DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
-  	    	List<DiaryDO> diarylist = diarydao.getDiaryList(descbool);
-  	    	int diarynumber = diarydao.getDiarynumber();
-  	    	if(diarylist != null) {
-  	    		viewName = "diary.jsp?page=1";
-  	    		session.setAttribute("diarylist", diarylist);
-  	    		session.setAttribute("diarynumber", diarynumber);
+  	    	if(id != null) {
+  	    		if(id.equals("admin")) {
+  	  	    		DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
+  	  	  	    	List<DiaryDO> diarylist = diarydao.getDiaryList(descbool);
+  	  	  	    	int diarynumber = diarydao.getDiarynumber();
+  	  	  	    	if(diarylist != null) {
+  	  	  	    		viewName = "diary.jsp?page=1";
+  	  	  	    		session.setAttribute("diarylist", diarylist);
+  	  	  	    		session.setAttribute("diarynumber", diarynumber);
+  	  	  	    	}
+  	  	  	    	else {
+  	  	  	    		g.jsmessage("Null Error");
+  	  	  	    	}
+  	  	    	}
+  	  	    	else {
+  	  	    		g.errorcode(3217);
+  	  	    	}
   	    	}
   	    	else {
-  	    		g.jsmessage("Null Error");
+  	    		g.errorcode(3217);
   	    	}
   	    }catch(Exception ex) {
   	    	g.jsmessage(ex.getMessage());

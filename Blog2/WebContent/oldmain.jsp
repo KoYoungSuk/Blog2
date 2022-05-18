@@ -14,7 +14,7 @@
 <c:choose>
 <c:when test="${param.num == 3702}"></c:when>
 <c:otherwise>
-  <c:redirect url="/403"></c:redirect>
+  <c:redirect url="/3217"></c:redirect>
 </c:otherwise>
 </c:choose>
 <!DOCTYPE HTML> 
@@ -177,27 +177,27 @@ But typing your birthday your name(First name, Last name)  is optional.
          <table border=1>
          <tr>
             <td><label for="id">ID:</label></td>
-            <td><input type="text" name="id" value="${requestScope.newmemberidlist[0]}" readonly /></td>
+            <td><input type="text" name="id" value="${requestScope.newmemberidlist['id']}" readonly /></td>
          </tr>
          <tr>
             <td><label for="firstname">First Name:</label></td>
-            <td><input type="text" name="firstname" value="${requestScope.newmemberidlist[2]}" readonly /></td>
+            <td><input type="text" name="firstname" value="${requestScope.newmemberidlist['firstname']}" readonly /></td>
          </tr>    
          <tr>
             <td><label for="lastname">Last Name:</label></td>
-            <td><input type="text" name="lastname" value="${requestScope.newmemberidlist[3]}" readonly /></td>
+            <td><input type="text" name="lastname" value="${requestScope.newmemberidlist['lastname']}" readonly /></td>
          </tr>    
          <tr>
             <td><label for="fullname">Full Name:</label></td>
-            <td><input type="text" name="fullname" value="${requestScope.newmemberidlist[2]}${requestScope.newmemberidlist[3]}" readonly /></td>
+            <td><input type="text" name="fullname" value="${requestScope.newmemberidlist['firstname']}${requestScope.newmemberidlist['lastname']}" readonly /></td>
          </tr>
          <tr>
             <td><label for="birthday">Birthday:</label></td>
-            <td><input type="text" name="birthday" value="${requestScope.newmemberidlist[4]}" readonly /></td>
+            <td><input type="text" name="birthday" value="${requestScope.newmemberidlist['birthday']}" readonly /></td>
          </tr>   
          <tr>
             <td><label for="joindate">Join Date:</label></td>
-            <td><input type="text" name="lastname" value="${requestScope.newmemberidlist[5]}" readonly /></td>
+            <td><input type="text" name="lastname" value="${requestScope.newmemberidlist['joindate']}" readonly /></td>
          </tr>        
         </table>
         <hr>

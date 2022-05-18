@@ -36,6 +36,7 @@ public class DBTotalServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		Global g = new Global(response);
 		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("id");
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
@@ -45,9 +46,19 @@ public class DBTotalServlet extends HttpServlet {
 		List<MemberDO> memberlist = null;
 		String viewName = null;
 	    try {
-			memberlist = memberdao.getMemberList();
-			session.setAttribute("memberlist", memberlist);
-			viewName = "main.do?page=11";
+	    	if(id != null) {
+	    		if(id.equals("admin")) {
+	    			memberlist = memberdao.getMemberList();
+	    			session.setAttribute("memberlist", memberlist);
+	    			viewName = "main.do?page=11";
+	    		}
+	    		else {
+	    			g.errorcode(3217);
+	    		}
+	    	}
+	    	else {
+	    		g.errorcode(3217);
+	    	}
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			g.jsmessage(e.getMessage());

@@ -6,8 +6,6 @@
                   <H3> Modify Member Information </H3>
                   <h6>NOTICE: After modify member, You must login again.</h6>
                   <hr>
-                 <c:choose>
-                       <c:when test="${sessionScope.id ne null}">
                            <form action="modifymember.do" method="POST">
                            <table>
                               <tr>
@@ -40,9 +38,6 @@
                            <button class="btn btn-primary" type="button" onclick="history.go(-1);">Back</button>
                            <button class="btn btn-primary" type="button" onclick="location.href='main.do'">Back to Main Page</button>
                             </form>
-                       </c:when>
-                       <c:otherwise> <p> You need to Login. </p> </c:otherwise>
-                      </c:choose>
            </div>
         </div>
    </div>

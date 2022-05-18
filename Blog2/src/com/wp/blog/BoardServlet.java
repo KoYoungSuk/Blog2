@@ -55,16 +55,27 @@ public class BoardServlet extends HttpServlet {
   	    String viewName = null;
   	    int number = 0;
 			try {
-			    BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
-				number = boarddao.MaxBoardNumber() + 1;
-			  	BoardDO boarddo = new BoardDO(number, title, userid, content, savedate, savedate, anonymous, 0);
-				int result = boarddao.insertBoard(boarddo);
-				if(result == 1) {
-					viewName = "boardlist.do";
+				if(userid != null) {
+					if(userid.equals("admin")) {
+						BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
+					    number = boarddao.MaxBoardNumber() + 1;
+						BoardDO boarddo = new BoardDO(number, title, userid, content, savedate, savedate, anonymous, 0);
+					    int result = boarddao.insertBoard(boarddo);
+					    if(result == 1) {
+						    viewName = "boardlist.do";
+						}
+						else {
+							g.jsmessage("Unknown Error Message");
+						}
+					}
+					else {
+						g.errorcode(3217);
+					}
 				}
 				else {
-					g.jsmessage("Unknown Error Message");
+					g.errorcode(3702);
 				}
+			  
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
 				g.jsmessage(e.getMessage());

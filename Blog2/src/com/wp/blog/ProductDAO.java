@@ -8,7 +8,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ProductDAO {
    
@@ -89,6 +91,27 @@ public class ProductDAO {
     			productdo.setPurpose(rs.getString("purpose"));
     			productlist.add(productdo);
     		}
+    	}
+    	rs.close();
+    	disconnectDB();
+    	return productlist;
+    }
+    
+    public Map<String, String> getProductListByNumber(String product_no) throws ClassNotFoundException, SQLException{
+    	Map<String, String> productlist = new HashMap<String, String> ();
+    	connectDB();
+    	PreparedStatement psm = null;
+    	ResultSet rs = null;
+    	String sql = "select * from product where product_no = ?";
+    	psm = conn.prepareStatement(sql);
+    	psm.setString(1, product_no);
+    	rs = psm.executeQuery();
+    	if(rs.next()) {
+    		productlist.put("product_no", rs.getString("product_no"));
+    		productlist.put("product_name", rs.getString("product_name"));
+    		productlist.put("buy_date", rs.getString("buy_date"));
+    		productlist.put("buy_date_used", rs.getString("buy_date_used"));
+    		productlist.put("purpose", rs.getString("purpose"));
     	}
     	rs.close();
     	disconnectDB();

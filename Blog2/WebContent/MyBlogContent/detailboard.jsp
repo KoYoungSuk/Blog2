@@ -5,8 +5,6 @@
      <div class="col-sm-12">
      <h1>게시글 내용</h1>
      <hr>
-      <c:choose>
-       <c:when test="${sessionScope.accessbool eq 't'}">
          <table border=1>
            <tr>
             <td>작성자 ID:</td>
@@ -41,16 +39,10 @@
              <td>${sessionScope.detailboardlist["clicks"]}</td>
            </tr>
        </table>
-       </c:when>
-       <c:otherwise>
-         <p>illegal access detected </p>
-      </c:otherwise>
-      </c:choose>
       <hr>
      <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
      <button class="btn btn-success" onclick="location.href='modifyboard.do?serial=${sessionScope.detailboardlist['number']}'">Modify</button>
      <button class="btn btn-danger" onclick="location.href='deleteboard.do?serial=${sessionScope.detailboardlist['number']}'">Delete</button>
-     
      </div>
     </div>
 </div>

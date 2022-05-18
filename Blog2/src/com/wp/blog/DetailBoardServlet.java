@@ -2,6 +2,7 @@ package com.wp.blog;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Map;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -45,7 +46,7 @@ public class DetailBoardServlet extends HttpServlet {
   	    String db_pw = application.getInitParameter("db_password");
 		BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
 		String viewName = null;
-		String accessbool = null;
+		Boolean accessbool = false;
 		String access = null;
 		if(id != null) {
 			if(id.equals("admin")) {  //관리자 모드로 접속한 경우 
@@ -60,29 +61,35 @@ public class DetailBoardServlet extends HttpServlet {
 		}
 		try {
 			Map<String, String> detailboardlist = boarddao.getBoardByNum(number, true, true); //<br> �±׸� �߰��Ѵ�. -> HTML ��Ű ������� 
-			if(access.equals("admin")) { //관리자 모드에서는 모든 게시물을 볼 수 있다. 
-				accessbool = "t";
-			}
-			else if(access.equals("member")) { //회원 모드에서는 관리자 모드로 작성된 게시물을 제외하고 볼 수 있다.
-			   if(!detailboardlist.get("anonymous").equals("admin")) {
-				  accessbool = "t";
-			   }
-			   else {
-				  accessbool = "f";
-			   }
-			}
-			else {  //비회원 모드에서는 비회원 모드로 작성된 게시물만 볼 수 있다. 
-				if(detailboardlist.get("anonymous").equals(access)) {
-					accessbool = "t";
-				}
-				else {
-					accessbool = "f";
-				}
-			}
+			Map<String, String> newdetailboardlist = null;
+		
 			if(detailboardlist != null) {
-				session.setAttribute("detailboardlist", detailboardlist);
-				session.setAttribute("accessbool", accessbool);
-				viewName = "main.do?page=14";
+			    if(access.equals("admin")) { //관리자 모드에서는 모든 게시물을 볼 수 있다. 
+					accessbool = true;
+				}
+			    else if(access.equals("member")) { //회원 모드에서는 관리자 모드로 작성된 게시물을 제외하고 볼 수 있다.
+				    if(!detailboardlist.get("anonymous").equals("admin")) {
+						 accessbool = true;
+					}
+			    }
+				else {  //비회원 모드에서는 비회원 모드로 작성된 게시물만 볼 수 있다. 
+					if(detailboardlist.get("anonymous").equals(access)) {
+					     accessbool = true;
+					}
+				}
+			    
+			    if(accessbool) {
+			    	newdetailboardlist = detailboardlist;
+			    }
+			    
+			    if(newdetailboardlist != null) {
+			    	session.setAttribute("detailboardlist", detailboardlist);
+					session.setAttribute("accessbool", accessbool);
+					viewName = "main.do?page=14";
+			    }
+			    else {
+			        g.errorcode(3217);
+			    }
 			}
 			else {
 				g.jsmessage("Null Error");

@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<c:choose>
-    <c:when test="${sessionScope.id eq 'admin' }">
 	  <form action="deletediary" method="POST">
 	   <table>
 	   <tr>
@@ -26,8 +24,3 @@
 	  <button class="btn btn-success" type="button" onclick="location.href='diarylist?desc=0'">Back To DiaryList</button>
 	  <button class="btn btn-success" type="button" onclick="location.href='../main.do'">Back To MyBlog</button>
 	 </form>
-	 </c:when>
-	 <c:otherwise>
-	  <p>Administrator Only</p>
-	 </c:otherwise>
-</c:choose>

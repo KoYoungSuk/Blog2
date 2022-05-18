@@ -5,8 +5,6 @@
         <div class="col-md-12">
            <h2>Delete Bullet Board</h2>
            <hr>
-           <c:choose>
-           <c:when test="${sessionScope.id eq 'admin'}">
            <form action="deleteboard.do" method="POST">
            <h5>CAUTION: YOU CAN'T CANCEL THIS JOB. </h5>
            <h5>Do you want to delete it?</h5>
@@ -52,11 +50,6 @@
           <button type="button" class="btn btn-primary" onclick="location.href='main.do?page=1'">NO, BACK TO MAIN PAGE!</button>
           <hr>
            </form>
-           </c:when>
-           <c:otherwise>
-           <p>Administrator Only</p>
-           </c:otherwise>
-           </c:choose>
            <hr>
         </div>
     </div>

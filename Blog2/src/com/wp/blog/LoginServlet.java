@@ -38,15 +38,6 @@ public class LoginServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		Global g = new Global(response);
 		HttpSession session = request.getSession();
-		//Remove Previous Session
-		session.removeAttribute("newboardlist");
-		session.removeAttribute("id");
-		session.removeAttribute("firstname");
-		session.removeAttribute("lastname");
-		session.removeAttribute("fullname");
-		session.removeAttribute("boardlist");
-		session.removeAttribute("detailboardlist");
-		//Remove Previous Session
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");

@@ -5,6 +5,12 @@
 <c:import url="../DiaryContent/write.jsp" var="writecontent"></c:import>
 <c:import url="../DiaryContent/modify.jsp" var="modifycontent"></c:import>
 <c:import url="../DiaryContent/delete.jsp" var="deletecontent"></c:import>
+<c:choose>
+<c:when test="${sessionScope.id ne 'admin'}">
+<c:redirect url="/error_3217.html"></c:redirect>
+</c:when>
+<c:otherwise></c:otherwise>
+</c:choose>
 <!DOCTYPE html>
 <html>
 <head>
