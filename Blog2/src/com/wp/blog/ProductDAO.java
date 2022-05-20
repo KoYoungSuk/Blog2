@@ -40,7 +40,7 @@ public class ProductDAO {
 		connectDB();
 		int result = 0;
 		PreparedStatement psm = null;
-		String sql = "insert into product ('product_no', 'product_name', 'buy_date', 'buy_date_used', 'purpose') values ?,?,?,?,?";
+		String sql = "insert into product (product_no, product_name, buy_date, buy_date_used, purpose) values (?,?,?,?,?)";
 		psm = conn.prepareStatement(sql);
 		psm.setString(1, productdo.getProduct_no());
 		psm.setString(2, productdo.getProduct_name());
@@ -50,6 +50,34 @@ public class ProductDAO {
 		result = psm.executeUpdate();
 		disconnectDB();
 		return result;
+	}
+	
+	public int updateProduct(ProductDO productdo) throws ClassNotFoundException, SQLException {
+		connectDB();
+		int result = 0;
+		PreparedStatement psm = null;
+		String sql = "update product set product_name = ?, buy_date = ?, buy_date_used = ?, purpose = ? where product_no = ?";
+		psm = conn.prepareStatement(sql);
+		psm.setString(1, productdo.getProduct_name());
+		psm.setString(2, productdo.getBuy_date());
+		psm.setString(3, productdo.getBuy_date_used());
+		psm.setString(4, productdo.getPurpose());
+		psm.setString(5, productdo.getProduct_no());
+		result = psm.executeUpdate();
+		disconnectDB();
+		return result;
+	}
+	
+	public int deleteProduct(String product_no) throws ClassNotFoundException, SQLException {
+		connectDB();
+		int result = 0;
+		PreparedStatement psm = null;
+		String sql = "delete from product where product_no = ?";
+		psm = conn.prepareStatement(sql);
+		psm.setString(1, product_no);
+		result = psm.executeUpdate();
+		disconnectDB();
+		return result; 
 	}
     public List<ProductDO> getProductTotalList(Boolean desc, String columnname) throws ClassNotFoundException, SQLException {
     	List<ProductDO> productlist = new ArrayList<ProductDO>();
@@ -116,5 +144,23 @@ public class ProductDAO {
     	rs.close();
     	disconnectDB();
     	return productlist;
+    }
+    
+    public int getProductNumber() throws ClassNotFoundException, SQLException{
+    	connectDB();
+        Statement sm = null;
+        ResultSet rs = null;
+        sm = conn.createStatement();
+        String sql = "select count(*) productnumber from product";
+        rs = sm.executeQuery(sql);
+        int result = 0;
+        if(rs.isBeforeFirst()) {
+        	while(rs.next()) {
+        		result = rs.getInt("productnumber");
+        	}
+        }
+        rs.close();
+        disconnectDB();
+        return result;
     }
 }

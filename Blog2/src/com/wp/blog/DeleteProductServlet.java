@@ -1,9 +1,6 @@
 package com.wp.blog;
 
 import java.io.IOException;
-import java.util.List;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class ProductManageServlet
+ * Servlet implementation class DeleteProductServlet
  */
-@WebServlet("/product/productlist")
-public class ProductListServlet extends HttpServlet {
+@WebServlet("/product/deleteproduct")
+public class DeleteProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductListServlet() {
+    public DeleteProductServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,51 +31,40 @@ public class ProductListServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
-		int desc = Integer.parseInt(request.getParameter("desc"));
-		Boolean descbool = false;
-		String columnname = request.getParameter("columnname");
+		Global g = new Global(response);
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
-		Global g = new Global(response);
+		String product_no = request.getParameter("product_no");
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
   	    String viewName = null;
-  	    if(desc == 0) {
-  	    	descbool = false;
-  	    }
-  	    else {
-  	    	descbool = true;
-  	    }
   	    try {
   	    	if(id != null) {
   	    		if(id.equals("admin")) {
-  	  	    		ProductDAO productdao = new ProductDAO(JDBC_Driver, db_url, db_id, db_pw);
-  	  	  	    	List<ProductDO> totalproductlist = productdao.getProductTotalList(descbool, columnname);
-  	  	  	    	int productnumber = productdao.getProductNumber();
-  	  	  	    	if(totalproductlist != null) {
-  	  	  	    		viewName = "product.jsp?page=1";
-  	  	  	    		session.setAttribute("productnumber", productnumber);
-  	  	  	    		session.setAttribute("totalproductlist", totalproductlist);
-  	  	  	    	}
-  	  	    	}
-  	  	    	else {
-  	  	    		session.invalidate();
-  	  	    		g.errorcode(3217);
-  	  	    	}
+  	    			ProductDAO productdao = new ProductDAO(JDBC_Driver, db_url, db_id, db_pw);
+  	    			int result = productdao.deleteProduct(product_no);
+  	    			if(result == 1) {
+  	    				viewName = "productlist?desc=0&columnname=product_no";
+  	    			}
+  	    			else {
+  	    				g.jsmessage("Unknown Error Message");
+  	    			}
+  	    		}
+  	    		else {
+  	    			g.errorcode(3217);
+  	    		}
   	    	}
   	    	else {
-  	    		session.invalidate();
   	    		g.errorcode(3217);
   	    	}
   	    }catch(Exception e) {
   	    	g.jsmessage(e.getMessage());
   	    }
   	    if(viewName != null) {
-  	    	RequestDispatcher view = request.getRequestDispatcher(viewName);
-  			view.forward(request, response);
+  	    	response.sendRedirect(viewName);
   	    }
 	}
 

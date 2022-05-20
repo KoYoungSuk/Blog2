@@ -62,8 +62,8 @@
  </div>
  <hr>
   <div class="footer">
-	<p>Last updated:  </p>
-	<p>This is not copyrighted.</p>
+	<p>Last updated: May 21st, 2022 </p>
+	<p>This is not copyrighted. But don't use this illegally. </p>
 </div>
 <body>
 </body>

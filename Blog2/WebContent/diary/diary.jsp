@@ -74,9 +74,20 @@
 </script>
 </head>
 <body>
- <div class="jumbotron">
+<div class="jumbotron">
 	<h1>PersonalDiary Web Mode</h1>
 	<h5>2022-04-24</h5>
+<nav class="navbar navbar-expand-md bg-warning navbar-light">
+       <ul class="navbar-nav">
+        <li class="nav-item"><button class="btn btn-danger" onclick="location.href='diary.jsp?page=3'">Write</button></li>
+        <li class="nav-item">&nbsp;&nbsp;</li>        
+        <li class="nav-item"><button class="btn btn-danger" onclick="history.go(-1);">Back</button></li>
+        <li class="nav-item">&nbsp;&nbsp;</li>  
+        <li class="nav-item"><button class="btn btn-danger" onclick="location.href='../main.do'">Back to MyBlog</button> </li>
+        <li class="nav-item">&nbsp;&nbsp;</li>  
+        <li class="nav-item"><button class="btn btn-danger" onclick="location.href='../signout.do?check=2'">Logout</button></li>
+       </ul>
+</nav>
 </div>
 <hr>
 <div class="container" style="margin-top: 15px">
@@ -112,7 +123,7 @@
  </div>
  <hr>
   <div class="footer">
-	<p>Last updated: May 13th, 2022 </p>
+	<p>Last updated: May 21st, 2022 </p>
 	<p>This is not copyrighted. But Don't use this illegally.</p>
 </div>
 </body>
