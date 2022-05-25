@@ -56,13 +56,13 @@
 	<hr>
 	  <input type="submit" class="btn btn-primary" value="Login" />
 	  <input type="button" class="btn btn-primary" onclick="history.go(-1);" value="Back" />
-	  <input type="button" class="btn btn-primary" onclick="location.href='main.do'" value="Back to main page" />
+	  <input type="button" class="btn btn-primary" onclick="location.href='../main.do'" value="Back to main page" />
 	</form>
   </div>
  </div>
  <hr>
   <div class="footer">
-	<p>Last updated:  </p>
+	<p>Last updated: May 25th, 2022 </p>
 	<p>This is not copyrighted.</p>
 </div>
 <body>

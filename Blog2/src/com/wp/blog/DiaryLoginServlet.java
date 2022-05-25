@@ -58,16 +58,14 @@ public class DiaryLoginServlet extends HttpServlet {
   	       MemberDAO memberdao = new MemberDAO(JDBC_Driver, db_url, db_id, db_pw);
   	       List<MemberDO> memberlist = memberdao.getMemberList();
   	       for(MemberDO memberdo : memberlist) {
-  	    	   if(id.equals(memberdo.getId())) {
-  	    		   if(id.equals("admin")) {
-  	    			  if(BCrypt.checkpw(password, memberdo.getPassword())) {
-  	  	    			   session.setAttribute("id", id);
-  	  	    			   viewName = "diarylist?desc=0";
-  	  	    			   check = true;
-  	  	    			   break;
-  	  	    		   }
-  	    		   }
-  	    	   }
+  	    	   if(id.equals("admin")) {
+  	    		  if(BCrypt.checkpw(password, memberdo.getPassword())) {
+  	  	    		session.setAttribute("id", id);
+  	  	    		viewName = "diarylist?desc=0";
+  	  	    		check = true;
+  	  	    		break;
+  	  	    	 }
+  	    	  }
   	       }
   	       if(viewName != null && check) {
   	          response.sendRedirect(viewName);

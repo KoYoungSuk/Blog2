@@ -60,15 +60,13 @@ public class ProductLoginServlet extends HttpServlet {
   	    	List<MemberDO> memberlist = memberdao.getMemberList();
   	    	if(memberlist != null) {
   	    		for(MemberDO memberdo : memberlist) {
-  	  	    		if(memberdo.getId().equals(id)) {
-  	  	    		   if(id.equals("admin")) {
-                          if(BCrypt.checkpw(password, memberdo.getPassword())) {
-  	  	    				  check = true;
-  	  	    				  viewName = "productlist?desc=0&columnname=product_no";
-  	  	    				  break;
-  	  	    			  }
-	    			   }
-  	  	    		}
+  	  	    		if(id.equals("admin")) {
+                        if(BCrypt.checkpw(password, memberdo.getPassword())) {
+  	  	    			  check = true;
+  	  	    			  viewName = "productlist?desc=0&columnname=product_no";
+  	  	    			  break;
+  	  	    			}
+	    			}
   	  	    	}
   	    	}
   	    	else {
