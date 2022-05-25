@@ -2,6 +2,9 @@ package com.wp.blog;
 
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -52,12 +55,16 @@ public class DBTestResultServlet extends HttpServlet {
 		dburl = "jdbc:oracle:thin:@" + dburl;
 		String viewName = "";
 		Boolean connection = false;
+		Connection conn = null;
 	    try {
-	      DAO dao = new DAO(jdbcdriver, dburl, dbid, dbpw);
-	      dao.connectDB();
+		  Class.forName(jdbcdriver);
+		  conn = DriverManager.getConnection(dburl, dbid, dbpw);
 	      connection = true;
 	      if(connection) {
-	    	request.setAttribute("testcode", "success");
+	    	session.setAttribute("testcode", "success");
+	    	session.setAttribute("connection", conn);
+	    	session.setAttribute("dburl", dburl);
+	    	session.setAttribute("dbid", dbid);
 	   	    if(mode.equals("easy")) {
 	    	  viewName = "/dbmanager/easy.jsp";
 	        }

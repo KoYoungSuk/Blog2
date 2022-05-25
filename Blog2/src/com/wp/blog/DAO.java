@@ -1,7 +1,7 @@
 package com.wp.blog;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -12,37 +12,15 @@ import java.util.List;
 public class DAO {
 
    private Connection conn = null;
-   private String jdbc_driver;
-   private String db_url;
-   private String db_id;
-   private String db_pw;
-   public DAO() {
-	   
+   public DAO(Connection conn) {
+	   this.conn = conn;
    }
-   public DAO(String jdbc_driver, String db_url, String db_id, String db_pw) {
-	   this.jdbc_driver = jdbc_driver;
-	   this.db_url = db_url;
-	   this.db_id = db_id;
-	   this.db_pw = db_pw;
-   }
-   public void connectDB() throws SQLException, ClassNotFoundException
-   {
-	   Class.forName(jdbc_driver);
-	   conn = DriverManager.getConnection(db_url, db_id, db_pw);
-   }
-   public void disconnectDB() throws SQLException
-   {
-	   if(conn != null)
-	   {
-		   conn.close();
-		   conn = null;
+   public List<Object> processheader(String sql, Boolean ibool, String identifier) throws ClassNotFoundException, SQLException { //스키마는 속성과 제약조건 등 데이터를 저장하는 기준을 저장한다.(헤더) 
+	   PreparedStatement psm = conn.prepareStatement(sql);
+       if(ibool) {
+		   psm.setObject(1, identifier);
 	   }
-   }
-   public List<Object> processheader(String sql) throws ClassNotFoundException, SQLException {
-	   
-	   connectDB(); 
-	   Statement sm = conn.createStatement();
-	   ResultSet rs = sm.executeQuery(sql);
+	   ResultSet rs = psm.executeQuery();
 	   ResultSetMetaData rsmd = rs.getMetaData();
 	   int columncount = rsmd.getColumnCount();
 	   int i=0;
@@ -55,16 +33,18 @@ public class DAO {
 		 }
 		 break;
 	   }
+	   psm.close();
 	   rs.close();
-	   disconnectDB();
 	   return header;
    }
-   
-   public List<List<Object>> processColumn(String sql) throws ClassNotFoundException, SQLException{
-	   
-	   connectDB(); 
-	   Statement sm = conn.createStatement();
-	   ResultSet rs = sm.executeQuery(sql);
+    
+   public List<List<Object>> processColumn(String sql, Boolean identifierbool, String identifier) throws ClassNotFoundException, SQLException{
+                                        //인스턴스는 내용이 저장된다. 
+	   PreparedStatement psm = conn.prepareStatement(sql);
+	   if(identifierbool) {
+		   psm.setObject(1, identifier);
+	   }
+	   ResultSet rs = psm.executeQuery();
 	   ResultSetMetaData rsmd = rs.getMetaData();
 	   int columncount = rsmd.getColumnCount();
 	   List<List<Object>> tablelist = new ArrayList<List<Object>>();
@@ -81,19 +61,59 @@ public class DAO {
 		   i++;
 		   tablelist.add(columns);
 	    }
+	   psm.close();
 	   rs.close();
-	   disconnectDB();
 	   return tablelist; 
    }
    
-   public List<List<Object>> processColumnEasy(String tablename) throws ClassNotFoundException, SQLException{
-	   String sql = "select * from " + tablename;
-	   List<List<Object>> tablelist = processColumn(sql);
+   public int iudDB(String sql) throws SQLException { //iud: insert, update, delete 
+	   Statement sm = conn.createStatement();
+	   int result = sm.executeUpdate(sql);
+	   sm.close();
+	   return result;
+   }
+   
+   public void ddl(String sql) throws SQLException {  //DDL(Create, Drop, Alter) 
+	   Statement sm = conn.createStatement();
+	   sm.execute(sql);
+	   sm.close();
+   }
+   public List<List<Object>> processColumnEasy(String tablename, String identifiername, String identifier) throws ClassNotFoundException, SQLException{
+	   String sql = null;
+	   List<List<Object>> tablelist = null;
+	   if(identifiername != null && identifier != null) {
+		   sql = "select * from " + tablename + " where " + identifiername + "=?";
+		   System.out.println(sql);
+		   tablelist = processColumn(sql, true, identifier);
+	   }
+	   else {
+		   sql = "select * from " + tablename;
+		   System.out.println(sql);
+		   tablelist = processColumn(sql, false, null);
+	   }
 	   return tablelist;
    }
-   public List<Object> processHeaderEasy(String tablename) throws ClassNotFoundException, SQLException{
-	   String sql = "select * from " + tablename;
-	   List<Object> header = processheader(sql);
-	   return header;
+   public List<Object> processHeaderEasy(String tablename, String identifiername, String identifier) throws ClassNotFoundException, SQLException{
+	   String sql = null;
+	   List<Object> headerlist = null;
+	   if(identifiername != null && identifier != null) {
+		   sql = "select * from " + tablename + " where " + identifiername + "=?";
+		   System.out.println(sql);
+		   headerlist = processheader(sql, true, identifier);
+	   }
+	   else {
+		   sql = "select * from " + tablename;
+		   System.out.println(sql);
+		   headerlist = processheader(sql, false, null);
+	   }
+	   return headerlist;
+   }
+   public int deleteTable(String tablename, String identifiername, String identifier) throws ClassNotFoundException, SQLException{
+	   String sql = "delete from " + tablename + " where " + identifiername + "=?";
+	   PreparedStatement psm = conn.prepareStatement(sql);
+	   psm.setObject(1, identifier);
+	   int result = psm.executeUpdate();
+	   psm.close();
+	   return result;
    }
 }

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<c:set var="testcode" value="${requestScope.testcode}" />
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,11 +21,11 @@
    <h1>JSPOracleManager</h1>
    <hr>
    <c:choose>
-      <c:when test="${testcode eq 'success'}">
+      <c:when test="${sessionScope.testcode eq 'success'}">
         <h3>Professional Mode</h3>
         <hr>
-        <p>DataBase Address: ${requestScope.dburl} </p>
-        <p>DataBase ID: ${requestScope.dbid} </p>
+        <p>DataBase Address: ${sessionScope.dburl} </p>
+        <p>DataBase ID: ${sessionScope.dbid} </p>
         <hr>
          <form action="prodbmanage.do" method="GET">
          <table>
@@ -40,10 +40,14 @@
          </form>
          <hr>
          <p>Executed at <c:out value="${requestScope.time}" /></p>
+         <p>SQL Command: <c:out value="${requestScope.sqlcommand}" /></p>
+         <p>Degree(Number of Attributes): <c:out value="${requestScope.degree}" /></p>
+         <p>Cardinality(Number of Tuples): <c:out value="${requestScope.tuple}" /></p>
+         <p>Schema: Header Instance: Content </p>
          <hr> 
-         <table border="1">
          <c:choose>
            <c:when test="${requestScope.tablenamelist ne null}">
+               <table border="1">
                <thead>
                <tr>
                <c:forEach var="TableHeader" items="${requestScope.tableheaderlist}">
@@ -60,22 +64,29 @@
                </tr>
                </c:forEach>
                </tbody>
+               </table>
           </c:when>
           <c:otherwise>
-            <p>TEST</p>
+            <c:choose>
+             <c:when test="${requestScope.updatestatus ne null}">
+               <p>Success Executed! </p>
+             </c:when>
+             <c:otherwise>
+               <p>Please Execute Query.. </p>
+             </c:otherwise>
+             </c:choose>
           </c:otherwise>
-         </c:choose>
-        </table>
+          </c:choose>
       </c:when>
       <c:otherwise>
         <p>You need DataBase URL, ID and Password(Oracle)</p>
       </c:otherwise>
     </c:choose>
-     <hr>
-    <button class="btn btn-primary" onclick="window.print()">Print</button>
+    <hr>
+   <button class="btn btn-primary" onclick="window.print()">Print</button>
    <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
-   <button class="btn btn-primary" onclick="location.href='index.jsp'">Back to JSPOracleManager Page</button>
-   <button class="btn btn-primary" onclick="location.href='../main.do'">Back to Main Page</button>
+   <button class="btn btn-primary" onclick="location.href='../disconnectdb.do?check=j'">Back to JSPOracleManager Page</button>
+   <button class="btn btn-primary" onclick="location.href='../disconnectdb.do?check=m'">Back to Main Page</button>
    <hr>
     </div>
    <div class="footer">

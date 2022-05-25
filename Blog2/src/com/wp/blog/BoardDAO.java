@@ -54,6 +54,7 @@ public class BoardDAO {
 		   psm.setString(7, boarddo.getAnonymous());
 		   psm.setInt(8, boarddo.getClicks());
 		   result = psm.executeUpdate();
+		   psm.close();
 		   disconnectDB();
 		   return result;
 	   }
@@ -89,6 +90,7 @@ public class BoardDAO {
 				   boardlist.add(boarddo);
 			   }
 		   }
+		   sm.close();
 		   rs.close();
 		   disconnectDB();
 		   return boardlist;
@@ -120,6 +122,7 @@ public class BoardDAO {
 			   boardlist.put("anonymous", rs.getString("anonymous"));
 			   boardlist.put("clicks", (rs.getInt("clicks") + 1) + "");
 		   }
+		   psm.close();
 		   rs.close();
 		   disconnectDB();
 		   if(clicks) {
@@ -137,6 +140,7 @@ public class BoardDAO {
 		   psm = conn.prepareStatement(sql);
 		   psm.setInt(1, number);
 		   result = psm.executeUpdate();
+		   psm.close();
 		   disconnectDB();
 		   return result;
 	   }
@@ -167,6 +171,7 @@ public class BoardDAO {
 		   }
 		   //String sql = String.format("update board set title='%s',content2='%s', modifydate='%s', userid='%s', anonymous='%s' where serial=%d" , title, content2, modifydate, userid, access,number);
 		   result = psm.executeUpdate();
+		   psm.close();
 		   disconnectDB();
 		   return result;
 	   }
@@ -188,6 +193,7 @@ public class BoardDAO {
 				   maxnumber = rs.getInt("maxnumber");
 			   }
 		   }
+		  sm.close();
 		  rs.close();
 		  disconnectDB();
 		  return maxnumber;
@@ -217,6 +223,7 @@ public class BoardDAO {
 				 countnumber = rs.getInt("countnumber");
 			  }
 		   }
+		   sm.close();
 		   rs.close();
 		   disconnectDB();
 		   return countnumber;

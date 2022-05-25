@@ -46,6 +46,7 @@ public class DiaryDAO {
 	   psm.setTimestamp(3, diarydo.getSavedate());
 	   psm.setTimestamp(4, diarydo.getModifydate());
 	   result = psm.executeUpdate();
+	   psm.close();
 	   disconnectDB();
 	   return result;
    }
@@ -60,6 +61,7 @@ public class DiaryDAO {
 	   psm.setTimestamp(2, diarydo.getModifydate());
 	   psm.setString(3, diarydo.getTitle());
 	   result = psm.executeUpdate();
+	   psm.close();
 	   disconnectDB();
 	   return result;
    }
@@ -72,6 +74,7 @@ public class DiaryDAO {
 	   psm = conn.prepareStatement(sql);
 	   psm.setString(1, title);
 	   result = psm.executeUpdate();
+	   psm.close();
 	   disconnectDB();
 	   return result; 
    }
@@ -101,6 +104,7 @@ public class DiaryDAO {
 			   diarylist.add(diarydo);
 		   }
 	   }
+	   sm.close();
 	   rs.close();
 	   disconnectDB();
 	   return diarylist;
@@ -130,6 +134,7 @@ public class DiaryDAO {
 			   diarylist.put("modifydate", rs.getTimestamp("modifydate").toString());
 		   }
 	   }
+	   psm.close();
 	   rs.close();
 	   disconnectDB();
 	   return diarylist;
@@ -148,6 +153,7 @@ public class DiaryDAO {
 			   diarynumber = rs.getInt("diarynumber");
 		   }
 	   }
+	   sm.close();
 	   rs.close();
 	   disconnectDB();
 	   return diarynumber;

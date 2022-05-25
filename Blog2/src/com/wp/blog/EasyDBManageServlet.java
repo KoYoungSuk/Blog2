@@ -1,6 +1,8 @@
 package com.wp.blog;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,20 +35,49 @@ public class EasyDBManageServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		Global g = new Global(response);
 		HttpSession session = request.getSession();
-		String jdbc_driver = (String) session.getAttribute("jdbcdriver");
-  	    String db_url = (String) session.getAttribute("dburl");
-  	    String db_id = (String) session.getAttribute("dbid");
-  	    String db_pw = (String) session.getAttribute("dbpw");
+		Connection conn = (Connection)session.getAttribute("connection");
   	    String tablename = request.getParameter("tablename");
+  	    String identifier_attribute = request.getParameter("identifiername");
+  	    String identifier = request.getParameter("identifiervalue");
+  	    String mode = request.getParameter("mode");
   	    String viewName = null;
+  	    Boolean querystatus = false;
+  	    tablename = tablename.toLowerCase();
+  	    identifier_attribute = identifier_attribute.toLowerCase();
+  	    identifier = identifier.toLowerCase();
   	    try {
-  	       DAO dao = new DAO(jdbc_driver, db_url, db_id, db_pw);
- 		   List<Object> header = dao.processHeaderEasy(tablename);
- 		   List<List<Object>> tablelist = dao.processColumnEasy(tablename);
-		   request.setAttribute("tablename", tablename);
-		   request.setAttribute("tableheaderlist", header);
-		   request.setAttribute("tablenamelist", tablelist);
-		   viewName = "easy.jsp";
+  	       DAO dao = new DAO(conn);
+  	       List<Object> header = null;
+  	       List<List<Object>> tablelist = null;
+  	       if(mode.equals("select")) {
+  	    	  if(identifier.equals("") || identifier_attribute.equals("")) {
+  	    		  identifier = null;
+  	    		  identifier_attribute = null;
+  	    	  }
+  	    	  header = dao.processHeaderEasy(tablename, identifier_attribute, identifier); //Schema 
+  	 		  tablelist = dao.processColumnEasy(tablename, identifier_attribute, identifier); //Instance
+  	 		  querystatus = true;
+  	       }
+  	       else {
+  	    	   System.out.println("delete: " + mode);
+  	    	   int result = dao.deleteTable(tablename, identifier_attribute, identifier);
+  	    	   if(result == 1) {
+  	    		   querystatus = true;
+  	    	   }
+  	       }
+  	       System.out.println(querystatus);
+ 		   if(querystatus) {
+ 			  viewName = "easy.jsp";
+ 			  request.setAttribute("updatestatus", "success");
+ 	 		  request.setAttribute("time", LocalDateTime.now());
+ 			  request.setAttribute("tablename", tablename);
+ 			  if(header != null && tablelist != null) {
+ 				 request.setAttribute("degree", header.size()); 
+ 				 request.setAttribute("tuple", tablelist.size()); 
+ 				 request.setAttribute("tableheaderlist", header);
+ 				 request.setAttribute("tablenamelist", tablelist);
+ 			  }
+ 		   }
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			g.jsmessage(e.getMessage());

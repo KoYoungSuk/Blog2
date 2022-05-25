@@ -1,6 +1,7 @@
 package com.wp.blog;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.time.LocalDateTime;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -36,27 +37,42 @@ public class ProDBManageServlet extends HttpServlet {
 		Global g = new Global(response);
 		HttpSession session = request.getSession();
 		String sqlcommand = request.getParameter("sqlcommand");
+		sqlcommand = sqlcommand.toLowerCase();
+		String[] split_sqlcommand = sqlcommand.split(" ");
+		Connection conn = (Connection)session.getAttribute("connection");
 		String viewName = null;
+		List<Object> header = null;
+		List<List<Object>> tablelist = null;
+		Boolean querystatus = false;
   	    try { 
-  	       /*
-  	       String jdbc_driver = d.getDbdriver();
-  	       String db_url = d.getDburl();
-  	       String db_id = d.getDbid();
-  	       String db_pw = d.getDbpw();
-  	       DAO dao = new DAO(jdbc_driver, db_url, db_id, db_pw);
-  	       */
-  	       DAO dao = new DAO();
-  		   List<Object> header = dao.processheader(sqlcommand);
-  		   List<List<Object>> tablelist = dao.processColumn(sqlcommand);
-  		   if(header != null && tablelist != null) {
+  	       DAO dao = new DAO(conn);
+  	       if(split_sqlcommand[0].equals("select")) {
+  	    	 header = dao.processheader(sqlcommand, false, null); //Schema 
+    		 tablelist = dao.processColumn(sqlcommand, false, null); //Instance 
+    		 querystatus = true;
+  	       }
+  	       else if(split_sqlcommand[0].equals("create") || split_sqlcommand[0].equals("drop") || split_sqlcommand[0].equals("alter") || split_sqlcommand[0].equals("commit")) {
+  	    	  dao.ddl(sqlcommand); //참고로 COMMIT는 DCL이지만 코드 중복 방지를 위해서.... 
+  	    	  querystatus = true;
+  	       } 
+  	       else {
+  	    	  int result = dao.iudDB(sqlcommand);
+  	    	  if(result == 1) {
+  	    		  querystatus = true;
+  	    	  }
+  	       }
+  		   if(querystatus) {
   			 viewName = "professional.jsp";
+  			 request.setAttribute("updatestatus", "success");
+  			 request.setAttribute("sqlcommand", sqlcommand);
   		     request.setAttribute("time", LocalDateTime.now());
-  		     request.setAttribute("sqlcommand", sqlcommand);
-  		     request.setAttribute("tableheaderlist", header);
-  		     request.setAttribute("tablenamelist", tablelist);
-  		   }
-  		   else {
-  			   g.jsmessage("Null Error");
+  		     if(header != null && tablelist != null) {
+    		     request.setAttribute("degree", header.size());
+    		     request.setAttribute("tuple", tablelist.size()); 
+    		     request.setAttribute("sqlcommand", sqlcommand);
+    		     request.setAttribute("tableheaderlist", header);
+    		     request.setAttribute("tablenamelist", tablelist);
+  		     }
   		   }
   	    }catch(Exception e) {
   	       g.jsmessage(e.getMessage());

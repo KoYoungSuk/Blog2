@@ -48,6 +48,7 @@ public class ProductDAO {
 		psm.setString(4, productdo.getBuy_date_used());
 		psm.setString(5, productdo.getPurpose());
 		result = psm.executeUpdate();
+		psm.close();
 		disconnectDB();
 		return result;
 	}
@@ -64,6 +65,7 @@ public class ProductDAO {
 		psm.setString(4, productdo.getPurpose());
 		psm.setString(5, productdo.getProduct_no());
 		result = psm.executeUpdate();
+		psm.close();
 		disconnectDB();
 		return result;
 	}
@@ -76,6 +78,7 @@ public class ProductDAO {
 		psm = conn.prepareStatement(sql);
 		psm.setString(1, product_no);
 		result = psm.executeUpdate();
+		psm.close();
 		disconnectDB();
 		return result; 
 	}
@@ -120,6 +123,7 @@ public class ProductDAO {
     			productlist.add(productdo);
     		}
     	}
+    	sm.close();
     	rs.close();
     	disconnectDB();
     	return productlist;
@@ -141,6 +145,7 @@ public class ProductDAO {
     		productlist.put("buy_date_used", rs.getString("buy_date_used"));
     		productlist.put("purpose", rs.getString("purpose"));
     	}
+    	psm.close();
     	rs.close();
     	disconnectDB();
     	return productlist;
@@ -159,6 +164,7 @@ public class ProductDAO {
         		result = rs.getInt("productnumber");
         	}
         }
+        sm.close();
         rs.close();
         disconnectDB();
         return result;

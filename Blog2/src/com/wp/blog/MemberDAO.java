@@ -47,6 +47,7 @@ public class MemberDAO {
 	   psm.setString(5, memberdo.getBirthday());
 	   psm.setTimestamp(6, memberdo.getJoindate());
 	   result = psm.executeUpdate();
+	   psm.close();
 	   disconnectDB();
 	   return result;
    }
@@ -76,6 +77,7 @@ public class MemberDAO {
 			   memberlist.add(memberdo);
 		   }
 	   }
+	   sm.close();
 	   rs.close();
 	   disconnectDB();
 	   return memberlist;
@@ -102,6 +104,7 @@ public class MemberDAO {
 		   memberlist.put("birthday", rs.getString("birthday"));
 		   memberlist.put("joindate", rs.getTimestamp("joindate").toString());
 	   }
+	   psm.close();
 	   rs.close();
 	   disconnectDB();
 	   return memberlist;
@@ -117,6 +120,7 @@ public class MemberDAO {
 	   psm = conn.prepareStatement(sql);
 	   psm.setString(1, id);
 	   result = psm.executeUpdate();
+	   psm.close();
 	   disconnectDB();
 	   return result;
    }
@@ -135,7 +139,9 @@ public class MemberDAO {
 	   psm.setString(3, memberdo.getLastname());
 	   psm.setString(4, memberdo.getBirthday());
 	   psm.setString(5, memberdo.getId());
+	   
 	   result = psm.executeUpdate();
+	   psm.close();
 	   disconnectDB();
 	   return result;
    }

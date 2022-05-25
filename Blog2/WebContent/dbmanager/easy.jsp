@@ -21,10 +21,12 @@
    <h1>JSPOracleManager</h1>
    <hr>
    <c:choose>
-      <c:when test="${testcode eq 'success'}">
+      <c:when test="${sessionScope.testcode eq 'success'}">
         <h3>Easy Mode</h3>
         <hr>
-        <h6>SQL 명령문이 아닌 버튼을 통해 테이블 조회, 수정, 값 입력 및 삭제가 가능합니다.(테이블 생성 기능은 추후 구현예정)</h6>
+        <h6>SQL 명령문이 아닌 버튼을 통해 데이터베이스 연산을 수행할 수 있음. </h6>
+        <h6>사용 가능한 연산: DML: 테이블 조회(select), 테이블 삭제(delete) </h6>
+        <h6>테이블을 삭제할때는 식별자의  속성과 값을 반드시 입력해야 합니다. </h6>
         <h6>DataBase URL: ${sessionScope.dburl} </h6>
         <h6>DataBase ID: ${sessionScope.dbid} </h6>
         <hr>
@@ -34,9 +36,27 @@
          <td><label for="Tablename">Tablename:</label></td>
          <td><input type="text" name="tablename" required /></td>
          </tr>
+         <tr>
+         <td><label for="identifiername">Identifier(Attribute):</label></td>
+         <td><input type="text" name="identifiername" /></td>
+         </tr>
+         <tr>
+         <td><label for="identifiervalue">Identifier(Value):</label></td>
+         <td><input type="text" name="identifiervalue" /></td>
+         </tr>
+         <tr>
+         <td><label for="Mode">Mode(DML): </label></td>
+         <td><input type="radio" name="mode" value="select" checked />Select</td>
+         <td><input type="radio" name="mode" value="delete"  />Delete</td>
+         </tr>
          </table>
-         <button class="btn btn-primary" onclick="history.go(-1));">테이블 조회</button>
+         <button class="btn btn-primary" onclick="history.go(-1));">Execute</button>
          </form>
+         <hr>
+         <p>Executed at <c:out value="${requestScope.time}" /></p>
+         <p>Degree(Number of Attributes): <c:out value="${requestScope.degree}" /></p>
+         <p>Cardinality(Number of Tuples): <c:out value="${requestScope.tuple}" /></p>
+         <p>Schema: Header Instance: Content </p>
          <hr>
          <c:choose>
           <c:when test="${requestScope.tablename ne null}">
@@ -61,15 +81,26 @@
                </table>
           </c:when>
       <c:otherwise>
-        <p>You need DataBase URL, ID and Password(Oracle)</p>
+        <c:choose>
+          <c:when test="${requestScope.updatestatus ne null}">
+           <p>Success Executed.</p>
+          </c:when>
+          <c:otherwise>
+           <p>Please Execute Query.. </p>
+          </c:otherwise>
+        </c:choose>
       </c:otherwise>
     </c:choose>
    </c:when>
+   <c:otherwise>
+     <p>You need DataBase URL, ID and Password(Oracle)</p>
+   </c:otherwise>
    </c:choose>
-     <hr>
+   <hr>
+   <button class="btn btn-primary" onclick="window.print()">Print</button>
    <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
-   <button class="btn btn-primary" onclick="location.href='/index.jsp'">Back to JSPOracleManager Page</button>
-   <button class="btn btn-primary" onclick="location.href='../main.do'">Back to Main Page</button>
+   <button class="btn btn-primary" onclick="location.href='../disconnectdb.do?check=j'">Back to JSPOracleManager Page</button>
+   <button class="btn btn-primary" onclick="location.href='../disconnectdb.do?check=m'">Back to Main Page</button>
    <hr>
     </div>
    <div class="footer">
