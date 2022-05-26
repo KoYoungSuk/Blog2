@@ -42,22 +42,16 @@
 <div class="jumbotron">
 	<h1>ProductManager for MyHome Web Mode</h1>
 	<h5>2022-05-18</h5>
-<nav class="navbar navbar-expand-md bg-warning navbar-light">
-       <ul class="navbar-nav">
-        <li class="nav-item"><button class="btn btn-danger" onclick="location.href='product.jsp?page=3'">Write</button></li>
-        <li class="nav-item">&nbsp;&nbsp;</li>        
-        <li class="nav-item"><button class="btn btn-danger" onclick="history.go(-1);">Back</button></li>
-        <li class="nav-item">&nbsp;&nbsp;</li>  
-        <li class="nav-item"><button class="btn btn-danger" onclick="location.href='../main.do'">Back to MyBlog</button> </li>
-        <li class="nav-item">&nbsp;&nbsp;</li>  
-        <li class="nav-item"><button class="btn btn-danger" onclick="location.href='../signout.do?check=3'">Logout</button></li>
-       </ul>
-</nav>
 </div>
 <hr>
 <div class="container" style="margin-top: 15px">
    <div class="col-sm-12">
 	<p>Only Administrator can use ProductManager Web Mode. Sorry.... </p>
+	<hr>
+	<input type="button" type="button" onclick="location.href='product.jsp?page=3'" class="btn btn-primary" value="Write" />
+	<input type="button" type="button" onclick="history.go(-1);" class="btn btn-primary" value="Back" />
+	<input type="button" type="button" onclick="location.href='../main.do'" class="btn btn-primary" value="Back To Main Page" />
+	<input type="button" type="button" onclick="location.href='../signout.do?check=3'" class="btn btn-primary" value="Logout" />
 	<hr>
 	<c:choose>
 	 <c:when test="${page.param == 1}">

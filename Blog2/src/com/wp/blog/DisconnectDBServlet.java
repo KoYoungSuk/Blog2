@@ -41,7 +41,7 @@ public class DisconnectDBServlet extends HttpServlet {
 		try {
 			conn.close();
 			conn = null;
-			session.removeAttribute("connection");
+			session.invalidate();
 			if(check.equals("m")) {
 				viewName = "main.do";
 			}
