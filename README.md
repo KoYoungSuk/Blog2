@@ -27,3 +27,10 @@ How to use this repository? :
  JSPOracleManager
  ![image](https://user-images.githubusercontent.com/58511486/170816893-b9c05a71-b4bb-4cba-b68f-d1e77daf7a79.png)
 
+ Diary
+ ![image](https://user-images.githubusercontent.com/58511486/170846822-9f8288f0-f26c-4f0d-a105-cbcb47d1fff0.png)
+
+ ------------------------------------------------------------------------------------------------------------------------------------------
+ # NOTICE
+ 
+ You can find easter egg. (Hint: Hidden Mode) 
