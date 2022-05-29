@@ -1,5 +1,5 @@
 # MyBlog&amp;ETC Main Server(JSP/Ubuntu)
-Respository Name: Blog2
+
 ------------------------------------------------------------------------------------------------------------------------------------------
 Apache Tomcat 9.0/Eclipse IDE for Java EE 2018-09/OpenJDK 8
 Actually development environment is not Ubuntu. it is Windows 10/11!.
