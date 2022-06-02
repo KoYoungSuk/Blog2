@@ -166,49 +166,6 @@ But typing your birthday your name(First name, Last name)  is optional.
      </c:choose>
    <hr>
 </c:when> 
-
-<c:when test="${param.page == 4}">
-   <h3> CAUTION  </h3>
-   <hr>
-   <c:choose>
-   <c:when test="${id eq 'admin'}">
-     <p> CAUTION </p>
-      <form action="deleteMember_old.do" method="POST">
-         <table border=1>
-         <tr>
-            <td><label for="id">ID:</label></td>
-            <td><input type="text" name="id" value="${requestScope.newmemberidlist['id']}" readonly /></td>
-         </tr>
-         <tr>
-            <td><label for="firstname">First Name:</label></td>
-            <td><input type="text" name="firstname" value="${requestScope.newmemberidlist['firstname']}" readonly /></td>
-         </tr>    
-         <tr>
-            <td><label for="lastname">Last Name:</label></td>
-            <td><input type="text" name="lastname" value="${requestScope.newmemberidlist['lastname']}" readonly /></td>
-         </tr>    
-         <tr>
-            <td><label for="fullname">Full Name:</label></td>
-            <td><input type="text" name="fullname" value="${requestScope.newmemberidlist['firstname']}${requestScope.newmemberidlist['lastname']}" readonly /></td>
-         </tr>
-         <tr>
-            <td><label for="birthday">Birthday:</label></td>
-            <td><input type="text" name="birthday" value="${requestScope.newmemberidlist['birthday']}" readonly /></td>
-         </tr>   
-         <tr>
-            <td><label for="joindate">Join Date:</label></td>
-            <td><input type="text" name="lastname" value="${requestScope.newmemberidlist['joindate']}" readonly /></td>
-         </tr>        
-        </table>
-        <hr>
-        <button type="submit">Delete</button>
-        <button type="button" onclick="history.go(-1);">Back</button>
-        <button type="button" onclick="location.href='main.do?page=1'">Back To Main Page</button>
-       </form>
-   </c:when>
-   <c:otherwise></c:otherwise>
-   </c:choose>
-</c:when> 
 <c:when test="${param.page == 5}">
    <H3>ETC Service Link</H3>
     <hr>
