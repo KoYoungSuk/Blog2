@@ -30,7 +30,7 @@
         <h6>DataBase URL: ${sessionScope.dburl} </h6>
         <h6>DataBase ID: ${sessionScope.dbid} </h6>
         <hr>
-         <form action="easytableselect.do" method="GET">
+         <form action="easytableselect.do" method="POST">
          <table>
          <tr>
          <td><label for="Tablename">Tablename:</label></td>

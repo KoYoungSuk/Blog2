@@ -5,6 +5,11 @@
              <div class="col-sm-12">
                  <H3>Member Management Center </H3>
                  <hr>
+                 <form action="deleteMember.do" method="POST">
+                   Delete ID:&nbsp;&nbsp;<input type="text" name="id" required />
+                   &nbsp;&nbsp;<button class="btn btn-danger" type="submit">DELETE</button>
+                 </form>
+                 <hr>
                     <table border=1>
                          <thead>
                          <tr>
@@ -15,7 +20,6 @@
                             <th>Last Name</th>
                             <th>Birthday</th>
                             <th>Join Date</th>
-                            <th>Detail</th>
                          </tr>
                          </thead>
                          <tbody>
@@ -23,12 +27,11 @@
                             <tr>
                             <td>${status.count}</td>
                             <td><c:out value="${memberDO.id}" /></td>
-                            <td><c:out value="${memberDO.password}" /></td>
+                            <td>PASSWORD CENSORED</td>
                             <td><c:out value="${memberDO.firstname}" /></td>
                             <td><c:out value="${memberDO.lastname}" /></td>
                             <td><c:out value="${memberDO.birthday}" /></td>
                             <td><c:out value="${memberDO.joindate}" /></td>
-                            <td><a href="totalmember_old.do?id=${memberDO.id}">Detail&Delete</a></td>
                             </tr>
                              </c:forEach>
                          </tbody>

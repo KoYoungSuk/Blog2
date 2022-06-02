@@ -1,7 +1,6 @@
 package com.wp.blog;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,16 +25,13 @@ public class DeleteMemberServlet extends HttpServlet {
     }
 
 	/**
+	 * @throws IOException 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
+    public void deleteMember(HttpServletRequest request, HttpServletResponse response, String id, boolean total) throws IOException {
 		Global g = new Global(response);
 		HttpSession session = request.getSession();
 		String viewName = null;
-		String id = (String)session.getAttribute("id");
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
@@ -46,21 +42,36 @@ public class DeleteMemberServlet extends HttpServlet {
 			int result = memberdao.DeleteMember(id);
 			if(result == 1)
 			{ 
-				viewName = "main.do";
+				if(total) {
+					viewName = "totaldb.do";
+				}
+				else {
+					viewName = "main.do";
+				}	
 			}
 			else 
 			{
 			     g.jsmessage("Unknown Error Message");
 			}
-		} catch (ClassNotFoundException | SQLException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			g.jsmessage(e.getMessage());
 		}
 		if(viewName != null)
 		{
 			response.sendRedirect(viewName);
-			session.invalidate();
+			if(!total) {
+				session.invalidate();
+			}
 		}
+    }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+	    HttpSession session = request.getSession();
+	    String id = (String)session.getAttribute("id");
+	    deleteMember(request, response, id, false);
 	}
 
 	/**
@@ -68,7 +79,10 @@ public class DeleteMemberServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+		String id = request.getParameter("id");
+		deleteMember(request, response, id, true);
 	}
 
 }

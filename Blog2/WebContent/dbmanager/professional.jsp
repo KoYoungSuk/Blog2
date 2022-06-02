@@ -27,7 +27,7 @@
         <p>DataBase Address: ${sessionScope.dburl} </p>
         <p>DataBase ID: ${sessionScope.dbid} </p>
         <hr>
-         <form action="prodbmanage.do" method="GET">
+         <form action="prodbmanage.do" method="POST">
          <table>
          <tr>
          <td><label for="SQLCommand">SQL 명령문 입력</label></td>
