@@ -52,6 +52,8 @@ public class DiaryLoginServlet extends HttpServlet {
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
+  	    String firstname = null;
+  	    String lastname = null;
   	    String viewName = null;
   	    Boolean check = false;
   	    try {
@@ -61,13 +63,24 @@ public class DiaryLoginServlet extends HttpServlet {
   	    	   if(id.equals("admin")) {
   	    		  if(BCrypt.checkpw(password, memberdo.getPassword())) {
   	  	    		session.setAttribute("id", id);
+  	  	    		firstname = memberdo.getFirstname();
+  	  	    		lastname = memberdo.getLastname();
   	  	    		viewName = "diarylist?desc=0";
   	  	    		check = true;
   	  	    		break;
   	  	    	 }
   	    	  }
   	       }
+  	       if(firstname == null) {
+  	    	   firstname = "";
+  	       }
+  	       else if(lastname == null) {
+  	    	   lastname = "";
+  	       }
   	       if(viewName != null && check) {
+  	    	  session.setAttribute("firstname", firstname);
+  	    	  session.setAttribute("lastname", lastname);
+  	    	  session.setAttribute("fullname", firstname + lastname);
   	          response.sendRedirect(viewName);
   	       }
   	       else {

@@ -54,6 +54,9 @@ public class ProductLoginServlet extends HttpServlet {
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
   	    Boolean check = false;
+  	    String firstname = null;
+  	    String lastname = null;
+  	    String fullname = null;
   	    String viewName = null;
   	    try {
   	    	MemberDAO memberdao = new MemberDAO(JDBC_Driver, db_url, db_id, db_pw);
@@ -63,6 +66,8 @@ public class ProductLoginServlet extends HttpServlet {
   	  	    		if(id.equals("admin")) {
                         if(BCrypt.checkpw(password, memberdo.getPassword())) {
   	  	    			  check = true;
+  	  	    			  firstname = memberdo.getFirstname();
+  	  	    			  lastname = memberdo.getLastname();
   	  	    			  viewName = "productlist?desc=0&columnname=product_no";
   	  	    			  break;
   	  	    			}
@@ -75,8 +80,17 @@ public class ProductLoginServlet extends HttpServlet {
   	    }catch(Exception e) {
   	    	g.jsmessage(e.getMessage());
   	    }
+  	    if(firstname == null) {
+  	    	firstname = "";
+  	    }
+  	    else if(lastname == null) {
+  	    	lastname = "";
+  	    }
   	    if(viewName != null && check == true) {
   	    	session.setAttribute("id", id);
+  	    	session.setAttribute("firstname", firstname);
+  	    	session.setAttribute("lastname", lastname);
+  	    	session.setAttribute("fullname", firstname+lastname); 
   	    	response.sendRedirect(viewName);
   	    }
   	    else {
