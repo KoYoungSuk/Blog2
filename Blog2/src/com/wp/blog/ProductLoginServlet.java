@@ -56,7 +56,6 @@ public class ProductLoginServlet extends HttpServlet {
   	    Boolean check = false;
   	    String firstname = null;
   	    String lastname = null;
-  	    String fullname = null;
   	    String viewName = null;
   	    try {
   	    	MemberDAO memberdao = new MemberDAO(JDBC_Driver, db_url, db_id, db_pw);
