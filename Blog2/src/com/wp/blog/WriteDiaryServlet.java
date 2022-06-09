@@ -1,6 +1,7 @@
 package com.wp.blog;
 
 import java.io.IOException;
+
 import java.sql.Timestamp;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -9,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.wp.blog.DAO.DiaryDAO;
+import com.wp.blog.DTO.DiaryDO;
 /**
  * Servlet implementation class WriteDiaryServlet
  */

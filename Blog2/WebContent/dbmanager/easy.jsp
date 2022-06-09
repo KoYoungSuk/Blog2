@@ -37,11 +37,11 @@
          <td><input type="text" name="tablename" required /></td>
          </tr>
          <tr>
-         <td><label for="identifiername">Identifier(Attribute):</label></td>
+         <td><label for="identifiername">Attribute:</label></td>
          <td><input type="text" name="identifiername" /></td>
          </tr>
          <tr>
-         <td><label for="identifiervalue">Identifier(Value):</label></td>
+         <td><label for="identifiervalue">Value</label></td>
          <td><input type="text" name="identifiervalue" /></td>
          </tr>
          <tr>
@@ -59,7 +59,7 @@
          <p>Schema: Header Instance: Content </p>
          <hr>
          <c:choose>
-          <c:when test="${requestScope.tablename ne null}">
+          <c:when test="${requestScope.tablenamelist ne null}">
                <p>Table Name: ${requestScope.tablename} </p>
                <table border="1">
                <thead>

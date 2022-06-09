@@ -1,6 +1,7 @@
 package com.wp.blog;
 
 import java.io.IOException;
+
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.Map;
@@ -13,6 +14,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.wp.blog.DAO.BoardDAO;
+import com.wp.blog.DTO.BoardDO;
 
 /**
  * Servlet implementation class ModifyBoardServlet

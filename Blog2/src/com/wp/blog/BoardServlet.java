@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.wp.blog.DAO.BoardDAO;
+import com.wp.blog.DTO.BoardDO;
+
 /**
  * Servlet implementation class BoardServlet
  */

@@ -1,10 +1,12 @@
-package com.wp.blog;
+package com.wp.blog.DAO;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.wp.blog.DTO.MemberDO;
 public class MemberDAO {
    public Connection conn = null;
    private String jdbc_driver;

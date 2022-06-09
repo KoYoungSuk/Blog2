@@ -1,4 +1,4 @@
-package com.wp.blog;
+package com.wp.blog.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

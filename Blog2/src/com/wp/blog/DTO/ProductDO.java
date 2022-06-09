@@ -1,4 +1,4 @@
-package com.wp.blog;
+package com.wp.blog.DTO;
 
 public class ProductDO {
    public String getProduct_no() {
