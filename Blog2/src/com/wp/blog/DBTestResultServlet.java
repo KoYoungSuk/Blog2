@@ -75,6 +75,9 @@ public class DBTestResultServlet extends HttpServlet {
 	    	  g.errorcode(403);
 	        }
 	      }
+	      else {
+	    	  g.jsmessage("Error");
+	      }
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			g.jsmessage(e.getMessage());

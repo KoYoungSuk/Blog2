@@ -38,11 +38,11 @@
          </tr>
          <tr>
          <td><label for="identifiername">Attribute:</label></td>
-         <td><input type="text" name="identifiername" /></td>
+         <td><input type="text" name="name" /></td>
          </tr>
          <tr>
          <td><label for="identifiervalue">Value</label></td>
-         <td><input type="text" name="identifiervalue" /></td>
+         <td><input type="text" name="value" /></td>
          </tr>
          <tr>
          <td><label for="Mode">Mode(DML): </label></td>

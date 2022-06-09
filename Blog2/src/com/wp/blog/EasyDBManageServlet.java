@@ -47,29 +47,29 @@ public class EasyDBManageServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Connection conn = (Connection)session.getAttribute("connection");
   	    String tablename = request.getParameter("tablename");
-  	    String identifier_attribute = request.getParameter("identifiername");
-  	    String identifier = request.getParameter("identifiervalue");
+  	    String attribute = request.getParameter("name");
+  	    String value = request.getParameter("value");
   	    String mode = request.getParameter("mode");
   	    String viewName = null;
   	    Boolean querystatus = false;
-  	    tablename = tablename.toLowerCase();
-  	    identifier_attribute = identifier_attribute.toLowerCase();
-  	    identifier = identifier.toLowerCase();
+  	    tablename = tablename.toUpperCase();
+  	    attribute = attribute.toUpperCase();
+  	    value = value.toUpperCase();
   	    try {
   	       DAO dao = new DAO(conn);
   	       List<Object> header = null;
   	       List<List<Object>> tablelist = null;
   	       if(mode.equals("select")) {
-  	    	  if(identifier.equals("") || identifier_attribute.equals("")) {
-  	    		  identifier = null;
-  	    		  identifier_attribute = null;
+  	    	  if(value.equals("") || attribute.equals("")) {
+  	    		  value = null;
+  	    		  attribute = null;
   	    	  }
-  	    	  header = dao.processHeaderEasy(tablename, identifier_attribute, identifier); //Schema 
-  	 		  tablelist = dao.processColumnEasy(tablename, identifier_attribute, identifier); //Instance
+  	    	  header = dao.processHeaderEasy(tablename, attribute, value); //Schema 
+  	 		  tablelist = dao.processColumnEasy(tablename, attribute, value); //Instance
   	 		  querystatus = true;
   	       }
   	       else {
-  	    	   int result = dao.deleteTable(tablename, identifier_attribute, identifier);
+  	    	   int result = dao.deleteTable(tablename, attribute, value);
   	    	   if(result == 1) {
   	    		   querystatus = true;
   	    	   }
@@ -85,6 +85,12 @@ public class EasyDBManageServlet extends HttpServlet {
  				 request.setAttribute("tableheaderlist", header);
  				 request.setAttribute("tablenamelist", tablelist);
  			  }
+ 			  else {
+ 				  g.jsmessage("Null");
+ 			  }
+ 		   }
+ 		   else {
+ 			  g.jsmessage("Error");
  		   }
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

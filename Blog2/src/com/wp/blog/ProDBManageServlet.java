@@ -48,7 +48,7 @@ public class ProDBManageServlet extends HttpServlet {
 		Global g = new Global(response);
 		HttpSession session = request.getSession();
 		String sqlcommand = request.getParameter("sqlcommand");
-		sqlcommand = sqlcommand.toLowerCase();
+		sqlcommand = sqlcommand.toUpperCase();
 		String[] split_sqlcommand = sqlcommand.split(" ");
 		Connection conn = (Connection)session.getAttribute("connection");
 		String viewName = null;
@@ -57,12 +57,12 @@ public class ProDBManageServlet extends HttpServlet {
 		Boolean querystatus = false;
   	    try { 
   	       DAO dao = new DAO(conn);
-  	       if(split_sqlcommand[0].equals("select")) {
+  	       if(split_sqlcommand[0].equals("SELECT")) {
   	    	 header = dao.processheader(sqlcommand, false, null); //Schema 
     		 tablelist = dao.processColumn(sqlcommand, false, null); //Instance 
     		 querystatus = true;
   	       }
-  	       else if(split_sqlcommand[0].equals("create") || split_sqlcommand[0].equals("drop") || split_sqlcommand[0].equals("alter") || split_sqlcommand[0].equals("commit")) {
+  	       else if(split_sqlcommand[0].equals("CREATE") || split_sqlcommand[0].equals("DROP") || split_sqlcommand[0].equals("ALTER") || split_sqlcommand[0].equals("COMMIT")) {
   	    	  dao.ddl(sqlcommand); //참고로 COMMIT는 DCL이지만 코드 중복 방지를 위해서.... 
   	    	  querystatus = true;
   	       } 
@@ -84,6 +84,12 @@ public class ProDBManageServlet extends HttpServlet {
     		     request.setAttribute("tableheaderlist", header);
     		     request.setAttribute("tablenamelist", tablelist);
   		     }
+  		     else {
+  		    	 g.jsmessage("Null");
+  		     }
+  		   }
+  		   else {
+  			   g.jsmessage("Error");
   		   }
   	    }catch(Exception e) {
   	       g.jsmessage(e.getMessage());
