@@ -45,3 +45,8 @@ Actually development environment is not Ubuntu. it is Windows 10/11!.
  # NOTICE
  
  You can find easter egg. (Hint: Hidden Mode) 
+ 
+ # STRUCTURE
+ 
+ ![image](https://user-images.githubusercontent.com/58511486/172990055-738c4337-3423-4cb5-8389-8e19f1f69ef1.png)
+
