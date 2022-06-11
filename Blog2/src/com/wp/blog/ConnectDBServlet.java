@@ -18,13 +18,13 @@ import javax.servlet.http.HttpSession;
  * Servlet implementation class DBTestResultServlet
  */
 @WebServlet("/dbmanager/dbtestresult.do")
-public class DBTestResultServlet extends HttpServlet {
+public class ConnectDBServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DBTestResultServlet() {
+    public ConnectDBServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

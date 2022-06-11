@@ -19,13 +19,13 @@ import com.wp.blog.DAO.MemberDAO;
  * Servlet implementation class MemberTotalServlet
  */
 @WebServlet("/totalmember.do")
-public class MemberTotalServlet extends HttpServlet {
+public class MemberInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberTotalServlet() {
+    public MemberInfoServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

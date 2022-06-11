@@ -20,13 +20,13 @@ import com.wp.blog.DTO.MemberDO;
  * Servlet implementation class DBTotalServlet
  */
 @WebServlet("/totaldb.do")
-public class DBTotalServlet extends HttpServlet {
+public class MemberManageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DBTotalServlet() {
+    public MemberManageServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

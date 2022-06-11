@@ -34,15 +34,15 @@
          <table>
          <tr>
          <td><label for="Tablename">Tablename:</label></td>
-         <td><input type="text" name="tablename" required /></td>
+         <td><input type="text" name="tablename" value='${requestScope.tablename}' required /></td>
          </tr>
          <tr>
          <td><label for="identifiername">Attribute:</label></td>
-         <td><input type="text" name="name" /></td>
+         <td><input type="text" name="name" value='${requestScope.attribute}' /></td>
          </tr>
          <tr>
          <td><label for="identifiervalue">Value</label></td>
-         <td><input type="text" name="value" /></td>
+         <td><input type="text" name="value" value='${requestScope.value}' /></td>
          </tr>
          <tr>
          <td><label for="Mode">Mode(DML): </label></td>

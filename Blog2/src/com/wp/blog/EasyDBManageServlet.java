@@ -78,6 +78,8 @@ public class EasyDBManageServlet extends HttpServlet {
  			  request.setAttribute("updatestatus", "success");
  	 		  request.setAttribute("time", LocalDateTime.now());
  			  request.setAttribute("tablename", tablename);
+ 			  request.setAttribute("attribute", attribute);
+ 			  request.setAttribute("value", value);
  			  if(header != null && tablelist != null) {
  				 request.setAttribute("degree", header.size()); 
  				 request.setAttribute("tuple", tablelist.size()); 

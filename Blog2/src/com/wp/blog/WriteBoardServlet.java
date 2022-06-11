@@ -17,13 +17,13 @@ import com.wp.blog.DTO.BoardDO;
  * Servlet implementation class BoardServlet
  */
 @WebServlet("/board.do")
-public class BoardServlet extends HttpServlet {
+public class WriteBoardServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public BoardServlet() {
+    public WriteBoardServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
