@@ -52,8 +52,6 @@ public class EasyDBManageServlet extends HttpServlet {
   	    String mode = request.getParameter("mode");
   	    String viewName = null;
   	    Boolean querystatus = false;
-  	    tablename = tablename.toUpperCase();
-  	    attribute = attribute.toUpperCase();
   	    try {
   	       DAO dao = new DAO(conn);
   	       List<Object> header = null;
