@@ -48,7 +48,6 @@ public class ProDBManageServlet extends HttpServlet {
 		Global g = new Global(response);
 		HttpSession session = request.getSession();
 		String sqlcommand = request.getParameter("sqlcommand");
-		sqlcommand = sqlcommand.toUpperCase();
 		String[] split_sqlcommand = sqlcommand.split(" ");
 		String sqlcommand2 = split_sqlcommand[0].toUpperCase();
 		Connection conn = (Connection)session.getAttribute("connection");
