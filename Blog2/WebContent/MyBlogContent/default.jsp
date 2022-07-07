@@ -7,6 +7,7 @@
      <hr>
      <h5> This Web Site is designed for Personal Blog Site. </h5>
      <h5> <a href="https://kysot.yspersonal.com">Second Server(ASP.NET)</a></h5>
+     <h5> <a href="https://blog.naver.com/vheh5678">My Naver Blog(Neighbor Only)</a></h5>
    </div>
    <div class="col-md-6">
      <h2>Why I make this?</h2>
