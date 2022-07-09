@@ -23,6 +23,15 @@
        </c:choose>
        <p> 게시물 개수 : ${sessionScope.count_board} </p>
        <hr>
+       <form action="searchtitle.do" method="GET">
+       <p> 
+       <label for="searchtitle">Search By Title: </label>
+       <input type="text" name="searchtitle" />
+       &nbsp;&nbsp;
+       <button type="submit" class="btn btn-primary">Search By Title</button>
+       </p>
+        </form>
+       <hr>
         <table>
           <thead>
               <tr>

@@ -230,4 +230,24 @@ public class BoardDAO {
 		   disconnectDB();
 		   return countnumber;
 	   }
+	   
+	   public int getBoardNumber(String title) throws ClassNotFoundException, SQLException{
+		   connectDB();
+		   int number = 0;
+		   String sql = "select serial from board where title = ?";
+		   ResultSet rs = null;
+		   PreparedStatement psm = null;	   
+		   psm = conn.prepareStatement(sql);
+		   psm.setString(1, title);
+		   rs = psm.executeQuery();
+		   if(rs.isBeforeFirst()) {
+			   while(rs.next()) {
+				   number = rs.getInt("serial");
+			   }
+		   }
+		   psm.close();
+		   rs.close();
+		   disconnectDB();
+		   return number;
+	   }
 }
