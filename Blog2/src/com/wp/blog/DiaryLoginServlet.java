@@ -2,7 +2,9 @@ package com.wp.blog;
 
 import java.io.IOException;
 
-import java.util.List;
+//import java.util.List;
+import java.util.Map;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import org.mindrot.jbcrypt.BCrypt;
 
 import com.wp.blog.DAO.MemberDAO;
-import com.wp.blog.DTO.MemberDO;
+//import com.wp.blog.DTO.MemberDO;
 
 /**
  * Servlet implementation class DiaryListServlet
@@ -59,10 +61,21 @@ public class DiaryLoginServlet extends HttpServlet {
   	    String firstname = null;
   	    String lastname = null;
   	    String viewName = null;
-  	    Boolean check = false;
+  	    //Boolean check = false;
   	    try {
   	       MemberDAO memberdao = new MemberDAO(JDBC_Driver, db_url, db_id, db_pw);
-  	       List<MemberDO> memberlist = memberdao.getMemberList();
+  	       //List<MemberDO> memberlist = memberdao.getMemberList();
+  	       if(id.equals("admin")) {
+  	    	 Map<String, String> memberlist = memberdao.getMemberById(id);
+    	       String password_db = memberlist.get("password");
+    	       if(BCrypt.checkpw(password, password_db)) {
+    	    	   session.setAttribute("id", id);
+    	    	   firstname = memberlist.get("firstname");
+    	    	   lastname = memberlist.get("lastname");
+    	    	   viewName = "diarylist?desc=0";
+    	       }
+  	       }
+  	       /*
   	       for(MemberDO memberdo : memberlist) {
   	    	   if(id.equals("admin")) {
   	    		  if(BCrypt.checkpw(password, memberdo.getPassword())) {
@@ -75,13 +88,14 @@ public class DiaryLoginServlet extends HttpServlet {
   	  	    	 }
   	    	  }
   	       }
+  	       */
   	       if(firstname == null) {
   	    	   firstname = "";
   	       }
   	       else if(lastname == null) {
   	    	   lastname = "";
   	       }
-  	       if(viewName != null && check) {
+  	       if(viewName != null) {
   	    	  session.setAttribute("firstname", firstname);
   	    	  session.setAttribute("lastname", lastname);
   	    	  session.setAttribute("fullname", firstname + lastname);

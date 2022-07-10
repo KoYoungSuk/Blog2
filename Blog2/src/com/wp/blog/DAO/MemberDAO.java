@@ -54,6 +54,7 @@ public class MemberDAO {
 	   return result;
    }
    
+  
    //Get MemberList
    public List<MemberDO> getMemberList() throws ClassNotFoundException, SQLException
    {

@@ -1,9 +1,8 @@
 package com.wp.blog;
 
 import java.io.IOException;
-
-import java.util.List;
-
+//import java.util.List;
+import java.util.Map;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.mindrot.jbcrypt.BCrypt;
 
 import com.wp.blog.DAO.MemberDAO;
-import com.wp.blog.DTO.MemberDO;
+//import com.wp.blog.DTO.MemberDO;
 
 /**
  * Servlet implementation class ProductLoginServlet
@@ -57,12 +56,22 @@ public class ProductLoginServlet extends HttpServlet {
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
-  	    Boolean check = false;
+  	    //Boolean check = false;
   	    String firstname = null;
   	    String lastname = null;
   	    String viewName = null;
   	    try {
   	    	MemberDAO memberdao = new MemberDAO(JDBC_Driver, db_url, db_id, db_pw);
+  	    	Map<String, String> memberlist = memberdao.getMemberById(id);
+  	    	if(id.equals("admin")) {
+  	    		String password_db = memberlist.get("password");
+  	    		if(BCrypt.checkpw(password, password_db)) {
+  	    			firstname = memberlist.get("firstname");
+  	    			lastname = memberlist.get("lastname");
+  	    			viewName = "productlist?desc=0&columnname=product_no";
+  	    		}
+  	    	}
+  	    	/*
   	    	List<MemberDO> memberlist = memberdao.getMemberList();
   	    	if(memberlist != null) {
   	    		for(MemberDO memberdo : memberlist) {
@@ -80,6 +89,7 @@ public class ProductLoginServlet extends HttpServlet {
   	    	else {
   	    		g.jsmessage("Null Error");
   	    	}
+  	    	*/
   	    }catch(Exception e) {
   	    	g.jsmessage(e.getMessage());
   	    }
@@ -89,7 +99,7 @@ public class ProductLoginServlet extends HttpServlet {
   	    else if(lastname == null) {
   	    	lastname = "";
   	    }
-  	    if(viewName != null && check == true) {
+  	    if(viewName != null) {
   	    	session.setAttribute("id", id);
   	    	session.setAttribute("firstname", firstname);
   	    	session.setAttribute("lastname", lastname);
