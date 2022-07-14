@@ -32,6 +32,16 @@
        </p>
         </form>
        <hr>
+       <label for="arrangement">Arrangement: </label>
+       <c:choose>
+        <c:when test="${param.desc == 1}">
+           <button type="button" class="btn btn-primary" onclick="location.href='boardlist.do?desc=0'">Ascend</button>
+        </c:when>
+        <c:otherwise>
+           <button type="button" class="btn btn-danger" onclick="location.href='boardlist.do?desc=1'">Descend</button> 
+        </c:otherwise>
+       </c:choose>
+       <hr>
         <table>
           <thead>
               <tr>

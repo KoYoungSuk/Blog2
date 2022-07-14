@@ -39,6 +39,8 @@ public class BoardListServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
+		String desc = request.getParameter("desc");
+		Boolean descbool = false;
 		String access = null;
 		String viewName = null;
 	    ServletContext application = request.getSession().getServletContext();
@@ -49,6 +51,9 @@ public class BoardListServlet extends HttpServlet {
 	  	BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
 	    List<BoardDO> newboardlist = new ArrayList<BoardDO>();
 	    Global g = new Global(response);
+	    if(desc == null) {
+	    	desc = "0";
+	    }
 	    if(id != null) {
 	    	if(id.equals("admin")) {
 	    		access = "admin"; //관리자로 접속한 경우 
@@ -60,8 +65,12 @@ public class BoardListServlet extends HttpServlet {
 	    else {
 	    	access = "anonymous"; //비회원 모드
 	    }
+	    int descnum = Integer.parseInt(desc);
+	    if(descnum == 1) {
+	    	descbool = true;
+	    }
 	    try {
-			  List<BoardDO> boardlist = boarddao.getBoardList(false);
+			  List<BoardDO> boardlist = boarddao.getBoardList(descbool);
 			  int count_board = boarddao.getBoardCount(access);
 		      for(BoardDO boarddo: boardlist) {
 				if(access.equals("admin")) {  //관리자 모드로 접속한 경우 전체 게시물 조회 가능 
