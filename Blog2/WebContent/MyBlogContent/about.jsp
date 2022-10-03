@@ -20,7 +20,7 @@
        <a href="https://www.dnsever.com" target="dnsever"><img src="https://banner.dnsever.com/dnsever-banner_170x35.gif" border="0" alt="DNS server, DNS service"></a>
        </p>
        <hr>
-       <p><a href="/download"> Download Center(Source and Tools)</a><p>
+       <p><a href="http://kysot.yspersonal.com/download"> Download Center(Source and Tools)</a><p>
        <p><a href="https://github.com/KoYoungSuk/Blog2.git">GitHub Source</a></p>
        <hr>
        </c:when>

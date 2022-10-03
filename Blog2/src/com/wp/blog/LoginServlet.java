@@ -58,34 +58,18 @@ public class LoginServlet extends HttpServlet {
 		//List<MemberDO> memberlist;
 		Map<String, String> memberlist;
 		try {
-			   /*
-			   memberlist = memberdao.getMemberList();
-			   if(memberlist != null){
-					for(MemberDO memberdo : memberlist){
-						if(id.equals(memberdo.getId())){
-							if(BCrypt.checkpw(password, memberdo.getPassword())){
-									firstname = memberdo.getFirstname();
-									lastname =  memberdo.getLastname();
-									birthday = memberdo.getBirthday();
-									viewName = "main.do";
-									break;
-								}
-							}
-						}
-					}
-					else{
-						g.jsmessage("Unknown Error: Member list is Null!");
-					}
-					*/
-					memberlist = memberdao.getMemberById(id);
-					String password_db = memberlist.get("password");
-				    if(BCrypt.checkpw(password, password_db))
-					{
-						firstname = memberlist.get("firstname");
-						lastname = memberlist.get("lastname");
-						birthday = memberlist.get("birthday");
-						viewName = "main.do";
-					}
+			memberlist = memberdao.getMemberById(id);
+			String password_db = memberlist.get("password");
+			if(password_db != null)
+			{
+				if(BCrypt.checkpw(password, password_db))
+				{
+					firstname = memberlist.get("firstname");
+					lastname = memberlist.get("lastname");
+					birthday = memberlist.get("birthday");
+					viewName = "main.do";
+				}
+			}
 		} catch (ClassNotFoundException e){
 			g.jsmessage(e.getMessage());
 		} catch (SQLException e){

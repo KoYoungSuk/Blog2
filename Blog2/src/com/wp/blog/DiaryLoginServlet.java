@@ -68,27 +68,16 @@ public class DiaryLoginServlet extends HttpServlet {
   	       if(id.equals("admin")) {
   	    	 Map<String, String> memberlist = memberdao.getMemberById(id);
     	       String password_db = memberlist.get("password");
-    	       if(BCrypt.checkpw(password, password_db)) {
-    	    	   session.setAttribute("id", id);
-    	    	   firstname = memberlist.get("firstname");
-    	    	   lastname = memberlist.get("lastname");
-    	    	   viewName = "diarylist?desc=0";
+    	       if(password_db != null)
+    	       {
+    	    	   if(BCrypt.checkpw(password, password_db)) {
+        	    	   session.setAttribute("id", id);
+        	    	   firstname = memberlist.get("firstname");
+        	    	   lastname = memberlist.get("lastname");
+        	    	   viewName = "diarylist?desc=0";
+        	       }
     	       }
   	       }
-  	       /*
-  	       for(MemberDO memberdo : memberlist) {
-  	    	   if(id.equals("admin")) {
-  	    		  if(BCrypt.checkpw(password, memberdo.getPassword())) {
-  	  	    		session.setAttribute("id", id);
-  	  	    		firstname = memberdo.getFirstname();
-  	  	    		lastname = memberdo.getLastname();
-  	  	    		viewName = "diarylist?desc=0";
-  	  	    		check = true;
-  	  	    		break;
-  	  	    	 }
-  	    	  }
-  	       }
-  	       */
   	       if(firstname == null) {
   	    	   firstname = "";
   	       }
