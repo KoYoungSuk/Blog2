@@ -35,6 +35,7 @@
         <h6>12. 2022년 4월: PersonalDiary Web Mode(개인용 일기 사이트) 제작 시작 </h6>
         <h6>13. 2022년 5월: ProductManager for MyHome 제작 시작</h6>
         <h6>14. 2022년 6월: 코드 정리 및 MyBlog 1차 제작 완료(MyBlog, PersonalDiary Web Mode, ProductManager for MyHome)</h6>
+        <h6>15. 2022년 10월: 서버 통합(home.yspersonal.com JSP 서버) 및 서버 교체(2015년식 LG전자 22V240-LT25K) </h6>
       </div>
     </div>
  </div>

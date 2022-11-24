@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <h2>Detail</h2>
 <hr>
-<table border="1">
+<table class="table table-striped" style="border:1px solid">
 <tr>
  <td>물품 번호:</td>
  <td>${sessionScope.productdetaillist['product_no']}</td>

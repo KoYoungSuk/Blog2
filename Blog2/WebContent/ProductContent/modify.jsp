@@ -3,7 +3,7 @@
 <h2>Modify</h2>
 <hr>
 <form action="modifyproduct" method="POST">
-<table>
+<table class="table table-striped" style="border:1px solid">
  <tr>
   <td><label for="product_no">물품 번호: </label></td>
   <td><input type="text" name="product_no" value="${sessionScope.productdetaillist['product_no']}" readonly /></td>

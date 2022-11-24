@@ -6,7 +6,7 @@
      <h1>Modify Bulletin Board</h1>
      <hr>
         <form action="modifyboard.do" method="POST">
-          <table>
+          <table class="table table-striped" style="border:1px solid">
            <tr>
             <td><label for="Number">Number:</label></td>
             <td><input type="text" name="number"  style="width:500px;" value="${sessionScope.totalboardlist['number']}" readonly /></td>

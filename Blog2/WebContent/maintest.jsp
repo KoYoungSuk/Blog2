@@ -41,6 +41,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="./BS/bootstrap.min.css">
 <link rel="stylesheet" href="./BS/bootstrap.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
 <style>
   .footer{
@@ -74,7 +77,23 @@
   font-weight: bold;
   color: black;
 }
-   </style>
+
+html {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+#smalldiv {
+  text-align: center;
+  background-color: lightyellow; 
+  
+}
+
+.htitle{
+  text-align: center; 
+  background-color: blue;
+  color: white; 
+}
+</style>
 </head>
 <body>
   <nav class="navbar navbar-expand-md bg-warning navbar-light">
@@ -104,8 +123,13 @@
       <form class="form-inline" action="login.do" method="post" >
       <input class="form-control mr-sm-2" type="text" placeholder="ID" name="id" required />
       <input class="form-control mr-sm-2" type="password" placeholder="Password" name="password" required />
+      
       <li class="nav-item">
       <button class="btn btn-success" type="submit">Login</button>
+      </li>
+      &nbsp;&nbsp; 
+      <li class="nav-item">
+      <button class="btn btn-success" type="button" onclick="./main.do?page=2">Sign up</button>
       </li>
       </form>
       </c:otherwise>
@@ -113,10 +137,12 @@
 </ul>
 </div>
 </nav>
+
 <div class="jumbotron" >
    <H1> MyBlog&ETC </H1>
    <H5> <c:out value="${titlename}" /> </H5>
 </div>
+
 <c:choose>
 <c:when test="${param.page == 1}">
 ${defaultcontent}

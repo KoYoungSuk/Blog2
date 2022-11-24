@@ -9,7 +9,7 @@
            <h5>CAUTION: YOU CAN'T CANCEL THIS JOB. </h5>
            <h5>Do you want to delete it?</h5>
            <hr>
-           <table border=1>
+           <table class="table table-striped" style="border:1px solid">
            <tr>
             <td><Label for="id">작성자 ID:</Label></td>
             <td><input type="text" name="id" value="${sessionScope.totalboardlist['userid']}" readonly /></td>

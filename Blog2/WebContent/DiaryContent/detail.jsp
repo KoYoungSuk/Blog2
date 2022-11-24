@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <h2>Detail Diary</h2>
 <hr>
-	 <table border="1">
+	 <table class="table table-striped" style="border:1px solid">
 	 <tr>
 	  <td><label for="title">제목:</label></td>
 	  <td id="txttitle">${sessionScope.detaildiarylist['title']}</td>

@@ -38,15 +38,15 @@ public class LogDAO {
 	public int insertLog(LogDO logdo) throws ClassNotFoundException, SQLException
 	{
 		connectDB();
-		PreparedStatement psm = null;
 		String sql = "insert into loglist (logno, ltime, comip, comnm, os, exenm) values (?,?,?,?,?,?) "; 
-        psm = conn.prepareStatement(sql);
+        PreparedStatement psm = conn.prepareStatement(sql);
         psm.setInt(1, logdo.getLogno());
         psm.setTimestamp(2, logdo.getLtime());
         psm.setString(3, logdo.getComip());
         psm.setString(4, logdo.getComnm());
         psm.setString(5, logdo.getOs());
         psm.setString(6, logdo.getExenm());  
+        System.out.println("logdo.getExenm: " + logdo.getExenm());
         int result = psm.executeUpdate();
  	    psm.close();
  	    disconnectDB();

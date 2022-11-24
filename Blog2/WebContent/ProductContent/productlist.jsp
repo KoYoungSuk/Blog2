@@ -24,7 +24,7 @@ SEARCH PRODUCT(BY NUMBER): <input type="text" name="product_no">
  </c:otherwise>
 </c:choose>
 <hr>
-<table border="1">
+<table class="table table-striped" style="border:1px solid">
   <thead>
    <tr>
    <th>PRODUCT_NO</th>

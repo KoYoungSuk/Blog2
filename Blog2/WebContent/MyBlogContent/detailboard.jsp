@@ -2,10 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <div class="container" style="margin-top: 20px">
    <div class="row">
-     <div class="col-sm-12">
-     <h1>게시글 내용</h1>
+     <div class="col-sm-12" style="margin: 0px">
+     <h2 class="htitle">게시글 내용</h2>
      <hr>
-         <table border=1>
+         <table class="table" style="border:1px solid">
            <tr>
             <td>작성자 ID:</td>
             <td>${sessionScope.detailboardlist["userid"]}</td>

@@ -34,70 +34,6 @@ public class MainServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
    
-    public String getIp(HttpServletRequest request)
-    {
-    	  String ip = null;
-
-          ip = request.getHeader("X-Forwarded-For");
-          
-          if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
-              ip = request.getHeader("Proxy-Client-IP"); 
-          } 
-          if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
-              ip = request.getHeader("WL-Proxy-Client-IP"); 
-          } 
-          if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
-              ip = request.getHeader("HTTP_CLIENT_IP"); 
-          } 
-          if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
-              ip = request.getHeader("HTTP_X_FORWARDED_FOR"); 
-          }
-          if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
-              ip = request.getHeader("X-Real-IP"); 
-          }
-          if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
-              ip = request.getHeader("X-RealIP"); 
-          }
-          if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
-              ip = request.getHeader("REMOTE_ADDR");
-          }
-          if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) { 
-              ip = request.getRemoteAddr(); 
-          }
-  		
-  		return ip;
-    }
-    public void setLog(String db_driver, String db_url, String db_id, String db_pw, HttpServletRequest request, HttpServletResponse response) throws IOException
-    {
-    	Global g = new Global(response);
-    	try
-    	{
-    		LogDAO logdao = new LogDAO(db_driver, db_url, db_id, db_pw);
-    		int logno = 0; 
-    		Timestamp ltime = new Timestamp(System.currentTimeMillis());
-    		String comip = getIp(request); 
-    		String comnm = InetAddress.getLocalHost().getHostName(); 
-    		String clientos = request.getHeader("USER-AGENT");
-    		String serveros = System.getProperty("os.name");
-    		System.out.println("comip: " + comip);
-    		System.out.println("comnm: " + comnm);
-    		System.out.println("clientos: " + clientos);
-    		System.out.println("serveros: " + serveros);
-    		int maxnumber = logdao.getMaxLogno();
-    		logno = maxnumber + 1;
-    		LogDO logdo = new LogDO(logno, ltime, comip, comnm, clientos, serveros);
-    		int result = logdao.insertLog(logdo);
-    		System.out.println("result: " + result); 
-    		if(result == 0)
-    		{
-    			g.jsmessage("Unknown Error Message");
-    		}
-    	}
-    	catch(Exception ex)
-    	{
-			g.jsmessage(ex.getMessage());
-    	}
-    }
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -123,7 +59,7 @@ public class MainServlet extends HttpServlet {
   	    String db_pw = application.getInitParameter("db_password"); 
   	    String viewName = null;
   	    try {
-  	        setLog(JDBC_Driver, db_url, db_id, db_pw, request, response); 
+  	        g.setLog(JDBC_Driver, db_url, db_id, db_pw, request, response); 
   	    	BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
   	    	List<BoardDO> boardlist = boarddao.getBoardList(true);
   	    	List<BoardDO> newboardlist = new ArrayList<BoardDO>();

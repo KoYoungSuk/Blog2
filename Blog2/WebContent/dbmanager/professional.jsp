@@ -47,7 +47,7 @@
          <hr> 
          <c:choose>
            <c:when test="${requestScope.tablenamelist ne null}">
-               <table border="1">
+               <table class="table table-striped" style="border:1px solid">
                <thead>
                <tr>
                <c:forEach var="TableHeader" items="${requestScope.tableheaderlist}">

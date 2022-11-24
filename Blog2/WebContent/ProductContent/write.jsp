@@ -3,7 +3,7 @@
 <h2>Write</h2>
 <hr>
 <form action="writeproduct" method="POST">
-<table>
+<table class="table table-striped" style="border:1px solid">
  <tr>
   <td><label for="product_no">물품 번호: </label></td>
   <td><input type="text" name="product_no" required /></td>

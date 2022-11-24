@@ -10,7 +10,7 @@
                    &nbsp;&nbsp;<button class="btn btn-danger" type="submit">DELETE</button>
                  </form>
                  <hr>
-                    <table border=1>
+                    <table class="table table-striped" style="border:1px solid">
                          <thead>
                          <tr>
                             <th>Number</th>
