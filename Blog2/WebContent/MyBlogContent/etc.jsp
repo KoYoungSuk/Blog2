@@ -3,13 +3,14 @@
  <div class="container" style="margin-top: 20px">
     <div class="row">
        <div class="col-sm-12">
-          <h1>ETC Service Link</h1>
-          <hr>
+          <h1 class="htitle">ETC Service Link</h1>
+          <div id="smalldiv">
          <p><a href="timer.html">Timer Page</a></p>
          <p><a href="diary">PersonalDiary Web Mode</a>
          <p><a href="product">ProductManager for MyHome</a>
          <!-- <p><a href="https://kysot.yspersonal.com:1443">Total DataBase Administrate System</a></p>-->
-         <p><a href="https://kysot.yspersonal.com">MyBlog/ETC(Second Server)</a></p>
+         <!-- <p><a href="https://kysot.yspersonal.com">MyBlog/ETC(Second Server)</a></p> -->
+         </div>
       </div>
     </div>
     </div>

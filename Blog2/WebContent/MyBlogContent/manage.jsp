@@ -3,8 +3,9 @@
 <div class="container" style="margin-top:20px">
 <div class="row">
 <div class="col-sm-12">
- <h3>HomePage Manage Center </h3>
+ <h3 class="htitle">HomePage Manage Center </h3>
    <hr>  
+   <div id="smalldiv">
     <c:choose>
      <c:when test="${sessionScope.id eq 'admin'}">
        <p>Current User: ${sessionScope.id} </p>
@@ -16,6 +17,7 @@
        <p>Administrator Only. </p> 
     </c:otherwise>
    </c:choose> 
+   </div>
 </div>
 </div>
 </div>

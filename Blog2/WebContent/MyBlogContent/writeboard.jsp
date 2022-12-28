@@ -4,7 +4,7 @@
          <div class="row" >
              <div class="col-sm-12" style="background-color: lightyellow; padding: 0px; margin: 0px">
                 <h2 class="htitle" style="padding: 0px; margin: 0px;">Write Board</h2> 
-                     <form action="board.do" method="POST">
+                     <form id="write-form" action="board.do" method="POST" > 
                      <table class="table" style="background-color: lightyellow;">
                      <tr>
                      <td><p><label for="title" style="font-size: 1.5em">Title:</label></p></td>
@@ -28,7 +28,7 @@
                      <input type="radio" class="custom-control-input" name="access" id="jb-radio-3" value="anonymous">
                      <label class="custom-control-label" for="jb-radio-3">NonMember Mode</label>
                      </td>
-                     </tr>
+                     <tr>
                      </table>
                      <div style="text-align: center">
                      <button class="btn btn-primary" onclick="history.go(-1);">Back</button>

@@ -1,8 +1,6 @@
 package com.wp.blog;
 
 import java.io.IOException;
-import java.net.InetAddress;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -15,9 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.wp.blog.DAO.BoardDAO;
-import com.wp.blog.DAO.LogDAO;
 import com.wp.blog.DTO.BoardDO;
-import com.wp.blog.DTO.LogDO;
 
 /**
  * Servlet implementation class MainServlet

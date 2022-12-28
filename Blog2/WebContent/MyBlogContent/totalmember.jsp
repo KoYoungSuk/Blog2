@@ -2,15 +2,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
  <div class="container" style="margin-top: 20px">
         <div class="row">
-             <div class="col-sm-12">
-                 <H3>Member Management Center </H3>
+             <div class="col-sm-12" id="smalldiv" style="margin: 0px; padding: 0px;">
+                 <h2 class="htitle">Member Management Center </h2>
                  <hr>
                  <form action="deleteMember.do" method="POST">
                    Delete ID:&nbsp;&nbsp;<input type="text" name="id" required />
                    &nbsp;&nbsp;<button class="btn btn-danger" type="submit">DELETE</button>
                  </form>
                  <hr>
-                    <table class="table table-striped" style="border:1px solid">
+                    <table class="table" >
                          <thead>
                          <tr>
                             <th>Number</th>
@@ -37,7 +37,7 @@
                          </tbody>
                          </table>
                          <hr>
-                        <button class="btn btn-primary" onclick="location.href='totaldb.do'">Refresh</button>
+                        <button class="btn btn-primary"  onclick="location.href='totaldb.do'">Refresh</button>
                         <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
              </div>
         </div>

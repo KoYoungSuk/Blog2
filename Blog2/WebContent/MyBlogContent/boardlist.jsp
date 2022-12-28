@@ -32,6 +32,10 @@
        </p>
         </form>
        <hr>
+       <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
+       <button class="btn btn-success" onclick="location.href='boardlist.do'">Update Board Session</button>
+       <button class="btn btn-success" onclick="location.href='main.do?page=12'">Go To Write</button>
+       <hr>
        <label for="arrangement">Arrangement: </label>
        <c:choose>
         <c:when test="${param.desc == 1}">
@@ -68,9 +72,7 @@
              </tbody>
           </table>
        <hr>
-       <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
-       <button class="btn btn-success" onclick="location.href='boardlist.do'">Update Board Session</button>
-       <button class="btn btn-success" onclick="location.href='main.do?page=12'">Go To Write</button>
+     
  </div>
 </div>
 </div>

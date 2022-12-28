@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.wp.blog.DTO.BoardDO;
+import com.wp.blog.DTO.VideoDO;
 
 public class BoardDAO {
 	public Connection conn = null;
@@ -104,6 +105,7 @@ public class BoardDAO {
 		   ResultSet rs = null;
 		   PreparedStatement psm = null;
 		   String sql = "select * from board where serial=?";
+		   //String sql = "select b.*, p.*, v.* from board b left join pictures p on b.serial = p.serial left join video v on b.serial = p.number where serial=?"; 
 		   psm = conn.prepareStatement(sql);
 		   psm.setInt(1, number);
 		   rs = psm.executeQuery();
@@ -123,6 +125,12 @@ public class BoardDAO {
 			   boardlist.put("modifydate", rs.getString("modifydate"));
 			   boardlist.put("anonymous", rs.getString("anonymous"));
 			   boardlist.put("clicks", (rs.getInt("clicks") + 1) + "");
+			   boardlist.put("address_picture", "https://kysot.yspersonal.com:8443/upload/Pictures/test.jpg");
+			   //boardlist.put("address_picture", rs.getString("address_picture")); 
+			   boardlist.put("address_video", "https://kysot.yspersonal.com:8443/upload/Video/test.mp4");
+			   //boardlist.put("address_video", rs.getString("address_video")); 
+			   boardlist.put("video_type", "video/mp4");
+			   //boardlist.put("video_type", rs.getString("video_type")); 
 		   }
 		   psm.close();
 		   rs.close();
@@ -249,5 +257,26 @@ public class BoardDAO {
 		   rs.close();
 		   disconnectDB();
 		   return number;
+	   }
+	   
+	   public int insertVideo(VideoDO videodo) throws SQLException, ClassNotFoundException
+	   {
+		   connectDB();
+		   int result = 0;
+		   PreparedStatement psm = null;
+	       String sql = "insert into video (id, title, videoname, thumbnailname, description, author, date, number) values (?,?,?,?,?,?,?,?)";
+	       psm = conn.prepareStatement(sql);
+	       psm.setString(1, videodo.getID());
+		   psm.setString(2, videodo.getTitle());
+		   psm.setString(3, videodo.getVideoname());
+		   psm.setString(4,videodo.getThumbnailname());
+		   psm.setString(5, videodo.getDescription());
+		   psm.setString(6, videodo.getAuthor()); 
+		   psm.setTimestamp(7, videodo.getDate());
+		   psm.setInt(8, videodo.getNumber());
+		   result = psm.executeUpdate();
+		   psm.close();
+		   disconnectDB();
+		   return result;
 	   }
 }

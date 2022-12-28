@@ -62,7 +62,7 @@
       <H1> MyBlog&ETC </H1>
       <H5> <c:out value="${titlename}" /> </H5>
    </div>
-  <ul>
+  <ul>a
      <li><a href="./oldmain.jsp?num=3702&page=1"> MyBlog </a></li> 
      <li><a href="./oldmain.jsp?num=3702&page=1"> Home </a></li> 
      <c:choose>

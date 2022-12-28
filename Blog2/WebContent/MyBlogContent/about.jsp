@@ -2,11 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
   <div class="container" style="margin-top:20px">
     <div class="row">
-     <div class="col-sm-12">
-       <H1>About</H1>
-       <hr>
+     <div class="col-sm-12" id="smalldiv" style="margin: 0px; padding: 0px;">
+       <h2 class="htitle">About</h2>
        <p>First Updated: Tuesday, February 25th 2020 </p>
-       <p>Last Updated: Monday, May 16th 2022 </p>
+       <p>Last Updated: December 1, 2022 </p>
        <c:choose>
        <c:when test="${sessionScope.id ne null }">
        <p>Based Language: HTML5, CSS, JavaScript, JSP(Java Server Page)</p>
@@ -20,7 +19,7 @@
        <a href="https://www.dnsever.com" target="dnsever"><img src="https://banner.dnsever.com/dnsever-banner_170x35.gif" border="0" alt="DNS server, DNS service"></a>
        </p>
        <hr>
-       <p><a href="http://kysot.yspersonal.com/download"> Download Center(Source and Tools)</a><p>
+       <p><a href="http://koyoungsuk2.dyndns.org:81/download"> Download Center(Source and Tools)</a><p>
        <p><a href="https://github.com/KoYoungSuk/Blog2.git">GitHub Source</a></p>
        <hr>
        </c:when>

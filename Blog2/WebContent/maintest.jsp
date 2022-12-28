@@ -47,10 +47,17 @@
 <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
 <style>
   .footer{
+  /* 
       left: 0;
       bottom: 0;
-      width: 100%;
+  */
+      /* width: 100%; */
       text-align: center;
+      border: solid;
+      border-radius: 5%;
+      padding: 10px;
+      margin: 120px; 
+      background-color: lightyellow;
   }
   .jumbotron{
       padding-top: 0px;
@@ -94,6 +101,34 @@ html {
   color: white; 
 }
 </style>
+<script>
+
+/*
+function readImage(input){
+	
+	if(input.files && input.files[0])
+	{
+		const reader = new FileReader()
+		
+		read.onload = e => {
+			
+			const previewImage = document.getElementById("preview-image")
+			previewImage.src = e.target.result
+		}
+		
+		reader.readAsDataURL(input.files[0])
+	}
+}
+
+const inputImage = document.getElementById("write-thumbnail")
+inputImage.addEventListener("change", e =>
+  { 
+	  readImage(e.target) 
+  }
+)
+*/
+*
+</script>
 </head>
 <body>
   <nav class="navbar navbar-expand-md bg-warning navbar-light">
@@ -107,7 +142,7 @@ html {
         <li class="nav-item"><a class="nav-link" href="./main.do?page=6"> HomePage Manage Center(Administrator Only) </a></li>
       </c:when>
         <c:otherwise>
-        <li class="nav-item"><a class="nav-link" href="./main.do?page=2">Sign up </a> </li>
+      <!-- <li class="nav-item"><a class="nav-link" href="./main.do?page=2">Sign up </a> </li> -->
         </c:otherwise>
       </c:choose>
        <li class="nav-item"><a class="nav-link" href="./main.do?page=13">ETC Service Link </a> </li>
@@ -129,7 +164,7 @@ html {
       </li>
       &nbsp;&nbsp; 
       <li class="nav-item">
-      <button class="btn btn-success" type="button" onclick="./main.do?page=2">Sign up</button>
+      <button class="btn btn-success" type="button" onclick="location.href='./main.do?page=2'">Sign up</button>
       </li>
       </form>
       </c:otherwise>

@@ -2,14 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
  <div class="container" style="margin-top: 20px">
     <div class="row">
-       <div class="col-sm-12">
-        <h2>Why I Make this?</h2>
+       <div class="col-sm-12" id="smalldiv">
+        <h2 class="htitle">Why I Make this?</h2>
         <hr>
         <h6>NOTICE: This is written in Korean.</h6>
         <hr>
        </div>
-       <div class="col-sm-6">
-        <h4>Reasons why i make this.</h4>
+       <div class="col-sm-6" id="smalldiv">
+        <h4 class="htitle">Reasons why i make this.</h4>
         <hr>
         <h6>1. 어릴때 부터 홈페이지 같은걸 만들고 싶었음. </h6>
         <h6>2. 그래서 네이버 블로그 대용으로 한번 만들어 봤음. </h6>
@@ -18,8 +18,8 @@
         <h6>(뭐, 이때는 C언어의 난이도 때문에 대학교 들어가서 코딩을 열심히 하기로 했지만.... 애초에 컴퓨터 프로그래머의 꿈은 고2때부터 가졌음 물론 관심은 초등학교때부터 있었지만)</h6>
         <h6>(이때는 비주얼 베이직이 다였음...(초6때부터 시작) 지금은 안한지 오래됬지만 그래도 이것때문에 WinForm 다루는 법과 IF문은 좀 빨리 알게 되었음)</h6>
        </div>
-       <div class="col-sm-6">
-        <h4>History of My HomePage</h4>
+       <div class="col-sm-6" id="smalldiv">
+        <h4 class="htitle">History of My HomePage</h4>
         <hr>
         <h6>1. 2009년~2017년: 언젠가는 서버용 컴퓨터를 구축해서 개인용 홈페이지를 만들어보겠다는 생각을 했음 </h6>
         <h6>2. 2018년: 대학교에서 웹제작을 배우면서 홈페이지에 대한 흥미가 더 생김, 서버용 컴퓨터 구축 시도했으나 포트포워딩 문제로 실패함(2012년식 LG 엑스피온 B50PV, Windows Server 2016)</h6>
