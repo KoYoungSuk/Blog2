@@ -23,15 +23,14 @@ Actually development environment is not Ubuntu. it is Windows 10/11!.
  
  Main Screen 
  
-![image](https://user-images.githubusercontent.com/58511486/170816800-fd3f9161-bec5-4256-b1a7-5574bf0acdaf.png)
+![image](https://user-images.githubusercontent.com/58511486/204207878-c11c158e-d9c7-41e7-8d81-f9a55926c17f.png)
 
  Board List
  
  ![image](https://user-images.githubusercontent.com/58511486/170816836-c3049b6e-caea-478d-bddc-e19a83ed040e.png)
 
  Detail Board
- 
- ![image](https://user-images.githubusercontent.com/58511486/170816865-92f3c990-ec55-4be5-a6cd-7c97cf95d6ef.png)
+ ![image](https://user-images.githubusercontent.com/58511486/204208484-3c658f90-d71f-4887-9377-5fd9c0b1d66e.png)
 
  JSPOracleManager
  
