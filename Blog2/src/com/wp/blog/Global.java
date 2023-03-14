@@ -78,7 +78,7 @@ public class Global {
     		logno = maxnumber + 1;
     		LogDO logdo = new LogDO(logno, ltime, comip, comnm, clientos, serveros);
     		int result = logdao.insertLog(logdo);
-    		System.out.println("result: " + result); 
+    		//System.out.println("result: " + result); 
     		if(result == 0)
     		{
     			g.jsmessage("Unknown Error Message");

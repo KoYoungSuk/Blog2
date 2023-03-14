@@ -3,7 +3,7 @@
   <div class="container" style="margin-top:20px">
     <div class="row">
      <div class="col-sm-12" id="smalldiv" style="margin: 0px; padding: 0px;">
-       <h2 class="htitle">About</h2>
+       <h3 class="htitle">About</h3>
        <p>First Updated: Tuesday, February 25th 2020 </p>
        <p>Last Updated: December 1, 2022 </p>
        <c:choose>

@@ -242,7 +242,7 @@ public class BoardDAO {
 	   public int getBoardNumber(String title) throws ClassNotFoundException, SQLException{
 		   connectDB();
 		   int number = 0;
-		   String sql = "select serial from board where title = ?";
+		   String sql = "select serial from board where title LIKE '% ? %'";
 		   ResultSet rs = null;
 		   PreparedStatement psm = null;	   
 		   psm = conn.prepareStatement(sql);

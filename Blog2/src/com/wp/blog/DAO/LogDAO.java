@@ -46,7 +46,7 @@ public class LogDAO {
         psm.setString(4, logdo.getComnm());
         psm.setString(5, logdo.getOs());
         psm.setString(6, logdo.getExenm());  
-        System.out.println("logdo.getExenm: " + logdo.getExenm());
+        //System.out.println("logdo.getExenm: " + logdo.getExenm());
         int result = psm.executeUpdate();
  	    psm.close();
  	    disconnectDB();

@@ -3,7 +3,7 @@
  <div class="container" style="margin-top: 20px">
     <div class="row">
        <div class="col-sm-12">
-          <h1 class="htitle">ETC Service Link</h1>
+          <h3 class="htitle">ETC Service Link</h3>
           <div id="smalldiv">
          <p><a href="timer.html">Timer Page</a></p>
          <p><a href="diary">PersonalDiary Web Mode</a>

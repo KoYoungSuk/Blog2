@@ -46,7 +46,7 @@
 		  processFile(event.target.files[0]);
 	  };
 	  
-	  input.click();
+	  //input.click();
   }
   
   function processFile(file){

@@ -3,9 +3,8 @@
 <div class="container" style="margin-top:20px">
 <div class="row">
 <div class="col-sm-12">
- <h3 class="htitle">HomePage Manage Center </h3>
-   <hr>  
    <div id="smalldiv">
+   <h3 class="htitle">HomePage Manage Center </h3>
     <c:choose>
      <c:when test="${sessionScope.id eq 'admin'}">
        <p>Current User: ${sessionScope.id} </p>
