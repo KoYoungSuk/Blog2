@@ -18,40 +18,32 @@
 <c:choose>
 <c:when test="${param.page == 1}"><c:set var="titlename" value="Main Page" /></c:when>
 <c:when test="${param.page == 2}"><c:set var="titlename" value="Sign up" /></c:when>
-<c:when test="${param.page == 3}"><c:set var="titlename" value="Board" /></c:when>
-<c:when test="${param.page == 4}"><c:set var="titlename" value="Why I make this?" /></c:when>
-<c:when test="${param.page == 6}"><c:set var="titlename" value="HomePage Manage Center" /></c:when>
+<c:when test="${param.page == 3}"><c:set var="titlename" value="MemoList" /></c:when>
+<c:when test="${param.page == 4}"><c:set var="titlename" value="" /></c:when>
+<c:when test="${param.page == 6}"><c:set var="titlename" value="Manage Center" /></c:when>
 <c:when test="${param.page == 7}"><c:set var="titlename" value="Member Info" /></c:when>
-<c:when test="${param.page == 8}"> <c:set var="titlename" value="Modify Member" /></c:when>
+<c:when test="${param.page == 8}"><c:set var="titlename" value="Modify Member" /></c:when>
 <c:when test="${param.page == 9}"><c:set var="titlename" value="Delete Member" /></c:when>
-<c:when test="${param.page == 11}"><c:set var="titlename" value="DataBase Administration Center" /></c:when>
-<c:when test="${param.page == 12}"><c:set var="titlename" value="Write Bulletin Board" /></c:when>
-<c:when test="${param.page == 13}"><c:set var="titlename" value="ETC Service Link" /></c:when>
-<c:when test="${param.page == 14}"><c:set var="titlename" value="Bulletin Board Detail" /></c:when>
+<c:when test="${param.page == 11}"><c:set var="titlename" value="Member Management Center" /></c:when>
+<c:when test="${param.page == 12}"><c:set var="titlename" value="Write Memo" /></c:when>
+<c:when test="${param.page == 13}"><c:set var="titlename" value="ETC" /></c:when>
+<c:when test="${param.page == 14}"><c:set var="titlename" value="Bulletin Memo" /></c:when>
 <c:when test="${param.page == 16}"><c:set var="titlename" value="About" /></c:when>
-<c:when test="${param.page == 17}"><c:set var="titlename" value="Modify Bulletin Board" /></c:when>
-<c:when test="${param.page == 0}"><script>window.location.href="https://home.yspersonal.com/non.htm";</script></c:when>
+<c:when test="${param.page == 17}"><c:set var="titlename" value="Modify Memo" /></c:when>
+<c:when test="${param.page == 0}"><script>window.location.href="http://192.168.55.126/non.htm";</script></c:when>
 <c:otherwise><c:set var="titlename" value="Main Page" /></c:otherwise></c:choose>
 <!DOCTYPE HTML>
 <html>
 <head>
-<title> MyBlog/ETC <c:out value="${titlename}" /> </title>
+<title> PersonalMemo ( <c:out value="${titlename}" /> ) </title>
 <meta charset = "utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />	
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="./BS/bootstrap.min.css">
 <link rel="stylesheet" href="./BS/bootstrap.css">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
 <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
 <style>
   .footer{
-  /* 
-      left: 0;
-      bottom: 0;
-  */
-      /* width: 100%; */
       text-align: center;
       border: solid;
       border-radius: 5%;
@@ -101,51 +93,24 @@ html {
   color: white; 
 }
 </style>
-<script>
-
-/*
-function readImage(input){
-	
-	if(input.files && input.files[0])
-	{
-		const reader = new FileReader()
-		
-		read.onload = e => {
-			
-			const previewImage = document.getElementById("preview-image")
-			previewImage.src = e.target.result
-		}
-		
-		reader.readAsDataURL(input.files[0])
-	}
-}
-
-const inputImage = document.getElementById("write-thumbnail")
-inputImage.addEventListener("change", e =>
-  { 
-	  readImage(e.target) 
-  }
-)
-*/
-*
-</script>
+<script></script>
 </head>
 <body>
   <nav class="navbar navbar-expand-md bg-warning navbar-light">
-       <a class="navbar-brand" href="./main.do?page=1">MyBlog</a>
+       <a class="navbar-brand" href="./main.do?page=1">PersonalMemo</a>
          <div class="navbar-collapse">
        <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="./main.do?page=1">Home </a> </li> 
-        <li class="nav-item"><a class="nav-link" href="./boardlist.do"> Board </a> </li>
+        <li class="nav-item"><a class="nav-link" href="./main.do?page=1"> Home </a> </li> 
+        <li class="nav-item"><a class="nav-link" href="./boardlist.do"> MemoList </a> </li>
        <c:choose>
       <c:when test="${sessionScope.id ne null}">
-        <li class="nav-item"><a class="nav-link" href="./main.do?page=6"> HomePage Manage Center(Administrator Only) </a></li>
+        <li class="nav-item"><a class="nav-link" href="./main.do?page=6">Manage Center </a></li>
       </c:when>
         <c:otherwise>
       <!-- <li class="nav-item"><a class="nav-link" href="./main.do?page=2">Sign up </a> </li> -->
         </c:otherwise>
       </c:choose>
-       <li class="nav-item"><a class="nav-link" href="./main.do?page=13">ETC Service Link </a> </li>
+       <li class="nav-item"><a class="nav-link" href="./main.do?page=13">ETC</a> </li>
        <li class="nav-item"><a class="nav-link" href="./main.do?page=16">About </a> </li>
        </ul>
        <ul class="navbar-nav ml-auto">
@@ -174,7 +139,7 @@ inputImage.addEventListener("change", e =>
 </nav>
 
 <div class="jumbotron" >
-   <H1> MyBlog&ETC </H1>
+   <H1> PersonalMemo </H1>
    <H5> <c:out value="${titlename}" /> </H5>
 </div>
 
@@ -230,20 +195,20 @@ ${defaultcontent}
 </c:choose>
 <hr>
    <div class="footer" style="margin-bottom:0">
-   <p> Last updated: Monday, May 16th 2022 </p>
-   <p> This is not copyrighted. But Don't use this web site to make illegal stuff </p>
+   <p> Last updated: Thursday, March 16th 2023 </p>
+   <p> This is not copyrighted. But Don't use this web site to make illegal stuff. </p>
    <p id=currentDate></p>
    </div>
    <c:choose>
      <c:when test="${id ne null}">
-        <p><a href="oldmain.jsp?num=3702">....</a></p>
+        <!--  <p><a href="oldmain.jsp?num=3702">....</a></p> -->
      </c:when>
      <c:otherwise></c:otherwise>
    </c:choose>
 </body>
 </html> 
-  <!--Clock JavaScript Start -->
-  <script>
+<!--Clock JavaScript Start -->
+<script>
      function clock(){
      	var currdate = new Date();
      	var nowyear = currdate.getFullYear();	
@@ -259,5 +224,5 @@ ${defaultcontent}
      	setInterval(clock,1000);
      }
      init();
-  </script>
-  <!--Clock JavaScript Ends -->
+</script>
+<!--Clock JavaScript Ends -->

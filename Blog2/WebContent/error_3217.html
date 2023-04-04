@@ -3,8 +3,8 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="http://home.yspersonal.com/blocker/index_files/w3.css">
-      <link rel="stylesheet" href="http://home.yspersonal.com/CSS/error.css">
+      <link rel="stylesheet" href="http://192.168.55.126/nossl/CSS/w3.css">
+      <link rel="stylesheet" href="http://192.168.55.126/nossl/CSS/error.css">
       <!-- CSS 폴더에 로컬로 해서 넣으니까 https://home.yspersonal.com/Folder 이렇게 쳤을때 Folder/CSS로 인식해서 오류가 생겨 이렇게 코딩함 -->
       <title> HTTP STATUS CODE 3217 </title>
    </head>
@@ -16,7 +16,7 @@
      <hr>
      <div class="divbody">
      <hr>
-     <button class="w3-btn w3-yellow" onclick="location.href='http://home.yspersonal.com'">Back to Main Page</button> 
+     <button class="w3-btn w3-yellow" onclick="location.href='http://192.168.55.126/nossl'">Back to Main Page</button> 
      <button class="w3-btn w3-yellow" onclick="history.go(-1);">Back</button>      
      </div>
       <hr>
@@ -38,17 +38,18 @@
 var currdate = new Date();
 var address2 = window.location.href;
 var OSName="Unknown OS";
-if (navigator.appVersion.indexOf("Windows NT 10.0")!=-1) OSName="Windows 10/Windows 11/Windows Server 2016/2019/2022";
-if (navigator.appVersion.indexOf("Windows NT 6.4") !=-1) OSName="Windows 10(Beta Ver)";
-if (navigator.appVersion.indexOf("Windows NT 6.3") !=-1) OSName="Windows 8.1/Windows Server 2012 R2";
-if (navigator.appVersion.indexOf("Windows NT 6.2") !=-1) OSName="Windows 8/Windows Server 2012";
-if (navigator.appVersion.indexOf("Windows NT 6.1") !=-1) OSName="Windows 7/Windows Server 2008 R2";
-if (navigator.appVersion.indexOf("Windows NT 6.0") !=-1) OSName="Windows Vista/Windows Server 2008";
-if (navigator.appVersion.indexOf("Windows NT 5.2") !=-1) OSName="Windows Server 2003";
+if (navigator.appVersion.indexOf("Windows NT 11.0")!=-1) OSName="Windows Core";
+if (navigator.appVersion.indexOf("Windows NT 10.0")!=-1) OSName="Windows 10/11/Server 2016/2019/2022";
+if (navigator.appVersion.indexOf("Windows NT 6.4") !=-1) OSName="Windows Threshold(10 Beta)";
+if (navigator.appVersion.indexOf("Windows NT 6.3") !=-1) OSName="Windows 8.1/Server 2012 R2";
+if (navigator.appVersion.indexOf("Windows NT 6.2") !=-1) OSName="Windows 8/Server 2012";
+if (navigator.appVersion.indexOf("Windows NT 6.1") !=-1) OSName="Windows 7/Server 2008 R2";
+if (navigator.appVersion.indexOf("Windows NT 6.0") !=-1) OSName="Windows Vista/Server 2008";
+if (navigator.appVersion.indexOf("Windows NT 5.2") !=-1) OSName="Windows Server 2003/XP 64-BIT EDITION";
 if (navigator.appVersion.indexOf("Windows NT 5.1") !=-1) OSName="Windows XP";
-if (navigator.appVersion.indexOf("Windows Me") !=-1) OSName="Windows Me Millennium Edition";
+if (navigator.appVersion.indexOf("Windows Me") !=-1) OSName="Windows Millennium Edition";
 if (navigator.appVersion.indexOf("Windows NT 5.0") !=-1) OSName="Windows 2000/NT 5.0";
-if (navigator.appVersion.indexOf("Windows 98") !=-1) OSName="Windows 98";
+if (navigator.appVersion.indexOf("Windows 98") !=-1) OSName="Windows 98/98SE";
 if (navigator.appVersion.indexOf("Windows NT 4.0") !=-1) OSName="Windows NT 4.0";
 if (navigator.appVersion.indexOf("Windows 95") !=-1) OSName="Windows 95";
 if (navigator.appVersion.indexOf("Mac")!=-1) 

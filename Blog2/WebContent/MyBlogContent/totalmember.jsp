@@ -6,8 +6,11 @@
                  <h2 class="htitle">Member Management Center </h2>
                  <hr>
                  <form action="deleteMember.do" method="POST">
-                   Delete ID:&nbsp;&nbsp;<input type="text" name="id" required />
-                   &nbsp;&nbsp;<button class="btn btn-danger" type="submit">DELETE</button>
+                   Delete ID:
+                   &nbsp;&nbsp;
+                   <input type="text" name="id" required />
+                   &nbsp;&nbsp;
+                   <button class="btn btn-danger" type="submit">DELETE</button>
                  </form>
                  <hr>
                     <table class="table" >

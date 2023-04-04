@@ -20,7 +20,7 @@
 <!DOCTYPE HTML> 
 <HTML>
 <HEAD>
- <TITLE> MyBlog&ETC <c:out value="${titlename}" /> </TITLE>
+ <TITLE> MyMemo <c:out value="${titlename}" /> </TITLE>
  <META CHARSET = "UTF-8">
  <META NAME="VIEWPORT" CONTENT="WIDTH=DEVICE-WIDTH, INITIAL-SCALE=1">
  <style>

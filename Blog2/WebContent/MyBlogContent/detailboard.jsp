@@ -3,8 +3,8 @@
 <div class="container" style="margin-top: 20px">
    <div class="row">
      <div class="col-sm-12" style="margin: 0px; padding: 0px; background-color: lightyellow;">
-     <h2 class="htitle">게시글 내용</h2>
-         <table class="table" style="border:1px solid">
+     <h2 class="htitle">Detail Memo</h2>
+         <table class="table">
            <tr>
             <td>작성자 ID:</td>
             <td>${sessionScope.detailboardlist["userid"]}</td>
@@ -20,18 +20,6 @@
            <tr>
             <td>내용:</td>
             <td>${sessionScope.detailboardlist["content"]}</td>
-           </tr>
-           <tr>
-            <td>사진:</td>
-            <td><img src='${sessionScope.detailboardlist["address_picture"]}' width="300" height="200"></td>
-           </tr>
-           <tr>
-            <td>동영상:</td>
-            <td>
-            <video width="300" height="200" controls loop>
-               <source src='${sessionScope.detailboardlist["address_video"]}' type='${sessionScope.detailboardlist["video_type"]}'> 
-            </video>
-            </td>
            </tr>
            <tr>
             <td>작성 시간:</td>

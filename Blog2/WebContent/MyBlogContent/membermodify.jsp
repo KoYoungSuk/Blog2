@@ -2,12 +2,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
  <div class="container" style="margin-top:20px">
          <div class="row">
-             <div class="col-sm-12">
-                  <H3> Modify Member Information </H3>
+             <div class="col-sm-12" id="smalldiv" style="margin: 0px; padding: 0px;">
+                  <H3 class="htitle"> Modify Member Information </H3>
                   <h6>NOTICE: After modify member, You must login again.</h6>
                   <hr>
                            <form action="modifymember.do" method="POST">
-                           <table>
+                           <table class="table table-striped" style="border:1px solid">
                               <tr>
                                <td><label for="id">ID:</label></td>
                                <td><input type="text" value= "${sessionScope.id}" name="ID"  readonly /></td>

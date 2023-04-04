@@ -3,9 +3,10 @@
   <div class="container" style="margin-top:20px">
     <div class="row">
      <div class="col-sm-12" id="smalldiv" style="margin: 0px; padding: 0px;">
-       <h3 class="htitle">About</h3>
+       <h3 class="htitle">About PersonalMemo</h3>
+       <p>PersonalMemo Version 1.0 (Build 77) </p>
        <p>First Updated: Tuesday, February 25th 2020 </p>
-       <p>Last Updated: December 1, 2022 </p>
+       <p>Last Updated: Thursday, March 16, 2023 </p>
        <c:choose>
        <c:when test="${sessionScope.id ne null }">
        <p>Based Language: HTML5, CSS, JavaScript, JSP(Java Server Page)</p>
@@ -19,13 +20,12 @@
        <a href="https://www.dnsever.com" target="dnsever"><img src="https://banner.dnsever.com/dnsever-banner_170x35.gif" border="0" alt="DNS server, DNS service"></a>
        </p>
        <hr>
-       <p><a href="http://koyoungsuk2.dyndns.org:81/download"> Download Center(Source and Tools)</a><p>
        <p><a href="https://github.com/KoYoungSuk/Blog2.git">GitHub Source</a></p>
        <hr>
        </c:when>
        </c:choose>
        <p>This is not copyrighted. But don't use this illegally.</p>
-       <p>Java, Oracle,  Oracle DataBase and JSP(Java Server Page) are trademark of Oracle Corporation of America. </p>
+       <p>Java, Oracle,  Oracle DataBase are trademark of Oracle Corporation of America. </p>
        <p>So Some context are copyrighted by Oracle Corporation. You must notice this. </p>
        <hr>
        <button class="btn btn-primary" onclick="history.go(-1);">Back</button>

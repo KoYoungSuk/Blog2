@@ -2,26 +2,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <div class="container-fluid" style="margin-top:60px">
 <div class="row">
-   <div class="col-md-6" id="smalldiv" style="margin: 0px; padding: 0px;">
-     <h2 class="htitle" >Welcome to MyBlog! </h2>
-     <h5> This Web Site is designed for Personal Blog Site. </h5>
-     <!-- <h5> <a href="https://kysot.yspersonal.com">Second Server(ASP.NET)</a></h5> -->
-     <h5> <a href="https://blog.naver.com/vheh5678">My Naver Blog(Neighbor Only)</a></h5>
+   <div class="col-md-12" id="smalldiv" style="margin: 0px; padding: 0px;">
+     <h2 class="htitle" >Welcome to PersonalMemo! </h2>
+      <h5><a href="main.do?page=4">Reason of Making This Page</a></h5>
+      <h5><a href="history.html">History</a></h5>
    </div>
-   
-   <div class="col-md-6" id="smalldiv" style="margin: 0px; padding: 0px; ">
-     <h2 class="htitle">Why I make this?</h2>
-     <h5><a href="main.do?page=4">Maybe here?</a></h5>
-     <h5><a href="history.html">Do you want to see history?</a></h5>
-  </div>
 </div>
 </div>
 <hr>
 <div class="container-fluid" style="margin-top: 20px; padding: 0px;">
  <div class="row" >
   <div class="col-md-12" style="margin: 0px; background-color: lightyellow;">
-  <h2 style="text-align: center" class="htitle">Latest Update on Board</h2>
-      <table class="table" style="border:1px solid">
+  <h2 style="text-align: center" class="htitle">Latest Memo (10) </h2>
+      <table class="table">
       <thead>
       <tr>
        <th>Number</th>

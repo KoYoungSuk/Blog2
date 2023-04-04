@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)https://kysot.yspersonal.com/blocker -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+ <title> Restricted Area </title>
+ 
+ <meta name="viewport" content="width=device-width, initial-scale=1">
+ <link rel="stylesheet" href="../CSS/w3.css">
+ <style>
+  .header{
+  	 text-align: center;
+  	 background-color: yellow;
+  }
+  .divbody{
+    text-align: center;
+  }
+   .checkver{
+         text-align: center;
+         background-color: lightblue;
+     }
+  .footer {
+    background-color: lightgreen;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+   <div class="header">
+      <h1> Restricted Area </h1> 
+      <p> This site is blocked by Administrator. </p>
+   </div>
+   <hr>
+  <div class="divbody" id="divbody">
+      <p> This site is blocked by Administrator. Because this site is too evil. I'm sorry. But go back. </p> 
+      <hr>
+      <button class="w3-btn w3-yellow" onclick="history.go(-1);">Back</button>
+ </div>
+ <hr>
+ <div class="checkver">
+   <p id="osver"></p>
+    <p id="browserver">Your Browser : Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/93.0.4577.63 Safari/537.36</p>
+    <p id="time">Sun Sep 12 2021 16:27:44 GMT+0900 (한국 표준시)</p>
+ </div>
+   <div class="footer">
+     <p> Last updated: Sunday, August 8th, 2021 </p>
+     <p> 불법적으로 사용금지(Don't use this for illegal purpose.) </p>
+   </div>
+
+
+<script>
+var currdate = new Date();
+var address2 = window.location.href;
+var OSName="Unknown OS";
+if (navigator.appVersion.indexOf("Windows NT 11.0")!=-1) OSName="Windows Core";
+if (navigator.appVersion.indexOf("Windows NT 10.0")!=-1) OSName="Windows 10/11/Server 2016/2019/2022";
+if (navigator.appVersion.indexOf("Windows NT 6.4") !=-1) OSName="Windows Threshold(10 Beta)";
+if (navigator.appVersion.indexOf("Windows NT 6.3") !=-1) OSName="Windows 8.1/Server 2012 R2";
+if (navigator.appVersion.indexOf("Windows NT 6.2") !=-1) OSName="Windows 8/Server 2012";
+if (navigator.appVersion.indexOf("Windows NT 6.1") !=-1) OSName="Windows 7/Server 2008 R2";
+if (navigator.appVersion.indexOf("Windows NT 6.0") !=-1) OSName="Windows Vista/Server 2008";
+if (navigator.appVersion.indexOf("Windows NT 5.2") !=-1) OSName="Windows Server 2003";
+if (navigator.appVersion.indexOf("Windows NT 5.1") !=-1) OSName="Windows XP";
+if (navigator.appVersion.indexOf("Windows ME") !=-1) OSName="Windows Millennium Edition";
+if (navigator.appVersion.indexOf("Windows 4.9") !=-1) OSName="Windows Millennium Edition";
+if (navigator.appVersion.indexOf("Windows NT 5.0") !=-1) OSName="Windows 2000/NT 5.0";
+if (navigator.appVersion.indexOf("Windows 98") !=-1) OSName="Windows 98";
+if (navigator.appVersion.indexOf("Windows NT 4.0") !=-1) OSName="Windows NT 4.0";
+if (navigator.appVersion.indexOf("Windows 95") !=-1) OSName="Windows 95";
+if (navigator.appVersion.indexOf("Mac")!=-1) 
+ {
+      if (navigator.maxTouchPoints == 0) 
+      {
+         OSName = "Mac OS X/macOS/OSX";
+      }
+      else 
+      {
+         OSName = "iPad OS/iOS";
+      }
+ }
+if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
+if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux(Ubuntu, Redhat, ETC)";
+document.getElementById("osver").innerHTML = "Your OS : " + OSName;
+document.getElementById("browserver").innerHTML = "Your Browser : " + navigator.userAgent; 
+document.getElementById("time").innerHTML = currdate + "";
+
+</script></body></html>

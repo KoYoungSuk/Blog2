@@ -51,7 +51,7 @@ public class BoardListServlet extends HttpServlet {
 	  	BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
 	    List<BoardDO> newboardlist = new ArrayList<BoardDO>();
 	    Global g = new Global(response);
-	    g.setLog(JDBC_Driver, db_url, db_id, db_pw, request, response);
+	    //g.setLog(JDBC_Driver, db_url, db_id, db_pw, request, response);
 	    if(desc == null) {
 	    	desc = "0";
 	    }

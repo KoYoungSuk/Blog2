@@ -4,11 +4,11 @@
 <div class="row">
 <div class="col-sm-12">
    <div id="smalldiv">
-   <h3 class="htitle">HomePage Manage Center </h3>
+   <h3 class="htitle">Manage Center </h3>
     <c:choose>
      <c:when test="${sessionScope.id eq 'admin'}">
        <p>Current User: ${sessionScope.id} </p>
-       <p><a href="manager/status">Tomcat Server Status(ID: ${id})</a></p>
+       <p><a href="http://192.168.55.126/manager/status">Tomcat Server Status(ID: ${id})</a></p>
        <p><a href="dbmanager">JSPOracleManager</a></p>
        <p><a href="totaldb.do">Member Management Center</a>
       </c:when>

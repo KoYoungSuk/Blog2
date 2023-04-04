@@ -2,58 +2,51 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <div class="container" style="margin-top:20px"> 
    <div class="row">
-    <div class="col-sm-12">
-      <h3>Bulletin Board</h3>
-      <hr>
-       <c:choose>
+    <div class="col-sm-12" style="margin: 0px; padding: 0px; background-color: lightyellow; ">
+      <h3 class="htitle">
+      Memo List
+      <c:choose>
         <c:when test="${id ne null}">
-          <p> Current User: ${sessionScope.id} </p>
+          (Current User: ${sessionScope.id}) 
           <c:choose>
            <c:when test="${id eq 'admin'}">
-           <p> Administrator Mode </p>
+           (Administrator Mode)
            </c:when>
            <c:otherwise>
-           <p> Member Mode </p>
+           (Member Mode)
            </c:otherwise>
           </c:choose>
         </c:when>
         <c:otherwise>
-          <p> NonMember Mode </p>
+          (NonMember Mode)
         </c:otherwise>
        </c:choose>
-       <p> 게시물 개수 : ${sessionScope.count_board} </p>
-       <hr>
-       <form action="searchtitle.do" method="GET">
-       <p> 
-       <label for="searchtitle">Search By Title: </label>
-       <input type="text" name="searchtitle" />
-       &nbsp;&nbsp;
-       <button type="submit" class="btn btn-primary">Search By Title</button>
-       </p>
-        </form>
+      </h3>
+       <hr> 
+       <div style="text-align: center">
+       <p> Memo List Count : ${sessionScope.count_board} </p>
        <hr>
        <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
-       <button class="btn btn-success" onclick="location.href='boardlist.do'">Update Board Session</button>
-       <button class="btn btn-success" onclick="location.href='main.do?page=12'">Go To Write</button>
-       <hr>
-       <label for="arrangement">Arrangement: </label>
+       <button class="btn btn-success" onclick="location.href='boardlist.do'">Refresh</button>
        <c:choose>
         <c:when test="${param.desc == 1}">
-           <button type="button" class="btn btn-primary" onclick="location.href='boardlist.do?desc=0'">Ascend</button>
+           <button class="btn btn-primary" onclick="location.href='boardlist.do?desc=0'">Ascend</button>
         </c:when>
         <c:otherwise>
-           <button type="button" class="btn btn-danger" onclick="location.href='boardlist.do?desc=1'">Descend</button> 
+           <button class="btn btn-danger" onclick="location.href='boardlist.do?desc=1'">Descend</button> 
         </c:otherwise>
        </c:choose>
+       <button class="btn btn-success" onclick="location.href='main.do?page=12'">Write</button>
+       </div>
        <hr>
-        <table class="table table-striped" style="border:1px solid">
+        <table class="table">
           <thead>
               <tr>
                   <th>Number</th>
                   <th>Title</th>
                   <th>Save Date</th>
                   <th>Modify Date</th>
-                  <th>Access</th>
+                  <th>Access Mode</th>
                   <th>Clicks</th>
                   </tr>
                   </thead>

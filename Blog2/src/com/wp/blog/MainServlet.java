@@ -55,13 +55,13 @@ public class MainServlet extends HttpServlet {
   	    String db_pw = application.getInitParameter("db_password"); 
   	    String viewName = null;
   	    try {
-  	        g.setLog(JDBC_Driver, db_url, db_id, db_pw, request, response); 
+  	        //g.setLog(JDBC_Driver, db_url, db_id, db_pw, request, response); 
   	    	BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
   	    	List<BoardDO> boardlist = boarddao.getBoardList(true);
   	    	List<BoardDO> newboardlist = new ArrayList<BoardDO>();
   	    	int count = 0;	    
   	    	for(BoardDO boarddo : boardlist) {
-  	    		if(access.equals("admin")) {
+  	    		if(access.equals("admin")) { 
   	    			count++;
   	    			newboardlist.add(boarddo);
   	    		}
@@ -71,7 +71,7 @@ public class MainServlet extends HttpServlet {
   	  	    			newboardlist.add(boarddo);
   	  	    		}
   	    		}
-  	    		if(count == 10) {
+  	    		if(count == 10) { //10개까지만 출력
   	    			break;
   	    		}
   	    	}

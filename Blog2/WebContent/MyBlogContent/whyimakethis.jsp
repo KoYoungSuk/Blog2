@@ -3,13 +3,13 @@
  <div class="container" style="margin-top: 20px">
     <div class="row">
        <div class="col-sm-12" id="smalldiv">
-        <h2 class="htitle">Why I Make this?</h2>
+        <h2 class="htitle">Reason for making this website</h2>
         <hr>
         <h6>NOTICE: This is written in Korean.</h6>
         <hr>
        </div>
        <div class="col-sm-6" id="smalldiv">
-        <h4 class="htitle">Reasons why i make this.</h4>
+        <h4 class="htitle">Reason for making this website</h4>
         <hr>
         <h6>1. 어릴때 부터 홈페이지 같은걸 만들고 싶었음. </h6>
         <h6>2. 그래서 네이버 블로그 대용으로 한번 만들어 봤음. </h6>
@@ -35,7 +35,9 @@
         <h6>12. 2022년 4월: PersonalDiary Web Mode(개인용 일기 사이트) 제작 시작 </h6>
         <h6>13. 2022년 5월: ProductManager for MyHome 제작 시작</h6>
         <h6>14. 2022년 6월: 코드 정리 및 MyBlog 1차 제작 완료(MyBlog, PersonalDiary Web Mode, ProductManager for MyHome)</h6>
-        <h6>15. 2022년 10월: 서버 통합(home.yspersonal.com JSP 서버) 및 서버 교체(2015년식 LG전자 22V240-LT25K) </h6>
+        <h6>15. 2022년 10월: 서버 통합(home.yspersonal.com JSP 서버) 및 SFTP 서버로 홈페이지 이동(2015년식 LG 22V240-LT25K) </h6>
+        <h6>16. 2023년 03월: 홈페이지 이름 변경 작업 진행(MyBlog -> MyMemo): 용도를 블로그가 아닌 간단한 메모장으로 변경 </h6>
+        <h6>17. 2023년 04월: 홈페이지 이름을 PersonalMemo로 변경 및 디자인 개선 작업 진행</h6>
       </div>
     </div>
  </div>

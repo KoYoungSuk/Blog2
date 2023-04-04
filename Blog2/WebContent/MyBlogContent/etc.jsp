@@ -3,13 +3,11 @@
  <div class="container" style="margin-top: 20px">
     <div class="row">
        <div class="col-sm-12">
-          <h3 class="htitle">ETC Service Link</h3>
-          <div id="smalldiv">
-         <p><a href="timer.html">Timer Page</a></p>
-         <p><a href="diary">PersonalDiary Web Mode</a>
-         <p><a href="product">ProductManager for MyHome</a>
-         <!-- <p><a href="https://kysot.yspersonal.com:1443">Total DataBase Administrate System</a></p>-->
-         <!-- <p><a href="https://kysot.yspersonal.com">MyBlog/ETC(Second Server)</a></p> -->
+         <h3 class="htitle">ETC</h3>
+         <div id="smalldiv">
+         <p><a href="timer.html">Timer(Javascript)</a></p>
+         <p><a href="diary">MyDiary(Web)</a>
+         <p><a href="product">HomeProductManager(Web)</a>
          </div>
       </div>
     </div>

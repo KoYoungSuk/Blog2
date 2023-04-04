@@ -2,10 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
  <div class="container" style="margin-top:20px">
    <div class="row">
-   <div class="col-sm-12">
- <h3>Member Info </h3>
+   <div class="col-sm-12" id="smalldiv" style="margin: 0px; padding: 0px;">
+      <h3 class="htitle">Member Info </h3>
        <hr> 
-        <table border=1>
+        <table class="table">
          <tr>
             <td>ID:</td>
             <td><c:out value="${sessionScope.id}" /></td>
@@ -32,8 +32,8 @@
          </tr>        
         </table>
      <hr>
-     <button class="btn btn-success" onclick="location.href='main.do?page=8'">Modify Member</button>            
-     <button class="btn btn-danger"onclick="location.href='main.do?page=9'">Delete Member</button>
+     <button class="btn btn-success" onclick="location.href='main.do?page=8'">Modify</button>            
+     <button class="btn btn-danger"onclick="location.href='main.do?page=9'">Delete</button>
  </div>
  </div>
  </div>

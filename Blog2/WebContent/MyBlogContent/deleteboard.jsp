@@ -2,45 +2,45 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
  <div class="container" style="margin-top:20px">
     <div class="row">
-        <div class="col-md-12">
-           <h2>Delete Bullet Board</h2>
+        <div class="col-md-12" id="smalldiv" style="margin: 0px; padding: 0px;" >
+           <h3 class="htitle">Delete Memo</h3>
            <hr>
            <form action="deleteboard.do" method="POST">
            <h5>CAUTION: YOU CAN'T CANCEL THIS JOB. </h5>
            <h5>Do you want to delete it?</h5>
            <hr>
-           <table class="table table-striped" style="border:1px solid">
+           <table class="table" style="background-color: lightyellow;">
            <tr>
             <td><Label for="id">작성자 ID:</Label></td>
-            <td><input type="text" name="id" value="${sessionScope.totalboardlist['userid']}" readonly /></td>
+            <td><input class="form-control mr-sm-10" type="text" name="id" value="${sessionScope.totalboardlist['userid']}" readonly /></td>
            </tr>
            <tr>
             <td><Label for="number">글 번호:</Label></td>
-            <td><input type="text" name="number" value="${sessionScope.totalboardlist['number']}" readonly /></td>
+            <td><input class="form-control mr-sm-10" type="text" name="number" value="${sessionScope.totalboardlist['number']}" readonly /></td>
            </tr>
            <tr>
             <td><Label for="title">제목:</Label></td>
-            <td><input type="text" name="title" value="${sessionScope.totalboardlist['title']}" readonly /></td>
+            <td><input class="form-control mr-sm-10" type="text" name="title" value="${sessionScope.totalboardlist['title']}" readonly /></td>
            </tr>
            <tr>
             <td><Label for="content">내용:</Label></td>
-            <td><textarea rows="15" cols="68" autofocus name="content" wrap="hard" readonly>${sessionScope.totalboardlist['content']}</textarea></td>
+            <td><textarea class="form-control mr-sm-10" rows="15" cols="68" autofocus name="content" wrap="hard" readonly>${sessionScope.totalboardlist['content']}</textarea></td>
            </tr>
            <tr>
             <td><Label for="savedate">작성 시간:</Label></td>
-            <td><input type="text" name="savedate" value="${sessionScope.totalboardlist['savedate']}" readonly /></td>
+            <td><input class="form-control mr-sm-10" type="text" name="savedate" value="${sessionScope.totalboardlist['savedate']}" readonly /></td>
            </tr>
            <tr>
             <td><Label for="modifydate">수정 시간:</Label></td>
-            <td><input type="text" name="modifydate" value="${sessionScope.totalboardlist['modifydate']}" readonly /></td>
+            <td><input class="form-control mr-sm-10" type="text" name="modifydate" value="${sessionScope.totalboardlist['modifydate']}" readonly /></td>
            </tr>
            <tr>
             <td><Label for="access">접근 모드:</Label></td>
-            <td><input type="text" name="access" value="${sessionScope.totalboardlist['anonymous']}" readonly /></td>
+            <td><input class="form-control mr-sm-10" type="text" name="access" value="${sessionScope.totalboardlist['anonymous']}" readonly /></td>
            </tr>
             <tr>
              <td><Label for="clicks">조회수:</Label></td>
-             <td><input type="text" name="clicks" value="${sessionScope.totalboardlist['clicks']}" readonly /></td>
+             <td><input class="form-control mr-sm-10" type="text" name="clicks" value="${sessionScope.totalboardlist['clicks']}" readonly /></td>
            </tr>
           </table>
           <hr>
