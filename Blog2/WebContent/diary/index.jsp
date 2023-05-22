@@ -15,7 +15,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <link rel="stylesheet" href="../BS/bootstrap.min.css" />
 <link rel="stylesheet" href="../BS/bootstrap.css" />
-<title>PersonalDiary Web Mode</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<title>Welcome to MyDiary (Web) !!! </title>
 <style>
 	.jumbotron{
         padding-top: 0px;
@@ -31,40 +32,45 @@
 		text-align: center;
 		background-color: lightblue;
 	}
+    .htitle
+    {
+         background-color: blue; 
+         text-align: center;
+         color: white;
+         border: ridge; 
+    }
+     body
+     {
+        background-color: #008080; 
+     }
 </style>
 </head>
- <div class="jumbotron">
-	<h1>PersonalDiary Web Mode</h1>
-	<h5>2022-04-24</h5>
-</div>
 <hr>
-<div class="container" style="margin-top: 15px">
-   <div class="col-sm-12">
-	<p>Only Administrator can use PersonalDiary Web Mode. Sorry.... </p>
-	<hr>
+   <div class="col-sm-4" style="background-color: #DCDCDC; margin: 120px; padding: 0px;">
+    <H3 class="htitle"> Welcome to MyDiary! </H3>
+	<p>&nbsp;&nbsp;Only Administrator can use MyDiary(Web). (I'm Sorry!) </p>
 	<form action="diarylogin" method="POST">
 	<table>
 	  <tr>
-	    <td><label for="ID">ID:</label></td>
-	    <td><input type="text" name="id" value="admin" readonly required /></td>
+	    <td>&nbsp;&nbsp;<label for="ID">ID:</label></td>
+	    <td><input class="form-control" type="text" name="id" value="admin" readonly required /></td>
 	  </tr>
 	  <tr>
-	   <td><label for="Password">Password:</label></td>
-	   <td><input type="password" name="password" required /></td>
+	    <td>&nbsp;&nbsp;<label for="Password">Password:</label></td>
+	    <td><input class="form-control" type="password" name="password" required /></td>
 	  </tr>
 	</table>
-	<hr>
-	  <input type="submit" class="btn btn-primary" value="LOGIN" />
-	  <input type="button" class="btn btn-primary" onclick="history.go(-1);" value="BACK" />
-	  <input type="button" class="btn btn-primary" onclick="location.href='../main.do'" value="BACK TO THE MAIN PAGE" />
+	 <div style="text-align: right">
+	  <button type="button" class="btn btn-secondary btn-sm" onclick="history.go(-1);" ><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>&nbsp;&nbsp; 
+	  <button type="submit" class="btn btn-secondary btn-sm" ><span class="material-symbols-outlined">login</span>Login</button>&nbsp;&nbsp; 
+	 </div>
+	 <br> 
 	</form>
   </div>
- </div>
- <hr>
   <div class="footer">
-	<p>Last updated: May 21st, 2022 </p>
+	<p>Last updated: May 18th, 2023 </p>
 	<p>This is not copyrighted. But don't use this illegally. </p>
-</div>
+  </div>
 <body>
 </body>
 </html>

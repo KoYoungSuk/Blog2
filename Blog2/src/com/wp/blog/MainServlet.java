@@ -40,11 +40,11 @@ public class MainServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
 		String access = "admin";
-		if(id == null) {
+		if(id == null) { //세션으로 받아온 아이디가 없으면 비회원 모드 
 		   access = "anonymous";
 		}
 		else {
-		   if(!id.equals("admin")) {
+		   if(!id.equals("admin")) { //만약 세션으로 받아온 아이디가 있는데 admin가 아니면 회원 
 			   access = "member"; 
 		   }
 		}
@@ -61,13 +61,21 @@ public class MainServlet extends HttpServlet {
   	    	List<BoardDO> newboardlist = new ArrayList<BoardDO>();
   	    	int count = 0;	    
   	    	for(BoardDO boarddo : boardlist) {
-  	    		if(access.equals("admin")) { 
+  	    		if(access.equals("admin")) { //관리자 모드면 모든 메모들을 볼 수 있게 함. 
   	    			count++;
   	    			newboardlist.add(boarddo);
   	    		}
+  	    		else if(access.equals("member"))
+  	    		{
+  	    			if(!boarddo.getAnonymous().equals("admin")) //회원 모드이면 관리자 모드가 아닌 메모들만 볼 수 있게 함 
+  	    			{
+  	    				count++;
+  	  	    			newboardlist.add(boarddo);
+  	    			}
+  	    		}
   	    		else {
-  	    			if(boarddo.getAnonymous().equals(access)) {
-  	  	    			count++;
+  	    			if(boarddo.getAnonymous().equals("anonymous")) { //비회원 모드이면 비회원 모드인 메모만 볼 수 있게 함
+  	    				count++;
   	  	    			newboardlist.add(boarddo);
   	  	    		}
   	    		}

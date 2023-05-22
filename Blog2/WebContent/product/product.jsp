@@ -5,6 +5,13 @@
 <c:import url="../ProductContent/write.jsp" var="writecontent"></c:import>
 <c:import url="../ProductContent/modify.jsp" var="modifycontent"></c:import>
 <c:choose>
+   <c:when test="${page.param == 1}"><c:set var="titlename" value="" /></c:when>
+   <c:when test="${param.page == 2}"><c:set var="titlename" value="(Product Detail)" /></c:when>
+   <c:when test="${param.page == 3}"><c:set var="titlename" value="(Write Information)" /></c:when>
+   <c:when test="${param.page == 4}"><c:set var="titlename" value="(Modify Information)" /></c:when>
+   <c:otherwise><c:set var="titlename" value="" /></c:otherwise>
+</c:choose>
+<c:choose>
 <c:when test="${sessionScope.id ne 'admin'}">
   <c:redirect url="/error_3217.html"></c:redirect>
 </c:when>
@@ -18,40 +25,39 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <link rel="stylesheet" href="../BS/bootstrap.min.css" />
 <link rel="stylesheet" href="../BS/bootstrap.css" />
-<title>ProductManager for MyHome Web Mode</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<title> HomeProduct(Web) ${titlename} </title>
 <style>
-	.jumbotron{
-        padding-top: 0px;
-        padding-bottom: 0px;
-        text-align: center;
-		background-color: blue;
-		color: yellow;
-	}
 	.footer{
-	    left: 0;
-        bottom: 0;
-        width: 100%;
-		text-align: center;
-		background-color: lightblue;
+		text-align: right;
+		color: white; 
 	}
+	 .htitle
+    {
+         background-color: blue; 
+         text-align: center;
+         color: white;
+         border: ridge; 
+    }
+     body
+    {
+        background-color: #008080; 
+    }
 </style>
 <script>
 </script>
 </head>
 <body>
-<div class="jumbotron">
-	<h1>ProductManager for MyHome Web Mode</h1>
-	<h5>2022-05-18</h5>
-</div>
-<hr>
-<div class="container" style="margin-top: 15px">
-   <div class="col-sm-12">
-	<p>Only Administrator can use ProductManager Web Mode. Sorry.... </p>
+
+<div class="col-sm-8" style="background-color: #DCDCDC; padding: 0px; margin: 50px; ">
+    <h3 class="htitle">
+      HomeProduct(Web) (Current User: ${sessionScope.id}) ${titlename}
+      <button type="button" onclick="history.go(-1);" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>
+	  <button type="button" onclick="location.href='product.jsp?page=3'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">create</span>Write</button>
+	  <button type="button" onclick="location.href='../signout.do?check=3'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">logout</span>Logout</button>
+    </h3>
+	<p>&nbsp;&nbsp;Only Administrator can use HomeProduct(Web). Sorry.... </p>
 	<hr>
-	<input type="button" type="button" onclick="location.href='product.jsp?page=3'" class="btn btn-primary" value="Write" />
-	<input type="button" type="button" onclick="history.go(-1);" class="btn btn-primary" value="Back" />
-	<input type="button" type="button" onclick="location.href='../main.do'" class="btn btn-primary" value="Back To Main Page" />
-	<input type="button" type="button" onclick="location.href='../signout.do?check=3'" class="btn btn-primary" value="Logout" />
 	<hr>
 	<c:choose>
 	 <c:when test="${page.param == 1}">
@@ -70,11 +76,10 @@
      ${productlistcontent}
     </c:otherwise>
 	</c:choose>
-  </div>
- </div>
+</div>
  <hr>
 <div class="footer">
-	<p>Last updated: Sunday, May 22nd, 2022 </p>
+	<p>Last updated: Thursday, May 18th, 2023 </p>
 	<p>This is not copyrighted. But don't use this illegally. </p>
 </div>
 </body>

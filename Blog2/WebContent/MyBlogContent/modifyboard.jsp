@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<div class="container" style="margin-top:20px">
-  <div class="row">
-    <div class="col-sm-12" style="background-color: lightyellow; padding: 0px; margin: 0px">
-     <h3 class="htitle">Modify Memo</h3>
-     <hr>
+    <div class="col-sm-6" style="border: ridge; background-color: #DCDCDC; padding: 0px; margin: 70px">
+     <h3 class="htitle" >Modify Memo</h3>
         <form action="modifyboard.do" method="POST">
-          <table class="table">
+          <div style="text-align: right;">
+          <button class="btn btn-secondary btn-sm" type="button" onclick="history.go(-1);"><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>
+          <button class="btn btn-secondary btn-sm" type="submit"><span class="material-symbols-outlined">create</span>Modify</button>
+           &nbsp;&nbsp;
+          </div>
+          <br> 
+          <table class="table" style="background-color: lightyellow; ">
            <tr>
             <td><label for="Number">Number:</label></td>
             <td><input class="form-control mr-sm-10" type="text" name="number" value="${sessionScope.totalboardlist['number']}" readonly /></td>
@@ -43,13 +46,7 @@
            </label>
            </td>
           </tr>
-          </table>
-          <hr>
-          <div style="text-align: center;">
-          <button class="btn btn-success" type="submit">Modify</button>
-          <button class="btn btn-primary" type="button" onclick="history.go(-1);">Back</button>
-          </div>
+          </table>      
+          <br> 
         </form>
     </div>
-  </div>
- </div>

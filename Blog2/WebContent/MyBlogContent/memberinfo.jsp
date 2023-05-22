@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
- <div class="container" style="margin-top:20px">
-   <div class="row">
-   <div class="col-sm-12" id="smalldiv" style="margin: 0px; padding: 0px;">
-      <h3 class="htitle">Member Info </h3>
-       <hr> 
+<div class="col-sm-4" style="border: ridge; margin: 70px; padding: 0px; background-color: #DCDCDC; ">
+      <h3 class="htitle"">Member Info </h3>
+      <div style="text-align: right;">
+         <button class="btn btn-secondary btn-sm" type="button" onclick="history.go(-1);"><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>
+         <button class="btn btn-secondary btn-sm" onclick="location.href='main.do?page=8'"><span class="material-symbols-outlined">create</span>Modify</button>            
+         <button class="btn btn-danger btn-sm"onclick="location.href='main.do?page=9'"><span class="material-symbols-outlined">delete</span>Delete</button>
+         &nbsp;&nbsp; 
+      </div>
+      <br> 
         <table class="table">
          <tr>
             <td>ID:</td>
@@ -31,9 +35,6 @@
             <td><c:out value="${sessionScope.memberidlist['joindate']}" /></td>
          </tr>        
         </table>
-     <hr>
-     <button class="btn btn-success" onclick="location.href='main.do?page=8'">Modify</button>            
-     <button class="btn btn-danger"onclick="location.href='main.do?page=9'">Delete</button>
+      <br> 
  </div>
- </div>
- </div>
+ 

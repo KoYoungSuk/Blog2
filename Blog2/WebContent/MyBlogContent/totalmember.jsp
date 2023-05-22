@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
- <div class="container" style="margin-top: 20px">
-        <div class="row">
-             <div class="col-sm-12" id="smalldiv" style="margin: 0px; padding: 0px;">
-                 <h2 class="htitle">Member Management Center </h2>
+             <div class="col-sm-6" style="margin: 70px; padding: 0px; background-color: #DCDCDC; border: ridge;">
+                 <h3 class="htitle">Member Management Center </h3>
                  <hr>
                  <form action="deleteMember.do" method="POST">
-                   Delete ID:
+                   <div style="text-align: center;">
+                   <input class="form-control-sm " type="text" name="id" placeholder="Delete ID" required />
                    &nbsp;&nbsp;
-                   <input type="text" name="id" required />
-                   &nbsp;&nbsp;
-                   <button class="btn btn-danger" type="submit">DELETE</button>
+                   <button class="btn btn-secondary btn-sm" type="button" onclick="history.go(-1);"><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>
+                   <button class="btn btn-danger btn-sm" type="submit"><span class="material-symbols-outlined">delete</span>Delete</button>
+                   <button class="btn btn-secondary btn-sm" type="button" onclick="location.href='totaldb.do'"><span class="material-symbols-outlined">refresh</span>Refresh</button>
+                   </div>
                  </form>
                  <hr>
                     <table class="table" >
@@ -40,8 +40,5 @@
                          </tbody>
                          </table>
                          <hr>
-                        <button class="btn btn-primary"  onclick="location.href='totaldb.do'">Refresh</button>
-                        <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
+                       
              </div>
-        </div>
-    </div>

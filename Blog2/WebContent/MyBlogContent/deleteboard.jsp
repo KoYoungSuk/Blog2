@@ -1,14 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
- <div class="container" style="margin-top:20px">
-    <div class="row">
-        <div class="col-md-12" id="smalldiv" style="margin: 0px; padding: 0px;" >
+<div class="col-sm-6"  style="margin: 70px; padding: 0px; border: ridge; background-color: #DCDCDC; " >
            <h3 class="htitle">Delete Memo</h3>
-           <hr>
            <form action="deleteboard.do" method="POST">
            <h5>CAUTION: YOU CAN'T CANCEL THIS JOB. </h5>
            <h5>Do you want to delete it?</h5>
-           <hr>
+           <div style="text-align: right;"> 
+            <button type="submit" class="btn btn-danger btn-sm" ><span class="material-symbols-outlined">delete</span>YES, DELETE!</button>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="history.go(-1);"><span class="material-symbols-outlined">arrow_back_ios</span>NO, BACK!</button>
+            &nbsp;&nbsp; 
+           </div>
+           <br> 
            <table class="table" style="background-color: lightyellow;">
            <tr>
             <td><Label for="id">작성자 ID:</Label></td>
@@ -43,14 +45,6 @@
              <td><input class="form-control mr-sm-10" type="text" name="clicks" value="${sessionScope.totalboardlist['clicks']}" readonly /></td>
            </tr>
           </table>
-          <hr>
-          <button type="submit" class="btn btn-danger" >YES, DELETE!</button>
-          <button type="button" class="btn btn-primary" onclick="history.go(-1);">NO, BACK!</button>
-          <button type="button" class="btn btn-primary" onclick="location.href='boardlist.do'">NO, BACK TO BOARD LIST!</button>
-          <button type="button" class="btn btn-primary" onclick="location.href='main.do?page=1'">NO, BACK TO MAIN PAGE!</button>
-          <hr>
-           </form>
-           <hr>
-        </div>
-    </div>
-  </div>
+          </form>
+          <br> 
+ </div>

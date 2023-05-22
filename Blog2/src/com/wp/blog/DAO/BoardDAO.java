@@ -16,10 +16,10 @@ import com.wp.blog.DTO.VideoDO;
 
 public class BoardDAO {
 	public Connection conn = null;
-	   private String jdbc_driver;
-	   private String db_url;
-	   private String db_id;
-	   private String db_pw;
+	private String jdbc_driver;
+	private String db_url;
+	private String db_id;
+	private String db_pw;
 	   
 	public BoardDAO(String jdbc_driver, String db_url, String db_id, String db_pw)
 	{
@@ -28,6 +28,7 @@ public class BoardDAO {
 		this.db_id = db_id;
 		this.db_pw = db_pw;
 	}
+	
 	 public void connectDB() throws SQLException, ClassNotFoundException
 	   {
 		   Class.forName(jdbc_driver);
@@ -98,14 +99,14 @@ public class BoardDAO {
 		   disconnectDB();
 		   return boardlist;
 	   }
+	   
 	   public Map<String, String> getBoardByNum(int number, boolean br, boolean clicks) throws ClassNotFoundException, SQLException
 	   {
 		   Map<String, String> boardlist = null;
 		   connectDB();
 		   ResultSet rs = null;
 		   PreparedStatement psm = null;
-		   String sql = "select * from board where serial=?";
-		   //String sql = "select b.*, p.*, v.* from board b left join pictures p on b.serial = p.serial left join video v on b.serial = p.number where serial=?"; 
+		   String sql = "select * from board where serial=?"; 
 		   psm = conn.prepareStatement(sql);
 		   psm.setInt(1, number);
 		   rs = psm.executeQuery();
@@ -124,23 +125,18 @@ public class BoardDAO {
 			   boardlist.put("savedate", rs.getString("savedate"));
 			   boardlist.put("modifydate", rs.getString("modifydate"));
 			   boardlist.put("anonymous", rs.getString("anonymous"));
-			   boardlist.put("clicks", (rs.getInt("clicks") + 1) + "");
-			   boardlist.put("address_picture", "https://kysot.yspersonal.com:8443/upload/Pictures/test.jpg");
-			   //boardlist.put("address_picture", rs.getString("address_picture")); 
-			   boardlist.put("address_video", "https://kysot.yspersonal.com:8443/upload/Video/test.mp4");
-			   //boardlist.put("address_video", rs.getString("address_video")); 
-			   boardlist.put("video_type", "video/mp4");
-			   //boardlist.put("video_type", rs.getString("video_type")); 
+			   boardlist.put("clicks", (rs.getInt("clicks") + 1) + ""); //조회수 1씩 올리기 
 		   }
 		   psm.close();
 		   rs.close();
 		   disconnectDB();
-		   if(clicks) {
+		   if(clicks) { //올린 조회수로 메모장을 업데이트한다. 
 			   BoardDO boarddo = new BoardDO(number, null, null, null, null, null, null, Integer.parseInt(boardlist.get("clicks")));
 			   UpdateBoard(boarddo, true);
 		   }
 		   return boardlist;
 	   } 
+	   
 	   public int DeleteBoard(int number) throws ClassNotFoundException, SQLException
 	   {
 		   connectDB();
@@ -163,7 +159,7 @@ public class BoardDAO {
 		   PreparedStatement psm = null;
 		   String sql = "";
 		   
-		   if(clicks) {
+		   if(clicks) { //조회수만 업데이트 
 			   sql = "update board set clicks=? where serial=?";
 			   psm = conn.prepareStatement(sql);
 			   psm.setInt(1, boarddo.getClicks());
@@ -215,13 +211,13 @@ public class BoardDAO {
 	       Statement sm = null;
 	       String sql = "";
 	       sm = conn.createStatement();
-		   if(access.equals("admin")) {
+		   if(access.equals("admin")) { //관리자 모드: 전체 
 			   sql = "select count(*) countnumber from board";
 		   }
-		   else if(access.equals("member")) {
+		   else if(access.equals("member")) { //회원 모드: 관리자가 아닌 것들만 
 			   sql = "select count(*) countnumber from board where anonymous != 'admin'";
 		   }
-		   else {
+		   else { //비회원 모드: 비회원만 
 			   sql = "select count(*) countnumber from board where anonymous = 'anonymous'";
 		   }
 		   rs = sm.executeQuery(sql);
@@ -259,24 +255,40 @@ public class BoardDAO {
 		   return number;
 	   }
 	   
-	   public int insertVideo(VideoDO videodo) throws SQLException, ClassNotFoundException
+	   public List<BoardDO> SearchBoardList(String word, Boolean desc) throws ClassNotFoundException, SQLException
 	   {
+		   ArrayList<BoardDO> boardlist = null;
+		   String sql = null;
 		   connectDB();
-		   int result = 0;
-		   PreparedStatement psm = null;
-	       String sql = "insert into video (id, title, videoname, thumbnailname, description, author, date, number) values (?,?,?,?,?,?,?,?)";
-	       psm = conn.prepareStatement(sql);
-	       psm.setString(1, videodo.getID());
-		   psm.setString(2, videodo.getTitle());
-		   psm.setString(3, videodo.getVideoname());
-		   psm.setString(4,videodo.getThumbnailname());
-		   psm.setString(5, videodo.getDescription());
-		   psm.setString(6, videodo.getAuthor()); 
-		   psm.setTimestamp(7, videodo.getDate());
-		   psm.setInt(8, videodo.getNumber());
-		   result = psm.executeUpdate();
-		   psm.close();
+		   ResultSet rs = null;
+		   Statement sm = null;
+		   sm = conn.createStatement();
+		   if(desc) {
+			   sql = "select * from board where title like '%" + word + "%' order by serial desc";
+		   }
+		   else {
+			   sql = "select * from board where title like '%" + word + "%' order by serial";
+		   }
+		   rs = sm.executeQuery(sql);
+		   if(rs.isBeforeFirst())
+		   {
+			   boardlist = new ArrayList<BoardDO>();
+			   while(rs.next())
+			   {
+				   BoardDO boarddo = new BoardDO();
+				   boarddo.setSerialnumber(rs.getInt("serial"));
+				   boarddo.setTitle(rs.getString("title"));
+				   boarddo.setContent1(rs.getString("content2"));
+				   boarddo.setSavedate(rs.getTimestamp("savedate"));
+				   boarddo.setModifydate(rs.getTimestamp("modifydate"));
+				   boarddo.setAnonymous(rs.getString("anonymous"));
+				   boarddo.setClicks(rs.getInt("clicks"));
+				   boardlist.add(boarddo);
+			   }
+		   }
+		   sm.close();
+		   rs.close();
 		   disconnectDB();
-		   return result;
+		   return boardlist;
 	   }
 }

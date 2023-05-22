@@ -71,29 +71,29 @@ public class BoardListServlet extends HttpServlet {
 	    	descbool = true;
 	    }
 	    try {
-			  List<BoardDO> boardlist = boarddao.getBoardList(descbool);
-			  int count_board = boarddao.getBoardCount(access);
-		      for(BoardDO boarddo: boardlist) {
-				if(access.equals("admin")) {  //관리자 모드로 접속한 경우 전체 게시물 조회 가능 
-				     newboardlist.add(boarddo);
-			    }
-				else if(access.equals("member")) { //회원 모드일 경우 관리자 모드로 작성하지 않은 게시물만 조회 가능 
-					if(!boarddo.getAnonymous().equals("admin")){
-						newboardlist.add(boarddo); 
-					}
-				}
-				else {
-					if(boarddo.getAnonymous().equals(access)) { //비회원 모드일 경우 비회원 모드로 작성한 게시물만 조회 가능 
-						newboardlist.add(boarddo);
-					}
-			    }
-		      }
+	    	  List<BoardDO> boardlist = boarddao.getBoardList(descbool);
 		      if(boardlist != null){
-				    session.setAttribute("boardlist", newboardlist);
-				    session.setAttribute("count_board", count_board);
-					viewName = "main.do?page=3"; 
+		    	  int count_board = boarddao.getBoardCount(access);
+			      for(BoardDO boarddo: boardlist) {
+					if(access.equals("admin")) {  //관리자 모드로 접속한 경우 전체 게시물 조회 가능 
+					     newboardlist.add(boarddo);
+				    }
+					else if(access.equals("member")) { //회원 모드일 경우 관리자 모드로 작성하지 않은 게시물만 조회 가능 
+						if(!boarddo.getAnonymous().equals("admin")){
+							newboardlist.add(boarddo); 
+						}
+					}
+					else {
+						if(boarddo.getAnonymous().equals(access)) { //비회원 모드일 경우 비회원 모드로 작성한 게시물만 조회 가능 
+							newboardlist.add(boarddo);
+						}
+				    }
+			      }
+				  session.setAttribute("boardlist", newboardlist);
+				  session.setAttribute("count_board", count_board);
+			      viewName = "main.do?page=3"; 
 			  }else {
-					g.jsmessage("Null Error");
+				  g.jsmessage("Not Found");
 			  }
 	    }catch (Exception e) {
 		    // TODO Auto-generated catch block

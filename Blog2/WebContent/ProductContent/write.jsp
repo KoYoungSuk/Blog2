@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<h2>Write</h2>
-<hr>
 <form action="writeproduct" method="POST">
-<table class="table table-striped" style="border:1px solid">
+<div style="text-align: right">
+ <button class="btn btn-secondary btn-sm" type="button" onclick="history.go(-1);">Back</button>
+ <button class="btn btn-secondary btn-sm" type="submit">Write</button>
+ <button class="btn btn-secondary btn-sm" type="button" onclick="location.href='productlist?desc=0&columnname=product_no'">Back to ProductList</button>&nbsp;&nbsp; 
+</div>
+<table class="table" style="background-color: lightyellow;">
  <tr>
   <td><label for="product_no">물품 번호: </label></td>
   <td><input type="text" name="product_no" required /></td>
@@ -25,9 +28,5 @@
   <td><input type="text" name="purpose" /></td>
  </tr>
 </table>
-<hr>
-<button class="btn btn-success" type="submit">Write</button>
-<button class="btn btn-primary" type="button" onclick="history.go(-1);">Back</button>
-<button class="btn btn-primary" type="button" onclick="location.href='../main.do'">Back to MyBlog</button>
-<button class="btn btn-primary" type="button" onclick="location.href='productlist?desc=0&columnname=product_no'">Back to ProductList</button>
 </form>
+<br> 

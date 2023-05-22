@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
- <div class="container" style="margin-top:20px">
-         <div class="row" >
-             <div class="col-sm-12" style="background-color: lightyellow; padding: 0px; margin: 0px">
-                <h2 class="htitle" style="padding: 0px; margin: 0px;">Write Board</h2> 
-                     <form id="write-form" action="board.do" method="POST" > 
-                     <table class="table">
+             <div class="col-sm-6" style="border: ridge; background-color: #DCDCDC; padding: 0px; margin: 70px">
+                <h3 class="htitle">Write Board</h3> 
+                     <form action="board.do" method="POST" > 
+                     <div style="text-align: right;">
+                     <button class="btn btn-secondary btn-sm" type="button" onclick="history.go(-1);"><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>
+                     <button class="btn btn-secondary btn-sm" type="submit"><span class="material-symbols-outlined">create</span>Write</button>
+                     &nbsp;&nbsp;
+                     </div>
+                     <br> 
+                     <table class="table" style="background-color: lightyellow;">
                      <tr>
                      <td><p><label for="title">Title:</label></p></td>
                      <td><input class="form-control mr-sm-10" type="text" name="title" required /></td>
@@ -29,13 +33,7 @@
                      <label class="custom-control-label" for="jb-radio-3">NonMember Mode</label>
                      </td>
                      <tr>
-                     </table>
-                     <hr> 
-                     <div style="text-align: center">
-                     <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
-                     <button class="btn btn-success" type="submit">Post Board</button>
-                     </div>
+                     </table> 
+                     <br> 
                      </form>
             </div>
-        </div> 
-    </div>

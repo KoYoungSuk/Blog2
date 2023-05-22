@@ -3,35 +3,61 @@
    <head>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="http://192.168.55.126/nossl/CSS/w3.css">
-      <link rel="stylesheet" href="http://192.168.55.126/nossl/CSS/error.css">
-      <!-- CSS 폴더에 로컬로 해서 넣으니까 https://home.yspersonal.com/Folder 이렇게 쳤을때 Folder/CSS로 인식해서 오류가 생겨 이렇게 코딩함 -->
-      <title>403 Access Denied/Forbidden </title>
+      <title> 403 Access Denied </title>
+      <style>
+       body
+       {
+         background-color: #008080; 
+       }
+       button
+       {
+         width: 200px;
+         height: 40px;
+         font-size: 18px;
+         background-color: #DCDCDC;
+       }
+       .htitle
+       {
+         background-color: blue; 
+         text-align: center;
+         color: white;
+         border: ridge; 
+       }
+       .total
+       {
+         padding: 0px;
+         margin: 210px;
+         background-color: #DCDCDC; 
+       }
+       
+      </style>
    </head>
    <body>
-        <div class="header">
-     <H1> 403 Access Denied/Forbidden </H1>
-        <h4> illegal request detected. </h4>
-         </div>
-     <hr>
-     <div class="divbody">
-     <hr>
-     <button class="w3-btn w3-yellow" onclick="location.href='http://192.168.55.126/nossl'">Back to Main Page</button> 
-     <button class="w3-btn w3-yellow" onclick="history.go(-1);">Back</button>      
-     </div>
-      <hr>
-     <div class="checkver">
-            <p> Your Computer Information: </p>
-            <p id="address"> </p> 
-           <p id="osver"></p>
-           <p id="browserver"></p>
-          <p id="time"></p>
+     <div class="total">
+      <H2 class="htitle"> 403 Access Denied </H2>
+      <h4> &nbsp;&nbsp;&nbsp;&nbsp; 액세스가 거부되었습니다. (Error Code: 403) </h4>
+      <div style="text-align: center">
+      <button onclick="location.href='http://home.yspersonal.com'">Back to Main Page</button> 
+      <button onclick="history.go(-1);">Back</button>   
+      </div>  
+       <br> 
       </div>
-       <hr>
-       <div class="footer">
+     
+     <div class="total">
+          <H2 class="htitle">Your Computer Information</H2>
+          <p id="address"> </p> 
+          <p id="osver"></p>
+          <p id="browserver"></p>
+          <p id="time"></p>
+          <br>
+     </div>
+      
+     <div class="total">
+          <H2 class="htitle"> Footer </H2>
           <p> Last updated: Saturday, August 7th, 2021 </p> 
           <p> NO Copyright Required. But don't use this for illegal purpose. </p>
-        </div>
+          <br> 
+     </div>
    </body>
 </html> 
 <script>

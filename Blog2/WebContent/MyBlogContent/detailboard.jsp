@@ -1,17 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<div class="container" style="margin-top: 20px">
-   <div class="row">
-     <div class="col-sm-12" style="margin: 0px; padding: 0px; background-color: lightyellow;">
-     <h2 class="htitle">Detail Memo</h2>
-         <table class="table">
+<c:set var="boardnumber" value= "${sessionScope.detailboardlist['number']}" /> 
+     <div class="col-sm-6" style="border: ridge; margin: 70px; padding: 0px; background-color: #DCDCDC;">
+     <h3 class="htitle">Detail Memo</h3>
+     <div style="text-align: right;">
+       <button type="button" class="btn btn-secondary btn-sm" onclick="history.go(-1);"><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>
+       <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='modifyboard.do?serial=${boardnumber}'"><span class="material-symbols-outlined">create</span>Modify</button>
+       <button type="button" class="btn btn-danger btn-sm" onclick="location.href='deleteboard.do?serial=${boardnumber}'"><span class="material-symbols-outlined">delete</span>Delete</button>
+       &nbsp;&nbsp; 
+     </div>
+     <br> 
+         <table class="table" style="background-color: lightyellow;">
            <tr>
             <td>작성자 ID:</td>
             <td>${sessionScope.detailboardlist["userid"]}</td>
            </tr>
            <tr>
             <td>글 번호:</td>
-            <td>${sessionScope.detailboardlist["number"]}</td>
+            <td>${boardnumber}</td>
            </tr>
            <tr>
             <td>제목:</td>
@@ -38,11 +44,5 @@
              <td>${sessionScope.detailboardlist["clicks"]}</td>
            </tr>
        </table>
-     <div style="text-align: center;">
-     <button class="btn btn-primary" onclick="history.go(-1);">Back</button>
-     <button class="btn btn-success" onclick="location.href='modifyboard.do?serial=${sessionScope.detailboardlist['number']}'">Modify</button>
-     <button class="btn btn-danger" onclick="location.href='deleteboard.do?serial=${sessionScope.detailboardlist['number']}'">Delete</button>
-     </div>
-     </div>
-    </div>
+     <br> 
 </div>

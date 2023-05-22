@@ -1,22 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-	   <p> Current User: ${sessionScope.id} </p>
-	   <p> Diary Number: ${sessionScope.diarynumber} </p>
+	   <p>&nbsp;&nbsp;Diary Number: ${sessionScope.diarynumber} </p>
        <hr>
+       <div style="text-align: center;">
        <form action="detaildiary" method="POST">
-       SEARCH DIARY: <input type="text" name="title" />&nbsp;&nbsp;
-       <input type="submit" class="btn btn-success" value="Search" />&nbsp;&nbsp;
+       <input type="text" class="form-control-sm" name="title" placeholder="Search Diary:" />&nbsp;&nbsp;
+       <button type="submit" class="btn btn-secondary btn-sm" ><span class="material-symbols-outlined">search</span>Search</button>&nbsp;&nbsp;
        <c:choose>
        <c:when test="${param.desc == 0}">
-       <input type="button" class="btn btn-success" value="Descend" onclick="location.href='diarylist?desc=1'" />
+       <button type="button" class="btn btn-warning btn-sm" onclick="location.href='diarylist?desc=1'" ><span class="material-symbols-outlined">trending_down</span>Descend</button>&nbsp;&nbsp;
        </c:when>
        <c:otherwise>
-       <input type="button" class="btn btn-success" value="Ascend" onclick="location.href='diarylist?desc=0'" />
+       <button type="button" class="btn btn-primary btn-sm"onclick="location.href='diarylist?desc=0'" ><span class="material-symbols-outlined">trending_up</span>Ascend</button>&nbsp;&nbsp;
        </c:otherwise>
        </c:choose>
+       <button type="button" class="btn btn-primary btn-sm" onclick="window.location.reload();"><span class="material-symbols-outlined">refresh</span>Refresh</button>
        </form>
+       </div>
        <hr>
-        <table class="table table-striped" style="border:1px solid">
+        <table class="table" style="background-color: lightyellow;">
             <thead>
                 <tr>
                  <th>Number</th>
@@ -33,7 +35,10 @@
                    <td><a href="detaildiary?title=${DiaryDO.title}"><c:out value="${DiaryDO.title}" /></a></td>
                    <td><c:out value="${DiaryDO.savedate}" /></td>
                    <td><c:out value="${DiaryDO.modifydate}" /></td>
-                   <td><a href="deletediary?title=${DiaryDO.title}">Delete</a></td>
+                   <td>
+                   <!-- <a href="deletediary?title=${DiaryDO.title}">Delete</a>-->
+                   <button class="btn btn-secondary btn-sm" onclick="location.href='deletediary?title=${DiaryDO.title}'" type="button"><span class="material-symbols-outlined">delete</span></button>
+                   </td>
                </tr>
               </c:forEach>
            </tbody>

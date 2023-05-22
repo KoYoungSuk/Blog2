@@ -15,56 +15,54 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <link rel="stylesheet" href="../BS/bootstrap.min.css" />
 <link rel="stylesheet" href="../BS/bootstrap.css" />
-<title>ProductManager for MyHome Web Mode</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<title>Welcome to HomeProduct (Web) !!!  </title>
 <style>
-	.jumbotron{
-        padding-top: 0px;
-        padding-bottom: 0px;
-        text-align: center;
-		background-color: blue;
-		color: yellow;
-	}
 	.footer{
-	    left: 0;
-        bottom: 0;
-        width: 100%;
-		text-align: center;
-		background-color: lightblue;
+		text-align: right;
+		color: white; 
 	}
+	 .htitle
+    {
+         background-color: blue; 
+         text-align: center;
+         color: white;
+         border: ridge; 
+    }
+     body
+     {
+        background-color: #008080; 
+     }
 </style>
 </head>
- <div class="jumbotron">
-	<h1>ProductManager for MyHome Web Mode</h1>
-	<h5>2022-05-18</h5>
-</div>
-<hr>
-<div class="container" style="margin-top: 15px">
-   <div class="col-sm-12">
-	<p>Only Administrator can use ProductManager for MyHome Web Mode. Sorry.... </p>
+
+  <div class="col-sm-4" style="background-color: #DCDCDC; padding: 0px; margin: 120px;">
+    <h3 class="htitle">Welcome to HomeProduct!</h3>
+	<p>&nbsp;&nbsp;Only Administrator can use HomeProduct Web Mode. Sorry.... </p>
 	<hr>
 	<form action="productlogin" method="POST">
 	<table>
 	  <tr>
-	    <td><label for="ID">ID:</label></td>
-	    <td><input type="text" name="id" value="admin" readonly required /></td>
+	    <td>&nbsp;&nbsp;<label for="ID">ID:</label></td>
+	    <td><input class="form-control" type="text" name="id" value="admin" readonly required /></td>
 	  </tr>
 	  <tr>
-	   <td><label for="Password">Password:</label></td>
-	   <td><input type="password" name="password" required /></td>
+	   <td>&nbsp;&nbsp;<label for="Password">Password:</label></td>
+	   <td><input class="form-control" type="password" name="password" required /></td>
 	  </tr>
 	</table>
-	<hr>
-	  <input type="submit" class="btn btn-primary" value="Login" />
-	  <input type="button" class="btn btn-primary" onclick="history.go(-1);" value="Back" />
-	  <input type="button" class="btn btn-primary" onclick="location.href='../main.do'" value="Back to main page" />
+	  <div style="text-align: right;">
+	  <button type="button" class="btn btn-secondary btn-sm" onclick="history.go(-1);"><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>&nbsp;&nbsp;
+	  <button type="submit" class="btn btn-secondary btn-sm" ><span class="material-symbols-outlined">login</span>LoginLogin</button>&nbsp;&nbsp; 
+	  <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='../main.do'"><span class="material-symbols-outlined">arrow_back_ios</span>Back to PersonalMemo</button>&nbsp;&nbsp; 
+	  </div>
 	</form>
+	<br> 
   </div>
- </div>
- <hr>
   <div class="footer">
-	<p>Last updated: May 25th, 2022 </p>
-	<p>This is not copyrighted.</p>
-</div>
+	<p>Last updated: May 20th, 2023 </p>
+	<p>This is not copyrighted. But don't use this for illegally.</p>
+  </div>
 <body>
 </body>
 </html>
