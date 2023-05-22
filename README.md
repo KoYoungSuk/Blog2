@@ -1,4 +1,4 @@
-# PersonalMemo Version 1.0 (2023-04-04) 
+# PersonalMemo Version 1.5 (2023-05-27) 
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -23,22 +23,22 @@ Actually development environment is not Ubuntu. it is Windows 10/11!.
  
  Main Screen 
  
-![image](https://user-images.githubusercontent.com/58511486/204207878-c11c158e-d9c7-41e7-8d81-f9a55926c17f.png)
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/fc1ccb7e-8b6f-4777-a9e2-d0397418ec06)
 
- Board List
+ Memo List
  
- ![image](https://user-images.githubusercontent.com/58511486/170816836-c3049b6e-caea-478d-bddc-e19a83ed040e.png)
+ ![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/c664d8db-397f-4931-9c34-c36cf1a59a51)
 
- Detail Board
- ![image](https://user-images.githubusercontent.com/58511486/204208484-3c658f90-d71f-4887-9377-5fd9c0b1d66e.png)
-
+ Detail Memo
+ ![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/5460a14e-586c-4159-ad8b-31d02fe56a65)
+ 
  JSPOracleManager
  
  ![image](https://user-images.githubusercontent.com/58511486/170816893-b9c05a71-b4bb-4cba-b68f-d1e77daf7a79.png)
 
  Diary
  
- ![image](https://user-images.githubusercontent.com/58511486/170846822-9f8288f0-f26c-4f0d-a105-cbcb47d1fff0.png)
+ ![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/948d8b74-5b42-4994-82dc-974106b05265)
 
  ------------------------------------------------------------------------------------------------------------------------------------------
  # NOTICE
