@@ -50,7 +50,9 @@ public class DiaryDetailServlet extends HttpServlet {
 		try {
 			if(id != null) {
 				if(id.equals("admin")) {
+					
 					DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
+					
 					Map<String, String> detaildiarylist = diarydao.getDiaryListByTitle(title, true);
 					if(detaildiarylist != null) {
 						session.setAttribute("detaildiarylist", detaildiarylist);

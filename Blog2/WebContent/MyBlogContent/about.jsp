@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <div class="col-sm-4" style="margin: 70px; padding: 0px; background-color: #DCDCDC; border: ridge;">
        <h3 class="htitle">About PersonalMemo</h3>
-       <p>PersonalMemo Version 1.0 (Build 80) </p>
+       <p>PersonalMemo Version 1.5 (Build 100) </p>
        <p>First Updated: Tuesday, February 25th 2020 </p>
        <p>Last Updated: Saturday, May 27th, 2023 </p>
        <c:choose>

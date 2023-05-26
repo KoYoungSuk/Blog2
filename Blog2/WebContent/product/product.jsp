@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<!--  JSP 모듈 파일 임포트 -->
 <c:import url="../ProductContent/productlist.jsp" var="productlistcontent"></c:import>
 <c:import url="../ProductContent/detail.jsp" var="detailcontent"></c:import>
 <c:import url="../ProductContent/write.jsp" var="writecontent"></c:import>
 <c:import url="../ProductContent/modify.jsp" var="modifycontent"></c:import>
+<!--  파라미터에 따라 사이트 제목 정하기 -->
 <c:choose>
    <c:when test="${page.param == 1}"><c:set var="titlename" value="" /></c:when>
    <c:when test="${param.page == 2}"><c:set var="titlename" value="(Product Detail)" /></c:when>
@@ -59,6 +61,7 @@
 	<p>&nbsp;&nbsp;Only Administrator can use HomeProduct(Web). Sorry.... </p>
 	<hr>
 	<hr>
+	<!-- 파라미터에 따라 출력할 JSP 모듈 내용 지정 -->
 	<c:choose>
 	 <c:when test="${page.param == 1}">
       ${productlistcontent}
@@ -79,7 +82,7 @@
 </div>
  <hr>
 <div class="footer">
-	<p>Last updated: Thursday, May 18th, 2023 </p>
+	<p>Last updated: Saturday, May 27th 2023 </p>
 	<p>This is not copyrighted. But don't use this illegally. </p>
 </div>
 </body>

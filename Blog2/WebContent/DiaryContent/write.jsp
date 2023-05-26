@@ -10,7 +10,7 @@
 	<table class="table" style="background-color: lightyellow; ">
 	<tr>
 	  <td><label for="title">제목:</label></td>
-	  <td><input class="form-control mr-sm-10" type="text" name="title" required  /></td>
+	  <td><input class="form-control mr-sm-10" type="text" id="title" name="title" required  /></td>
 	</tr>
 	<tr>
 	  <td><label for="context">내용:</label></td>

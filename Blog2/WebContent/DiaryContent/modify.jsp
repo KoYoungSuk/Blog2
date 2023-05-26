@@ -10,11 +10,11 @@
    <table class="table" style="background-color: lightyellow;">
 	<tr>
 	  <td><label for="title">제목:</label></td>
-	  <td><input class="form-control mr-sm-10" type="text" name="title" value= "${sessionScope.detaildiarylist['title']}" readonly /></td>
+	  <td><input class="form-control" type="text" name="title" value= "${sessionScope.detaildiarylist['title']}" readonly /></td>
 	</tr>
 	<tr>
 	  <td><label for="context">내용:</label></td>
-	  <td><textarea class="form-control mr-sm-10" id="txtcontent" rows="20" cols="100" name="context" autofocus wrap="hard">${sessionScope.detaildiarylist['content']}</textarea></td>
+	  <td><textarea class="form-control" id="txtcontent" rows="20" cols="100" name="context" autofocus wrap="hard">${sessionScope.detaildiarylist['content']}</textarea></td>
 	</tr>
 	</table>
 </form>

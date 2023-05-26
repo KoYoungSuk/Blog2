@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<!-- 이미 로그인되어 있으면 바로 리스트로 넘어감 -->
 <c:choose>
 <c:when test="${sessionScope.id eq 'admin'}">
   <c:redirect url="productlist?desc=0&columnname=product_no"></c:redirect>
@@ -53,14 +54,14 @@
 	</table>
 	  <div style="text-align: right;">
 	  <button type="button" class="btn btn-secondary btn-sm" onclick="history.go(-1);"><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>&nbsp;&nbsp;
-	  <button type="submit" class="btn btn-secondary btn-sm" ><span class="material-symbols-outlined">login</span>LoginLogin</button>&nbsp;&nbsp; 
+	  <button type="submit" class="btn btn-secondary btn-sm" ><span class="material-symbols-outlined">login</span>Login</button>&nbsp;&nbsp; 
 	  <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='../main.do'"><span class="material-symbols-outlined">arrow_back_ios</span>Back to PersonalMemo</button>&nbsp;&nbsp; 
 	  </div>
 	</form>
 	<br> 
   </div>
   <div class="footer">
-	<p>Last updated: May 20th, 2023 </p>
+	<p>Last updated: Saturday, May 27th 2023 </p>
 	<p>This is not copyrighted. But don't use this for illegally.</p>
   </div>
 <body>

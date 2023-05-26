@@ -13,10 +13,16 @@
 </div>
 -->
 
-  <div class="col-md-8" style="padding: 0px; margin: 40px; border: ridge; background-color: #DCDCDC;">
-  <h3 class="htitle"> Welcome to PersonalMemo! 
+  <div class="col-md-8" style="padding: 0px; margin: 40px; background-color: #DCDCDC;">
+  <h3 class="htitle" style="border: ridge;"> Welcome to PersonalMemo! 
       <button class="btn btn-secondary btn-sm" onclick="location.href='main.do?page=4'"><span class="material-symbols-outlined">info</span>Reason of Making This Page</button>
       <button class="btn btn-secondary btn-sm" onclick="location.href='history.html'"><span class="material-symbols-outlined">history</span>History</button> 
+      <c:choose>
+      <c:when test="${sessionScope.id eq 'admin'}">
+      <button class="btn btn-secondary btn-sm" onclick="location.href='main.do?page=12'"><span class="material-symbols-outlined">create</span>Write</button> 
+      </c:when>
+      <c:otherwise></c:otherwise>
+      </c:choose>
   </h3>
       <table class="table" style="background-color: lightyellow;">
       <thead>

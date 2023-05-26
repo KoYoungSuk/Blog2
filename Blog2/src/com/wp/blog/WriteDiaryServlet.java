@@ -1,7 +1,10 @@
 package com.wp.blog;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
-
+import java.nio.file.Paths;
 import java.sql.Timestamp;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -56,14 +59,36 @@ public class WriteDiaryServlet extends HttpServlet {
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
   	    String viewName = null;
+  	    String localfilepath = null;
+  	    localfilepath = title + ".txt"; 
+	    File file = new File(localfilepath);
 		try {
 	       if(id != null) {
 	    	   if(id.equals("admin")) {
 	    		   DiaryDO diarydo = new DiaryDO(title, context, savedate, savedate);
 	    		   DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
-	    		   int rowsInserted = diarydao.insertDiary(diarydo);
+	    		   int rowsInserted = diarydao.insertDiary(diarydo); //일기장 정보를 데이터베이스에 저장 
+	    		   
 	    		   if(rowsInserted == 1) {
+	    			  
+	    			   if(!file.exists()) //파일 경로가 존재하지 않으면 새로 만든다.
+	    			   {
+	    				  file.createNewFile(); 
+	    			   }
+	    			   FileWriter fw = new FileWriter(file); 
+	    			   fw.write(context);
+	    			   fw.flush();
+	    			   fw.close(); 
+	    			   
+	    			   //자꾸 읽기 전용 파일 시스템 오류가 남.... 
+	    			   //g.UploadSFTP(localfilepath, "/mnt/hdd3/Secret Documents/Diary/Before 2020-07/" + title + ".txt");
+	    			   
 					   viewName = "diarylist?desc=0";
+					   
+					   if(file.exists())
+					   {
+						   file.delete(); 
+					   }
 				   }
 				   else {
 					   g.jsmessage("Unknown Error Message"); 
@@ -79,6 +104,10 @@ public class WriteDiaryServlet extends HttpServlet {
 	       }
 		}catch(Exception e) {
 			g.jsmessage(e.getMessage());
+			if(file.exists())
+			{
+				file.delete(); 
+			}
 		}
 		if(viewName != null) {
 			response.sendRedirect(viewName);

@@ -2,9 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <c:set var="productnumber" value= "${sessionScope.productdetaillist['product_no']}" />
 <div style="text-align: right;">
-<button class="btn btn-secondary btn-sm" onclick="history.go(-1);">Back</button>
-<button class="btn btn-secondary btn-sm" onclick="location.href='modifyproduct?product_no=${productnumber}'">Modify</button>
-<button class="btn btn-danger btn-sm" onclick="location.href='deleteproduct?product_no=${productnumber}'">Delete</button>&nbsp;&nbsp; 
+<button class="btn btn-secondary btn-sm" onclick="history.go(-1);"><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>
+<button class="btn btn-secondary btn-sm" onclick="location.href='modifyproduct?product_no=${productnumber}'"><span class="material-symbols-outlined">create</span>Modify</button>
+<button class="btn btn-danger btn-sm" onclick="location.href='deleteproduct?product_no=${productnumber}'"><span class="material-symbols-outlined">delete</span>Delete</button>&nbsp;&nbsp; 
 </div>
 <table class="table" style="background-color: lightyellow;">
 <tr>
