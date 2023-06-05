@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<div class="col-sm-4" style="background-color: #DCDCDC; padding: 0px; margin: 70px; border: ridge;">
-         <h3 class="htitle">ETC</h3>
+<div class="col-sm-4" style="background-color: #DCDCDC; padding: 0px; margin: 70px;">
+         <h3 class="htitle" style="border: ridge;">ETC</h3>
          <!-- 
          <p><a href="timer.html">Timer(Javascript)</a></p>
          <p><a href="diary">MyDiary(Web)</a>

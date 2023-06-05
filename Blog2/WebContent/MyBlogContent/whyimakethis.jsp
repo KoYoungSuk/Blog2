@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-       <div class="col-sm-6" style="background-color: #DCDCDC; border=ridge; padding=0px; margin: 70px; ">
-        <h3 class="htitle">Reason for making this website</h3>
+       <div class="col-sm-6" style="background-color: #DCDCDC; padding=0px; margin: 70px; ">
+        <h3 class="htitle" style="border: ridge;">Reason for making this website</h3>
         <hr>
         <h6>1. 어릴때 부터 홈페이지 같은걸 만들고 싶었음. </h6>
         <h6>2. 그래서 네이버 블로그 대용으로 한번 만들어 봤음. </h6>

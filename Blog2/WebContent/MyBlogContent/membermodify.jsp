@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-             <div class="col-md-4" style="margin: 70px; padding: 0px; border: ridge; background-color: #DCDCDC;">
-                  <H3 class="htitle"> Modify Member </H3>
+             <div class="col-md-4" style="margin: 70px; padding: 0px; background-color: #DCDCDC;">
+                  <H3 class="htitle" style="border: ridge;"> Modify Member </H3>
                   <h6>&nbsp;&nbsp; NOTICE: After modify member, You must login again.</h6>
                            <form action="modifymember.do" method="POST">
                            <div style="text-align: right;">
