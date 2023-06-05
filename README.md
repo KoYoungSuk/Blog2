@@ -32,10 +32,6 @@ Actually development environment is not Ubuntu. it is Windows 10/11!.
  Detail Memo
  ![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/5460a14e-586c-4159-ad8b-31d02fe56a65)
  
- JSPOracleManager
- 
- ![image](https://user-images.githubusercontent.com/58511486/170816893-b9c05a71-b4bb-4cba-b68f-d1e77daf7a79.png)
-
  Diary
  
  ![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/948d8b74-5b42-4994-82dc-974106b05265)
