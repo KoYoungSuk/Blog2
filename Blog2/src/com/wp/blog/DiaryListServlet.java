@@ -54,7 +54,6 @@ public class DiaryListServlet extends HttpServlet {
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
   	    String viewName = null;
-  	    //g.setLog(JDBC_Driver, db_url, db_id, db_pw, request, response);
   	    if(desc == 0) {
   	    	descbool = false;
   	    }

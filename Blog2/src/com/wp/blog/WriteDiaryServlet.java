@@ -1,10 +1,8 @@
 package com.wp.blog;
 
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.file.Paths;
 import java.sql.Timestamp;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;

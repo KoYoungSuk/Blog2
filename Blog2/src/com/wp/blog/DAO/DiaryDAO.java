@@ -160,4 +160,55 @@ public class DiaryDAO {
 	   disconnectDB();
 	   return diarynumber;
    }
+   
+   public List<DiaryDO> searchDiaryListByTitle(String title) throws ClassNotFoundException, SQLException{
+	   List<DiaryDO> diarylist = null;
+	   connectDB();
+	   String sql = "select * from diary where title like ? order by title"; 
+      
+	   PreparedStatement psm = null;
+	   
+	   psm = conn.prepareStatement(sql);
+	   psm.setString(1, '%' + title + '%'); 
+	   ResultSet rs = psm.executeQuery();
+	   if(rs.isBeforeFirst())
+	   {
+		   diarylist = new ArrayList<DiaryDO>();
+		   while(rs.next())
+		   {
+			   DiaryDO diarydo = new DiaryDO();
+			   diarydo.setTitle(rs.getString("title"));
+			   diarydo.setContext(rs.getString("context"));
+			   diarydo.setSavedate(rs.getTimestamp("savedate"));
+			   diarydo.setModifydate(rs.getTimestamp("modifydate"));
+			   diarylist.add(diarydo);
+		   }
+	   }
+	   psm.close();
+	   rs.close();
+	   disconnectDB();
+	   return diarylist;
+	}
+   
+   public int getDiarynumberByTitle(String title) throws ClassNotFoundException, SQLException{
+	   connectDB();
+	   String sql = "select count(*) diarynumber from diary where title like ? order by title";
+	   PreparedStatement psm = null;
+	   
+	   psm = conn.prepareStatement(sql);
+	   psm.setString(1, '%' + title  + '%');
+	   ResultSet rs = psm.executeQuery();
+	   int diarynumber = 0;
+	   if(rs.isBeforeFirst())
+	   {
+		   while(rs.next())
+		   {
+			   diarynumber = rs.getInt("diarynumber");
+		   }
+	   }
+	   psm.close();
+	   rs.close();
+	   disconnectDB();
+	   return diarynumber;
+   }
 }

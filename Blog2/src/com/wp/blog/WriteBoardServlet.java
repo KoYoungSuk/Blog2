@@ -1,23 +1,16 @@
 package com.wp.blog;
 
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.Enumeration;
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.wp.blog.DAO.BoardDAO;
 import com.wp.blog.DTO.BoardDO;
-import com.wp.blog.DTO.VideoDO;
 
 /**
  * Servlet implementation class BoardServlet
