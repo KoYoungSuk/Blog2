@@ -1,6 +1,7 @@
 package com.wp.blog.DAO;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +13,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.wp.blog.DTO.BoardDO;
-import com.wp.blog.DTO.VideoDO;
 
 public class BoardDAO {
 	public Connection conn = null;
@@ -235,25 +235,6 @@ public class BoardDAO {
 		   return countnumber;
 	   }
 	   
-	   public int getBoardNumber(String title) throws ClassNotFoundException, SQLException{
-		   connectDB();
-		   int number = 0;
-		   String sql = "select serial from board where title LIKE '% ? %'";
-		   ResultSet rs = null;
-		   PreparedStatement psm = null;	   
-		   psm = conn.prepareStatement(sql);
-		   psm.setString(1, title);
-		   rs = psm.executeQuery();
-		   if(rs.isBeforeFirst()) {
-			   while(rs.next()) {
-				   number = rs.getInt("serial");
-			   }
-		   }
-		   psm.close();
-		   rs.close();
-		   disconnectDB();
-		   return number;
-	   }
 	   
 	   public List<BoardDO> SearchBoardList(String word, Boolean desc) throws ClassNotFoundException, SQLException
 	   {
@@ -261,15 +242,18 @@ public class BoardDAO {
 		   String sql = null;
 		   connectDB();
 		   ResultSet rs = null;
-		   Statement sm = null;
-		   sm = conn.createStatement();
+		   PreparedStatement psm = null;
+		  
 		   if(desc) {
-			   sql = "select * from board where title like '%" + word + "%' order by serial desc";
+			   sql = "select * from board where title like ? order by serial desc";
 		   }
 		   else {
-			   sql = "select * from board where title like '%" + word + "%' order by serial";
+			   sql = "select * from board where title like ? order by serial";
 		   }
-		   rs = sm.executeQuery(sql);
+		   psm = conn.prepareStatement(sql);
+		   psm.setString(1, '%' + word + '%');
+		   
+		   rs = psm.executeQuery();
 		   if(rs.isBeforeFirst())
 		   {
 			   boardlist = new ArrayList<BoardDO>();
@@ -286,9 +270,41 @@ public class BoardDAO {
 				   boardlist.add(boarddo);
 			   }
 		   }
-		   sm.close();
+		   psm.close();
 		   rs.close();
 		   disconnectDB();
 		   return boardlist;
 	   }
+	   
+	   public int getBoardCountByWord(String word, String access) throws ClassNotFoundException, SQLException {
+		   connectDB();
+		   ResultSet rs = null;
+	       PreparedStatement psm = null;
+	       String sql = "";
+		   if(access.equals("admin")) { //관리자 모드: 전체 
+			   sql = "select count(*) countnumber from board where title like ?";
+		   }
+		   else if(access.equals("member")) { //회원 모드: 관리자가 아닌 것들만 
+			   sql = "select count(*) countnumber from board where title like ? and anonymous != 'admin'";
+		   }
+		   else { //비회원 모드: 비회원만 
+			   sql = "select count(*) countnumber from board where title like ? and anonymous = 'anonymous'";
+		   }
+		   psm = conn.prepareStatement(sql);
+		   psm.setString(1, '%' + word + '%'); 
+		   rs = psm.executeQuery();
+		   int countnumber = 0;
+		   if(rs.isBeforeFirst())
+		   {
+			  while(rs.next())
+		      {
+				 countnumber = rs.getInt("countnumber");
+			  }
+		   }
+		   psm.close();
+		   rs.close();
+		   disconnectDB();
+		   return countnumber;
+	   }
+	   
 }

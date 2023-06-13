@@ -71,7 +71,7 @@ public class SearchTitleServlet extends HttpServlet {
 	    try {
 	    	  BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw); 
 			  List<BoardDO> boardlist = boarddao.SearchBoardList(word, descbool); 
-			  int count_board = boarddao.getBoardCount(access);
+			  int count_board = boarddao.getBoardCountByWord(word, access);
 			  if(boardlist != null){
 				  for(BoardDO boarddo: boardlist) {
 						if(access.equals("admin")) {  //관리자 모드로 접속한 경우 전체 게시물 조회 가능 
