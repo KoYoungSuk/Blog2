@@ -51,7 +51,7 @@
 	  var input = document.createElement("input");
 	  input.type = "file";
 	  input.accept = "text/plain";
-	  
+
 	  input.click(); 
 	  input.onchange = function (event) {
 		  processFile(event.target.files[0]);
@@ -60,10 +60,11 @@
  //파일 처리 
   function processFile(file){
 	  var reader = new FileReader();
-	  reader.readAsText(file, "UTF-8")
+	  reader.readAsText(file, file.encoding)
 	  reader.onload = function() {
-		  title.innerHTML = file; 
-		  txtcontext.innerHTML = reader.result;
+		  txttitle.innerText = file.name; 
+		  console.log("file: ", file.name);
+		  txtcontext.innerHTML =  reader.result; 
 	  };
   }
  //파일 저장 

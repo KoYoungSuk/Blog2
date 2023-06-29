@@ -74,13 +74,12 @@ public class DiaryDetailServlet extends HttpServlet {
 	  	  	  	    	{
   	  	  	    		    session.setAttribute("diarylist", diarylist);
   	  	  	    		    session.setAttribute("diarynumber", diarynumber);
+  	  	  	    		    viewName = "diary.jsp?page=1"; 
 	  	  	  	    	}
 	  	  	  	    	else
 	  	  	  	    	{
-	  	  	  	    		session.setAttribute("diarylist", null);
-	  	  	  	    		session.setAttribute("diarynumber", diarynumber);
+	  	  	  	    	    g.jsmessage("Result Not Found."); 
 	  	  	  	    	}
-	  	  	  	        viewName = "diary.jsp?page=1"; 
 					}
 				}
 				else {

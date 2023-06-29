@@ -13,7 +13,7 @@
        <br> 
        <div style="text-align: right;">
        <button class="btn btn-secondary btn-sm" type="button" onclick="location.href='../manager/status'"><span class="material-symbols-outlined">dns</span>Tomcat Server Status</button>
-       <button class="btn btn-secondary btn-sm" type="button" onclick="location.href='dbmanager'"><span class="material-symbols-outlined">database</span>JSPOracleManager</button>
+       <!-- <button class="btn btn-secondary btn-sm" type="button" onclick="location.href='dbmanager'"><span class="material-symbols-outlined">database</span>JSPOracleManager</button>-->
        <button class="btn btn-secondary btn-sm" type="button" onclick="location.href='totaldb.do'"><span class="material-symbols-outlined">person</span>Member Management Center</button>&nbsp;&nbsp;
        </div>
       </c:when>
