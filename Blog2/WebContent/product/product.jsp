@@ -15,7 +15,7 @@
 </c:choose>
 <c:choose>
 <c:when test="${sessionScope.id ne 'admin'}">
-  <c:redirect url="/error_3217.html"></c:redirect>
+  <c:redirect url="../error_3217.html"></c:redirect>
 </c:when>
 <c:otherwise></c:otherwise>
 </c:choose>

@@ -2,6 +2,7 @@ package com.wp.blog;
 
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,17 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.wp.blog.DAO.DailyDAO;
+
 /**
- * Servlet implementation class LogoutServlet
+ * Servlet implementation class DeleteDailyServlet
  */
-@WebServlet("/signout.do")
-public class LogoutServlet extends HttpServlet {
+@WebServlet("/daily/deletedaily")
+public class DeleteDailyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutServlet() {
+    public DeleteDailyServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,33 +35,47 @@ public class LogoutServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
-		int check = Integer.parseInt(request.getParameter("check"));
 		String viewName = null;
-		//check 1 : MyBlog
-		//check 2: Diary
-		//check 3: ProductManager
-		//check 4: Info
-		//check 5: DailyManager 
-		if(check == 1) {
-			viewName = "main.do";
+		Global g = new Global(response);
+		String id = (String)session.getAttribute("id");
+		String title = request.getParameter("title"); 
+		ServletContext application = request.getSession().getServletContext();
+    	String JDBC_Driver = application.getInitParameter("jdbc_driver");
+  	    String db_url = application.getInitParameter("db_url");
+  	    String db_id = application.getInitParameter("db_userid");
+  	    String db_pw = application.getInitParameter("db_password");
+		try
+		{
+			if(id != null)
+			{
+				if(id.equals("admin"))
+				{
+					DailyDAO dailydao = new DailyDAO(JDBC_Driver, db_url, db_id, db_pw); 
+					int result = dailydao.deleteDailyInfo(title); 
+					if(result != 0)
+					{
+						viewName = "dailylist"; 
+					}
+				}
+				else
+				{
+					g.errorcode(3217); 
+				}
+			}
+			else
+			{
+				g.errorcode(3217);
+			}
 		}
-		else if(check == 2) {
-			viewName = "diary";
+		catch(Exception e)
+		{
+			g.jsmessage(e.getMessage());
 		}
-		else if(check == 3) {
-			viewName = "product";
+		
+		if(viewName != null)
+		{
+			response.sendRedirect(viewName); 
 		}
-		else if(check == 4) {
-			viewName = "info"; 
-		}
-		else if(check == 5) {
-			viewName = "daily"; 
-		}
-		else {
-			viewName = "main.do";
-		}
-		session.invalidate();
-		response.sendRedirect(viewName);
 	}
 
 	/**

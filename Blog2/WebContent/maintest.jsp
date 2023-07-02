@@ -32,7 +32,7 @@
 <c:when test="${param.page == 14}"><c:set var="titlename" value="Memo Detail" /></c:when>
 <c:when test="${param.page == 16}"><c:set var="titlename" value="About" /></c:when>
 <c:when test="${param.page == 17}"><c:set var="titlename" value="Modify Memo" /></c:when>
-<c:when test="${param.page == 0}"><script>window.location.href="http://192.168.55.126/nossl/non.htm";</script></c:when>
+<c:when test="${param.page == 0}"><script>window.location.href="http://192.168.55.126/non.htm";</script></c:when>
 <c:otherwise><c:set var="titlename" value="Main Page" /></c:otherwise></c:choose>
 <!DOCTYPE HTML>
 <html>
