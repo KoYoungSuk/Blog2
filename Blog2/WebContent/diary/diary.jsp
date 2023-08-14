@@ -89,25 +89,25 @@
     <h3 class="htitle">
     MyDiary (Current User: ${sessionScope.id} ) ${titlename} 
     <button type="button" onclick="history.go(-1);" class="btn btn-secondary btn-sm" ><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>
-    <button type="button" onclick="location.href='diary.jsp?page=3'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">create</span>Write</button>
 	<button type="button" onclick="location.href='../signout.do?check=2'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">logout</span>Logout</button>
+	<button type="button" onclick="location.href='../diary'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">home</span>Diary Main Page</button>
     </h3>
 	<p>&nbsp;&nbsp;Only Administrator can use WebDiary Web Mode. Sorry.... </p>
 	<hr> 
 	<c:choose>
-	 <c:when test="${page.param == 1}">
+	 <c:when test="${page.param == 1}"> <!--  Total Diary List -->
       ${diarylistcontent}
 	 </c:when>
-	 <c:when test="${param.page == 2}">
+	 <c:when test="${param.page == 2}"> <!-- Detail Diary List -->
 	 ${detailcontent}
 	</c:when>
-	<c:when test="${param.page == 3}">
+	<c:when test="${param.page == 3}"> <!--  Write Diary -->
 	 ${writecontent}
 	</c:when>
-	<c:when test="${param.page == 4}">
+	<c:when test="${param.page == 4}"> <!--  Modify Diary -->
      ${modifycontent}
 	</c:when>
-    <c:when test="${param.page == 5}">
+    <c:when test="${param.page == 5}"> <!--  Delete Diary -->
      ${deletecontent}
     </c:when>
     <c:otherwise>
@@ -116,7 +116,7 @@
 	</c:choose>
 </div>
 <div class="footer">
-	<p>Last updated: Saturday, May 27th, 2023 </p>
+	<p>Last updated: Monday, August 14th, 2023 </p>
 	<p>This is not copyrighted. But Don't use this illegally.</p>
 </div>
 </body>

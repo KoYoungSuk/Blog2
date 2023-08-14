@@ -38,7 +38,7 @@
      <div class="total">
      
      <c:choose>
-      <c:when test="${param.page == 3217}">
+      <c:when test="${param.page == 3217}"> 
         <H2 class="htitle"> Error 3217  </H2>
         <h4> &nbsp;&nbsp;&nbsp;&nbsp; 접근이 거부된 사용자입니다. (Error Code: 3217) </h4>
       </c:when>

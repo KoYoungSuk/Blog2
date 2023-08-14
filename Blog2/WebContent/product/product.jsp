@@ -55,24 +55,24 @@
     <h3 class="htitle">
       HomeProduct(Web) (Current User: ${sessionScope.id}) ${titlename}
       <button type="button" onclick="history.go(-1);" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>
-	  <button type="button" onclick="location.href='product.jsp?page=3'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">create</span>Write</button>
 	  <button type="button" onclick="location.href='../signout.do?check=3'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">logout</span>Logout</button>
+	  <button type="button" onclick="location.href='../product'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">home</span>Product Main Page</button>
     </h3>
 	<p>&nbsp;&nbsp;Only Administrator can use HomeProduct(Web). Sorry.... </p>
 	<hr>
 	<hr>
 	<!-- 파라미터에 따라 출력할 JSP 모듈 내용 지정 -->
 	<c:choose>
-	 <c:when test="${page.param == 1}">
+	 <c:when test="${page.param == 1}"> <!-- Total Product List -->
       ${productlistcontent}
 	 </c:when>
-	 <c:when test="${param.page == 2}">
+	 <c:when test="${param.page == 2}"> <!-- Detail Product List -->
 	 ${detailcontent}
 	</c:when>
-	<c:when test="${param.page == 3}">
+	<c:when test="${param.page == 3}"> <!--  Write Product List -->
 	 ${writecontent}
 	</c:when>
-	<c:when test="${param.page == 4}">
+	<c:when test="${param.page == 4}"> <!--  Modify Product List -->
      ${modifycontent}
 	</c:when>
     <c:otherwise>
@@ -82,7 +82,7 @@
 </div>
  <hr>
 <div class="footer">
-	<p>Last updated: Saturday, May 27th 2023 </p>
+	<p>Last updated: Monday, August 14th, 2023 </p>
 	<p>This is not copyrighted. But don't use this illegally. </p>
 </div>
 </body>

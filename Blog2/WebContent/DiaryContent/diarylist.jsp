@@ -6,6 +6,7 @@
        <form action="detaildiary" method="POST">
        <input type="text" class="form-control-sm" name="title" placeholder="Search Diary:" />&nbsp;&nbsp;
        <button type="submit" class="btn btn-secondary btn-sm" ><span class="material-symbols-outlined">search</span>Search</button>&nbsp;&nbsp;
+       <button type="button" onclick="location.href='diary.jsp?page=3'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">create</span>Write</button>&nbsp;&nbsp; 
        <c:choose>
        <c:when test="${param.desc == 0}">
        <button type="button" class="btn btn-warning btn-sm" onclick="location.href='diarylist?desc=1'" ><span class="material-symbols-outlined">trending_down</span>Descend</button>&nbsp;&nbsp;

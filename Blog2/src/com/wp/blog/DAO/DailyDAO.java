@@ -160,7 +160,7 @@ public class DailyDAO {
 		PreparedStatement psm = null;
 		ResultSet rs = null;
 		psm = conn.prepareStatement(sql);
-		psm.setString(1, "%" + word + "%"); 
+		psm.setString(1, "%" + word + "%"); //LIKE %WORD% : WORD가 포함된 모든 단어 검색 
 		rs = psm.executeQuery(); 
 		if(rs.isBeforeFirst())
 		{

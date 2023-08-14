@@ -47,17 +47,18 @@ public class WriteDailyServlet extends HttpServlet {
 		Global g = new Global(response);
 		HttpSession session = request.getSession(); 
 		String viewName = null;
-		String id = (String)session.getAttribute("id"); 
+		String id = (String)session.getAttribute("id"); //세션에서 아이디 불러오기 
 		String title = request.getParameter("title");
 		String content = request.getParameter("content"); 
 		String status = request.getParameter("status"); 
-		Timestamp savedate = new Timestamp(System.currentTimeMillis());
+		Timestamp savedate = new Timestamp(System.currentTimeMillis()); //현재 날짜/시각 (Timestamp) 
+		//START - 데이터베이스 연결 준비  
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
-  	    
+  	    //END - 데이터베이스 연결 준비 
   	    try
   	    {
   	    	DailyDO dailydo = new DailyDO(title, content, status, null, savedate, savedate); 
@@ -65,7 +66,7 @@ public class WriteDailyServlet extends HttpServlet {
   	    	
   	    	if(id != null)
   	    	{
-  	    		if(id.equals("admin"))
+  	    		if(id.equals("admin")) //관리자만 사용가능 (세션 아이디가 admin인지 검사) 
   	    		{
   	    			int result = dailydao.insertDailyInfo(dailydo);
   	    			if(result != 0)

@@ -44,12 +44,14 @@ public class LoginServlet extends HttpServlet {
 		Global g = new Global(response);
 		HttpSession session = request.getSession();
 		ServletContext application = request.getSession().getServletContext();
+		//START - 데이터베이스 연결 준비 
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
+  	    //END - 데이터베이스 연결 준비 
 		String id = request.getParameter("id");
-		String password = request.getParameter("password");
+		String password = request.getParameter("password"); 
 		String firstname = null;
 		String lastname = null;
 		String birthday = null;
@@ -62,8 +64,9 @@ public class LoginServlet extends HttpServlet {
 			String password_db = memberlist.get("password");
 			if(password_db != null)
 			{
-				if(BCrypt.checkpw(password, password_db))
-				{
+				if(BCrypt.checkpw(password, password_db)) //비밀번호 검사(데이터베이스의 비밀번호와 입력받은 비밀번호를 비교) //BCrypt 사용
+				{ 
+					//맞으면 세션에 이름, 생년월일을 저장하고 리다이렉트 준비 
 					firstname = memberlist.get("firstname");
 					lastname = memberlist.get("lastname");
 					birthday = memberlist.get("birthday");

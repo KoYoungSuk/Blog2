@@ -13,15 +13,15 @@
   </context-param>
   <context-param>
     <param-name>db_url</param-name>
-    <param-value>jdbc:oracle:thin:@koyoungsuk2.iptime.org:1521/XE</param-value>
+    <param-value>jdbc:oracle:thin:@192.168.55.58:1521/XE</param-value>
   </context-param>
   <context-param>
     <param-name>db_userid</param-name>
-    <param-value>dbid</param-value>
+    <param-value>kys</param-value>
   </context-param>
   <context-param>
     <param-name>db_password</param-name>
-    <param-value>dbpw</param-value>
+    <param-value>kys107121115</param-value>
   </context-param>
   <error-page>
     <error-code>418</error-code>
@@ -29,18 +29,18 @@
   </error-page>
   <error-page>
     <error-code>403</error-code>
-    <location>/error_403.html</location>
+    <location>/error.jsp?page=403</location>
   </error-page>
   <error-page>
     <error-code>404</error-code>
-    <location>/error_404.html</location>
+    <location>/error.jsp?page=404</location>
   </error-page>
   <error-page>
     <error-code>500</error-code>
-    <location>/error_500.html</location>
+    <location>/error.jsp?page=500</location>
   </error-page>
   <error-page>
     <error-code>3217</error-code>
-    <location>/error_3217.html</location>
+    <location>/error.jsp?page=3217</location>
   </error-page>
 </web-app>

@@ -6,6 +6,9 @@
 <input type="text" class="form-control-sm" name="title" placeholder="Search By Title" /> 
 &nbsp;&nbsp;
 <button class="btn btn-secondary btn-sm" type="submit"><span class="material-symbols-outlined">search</span>Search</button> 
+&nbsp;&nbsp; 
+<button type="button" onclick="location.href='daily.jsp?page=3'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">create</span>Write</button>
+&nbsp;&nbsp; 
 <button type="button" class="btn btn-secondary btn-sm" onclick="window.location.reload();"><span class="material-symbols-outlined">refresh</span>Refresh</button>
 </div>
 </form>
