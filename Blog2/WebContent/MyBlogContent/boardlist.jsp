@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-    <div class="col-md-10" style="margin: 40px; padding: 0px; background-color: #DCDCDC; ">
+    <div class="col-xs-8" style="margin: 40px; padding: 0px; background-color: #DCDCDC; ">
       <h3 class="htitle" style="border: ridge;">
       Memo List
       <c:choose>
@@ -19,11 +19,11 @@
           (NonMember Mode)
         </c:otherwise>
        </c:choose>
+      </h3>
+       <div style="text-align: right;">
         <button class="btn btn-secondary btn-sm" onclick="history.go(-1);"><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>
         <button class="btn btn-secondary btn-sm" onclick="location.href='main.do?page=12'"><span class="material-symbols-outlined">create</span>Write</button>
         <button class="btn btn-secondary btn-sm" onclick="location.href='boardlist.do'"><span class="material-symbols-outlined">refresh</span>Refresh</button>
-      </h3>
-       <div style="text-align: right;">
        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
        </div>
       <div style="text-align: center">

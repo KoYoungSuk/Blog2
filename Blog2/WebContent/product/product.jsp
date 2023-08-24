@@ -50,14 +50,17 @@
 </script>
 </head>
 <body>
-
+<div class="container-fluid">
+<div class="row"> 
 <div class="col-sm-8" style="background-color: #DCDCDC; padding: 0px; margin: 50px; ">
     <h3 class="htitle">
       HomeProduct(Web) (Current User: ${sessionScope.id}) ${titlename}
+    </h3>
+    <div style="text-align: center;">
       <button type="button" onclick="history.go(-1);" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>
 	  <button type="button" onclick="location.href='../signout.do?check=3'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">logout</span>Logout</button>
 	  <button type="button" onclick="location.href='../product'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">home</span>Product Main Page</button>
-    </h3>
+    </div>
 	<p>&nbsp;&nbsp;Only Administrator can use HomeProduct(Web). Sorry.... </p>
 	<hr>
 	<hr>
@@ -80,7 +83,9 @@
     </c:otherwise>
 	</c:choose>
 </div>
- <hr>
+</div>
+</div>
+<hr>
 <div class="footer">
 	<p>Last updated: Monday, August 14th, 2023 </p>
 	<p>This is not copyrighted. But don't use this illegally. </p>

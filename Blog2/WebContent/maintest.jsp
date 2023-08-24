@@ -39,13 +39,18 @@
 <head>
 <title> PersonalMemo ( <c:out value="${titlename}" /> ) </title>
 <meta charset = "utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />	
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />	 
+<!--  Mobile Friendly Meta Tag -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!--  Bootstrap 4.4 CSS -->
 <link rel="stylesheet" href="./BS/bootstrap.min.css">
 <link rel="stylesheet" href="./BS/bootstrap.css">
-<link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
 <!--  Span Icon By Google -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<!-- Javascript for Hamburger Button -->
+<script src="./JS/jquery-3.2.1.slim.min.js" ></script>
+<script src="./JS/popper.min.js"></script>
+<script src="./JS/bootstrap.min.js"></script>
 <style>
   .footer{
       text-align: right;
@@ -56,7 +61,6 @@
       padding-bottom: 0px;
       text-align: center;
   }
-
 body {
   background-color: #008080; 
 }
@@ -69,49 +73,53 @@ body {
 </style>
 </head>
 <body>
-  <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-       <a class="navbar-brand" href="./main.do?page=1"><span class="material-symbols-outlined">sticky_note_2</span>PersonalMemo</a>
-         <div class="navbar-collapse">
-       <ul class="navbar-nav">
-        <li class="nav-item"><a class="nav-link" href="./main.do?page=1"><span class="material-symbols-outlined">home</span>Home </a> </li> 
-        <li class="nav-item"><a class="nav-link" href="./boardlist.do"> <span class="material-symbols-outlined">list</span>MemoList </a> </li>
-       <c:choose>
-      <c:when test="${sessionScope.id ne null}"> <!-- 로그인 되어 있을때 -->
-        <li class="nav-item"><a class="nav-link" href="./main.do?page=6"><span class="material-symbols-outlined">manage_accounts</span>Manage Center </a></li>
-      </c:when>
+  <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+      <a class="nav-item navbar-brand" href="./main.do?page=1"><span class="material-symbols-outlined">sticky_note_2</span>PersonalMemo</a>
+      <!-- 햄버거 버튼 -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse"
+      data-target="#ToggleMenu" aria-controls="ToggleMenu" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="material-symbols-outlined">menu</span></button>
+      
+      <div class="collapse navbar-collapse" id="ToggleMenu">
+      <div class="navbar-nav">
+           <a class="nav-item nav-link" href="./main.do?page=1"><span class="material-symbols-outlined">home</span>Home </a> 
+           <a class="nav-item nav-link" href="./boardlist.do"> <span class="material-symbols-outlined">list</span>MemoList </a>
+        <c:choose>
+        <c:when test="${sessionScope.id ne null}"> <!-- 로그인 되어 있을때 -->
+           <a class="nav-item nav-link" href="./main.do?page=6"><span class="material-symbols-outlined">manage_accounts</span>Manage Center </a>
+        </c:when>
         <c:otherwise></c:otherwise>
-      </c:choose>
-       <li class="nav-item"><a class="nav-link" href="./main.do?page=13"><span class="material-symbols-outlined">more</span>ETC</a> </li>
-       <li class="nav-item"><a class="nav-link" href="./main.do?page=16"><span class="material-symbols-outlined">info</span>About </a> </li>
-       </ul>
-       <ul class="navbar-nav ml-auto">
-      <c:choose>
-      <c:when test="${sessionScope.id ne null}"> <!-- 로그인 되어 있을때 -->
-      <button class="btn btn-dark" onclick="location.href='totalmember.do?id=${id}'"> Current User ID: ${id}, Current User Name: ${sessionScope.fullname} </button>
-      <button class="btn btn-danger btn-sm" onclick="location.href='signout.do?check=1'"><span class="material-symbols-outlined">logout</span>Logout</button>
-      </c:when>
-      <c:otherwise>
-      <form class="form-inline" action="login.do" method="post" >
-      <input class="form-control mr-sm-2" type="text" placeholder="ID" name="id" required />
-      <input class="form-control mr-sm-2" type="password" placeholder="Password" name="password" required />
-      <li class="nav-item">
-      <button class="btn btn-secondary btn-sm" type="submit"><span class="material-symbols-outlined">login</span>Login</button>
-      </li>
-      &nbsp;&nbsp; 
-      <li class="nav-item">
-      <button class="btn btn-secondary btn-sm" type="button" onclick="location.href='./main.do?page=2'"><span class="material-symbols-outlined">person_add</span>Sign up</button>
-      </li>
-      </form>
+        </c:choose>
+        <a class="nav-item nav-link" href="./main.do?page=13"><span class="material-symbols-outlined">more</span>ETC</a>
+        <a class="nav-item nav-link" href="./main.do?page=16"><span class="material-symbols-outlined">info</span>About </a>
+       </div>
+       <div class="navbar-nav ml-auto">
+       <c:choose>
+       <c:when test="${sessionScope.id ne null}"> <!-- 로그인 되어 있을때 -->
+         <button class="btn btn-dark" onclick="location.href='totalmember.do?id=${id}'"> Current User ID: ${id}, Current User Name: ${sessionScope.fullname} </button>
+         <button class="btn btn-danger btn-sm" onclick="location.href='signout.do?check=1'"><span class="material-symbols-outlined">logout</span>Logout</button>
+       </c:when>
+       <c:otherwise>
+         <form class="form-inline" action="login.do" method="post" > <!-- 로그인 되어 있지 않을때 아이디 및 비밀번호 입력창 출력  -->
+            <input class="form-control mr-sm-2" type="text" placeholder="ID" name="id" required />
+            <input class="form-control mr-sm-2" type="password" placeholder="Password" name="password" required />
+            <button class="btn btn-secondary btn-sm" type="submit"><span class="material-symbols-outlined">login</span>Login</button>
+            &nbsp;&nbsp; 
+            <button class="btn btn-secondary btn-sm" type="button" onclick="location.href='./main.do?page=2'"><span class="material-symbols-outlined">person_add</span>Sign up</button>
+         </form>
       </c:otherwise>
       </c:choose>
-</ul>
-</div>
+      </div>
+   </div>
+   
 </nav>
 <div class="jumbotron" >
    <H1> PersonalMemo </H1>
    <H4><c:out value="${titlename}" /> </H4>
 </div>
 <!-- 파라미터에 따라 출력할 JSP 모듈 내용 지정 -->
+<div class="container-fluid">
+<div class="row">
 <c:choose>
 <c:when test="${param.page == 1}">
 ${defaultcontent}
@@ -162,6 +170,8 @@ ${deleteboardcontent}
 ${defaultcontent}
 </c:otherwise>
 </c:choose>
+</div>
+</div> 
 <div class="footer">
    <p> Last updated: Saturday, May 27th, 2023 </p>
    <p> This is not copyrighted. But Don't use this web site to make illegal stuff. </p>

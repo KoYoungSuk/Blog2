@@ -1,29 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<!-- 
-<div class="container-fluid">
-<div class="row">
-   <div class="col-md-4" style="padding: 0px; margin: 40px; border: ridge; background-color: #DCDCDC; text-align: center;">
-      <h3 class="htitle">Welcome to PersonalMemo! </h3>
-      <br>
-      
-      <br>
-   </div>
-</div>
-</div>
--->
-
-  <div class="col-md-8" style="padding: 0px; margin: 40px; background-color: #DCDCDC;">
-  <h3 class="htitle" style="border: ridge;"> Welcome to PersonalMemo! 
+  <div class="col-lg-8" style="padding: 0px; margin: 40px; background-color: #DCDCDC;">
+  <h3 class="htitle" style="border: ridge;"> Welcome to PersonalMemo! </h3>
+      <div style="text-align: center;"> 
       <button class="btn btn-secondary btn-sm" onclick="location.href='main.do?page=4'"><span class="material-symbols-outlined">info</span>Reason of Making This Page</button>
-      <button class="btn btn-secondary btn-sm" onclick="location.href='history.html'"><span class="material-symbols-outlined">history</span>History</button> 
       <c:choose>
       <c:when test="${sessionScope.id eq 'admin'}">
       <button class="btn btn-secondary btn-sm" onclick="location.href='main.do?page=12'"><span class="material-symbols-outlined">create</span>Write</button> 
       </c:when>
       <c:otherwise></c:otherwise>
       </c:choose>
-  </h3>
+      </div>
+      <hr> 
       <table class="table" style="background-color: lightyellow;">
       <thead>
       <tr>

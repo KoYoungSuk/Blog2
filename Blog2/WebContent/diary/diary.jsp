@@ -85,13 +85,17 @@
 </script>
 </head>
 <body>
+<div class="container-fluid"> 
+<div class="row"> 
 <div class= "col-sm-8" style="padding: 0px; margin: 70px; background-color: #DCDCDC; ">
     <h3 class="htitle">
     MyDiary (Current User: ${sessionScope.id} ) ${titlename} 
+    </h3>
+    <div style="text-align: center;">
     <button type="button" onclick="history.go(-1);" class="btn btn-secondary btn-sm" ><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>
 	<button type="button" onclick="location.href='../signout.do?check=2'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">logout</span>Logout</button>
 	<button type="button" onclick="location.href='../diary'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">home</span>Diary Main Page</button>
-    </h3>
+    </div>
 	<p>&nbsp;&nbsp;Only Administrator can use WebDiary Web Mode. Sorry.... </p>
 	<hr> 
 	<c:choose>
@@ -115,6 +119,8 @@
     </c:otherwise>
 	</c:choose>
 </div>
+</div>
+</div> 
 <div class="footer">
 	<p>Last updated: Monday, August 14th, 2023 </p>
 	<p>This is not copyrighted. But Don't use this illegally.</p>

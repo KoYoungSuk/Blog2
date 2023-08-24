@@ -26,11 +26,8 @@
 		color: yellow;
 	}
 	.footer{
-	    left: 0;
-        bottom: 0;
-        width: 100%;
-		text-align: center;
-		background-color: lightblue;
+		text-align: right; 
+		color: white; 
 	}
     .htitle
     {
@@ -46,6 +43,8 @@
 </style>
 </head>
 <hr>
+<div class="container-fluid">
+<div class="row">
    <div class="col-sm-4" style="background-color: #DCDCDC; margin: 120px; padding: 0px;">
     <H3 class="htitle"> Welcome to MyDiary! </H3>
 	<p>&nbsp;&nbsp;Only Administrator can use MyDiary(Web). (I'm Sorry!) </p>
@@ -66,6 +65,8 @@
 	 </div>
 	 <br> 
 	</form>
+  </div>
+  </div>
   </div>
   <div class="footer">
 	<p>Last updated: May 18th, 2023 </p>

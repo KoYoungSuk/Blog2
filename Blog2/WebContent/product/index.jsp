@@ -36,7 +36,8 @@
      }
 </style>
 </head>
-
+<div class="container-fluid">
+<div class="row"> 
   <div class="col-sm-4" style="background-color: #DCDCDC; padding: 0px; margin: 120px;">
     <h3 class="htitle">Welcome to HomeProduct!</h3>
 	<p>&nbsp;&nbsp;Only Administrator can use HomeProduct Web Mode. Sorry.... </p>
@@ -60,6 +61,8 @@
 	</form>
 	<br> 
   </div>
+  </div>
+  </div> 
   <div class="footer">
 	<p>Last updated: Saturday, May 27th 2023 </p>
 	<p>This is not copyrighted. But don't use this for illegally.</p>

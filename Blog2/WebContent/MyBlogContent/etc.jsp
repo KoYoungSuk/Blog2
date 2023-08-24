@@ -9,10 +9,13 @@
          --> 
          <h4>&nbsp;&nbsp;ETC Link</h4>
          <br> 
-         <div style="text-align: right;">
+         <div style="text-align: center;">
           <button class="btn btn-secondary btn-sm" onclick="location.href='timer.html'"><span class="material-symbols-outlined">timer</span>Timer(Javascript)</button>
+          <br><p></p>
           <button class="btn btn-secondary btn-sm" onclick="location.href='diary'"><span class="material-symbols-outlined">book</span>MyDiary(Web)</button>
+          <br><p></p>
           <button class="btn btn-secondary btn-sm" onclick="location.href='product'"><span class="material-symbols-outlined">category</span>HomeProduct(Web)</button>
+          <br><p></p>
           &nbsp;&nbsp; 
          </div> 
 </div>
