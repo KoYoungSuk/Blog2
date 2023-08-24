@@ -1,4 +1,4 @@
-# PersonalMemo Version 1.5 (2023-05-27) 
+# PersonalMemo Version 1.8 (2023-08-24) 
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -23,18 +23,23 @@ Actually development environment is not Ubuntu. it is Windows 10/11!.
  
  Main Screen 
  
-![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/fc1ccb7e-8b6f-4777-a9e2-d0397418ec06)
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/70359aae-b929-4826-b5d6-e19bf7e3e7c7)
+
 
  Memo List
  
- ![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/c664d8db-397f-4931-9c34-c36cf1a59a51)
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/3fdd4ede-fa40-4d93-bfd2-a5d3181a441c)
+
 
  Detail Memo
- ![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/5460a14e-586c-4159-ad8b-31d02fe56a65)
+
+ ![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/9db728a0-8674-4032-ba06-c06fc717dadf)
+
  
  Diary
  
- ![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/948d8b74-5b42-4994-82dc-974106b05265)
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/85214b63-0545-452c-94cf-4c00a6c81400)
+
 
  ------------------------------------------------------------------------------------------------------------------------------------------
  # NOTICE
