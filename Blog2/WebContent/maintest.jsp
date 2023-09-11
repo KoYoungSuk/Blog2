@@ -16,6 +16,7 @@
 <c:import url="MyBlogContent/modifyboard.jsp" var="modifyboardcontent"></c:import>
 <c:import url="MyBlogContent/deleteboard.jsp" var="deleteboardcontent"></c:import>
 <c:import url="MyBlogContent/whyimakethis.jsp" var="whyimakethiscontent"></c:import>
+<c:import url="MyBlogContent/login.jsp" var="logincontent"></c:import> 
 <!-- 파라미터에 따라 사이트 제목 정하기 -->
 <c:choose>
 <c:when test="${param.page == 1}"><c:set var="titlename" value="Main Page" /></c:when>
@@ -32,7 +33,9 @@
 <c:when test="${param.page == 14}"><c:set var="titlename" value="Memo Detail" /></c:when>
 <c:when test="${param.page == 16}"><c:set var="titlename" value="About" /></c:when>
 <c:when test="${param.page == 17}"><c:set var="titlename" value="Modify Memo" /></c:when>
-<c:when test="${param.page == 0}"><script>window.location.href="http://192.168.55.126/non.htm";</script></c:when>
+<c:when test="${param.page == 18}"><c:set var="titlename" value="Login" /></c:when> 
+<c:when test="${param.page == 20}"><c:set var="titlename" value="Delete Board" /></c:when> 
+<c:when test="${param.page == 0}"><script>window.location.href="http://home.yspersonal.com/non.htm";</script></c:when>
 <c:otherwise><c:set var="titlename" value="Main Page" /></c:otherwise></c:choose>
 <!DOCTYPE HTML>
 <html>
@@ -100,13 +103,10 @@ body {
          <button class="btn btn-danger btn-sm" onclick="location.href='signout.do?check=1'"><span class="material-symbols-outlined">logout</span>Logout</button>
        </c:when>
        <c:otherwise>
-         <form class="form-inline" action="login.do" method="post" > <!-- 로그인 되어 있지 않을때 아이디 및 비밀번호 입력창 출력  -->
-            <input class="form-control mr-sm-2" type="text" placeholder="ID" name="id" required />
-            <input class="form-control mr-sm-2" type="password" placeholder="Password" name="password" required />
-            <button class="btn btn-secondary btn-sm" type="submit"><span class="material-symbols-outlined">login</span>Login</button>
+          <!-- 로그인 되어 있지 않을때 아이디 및 비밀번호 입력창 출력  -->
+            <button class="btn btn-secondary btn-sm" type="button" onclick="location.href= './main.do?page=18'"><span class="material-symbols-outlined">login</span>Login</button>
             &nbsp;&nbsp; 
             <button class="btn btn-secondary btn-sm" type="button" onclick="location.href='./main.do?page=2'"><span class="material-symbols-outlined">person_add</span>Sign up</button>
-         </form>
       </c:otherwise>
       </c:choose>
       </div>
@@ -162,6 +162,9 @@ ${aboutcontent}
 </c:when>
 <c:when test="${param.page == 17}">
 ${modifyboardcontent}
+</c:when>
+<c:when test="${param.page == 18}">
+${logincontent}
 </c:when>
 <c:when test="${param.page == 20}">
 ${deleteboardcontent}

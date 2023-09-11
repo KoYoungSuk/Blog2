@@ -3,6 +3,7 @@
        <div class="col-sm-6" style="background-color: #DCDCDC; padding=0px; margin: 70px; ">
         <h3 class="htitle" style="border: ridge;">Reason for making this website</h3>
         <hr>
+        <!-- 
         <h6>1. 어릴때 부터 홈페이지 같은걸 만들고 싶었음. </h6>
         <h6>2. 그래서 네이버 블로그 대용으로 한번 만들어 봤음. </h6>
         <h6>(근데 고3때까지 홈페이지를 어떻게 만드는지 몰랐음 대충 서버 컴퓨터를 구축해야한다는 것까지는 알았지만... )</h6>
@@ -32,5 +33,8 @@
         <h6>15. 2022년 10월: 서버 통합(home.yspersonal.com JSP 서버) 및 SFTP 서버로 홈페이지 이동(2015년식 LG 22V240-LT25K) </h6>
         <h6>16. 2023년 03월: 홈페이지 이름 변경 작업 진행(MyBlog -> MyMemo): 용도를 블로그가 아닌 간단한 메모장으로 변경 </h6>
         <h6>17. 2023년 04월: 홈페이지 이름을 PersonalMemo로 변경 및 디자인 개선 작업 진행</h6>
+        -->
+        
+        <iframe src="./pdf/WhyIMakethis.pdf" style="width:700px;height:700px;"></iframe>
         <br>
       </div>

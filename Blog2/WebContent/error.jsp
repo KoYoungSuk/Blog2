@@ -61,7 +61,7 @@
      </c:choose>
       
       <div style="text-align: center">
-      <button onclick="location.href='http://192.168.55.126/nossl/'">Back to Main Page</button> 
+      <button onclick="location.href='https://home.yspersonal.com'">Back to Main Page</button> 
       <button onclick="history.go(-1);">Back</button>   
       </div>  
        <br> 

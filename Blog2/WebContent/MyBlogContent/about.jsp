@@ -2,19 +2,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <div class="col-sm-4" style="margin: 70px; padding: 0px; background-color: #DCDCDC;">
        <h3 class="htitle" style="border: ridge;">About PersonalMemo</h3>
-       <p>PersonalMemo Version 1.8 (Build 120) </p>
+       <p>PersonalMemo Version 2.0 (Build 135) </p>
        <p>First Updated: Tuesday, February 25th 2020 </p>
-       <p>Last Updated: Thursday, August 24th, 2023 </p>
+       <p>Last Updated: Wednesday, September 13th, 2023 </p>
+       <hr> 
        <c:choose>
        <c:when test="${sessionScope.id ne null }">
-       <p>Based Language: HTML5, CSS, JavaScript, JSP(Java Server Page)</p>
-       <p>Server Operating System: <% out.println(System.getProperty("os.name")); %></p>
-       <p>Server Info: <%= application.getServerInfo() %></p>
-       <p>OpenJDK Version: OpenJDK Ver 8(Development)/OpenJDK Ver 11(Real Server) </p>
-       <p>Framework: Bootstrap 4/W3.CSS </p>
-       <p>DataBase: Oracle DataBase 18c Express Edition </p>
-       <hr>
+       <p><a href="./pdfviewer/environment.html">Development/Server Environment</a></p>
        <p><a href="https://github.com/KoYoungSuk/Blog2.git">GitHub Source</a></p>
+       <p><a href="./pdfviewer/">Reason and History</a></p>
+       <p><a href="./pdfviewer/old.html">Legacy Pictures About My WebSite. </a></p>
+       <p><a href="./pdfviewer/portfoilo.html">Portfoilo</a></p>
        <hr>
        </c:when>
        </c:choose>

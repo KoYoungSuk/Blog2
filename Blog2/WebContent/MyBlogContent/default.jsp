@@ -3,7 +3,7 @@
   <div class="col-lg-8" style="padding: 0px; margin: 40px; background-color: #DCDCDC;">
   <h3 class="htitle" style="border: ridge;"> Welcome to PersonalMemo! </h3>
       <div style="text-align: center;"> 
-      <button class="btn btn-secondary btn-sm" onclick="location.href='main.do?page=4'"><span class="material-symbols-outlined">info</span>Reason of Making This Page</button>
+      <button class="btn btn-secondary btn-sm" onclick="location.href='./pdfviewer/'"><span class="material-symbols-outlined">info</span>Reason and History</button>
       <c:choose>
       <c:when test="${sessionScope.id eq 'admin'}">
       <button class="btn btn-secondary btn-sm" onclick="location.href='main.do?page=12'"><span class="material-symbols-outlined">create</span>Write</button> 
