@@ -21,7 +21,15 @@
   </context-param>
   <context-param>
     <param-name>db_password</param-name>
-    <param-value>kys107121115</param-value>
+    <param-value>password censored</param-value>
+  </context-param>
+  <context-param>
+    <param-name>mail_id</param-name>
+    <param-value>id</param-value>
+  </context-param>
+  <context-param>
+    <param-name>mail_password</param-name>
+    <param-value>password</param-value> 
   </context-param>
   <error-page>
     <error-code>418</error-code>
@@ -29,7 +37,7 @@
   </error-page>
   <error-page>
     <error-code>403</error-code>
-    <location>/error.jsp?page=403</location>
+    <location>/blocker/index.html</location>
   </error-page>
   <error-page>
     <error-code>404</error-code>
