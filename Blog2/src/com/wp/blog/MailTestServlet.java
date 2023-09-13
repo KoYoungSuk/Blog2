@@ -47,11 +47,10 @@ public class MailTestServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
-		String viewName = null;
 		Global g = new Global(response);
 		
 		//Parameters from HTML
-		String from = "vheh5678@naver.com"; //보내는 주소 
+		String from = "vheh5678@naver.com"; //보내는 주소 (일단 네이버 메일임) 
 		String to = request.getParameter("to"); //받는 주소 
 		String title = request.getParameter("title");
 		String content = request.getParameter("content"); 
