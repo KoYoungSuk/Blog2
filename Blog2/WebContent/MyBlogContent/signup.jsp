@@ -6,9 +6,10 @@
 <hr>
 <div>
 <p> &nbsp;&nbsp; if you use this website perfectly,  you need to make your account. </p>
-<p> &nbsp;&nbsp; you need to type id, password, confirmed password to make your account. </p>
+<p> &nbsp;&nbsp; you need to type id, password, confirmed password and email address. to make your account. </p>
 <p> &nbsp;&nbsp; But typing your birthday your name(First name, Last name)  is optional. </p>
 <p> &nbsp;&nbsp; Birthday: for example: 1999-12-31 or 2000-01-01 </p>
+<p> &nbsp;&nbsp; You can't use duplicated Email Address. </p>
 </div>
 <table class="table">
    <thead>
@@ -33,8 +34,12 @@
       <td><input type="text" class="form-control" placeholder="Last Name" name="last_name"></td>
      </tr>  
      <tr>
-     <td> <label for="birthday"><b> Your Birthday(optional/YYYY-MM-DD): </b></label> </td>
-     <td> <input type="text" class="form-control" placeholder="Birthday(YYYY-MM-DD)" name="birthday"> </td>
+     <td> <label for="birthday"><b> Your Birthday(optional/yyyy-MM-dd): </b></label> </td>
+     <td> <input type="text" class="form-control" placeholder="Birthday(yyyy-MM-dd)" name="birthday"> </td>
+     </tr>
+     <tr>
+     <td> <label for="mailaddress"><b> Mail Address(For Example: example@example.com) </b></label> </td>
+     <td> <input type="text" class="form-control" placeholder="Mail Address(For Example: example@example.com)" name="mailaddress"> </td>
      </tr>
    </tbody>
 </table>

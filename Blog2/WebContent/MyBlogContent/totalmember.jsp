@@ -23,6 +23,7 @@
                             <th>Last Name</th>
                             <th>Birthday</th>
                             <th>Join Date</th>
+                            <th>MailAddress</th>
                          </tr>
                          </thead>
                          <tbody>
@@ -35,6 +36,7 @@
                             <td><c:out value="${memberDO.lastname}" /></td>
                             <td><c:out value="${memberDO.birthday}" /></td>
                             <td><c:out value="${memberDO.joindate}" /></td>
+                            <td><c:out value="${memberDO.mailaddress}" /></td>
                             </tr>
                              </c:forEach>
                          </tbody>

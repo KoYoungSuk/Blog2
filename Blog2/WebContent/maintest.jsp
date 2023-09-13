@@ -17,6 +17,10 @@
 <c:import url="MyBlogContent/deleteboard.jsp" var="deleteboardcontent"></c:import>
 <c:import url="MyBlogContent/whyimakethis.jsp" var="whyimakethiscontent"></c:import>
 <c:import url="MyBlogContent/login.jsp" var="logincontent"></c:import> 
+<c:import url="MyBlogContent/FindIDPasswordContent.jsp" var="FindIDPasswordContent"></c:import> 
+<c:import url="MyBlogContent/findid.jsp" var="findidcontent"></c:import>
+<c:import url="MyBlogContent/findpw.jsp" var="findpwcontent"></c:import> 
+<c:import url="MyBlogContent/changepassword.jsp" var="changepwcontent"></c:import> 
 <!-- 파라미터에 따라 사이트 제목 정하기 -->
 <c:choose>
 <c:when test="${param.page == 1}"><c:set var="titlename" value="Main Page" /></c:when>
@@ -34,8 +38,12 @@
 <c:when test="${param.page == 16}"><c:set var="titlename" value="About" /></c:when>
 <c:when test="${param.page == 17}"><c:set var="titlename" value="Modify Memo" /></c:when>
 <c:when test="${param.page == 18}"><c:set var="titlename" value="Login" /></c:when> 
+<c:when test="${param.page == 19}"><c:set var="titlename" value="Find Your ID and Password" /></c:when> 
 <c:when test="${param.page == 20}"><c:set var="titlename" value="Delete Board" /></c:when> 
-<c:when test="${param.page == 0}"><script>window.location.href="http://home.yspersonal.com/non.htm";</script></c:when>
+<c:when test="${param.page == 21}"><c:set var="titlename" value="Find ID" /></c:when>
+<c:when test="${param.page == 22}"><c:set var="titlename" value="Find Password" /></c:when> 
+<c:when test="${param.page == 23}"><c:set var="titlename" value="Change Password" /></c:when> 
+<c:when test="${param.page == 0}"><script>window.location.href="http://192.168.55.126/nossl/non.htm";</script></c:when>
 <c:otherwise><c:set var="titlename" value="Main Page" /></c:otherwise></c:choose>
 <!DOCTYPE HTML>
 <html>
@@ -166,8 +174,20 @@ ${modifyboardcontent}
 <c:when test="${param.page == 18}">
 ${logincontent}
 </c:when>
+<c:when test="${param.page == 19}">
+${FindIDPasswordContent}
+</c:when>
 <c:when test="${param.page == 20}">
 ${deleteboardcontent}
+</c:when>
+<c:when test="${param.page == 21}">
+${findidcontent}
+</c:when>
+<c:when test="${param.page == 22}">
+${findpwcontent}
+</c:when> 
+<c:when test="${param.page == 23}">
+${changepwcontent}
 </c:when>
 <c:otherwise>
 ${defaultcontent}
@@ -176,7 +196,7 @@ ${defaultcontent}
 </div>
 </div> 
 <div class="footer">
-   <p> Last updated: Saturday, May 27th, 2023 </p>
+   <p> Last updated: Wednesday, September 13th, 2023 </p>
    <p> This is not copyrighted. But Don't use this web site to make illegal stuff. </p>
    <p id=currentDate></p>
 </div>

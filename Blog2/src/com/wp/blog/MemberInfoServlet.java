@@ -39,11 +39,13 @@ public class MemberInfoServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
+		//DB 연결 준비 START (WEB.XML에서 정보를 가져온다.) 
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
+  	    //DB 연결 준비 END 
 		MemberDAO memberdao = new MemberDAO(JDBC_Driver, db_url, db_id, db_pw);
 		String viewName = null;
 		Global g = new Global(response);
@@ -51,7 +53,7 @@ public class MemberInfoServlet extends HttpServlet {
 			Map<String, String> memberlist = memberdao.getMemberById(id);
 			if(memberlist != null)
 			{
-				session.setAttribute("memberidlist", memberlist);
+				session.setAttribute("memberidlist", memberlist); //Map 형태로 세션에 넣는다. 
 				viewName = "main.do?page=7";
 			}
 			else

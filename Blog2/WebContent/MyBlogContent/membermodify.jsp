@@ -15,14 +15,6 @@
                                <td><input class="form-control" type="text" value= "${sessionScope.id}" name="ID"  readonly /></td>
                               </tr>
                               <tr>
-                                <td><label for="password">New Password:</label></td>
-                                <td><input class="form-control" type="password" name="password" required /></td>
-                              </tr>
-                              <tr>
-                                <td><label for="cpassword">New Password Confirmed:</label></td>
-                                <td><input class="form-control" type="password" name="cpassword" required /></td>
-                              </tr>
-                              <tr>
                               <td><label for="firstname">First Name:</label></td>
                               <td><input class="form-control" type="text" name="firstname" value= "${sessionScope.firstname}"  /></td>
                               </tr>
@@ -34,8 +26,11 @@
                               <td><label for="birthday">Birthday:</label></td>
                               <td><input class="form-control" type="text" name="birthday" value= "${sessionScope.memberidlist['birthday']}" /></td>
                               </tr>
+                              <tr>
+                              <td><label for="mailaddress">MailAddress:</label></td>
+                              <td><input class="form-control" type="text" name="mailaddress" value= "${sessionScope.memberidlist['mailaddress']}" /></td>
+                              </tr>
                            </table>
-                         
                            <br> 
                             </form>
            </div>

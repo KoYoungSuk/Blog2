@@ -2,7 +2,6 @@ package com.wp.blog;
 
 import java.io.IOException;
 
-import java.sql.SQLException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.mindrot.jbcrypt.BCrypt;
 
 import com.wp.blog.DAO.MemberDAO;
 import com.wp.blog.DTO.MemberDO;
@@ -50,49 +47,57 @@ public class ModifyMemberServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String viewName = null; 
 		String s_id = (String)session.getAttribute("id");
+		//HTML에서 파라미터 가져오기 
 		String id = request.getParameter("ID");
-		String password = request.getParameter("password");
 		String firstname = request.getParameter("firstname");
 		String lastname = request.getParameter("lastname");
 		String birthday = request.getParameter("birthday");
-		String password_hass = BCrypt.hashpw(password, BCrypt.gensalt(12));
+		String mailaddress = request.getParameter("mailaddress"); 
+		//DB 연결 준비 : START (WEB.XML에서 정보를 가져온다.) 
 		ServletContext application = request.getSession().getServletContext();
 		String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
-		try {
-			 try {
-				   if(id != null && s_id != null) {
-					   if(id.equals(s_id)) {
-						   MemberDO memberdo = new MemberDO(id, password_hass, firstname, lastname, birthday, null);
-							MemberDAO memberdao = new MemberDAO(JDBC_Driver, db_url, db_id, db_pw);
-							int result = memberdao.UpdateMember(memberdo);
-							if(result == 1){
-								viewName = "main.do";
-								session.invalidate();
-							}
-							else{
-								g.jsmessage("Unknown Error Message");
-							}
-					   }
-					   else {
-						   g.errorcode(3217);
-					   }
-				   }
-				   else {
-					   g.errorcode(3217);
-				   }
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					g.jsmessage(e.getMessage());
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-				    g.jsmessage(e.getMessage());
+  	    //DB 연결 준비: END 
+  	    
+	    try 
+	    {
+		    if(id != null && s_id != null) {
+			     if(id.equals(s_id)) {
+					MemberDO memberdo = new MemberDO(id, null, firstname, lastname, birthday, null, mailaddress);
+					MemberDAO memberdao = new MemberDAO(JDBC_Driver, db_url, db_id, db_pw);
+					if(memberdao.CheckDuplicatedEMail(mailaddress) == 0)
+					{
+						int result = memberdao.UpdateMember(memberdo); //회원정보 업데이트 
+						if(result == 1){
+							viewName = "main.do";
+							session.invalidate(); //세션 초기화(로그아웃) 
+						}
+						else{
+							g.jsmessage("Unknown Error Message");
+						}
+					}
+					else
+					{
+						g.jsmessage("Duplicated EMail Address Found!");  
+					}
+					
 				}
-		}catch(NullPointerException e) {
-			g.jsmessage("Unknown Error Message");
+				else {
+					g.errorcode(3217);
+				}
+		    }
+		    else {
+				 g.errorcode(3217);
+			}
+		} 
+	    catch (Exception e) 
+	    {
+			// TODO Auto-generated catch block
+		    g.jsmessage(e.getMessage());
 		}
+		
 		if(viewName != null){
 			response.sendRedirect(viewName);
 		}

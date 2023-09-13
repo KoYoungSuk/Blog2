@@ -40,11 +40,17 @@ public class MemberDO {
 		this.joindate = joindate;
 	}
 	
+	public void setMailaddress(String mailaddress) {
+		this.mailaddress = mailaddress; 
+	}
+	public String getMailaddress() {
+		return mailaddress; 
+	}
    public MemberDO()
    {
 	
    }
-   public MemberDO(String id, String password, String firstname, String lastname, String birthday, Timestamp joindate)
+   public MemberDO(String id, String password, String firstname, String lastname, String birthday, Timestamp joindate, String mailaddress)
    {
 	   super();
 	   this.id = id;
@@ -53,6 +59,7 @@ public class MemberDO {
 	   this.lastname = lastname;
 	   this.birthday = birthday; 
 	   this.joindate = joindate;
+	   this.mailaddress = mailaddress; 
    }
   
   private String id;
@@ -61,4 +68,5 @@ public class MemberDO {
   private String lastname;
   private String birthday;
   private Timestamp joindate;
+  private String mailaddress; 
 }

@@ -21,6 +21,8 @@ public class Global {
 		response.setContentType("text/html; charset=UTF-8");  //UTF-8 
 		this.response = response;
 	}
+	
+	//자바스크립트 메시지 
 	public void jsmessage(String message) throws IOException {
 		PrintWriter out = response.getWriter();
 		out.println("<script>");
@@ -28,9 +30,13 @@ public class Global {
 		out.println("history.go(-1);");
 		out.println("</script>");
 	}
+	
+	
 	public void errorcode(int code) throws IOException {
 		response.sendError(code);
 	}
+	
+	//SFTP 업로드 (현재는 비활성화)
 	
 	public void UploadSFTP(String localpath, String serverpath) throws JSchException, SftpException
 	{

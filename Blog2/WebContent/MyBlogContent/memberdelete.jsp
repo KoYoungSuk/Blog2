@@ -26,6 +26,10 @@
                         <tr>
                          <td>Join Date:</td>
                          <td><c:out value="${sessionScope.memberidlist['joindate']}" /></td>
+                        </tr>   
+                        <tr>
+                         <td>Mail Address:</td>
+                         <td><c:out value="${sessionScope.memberidlist['mailaddress']}" /></td>
                         </tr>        
                         </table>
                         <hr>

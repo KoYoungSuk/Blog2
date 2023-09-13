@@ -15,6 +15,10 @@
             <td><c:out value="${sessionScope.id}" /></td>
          </tr>
          <tr>
+            <td>Change Password</td>
+            <td><button class="btn btn-secondary btn-sm" onclick="location.href='main.do?page=23'"><span class="material-symbols-outlined">key</span>Change Password</button>
+         </tr>
+         <tr>
             <td>First Name:</td>
             <td><c:out value="${sessionScope.firstname}" /></td>
          </tr>    
@@ -33,6 +37,10 @@
          <tr>
             <td>Join Date:</td>
             <td><c:out value="${sessionScope.memberidlist['joindate']}" /></td>
+         </tr>        
+         <tr>
+            <td>Mail Address:</td>
+            <td><c:out value="${sessionScope.memberidlist['mailaddress']}" /></td>
          </tr>        
         </table>
       <br> 
