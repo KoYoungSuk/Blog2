@@ -66,8 +66,6 @@ public class FindPWServlet extends HttpServlet {
   	    	
   	        String random_pw = RandomStringUtils.randomAlphanumeric(10); //10자리로 랜덤 비밀번호 생성
   	        
-  	        System.out.println("random_pw: " + random_pw); 
-  	        
   	        String password_hash = BCrypt.hashpw(random_pw, BCrypt.gensalt(12)); //HASH
   	        
   	        int result = memberdao.UpdateMemberPassword2(id, password_hash, mailaddress); 

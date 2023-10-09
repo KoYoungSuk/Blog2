@@ -61,7 +61,7 @@
      </c:choose>
       
       <div style="text-align: center">
-      <button onclick="location.href='http://192.168.55.126/nossl/'">Back to Main Page</button> 
+      <button onclick="location.href='https://home.yspersonal.com'">Back to Main Page</button> 
       <button onclick="history.go(-1);">Back</button>   
       </div>  
        <br> 
@@ -88,7 +88,7 @@
 var currdate = new Date();
 var address2 = window.location.href;
 var OSName="Unknown OS";
-if (navigator.appVersion.indexOf("Windows NT 11.0")!=-1) OSName="Windows Core";
+//if (navigator.appVersion.indexOf("Windows NT 11.0")!=-1) OSName="Windows Core";
 if (navigator.appVersion.indexOf("Windows NT 10.0")!=-1) OSName="Windows 10/11/Server 2016/2019/2022";
 if (navigator.appVersion.indexOf("Windows NT 6.4") !=-1) OSName="Windows Threshold(10 Beta)";
 if (navigator.appVersion.indexOf("Windows NT 6.3") !=-1) OSName="Windows 8.1/Server 2012 R2";

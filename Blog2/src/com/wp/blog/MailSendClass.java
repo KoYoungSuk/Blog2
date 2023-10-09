@@ -22,10 +22,10 @@ public class MailSendClass {
 	}
     public void sendMail(String mailaddress, String content, String title) throws MessagingException
     {
-    	//현재는 네이버 메일서버를 사용하도록 되어있음.
+    	//현재는 구글 메일서버를 사용하도록 되어있음.
     	
     	Properties p = new  Properties();
-		p.put("mail.smtp.host", "smtp.naver.com"); 
+		p.put("mail.smtp.host", "smtp.gmail.com"); 
 		p.put("mail.smtp.port", "465");
 		p.put("mail.smtp.auth",  "true");
 		p.put("mail.smtp.debug",  "true");
@@ -37,7 +37,6 @@ public class MailSendClass {
 		
 		Authenticator auth = new SMTPAuthenticator(request);
 		
-	
 		Session session = Session.getInstance(p, auth); 
 		
 		//Session session = Session.getDefaultInstance(p, null); 
@@ -46,7 +45,7 @@ public class MailSendClass {
 		
 		message.setSubject(title); //제목 
 		
-		Address fromAddr = new InternetAddress("vheh5678@naver.com");
+		Address fromAddr = new InternetAddress("vheh1936@gmail.com");
 		
 		message.setFrom(fromAddr); //보내는 사람 
 		

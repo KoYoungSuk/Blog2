@@ -27,6 +27,7 @@
 </form>
 </c:when>
 <c:otherwise>
+  <!-- 아이디 및 비밀번호 찾기 기능은 로그인되지 않았을때만 사용가능.  -->
   <p>Actually Loginned.</p> 
 </c:otherwise> 
 </c:choose>

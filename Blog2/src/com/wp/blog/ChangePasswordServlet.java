@@ -1,6 +1,7 @@
 package com.wp.blog;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -35,7 +36,6 @@ public class ChangePasswordServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Global g = new Global(response);
-		
 		g.errorcode(403); 
 	}
 
@@ -51,9 +51,10 @@ public class ChangePasswordServlet extends HttpServlet {
 		Global g = new Global(response);
 		HttpSession session = request.getSession();
 		
-		String id = (String)session.getAttribute("id");  
+		String id = (String)session.getAttribute("id"); //로그인한 아이디 (세션) 
 		
 		//Parameters from HTML
+		String currentpassword = request.getParameter("currentpassword"); //현재 비밀번호 
 		String password = request.getParameter("password");
 		String cpassword = request.getParameter("cpassword"); 
 		
@@ -66,24 +67,37 @@ public class ChangePasswordServlet extends HttpServlet {
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
   	    
+  	    MemberDAO memberdao = new MemberDAO(JDBC_Driver, db_url, db_id, db_pw);
+  	  
   	    try
   	    {
-  	    	if(password.equals(cpassword))
+  	    	Map<String, String> memberlist = memberdao.getMemberById(id); 
+  	    	
+  	    	String bcrypt_password = memberlist.get("password"); //데이터베이스에 저장된 암호화된 비밀번호(BCrypt) 
+  	    	
+  	    	if(BCrypt.checkpw(currentpassword, bcrypt_password))
   	    	{
-  	    		MemberDAO memberdao = new MemberDAO(JDBC_Driver, db_url, db_id, db_pw);
-  	  	    	
-  	  	    	int result = memberdao.UpdateMemberPassword(id, hash_password); 
-  	  	    	
-  	  	    	if(result != 0)
+  	    		if(password.equals(cpassword))
   	  	    	{
-  	  	    		g.jsmessage("Successfully changed.");
-  	  	    		session.invalidate(); //로그아웃(세션 비활성화) 
-  	  	    		viewName = "main.do"; 
+  	  	    		
+  	  	  	    	
+  	  	  	    	int result = memberdao.UpdateMemberPassword(id, hash_password); 
+  	  	  	    	
+  	  	  	    	if(result != 0)
+  	  	  	    	{
+  	  	  	    		g.jsmessage("Successfully changed.");
+  	  	  	    		session.invalidate(); //로그아웃(세션 비활성화) 
+  	  	  	    		viewName = "main.do"; 
+  	  	  	    	}
+  	  	    	}
+  	  	    	else
+  	  	    	{
+  	  	    		g.jsmessage("Password and Password Confirmed is not same!");
   	  	    	}
   	    	}
   	    	else
   	    	{
-  	    		g.jsmessage("Password and Password Confirmed is not same!");
+  	    		g.jsmessage("Current Password is wrong."); 
   	    	}
   	    }
   	    catch(Exception ex)

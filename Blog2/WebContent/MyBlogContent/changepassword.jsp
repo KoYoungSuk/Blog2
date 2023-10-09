@@ -8,6 +8,10 @@
 <form action="changepassword.do" method="POST">
   <table class="table">
     <tr>
+     <td><label for="Current Password">Current Password:</label></td>
+     <td><input type="password" class="form-control" name="currentpassword" /></td> 
+    </tr> 
+    <tr>
      <td><label for="Password">New Password:</label></td>
      <td><input type="password" class="form-control" name="password" /></td> 
     </tr> 
@@ -26,7 +30,7 @@
 </form>
 </c:when>
 <c:otherwise>
-  <p>Actually Loginned.</p> 
+  <p>You need to Login. </p> 
 </c:otherwise> 
 </c:choose>
 </div> 

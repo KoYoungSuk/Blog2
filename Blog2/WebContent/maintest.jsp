@@ -43,7 +43,7 @@
 <c:when test="${param.page == 21}"><c:set var="titlename" value="Find ID" /></c:when>
 <c:when test="${param.page == 22}"><c:set var="titlename" value="Find Password" /></c:when> 
 <c:when test="${param.page == 23}"><c:set var="titlename" value="Change Password" /></c:when> 
-<c:when test="${param.page == 0}"><script>window.location.href="http://192.168.55.126/nossl/non.htm";</script></c:when>
+<c:when test="${param.page == 0}"><script>window.location.href="http://home.yspersonal.com/non.htm";</script></c:when>
 <c:otherwise><c:set var="titlename" value="Main Page" /></c:otherwise></c:choose>
 <!DOCTYPE HTML>
 <html>
