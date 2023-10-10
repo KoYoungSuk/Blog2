@@ -27,6 +27,7 @@
 <c:when test="${param.page == 2}"><c:set var="titlename" value="Sign up" /></c:when>
 <c:when test="${param.page == 3}"><c:set var="titlename" value="MemoList" /></c:when>
 <c:when test="${param.page == 4}"><c:set var="titlename" value="" /></c:when>
+<c:when test="${param.page == 5}"><c:set var="titlename" value="" /></c:when> 
 <c:when test="${param.page == 6}"><c:set var="titlename" value="Manage Center" /></c:when>
 <c:when test="${param.page == 7}"><c:set var="titlename" value="Member Info" /></c:when>
 <c:when test="${param.page == 8}"><c:set var="titlename" value="Modify Member" /></c:when>
@@ -141,6 +142,9 @@ ${boardlistcontent}
 <c:when test="${param.page == 4}">
 ${whyimakethiscontent}
 </c:when>
+<c:when test="${param.page == 5}">
+
+</c:when>
 <c:when test="${param.page ==6}">
 ${homepagemanagecontent}
 </c:when> 
@@ -196,7 +200,7 @@ ${defaultcontent}
 </div>
 </div> 
 <div class="footer">
-   <p> Last updated: Wednesday, September 13th, 2023 </p>
+   <p> Last updated: Monday, October 9th, 2023 </p>
    <p> This is not copyrighted. But Don't use this web site to make illegal stuff. </p>
    <p id=currentDate></p>
 </div>

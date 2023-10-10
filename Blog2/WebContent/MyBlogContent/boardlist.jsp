@@ -28,7 +28,7 @@
        </div>
       <div style="text-align: center">
       <form action="search.do" method="POST">
-        <input type="text" class="form-control-sm"name="word" placeholder="Search Word" value= "${sessionScope.word}" />
+        <input type="text" class="form-control-sm"name="word" placeholder="Search Title" value= "${sessionScope.word}" />
         <button type="submit" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">search</span>Search</button>
         <c:choose>
         <c:when test="${param.desc == 1}">

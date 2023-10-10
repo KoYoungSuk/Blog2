@@ -2,14 +2,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
   <div class="col-lg-8" style="padding: 0px; margin: 40px; background-color: #DCDCDC;">
   <h3 class="htitle" style="border: ridge;"> Welcome to PersonalMemo! </h3>
-      <div style="text-align: center;"> 
-      <button class="btn btn-secondary btn-sm" onclick="location.href='./pdfviewer/'"><span class="material-symbols-outlined">info</span>Reason and History</button>
-      <c:choose>
-      <c:when test="${sessionScope.id eq 'admin'}">
-      <button class="btn btn-secondary btn-sm" onclick="location.href='main.do?page=12'"><span class="material-symbols-outlined">create</span>Write</button> 
-      </c:when>
-      <c:otherwise></c:otherwise>
-      </c:choose>
+      <hr> 
+      <div style="text-align: center;">
+        <form action="search.do" method="POST">
+        <input type="text" class="form-control-sm" name="word" placeholder="Search Title" value= "${sessionScope.word}" />
+        <button type="submit" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">search</span>Search</button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='./pdfviewer/'"><span class="material-symbols-outlined">info</span>Reason and History</button>
+        <c:choose>
+        <c:when test="${sessionScope.id eq 'admin'}">
+            <button class="btn btn-secondary btn-sm" onclick="location.href='main.do?page=12'"><span class="material-symbols-outlined">create</span>Write</button> 
+        </c:when>
+        <c:otherwise></c:otherwise>
+        </c:choose>
+      </form>
       </div>
       <hr> 
       <table class="table" style="background-color: lightyellow;">

@@ -1,7 +1,6 @@
 package com.wp.blog;
 
 import java.io.IOException;
-import java.sql.SQLException;
 //import java.util.List;
 import java.util.Map;
 
@@ -50,8 +49,11 @@ public class LoginServlet extends HttpServlet {
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
   	    //END - 데이터베이스 연결 준비 
+  	    
+  	    //HTML Parameter. 
 		String id = request.getParameter("id");
 		String password = request.getParameter("password"); 
+		
 		String firstname = null;
 		String lastname = null;
 		String birthday = null;
@@ -73,11 +75,10 @@ public class LoginServlet extends HttpServlet {
 					viewName = "main.do";
 				}
 			}
-		} catch (ClassNotFoundException e){
-			g.jsmessage(e.getMessage());
-		} catch (SQLException e){
+		} catch (Exception e){
 		    g.jsmessage(e.getMessage());
 		}
+		
 		if(firstname == null){
 			firstname = "";
 	    }

@@ -69,6 +69,10 @@ public class FindIDServlet extends HttpServlet {
 			     
 			     g.jsmessage("I send your ID by email. (home.yspersonal.com Find ID Function Test)");
 			}
+			else
+			{
+				g.jsmessage("Error Message");
+			}
 			
 		}
 		catch(Exception ex)

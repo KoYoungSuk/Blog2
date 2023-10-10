@@ -26,7 +26,7 @@ public class ChangePasswordServlet extends HttpServlet {
      * @see HttpServlet#HttpServlet()
      */
     public ChangePasswordServlet() {
-        super();
+        super(); 
         // TODO Auto-generated constructor stub
     }
 
@@ -79,8 +79,6 @@ public class ChangePasswordServlet extends HttpServlet {
   	    	{
   	    		if(password.equals(cpassword))
   	  	    	{
-  	  	    		
-  	  	  	    	
   	  	  	    	int result = memberdao.UpdateMemberPassword(id, hash_password); 
   	  	  	    	
   	  	  	    	if(result != 0)

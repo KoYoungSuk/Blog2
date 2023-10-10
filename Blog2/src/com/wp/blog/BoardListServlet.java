@@ -41,31 +41,35 @@ public class BoardListServlet extends HttpServlet {
 		String id = (String)session.getAttribute("id");
 		String desc = request.getParameter("desc");
 		Boolean descbool = false;
-		String access = null;
+		String access = "admin"; 
 		String viewName = null;
+		
+		//DB 연결 준비 START : WEB.XML에서 연결 정보 가져오기 
 	    ServletContext application = request.getSession().getServletContext();
 	    String JDBC_Driver = application.getInitParameter("jdbc_driver");
 	  	String db_url = application.getInitParameter("db_url");
 	  	String db_id = application.getInitParameter("db_userid");
 	  	String db_pw = application.getInitParameter("db_password");  
+	  	//DB 연결 준비 END 
+	  	
 	  	BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
 	    List<BoardDO> newboardlist = new ArrayList<BoardDO>();
 	    Global g = new Global(response);
-	    //g.setLog(JDBC_Driver, db_url, db_id, db_pw, request, response);
+	
+	    
 	    if(desc == null) {
 	    	desc = "0";
 	    }
-	    if(id != null) {
-	    	if(id.equals("admin")) {
-	    		access = "admin"; //관리자로 접속한 경우 
-	    	}
-	    	else {
-	    		access = "member"; //회원 모드 
+	    
+	    if(id == null){
+	    	access = "anonymous"; //세션에 저장된 아이디가 NULL이면 접근 권한은 anonymous. 
+	    }
+	    else{
+	    	if(!id.equals("admin")){
+	    		access = "member"; //세션에 저장된 아이디가 NULL은 아닌데 admin도 아니면 접근 권한은 member. 
 	    	}
 	    }
-	    else {
-	    	access = "anonymous"; //비회원 모드
-	    }
+	    
 	    int descnum = Integer.parseInt(desc);
 	    if(descnum == 1) {
 	    	descbool = true;
@@ -84,7 +88,7 @@ public class BoardListServlet extends HttpServlet {
 						}
 					}
 					else {
-						if(boarddo.getAnonymous().equals(access)) { //비회원 모드일 경우 비회원 모드로 작성한 게시물만 조회 가능 
+						if(boarddo.getAnonymous().equals("anonymous")) { //비회원 모드일 경우 비회원 모드로 작성한 게시물만 조회 가능 
 							newboardlist.add(boarddo);
 						}
 				    }
