@@ -26,8 +26,6 @@
 <c:when test="${param.page == 1}"><c:set var="titlename" value="Main Page" /></c:when>
 <c:when test="${param.page == 2}"><c:set var="titlename" value="Sign up" /></c:when>
 <c:when test="${param.page == 3}"><c:set var="titlename" value="MemoList" /></c:when>
-<c:when test="${param.page == 4}"><c:set var="titlename" value="" /></c:when>
-<c:when test="${param.page == 5}"><c:set var="titlename" value="" /></c:when> 
 <c:when test="${param.page == 6}"><c:set var="titlename" value="Manage Center" /></c:when>
 <c:when test="${param.page == 7}"><c:set var="titlename" value="Member Info" /></c:when>
 <c:when test="${param.page == 8}"><c:set var="titlename" value="Modify Member" /></c:when>

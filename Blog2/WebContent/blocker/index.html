@@ -1,66 +1,82 @@
 <!DOCTYPE html>
-<!-- saved from url=(0043)http://192.168.55.126/nossl/main.do?page=16 -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title> T E R R O R I S M </title>
-<meta http-equiv="X-UA-Compatible" content="IE=edge">	
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="../BS/bootstrap.min.css">
-<link rel="stylesheet" href="../BS/bootstrap.css">
-<link href="https://home.yspersonal.com/favicon.ico" rel="shortcut icon" type="image/x-icon">
+<title> Error 403: Forbidden (Please go back!!!) </title>
 <style>
-  .footer{
-      text-align: center;
-      border: ridge; 
-      padding: 0px;
-      margin: 40px; 
-      background-color: #DCDCDC;
-  }
-  .jumbotron{
-      padding-top: 0px;
-      padding-bottom: 0px;
-      text-align: center;
-  }
-.class_tp {
-  display: none; 
-  position: fixed;
-  z-index: 1; 
-  left: 0;
-  top: 0;
-  width: 100%; 
-  height: 100%; 
-  overflow: auto; 
-  background-color: lightblue;
-  padding-top: 50px;
-}
-.close {
-  position: absolute;
-  right: 35px;
-  top: 15px;
-  font-size: 40px;
-  font-weight: bold;
-  color: black;
-}
-
-body {
-  background-color: black; 
-  background-image: url("https://home.yspersonal.com/blocker/ghost.jpg"); 
-  background-repeat: no-repeat;
-  background-position: center top; 
-}
-
-#smalldiv {
-  text-align: center;
-  border: ridge; 
-  background-color: #DCDCDC; 
-}
-
-.htitle{
-  text-align: center; 
-  background-color: black;
-  color: red; 
-}
+    body{
+       background-color: black; 
+       color: white; 
+    }
+	.ghost{
+	    position: absolute; 
+		height:100vh; 
+		width:100%; 
+		display: none;
+		border:0px;
+		text-align: center; 
+	}
+	.normal{
+	    position: absolute; 
+	    height:100vh;
+	    width:100%;
+	    display: block;
+	    border: 0px; 
+	    text-align: center; 
+	}
 </style>
 </head>
 <body>
+<div style="text-align: center;">
+  <H1 id="times"></H1>
+</div>
+<div id="ghost" class="ghost" > 
+  <img src="http://192.168.55.126/nossl/pictures/computer.jpg" style="text-align: center;"> 
+  <br>
+  <div style="text-align: center;">
+  <button style="width: 100px; height: 50px;" onclick="history.go(-1); ">Back</button>
+  <button style="width: 100px; height: 50px;" onclick="location.href='http://home.yspersonal.com/main.do'">Back to Main Page</button>
+  </div>
+</div>
+<div id="normal" class="normal">
+  <H1> Error 403: Forbidden </H1>
+  <H3> Ghost will appear. You need to go back!! </H3> 
+  <div style="text-align: center;">
+  <button type="button" style="text-align: center; width: 100px; height: 50px;" onclick="history.go(-1); ">Back</button> 
+  <button type="button" style="text-align: center; width: 100px; height: 50px;" onclick="location.href='http://home.yspersonal.com/main.do'">Back to Main Page</button>
+  </div>
+</div>
+<script>
+    var check = 0; 
+    var remainedtimes = 60; 
+    function remainedtimer(){
+    	remainedtimes = remainedtimes - 1; 
+		document.getElementById("times").innerHTML = "REMAINED TIME: " + remainedtimes;
+		if(remainedtimes <= 0)
+		{
+			remainedtimes = 60; 
+		}
+    }
+	function summonzombie(){
+		if(check == 1){  
+			check = 0;
+			document.getElementById("normal").style.display = "block";
+			document.getElementById("ghost").style.display = "none"; 
+		}
+		else if(check == 0){
+			check = 1; 
+			document.getElementById("normal").style.display = "none"; 
+			document.getElementById("ghost").style.display = "block"; 
+		}
+    }
+	function init(){
+		remainedtimer();
+		setInterval(remainedtimer, 1000); //1 seconds 
+		setInterval(summonzombie, 60000); //60 seconds 
+	}
+	init(); 
+</script>
 </body>
 </html>
+<!--  First Created at 2023-10-11  -->
