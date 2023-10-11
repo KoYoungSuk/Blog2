@@ -21,15 +21,15 @@
   </context-param>
   <context-param>
     <param-name>db_password</param-name>
-    <param-value>password censored</param-value>
+    <param-value>password</param-value>
   </context-param>
   <context-param>
     <param-name>mail_id</param-name>
-    <param-value>id</param-value>
+    <param-value>vheh1936@gmail.com</param-value>
   </context-param>
   <context-param>
     <param-name>mail_password</param-name>
-    <param-value>password</param-value> 
+    <param-value>password</param-value>
   </context-param>
   <error-page>
     <error-code>418</error-code>
@@ -41,11 +41,11 @@
   </error-page>
   <error-page>
     <error-code>404</error-code>
-    <location>/error.jsp?page=404</location>
+    <location>/error_new.jsp?code=404</location>
   </error-page>
   <error-page>
     <error-code>500</error-code>
-    <location>/error.jsp?page=500</location>
+    <location>/error_new.jsp?code=500</location>
   </error-page>
   <error-page>
     <error-code>3217</error-code>
