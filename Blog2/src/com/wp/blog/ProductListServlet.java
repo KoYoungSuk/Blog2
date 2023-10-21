@@ -44,11 +44,14 @@ public class ProductListServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		Global g = new Global(response);
+		
+		//DataBase Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
+  	    
   	    String viewName = null;
   	    if(desc == 0) {
   	    	descbool = false;

@@ -61,6 +61,8 @@ public class BoardListServlet extends HttpServlet {
 	    	desc = "0";
 	    }
 	    
+	    //현재 세션에 있는 아이디(로그인된 아이디)를 이용하여 권한 체크
+	    
 	    if(id == null){
 	    	access = "anonymous"; //세션에 저장된 아이디가 NULL이면 접근 권한은 anonymous. 
 	    }

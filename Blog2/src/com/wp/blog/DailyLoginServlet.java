@@ -52,11 +52,14 @@ public class DailyLoginServlet extends HttpServlet {
 		String lastname = null; 
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
+		
+		//DataBase Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
+  	    
 		String viewName = null; 
 		try
 		{
@@ -80,6 +83,14 @@ public class DailyLoginServlet extends HttpServlet {
 						}
 					}
 				}
+				else {
+					session.invalidate(); 
+					g.errorcode(3217);
+				}
+			}
+			else {
+				session.invalidate();
+				g.errorcode(3217); 
 			}
 		}
 		catch(Exception e)

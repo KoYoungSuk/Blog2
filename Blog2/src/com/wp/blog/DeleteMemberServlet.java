@@ -35,11 +35,14 @@ public class DeleteMemberServlet extends HttpServlet {
 		Global g = new Global(response);
 		HttpSession session = request.getSession();
 		String viewName = null;
+		
+		//DataBase Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
+  	    
 		MemberDAO memberdao = new MemberDAO(JDBC_Driver, db_url, db_id, db_pw);
 		try {
 			int result = memberdao.DeleteMember(id);

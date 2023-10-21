@@ -48,14 +48,19 @@ public class WriteInfoServlet extends HttpServlet implements Servlet {
 		HttpSession session = request.getSession();
 		Global g = new Global(response);
 		String id = (String)session.getAttribute("id");
+		//Parameters from HTML 
 		String title = request.getParameter("title");
 		String content = request.getParameter("content"); 
+		
 		Timestamp savedate = new Timestamp(System.currentTimeMillis());
 		ServletContext application = request.getSession().getServletContext();
+		
+		//DataBase Connection String from web.xml 
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
+  	    
   	    String viewName = null;
   	    try
   	    {
@@ -78,11 +83,13 @@ public class WriteInfoServlet extends HttpServlet implements Servlet {
   	    		}
   	    		else
   	    		{
+  	    			session.invalidate(); 
   	    			g.errorcode(3217); 
   	    		}
   	    	}
   	    	else
   	    	{
+  	    		session.invalidate(); 
   	    		g.errorcode(3217);
   	    	}
   	    }

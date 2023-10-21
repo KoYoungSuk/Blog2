@@ -43,6 +43,8 @@ public class ModifyinfoServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id"); 
 		String title = request.getParameter("title");
+		
+		//DataBase Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
@@ -71,11 +73,13 @@ public class ModifyinfoServlet extends HttpServlet {
 				}
 				else
 				{
+					session.invalidate(); 
 					g.errorcode(3217); 
 				}
 			}
 			else
 			{
+				session.invalidate(); 
 				g.errorcode(3217);
 			}
 		}

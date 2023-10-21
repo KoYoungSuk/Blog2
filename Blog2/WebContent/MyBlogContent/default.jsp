@@ -10,7 +10,7 @@
         <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='./pdfviewer/'"><span class="material-symbols-outlined">info</span>Reason and History</button>
         <c:choose>
         <c:when test="${sessionScope.id eq 'admin'}">
-            <button class="btn btn-secondary btn-sm" onclick="location.href='main.do?page=12'"><span class="material-symbols-outlined">create</span>Write</button> 
+            <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='main.do?page=12'"><span class="material-symbols-outlined">create</span>Write</button> 
         </c:when>
         <c:otherwise></c:otherwise>
         </c:choose>

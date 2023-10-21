@@ -43,6 +43,8 @@ public class DetailDailyServlet extends HttpServlet {
 	    Global g = new Global(response);
 	    String title = request.getParameter("title");
 	    String id = (String)session.getAttribute("id"); 
+	    
+	    //DataBase Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
@@ -54,7 +56,7 @@ public class DetailDailyServlet extends HttpServlet {
 	    	DailyDAO dailydao = new DailyDAO(JDBC_Driver, db_url, db_id, db_pw); 
 	    	if(id != null)
 	    	{
-	    		if(id.equals("admin"))
+	    		if(id.equals("admin")) //관리자 
 	    		{
 	    			if(title_size >= 10) 
 	    	    	{
@@ -85,11 +87,13 @@ public class DetailDailyServlet extends HttpServlet {
 	    		}
 	    		else
 	    		{
+	    			session.invalidate(); 
 	    			g.errorcode(3217);
 	    		}
 	    	}
 	    	else
 	    	{
+	    		session.invalidate(); 
 	    		g.errorcode(3217);
 	    	}
 	    

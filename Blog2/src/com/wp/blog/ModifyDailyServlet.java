@@ -41,20 +41,24 @@ public class ModifyDailyServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String viewName = null;
 		String id = (String)session.getAttribute("id");
+	
 		String title = request.getParameter("title"); 
 		Global g = new Global(response);
+		
+		//Database Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
+  	    
 		try
 		{
 			DailyDAO dailydao = new DailyDAO(JDBC_Driver, db_url, db_id, db_pw);
 			
 			if(id != null)
 			{
-				if(id.equals("admin"))
+				if(id.equals("admin")) //관리자 모드일때만 일정 정보 수정가능
 				{
 					Map<String, String> dailylist = dailydao.getDetailDailyList(title, false); 
 					if(dailylist != null)
@@ -99,15 +103,21 @@ public class ModifyDailyServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String viewName = null;
 		String id = (String)session.getAttribute("id");
+		
+		//Parameters from HTML 
 		String title = request.getParameter("title"); 
 		String content = request.getParameter("content");  
 		String status = request.getParameter("status");
+		
 		Timestamp modifydate = new Timestamp(System.currentTimeMillis());
+		
+		//Database Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
+  	    
 		Global g = new Global(response);
 		
 		try
@@ -117,7 +127,7 @@ public class ModifyDailyServlet extends HttpServlet {
             
             if(id != null)
             {
-                if(id.equals("admin"))
+                if(id.equals("admin")) //관리자 계정에서만 일정 정보 수정가능 
                 {
                 	 int result = dailydao.updateDailyInfo(dailydo);
                      

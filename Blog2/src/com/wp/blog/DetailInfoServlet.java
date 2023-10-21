@@ -42,6 +42,8 @@ public class DetailInfoServlet extends HttpServlet {
 		Global g = new Global(response); 
 		String id = (String)session.getAttribute("id");
 		String title = request.getParameter("title"); 
+		
+		//DataBase Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");

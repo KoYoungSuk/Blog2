@@ -61,6 +61,7 @@ public class LoginServlet extends HttpServlet {
 		MemberDAO memberdao = new MemberDAO(JDBC_Driver, db_url, db_id, db_pw);
 		//List<MemberDO> memberlist;
 		Map<String, String> memberlist;
+		
 		try {
 			memberlist = memberdao.getMemberById(id);
 			String password_db = memberlist.get("password");

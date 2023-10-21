@@ -40,11 +40,14 @@ public class DeleteDiaryServlet extends HttpServlet {
 	   String title = request.getParameter("title");
 	   HttpSession session = request.getSession();
 	   String id = (String)session.getAttribute("id");
+	   
+	   //DataBase Connection String from web.xml 
 	   ServletContext application = request.getSession().getServletContext();
    	   String JDBC_Driver = application.getInitParameter("jdbc_driver");
  	   String db_url = application.getInitParameter("db_url");
  	   String db_id = application.getInitParameter("db_userid");
  	   String db_pw = application.getInitParameter("db_password");
+ 	   
 	   Global g = new Global(response);
 	   String viewName = null;
 	   try {
@@ -61,10 +64,12 @@ public class DeleteDiaryServlet extends HttpServlet {
 				  }
 			  }
 			  else {
+				  session.invalidate(); 
 				  g.errorcode(3217);
 			  }
 		  }
 		  else {
+			  session.invalidate(); 
 			  g.errorcode(3217);
 		  }
 	   }catch(Exception e) {
@@ -85,22 +90,34 @@ public class DeleteDiaryServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		String title = request.getParameter("title");
 		HttpSession session = request.getSession();
+		
+		String id = (String)session.getAttribute("id"); 
+		//DataBase Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
 	   	String JDBC_Driver = application.getInitParameter("jdbc_driver");
 	 	String db_url = application.getInitParameter("db_url");
 	 	String db_id = application.getInitParameter("db_userid");
 	 	String db_pw = application.getInitParameter("db_password");
+	 	
 	 	Global g = new Global(response);
 	 	String viewName = null;
 	 	try {
-	 		DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
-	 		int result = diarydao.deleteDiary(title);
-	 		if(result == 1) {
-	 			session.removeAttribute("detaildiarylist");
-	 			viewName = "diarylist?desc=0";
+	 		if(id.equals("admin")) //관리자 권한으로만 일기장 삭제가능 
+	 		{
+	 			DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
+		 		int result = diarydao.deleteDiary(title);
+		 		if(result == 1) {
+		 			session.removeAttribute("detaildiarylist");
+		 			viewName = "diarylist?desc=0";
+		 		}
+		 		else {
+		 			g.jsmessage("Unknown Error Message");
+		 		}
 	 		}
-	 		else {
-	 			g.jsmessage("Unknown Error Message");
+	 		else
+	 		{
+	 			session.invalidate(); 
+	 			g.errorcode(3217);
 	 		}
 	 	}catch(Exception e) {
 	 		g.jsmessage(e.getMessage());

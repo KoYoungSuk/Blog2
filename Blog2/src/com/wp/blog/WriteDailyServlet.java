@@ -48,9 +48,12 @@ public class WriteDailyServlet extends HttpServlet {
 		HttpSession session = request.getSession(); 
 		String viewName = null;
 		String id = (String)session.getAttribute("id"); //세션에서 아이디 불러오기 
+		
+		//Parameters from HTML 
 		String title = request.getParameter("title");
 		String content = request.getParameter("content"); 
 		String status = request.getParameter("status"); 
+		
 		Timestamp savedate = new Timestamp(System.currentTimeMillis()); //현재 날짜/시각 (Timestamp) 
 		//START - 데이터베이스 연결 준비  
 		ServletContext application = request.getSession().getServletContext();
@@ -80,11 +83,13 @@ public class WriteDailyServlet extends HttpServlet {
   	    		}
   	    		else
   	    		{
+  	    			session.invalidate(); 
   	    			g.errorcode(3217);
   	    		}
   	    	}
   	    	else
   	    	{
+  	    		session.invalidate(); 
   	    		g.errorcode(3217);
   	    	}
   	    }

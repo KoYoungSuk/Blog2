@@ -30,10 +30,11 @@ public class BoardDAO {
 	}
 	
 	 public void connectDB() throws SQLException, ClassNotFoundException
-	   {
+	 {
 		   Class.forName(jdbc_driver);
 		   conn = DriverManager.getConnection(db_url, db_id, db_pw);
-	   }
+	 }
+	 
 	   public void disconnectDB() throws SQLException
 	   {
 		   if(conn != null)
@@ -212,13 +213,13 @@ public class BoardDAO {
 	       String sql = "";
 	       sm = conn.createStatement();
 		   if(access.equals("admin")) { //관리자 모드: 전체 
-			   sql = "select count(*) countnumber from board";
+			   sql = "select count(*) as countnumber from board";
 		   }
 		   else if(access.equals("member")) { //회원 모드: 관리자가 아닌 것들만 
-			   sql = "select count(*) countnumber from board where anonymous != 'admin'";
+			   sql = "select count(*) as countnumber from board where anonymous != 'admin'";
 		   }
 		   else { //비회원 모드: 비회원만 
-			   sql = "select count(*) countnumber from board where anonymous = 'anonymous'";
+			   sql = "select count(*) as countnumber from board where anonymous = 'anonymous'";
 		   }
 		   rs = sm.executeQuery(sql);
 		   int countnumber = 0;
@@ -282,13 +283,13 @@ public class BoardDAO {
 	       PreparedStatement psm = null;
 	       String sql = "";
 		   if(access.equals("admin")) { //관리자 모드: 전체 
-			   sql = "select count(*) countnumber from board where title like ?";
+			   sql = "select count(*) as countnumber from board where title like ?";
 		   }
 		   else if(access.equals("member")) { //회원 모드: 관리자가 아닌 것들만 
-			   sql = "select count(*) countnumber from board where title like ? and anonymous != 'admin'";
+			   sql = "select count(*) as countnumber from board where title like ? and anonymous != 'admin'";
 		   }
 		   else { //비회원 모드: 비회원만 
-			   sql = "select count(*) countnumber from board where title like ? and anonymous = 'anonymous'";
+			   sql = "select count(*) as countnumber from board where title like ? and anonymous = 'anonymous'";
 		   }
 		   psm = conn.prepareStatement(sql);
 		   psm.setString(1, '%' + word + '%'); 

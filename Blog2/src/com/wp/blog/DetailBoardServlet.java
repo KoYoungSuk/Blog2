@@ -41,11 +41,14 @@ public class DetailBoardServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		int number = Integer.parseInt(request.getParameter("serial"));
+		
+		//DataBase Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
+  	    
 		BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
 		String viewName = null;
 		Boolean accessbool = false;
@@ -62,7 +65,7 @@ public class DetailBoardServlet extends HttpServlet {
 			access = "anonymous";
 		}
 		try {
-			Map<String, String> detailboardlist = boarddao.getBoardByNum(number, true, true); //<br> �±׸� �߰��Ѵ�. -> HTML ��Ű ������� 
+			Map<String, String> detailboardlist = boarddao.getBoardByNum(number, true, true); //<br> -> HTML 
 			Map<String, String> newdetailboardlist = null;
 		
 			if(detailboardlist != null) {

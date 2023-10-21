@@ -141,7 +141,6 @@ ${boardlistcontent}
 ${whyimakethiscontent}
 </c:when>
 <c:when test="${param.page == 5}">
-
 </c:when>
 <c:when test="${param.page ==6}">
 ${homepagemanagecontent}

@@ -87,7 +87,7 @@
 <body>
 <div class="container-fluid"> 
 <div class="row"> 
-<div class= "col-sm-8" style="padding: 0px; margin: 70px; background-color: #DCDCDC; ">
+<div class= "col-lg-6" style="padding: 0px; margin: 70px; background-color: #DCDCDC; ">
     <h3 class="htitle">
     MyDiary (Current User: ${sessionScope.id} ) ${titlename} 
     </h3>

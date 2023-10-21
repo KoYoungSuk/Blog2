@@ -15,7 +15,10 @@
 </head>
 <body>
    <div class="computer">
-    <img src="http://home.yspersonal.com/pictures/computer.png"> 
+    <img src="https://home.yspersonal.com/pictures/computer.png"> 
+   </div>
+   <div style="text-align: center; "> 
+   
    </div>
 </body>
 </html>

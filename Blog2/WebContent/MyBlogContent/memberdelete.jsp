@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-                 <div class="col-sm-4" style="margin: 70px; padding: 0px; background-color: #DCDCDC; ">
+                 <div class="col-lg-4" style="margin: 70px; padding: 0px; background-color: #DCDCDC; ">
                        <H3 class="htitle" style="border: ridge;"> Delete Member </H3>
                          <table class="table">           
                          <tr>

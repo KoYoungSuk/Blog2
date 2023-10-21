@@ -44,11 +44,15 @@ public class SearchTitleServlet extends HttpServlet {
 		String desc = request.getParameter("desc"); 
 		List<BoardDO> newboardlist = new ArrayList<BoardDO>();
 		Global g = new Global(response);
+		
+		
+		//DataBase Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
 		String JDBC_Driver = application.getInitParameter("jdbc_driver");
 		String db_url = application.getInitParameter("db_url");
 		String db_id = application.getInitParameter("db_userid");
 		String db_pw = application.getInitParameter("db_password");  
+		
 		String viewName = null; 
 		if(desc == null) {
 	    	desc = "0";
@@ -64,10 +68,12 @@ public class SearchTitleServlet extends HttpServlet {
 	    else {
 	    	access = "anonymous"; //비회원 모드
 	    }
+	    
 	    int descnum = Integer.parseInt(desc);
 	    if(descnum == 1) {
 	    	descbool = true;
 	    }
+	    
 	    try {
 	    	  BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw); 
 			  List<BoardDO> boardlist = boarddao.SearchBoardList(word, descbool); 

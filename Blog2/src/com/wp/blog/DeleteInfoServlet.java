@@ -39,6 +39,8 @@ public class DeleteInfoServlet extends HttpServlet {
 		String viewName = null;
 		String title = request.getParameter("title");
 		String id = (String)session.getAttribute("id");
+		
+		//DataBase Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");

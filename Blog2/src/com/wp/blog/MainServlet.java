@@ -38,7 +38,7 @@ public class MainServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		Global g = new Global(response);
 		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("id");
+		String id = (String) session.getAttribute("id"); //세션 아이디 체크  
 		String access = "admin";
 		if(id == null) { //세션으로 받아온 아이디가 없으면 비회원 모드 
 		   access = "anonymous";
@@ -48,14 +48,17 @@ public class MainServlet extends HttpServlet {
 			   access = "member"; 
 		   }
 		}
+		
+		//DataBase Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password"); 
+  	    
   	    String viewName = null;
   	    try {
-  	        //g.setLog(JDBC_Driver, db_url, db_id, db_pw, request, response); 
+  	    
   	    	BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
   	    	List<BoardDO> boardlist = boarddao.getBoardList(true);
   	    	List<BoardDO> newboardlist = new ArrayList<BoardDO>();

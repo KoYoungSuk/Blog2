@@ -49,6 +49,8 @@ public class SwitchServlet extends HttpServlet {
 		HttpSession session = request.getSession(); 
 		String switchstatus = request.getParameter("switchstatus"); 
 		Timestamp savedate = new Timestamp(System.currentTimeMillis());
+		
+		//DataBase Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");

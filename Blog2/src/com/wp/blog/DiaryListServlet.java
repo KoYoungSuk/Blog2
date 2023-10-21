@@ -46,13 +46,17 @@ public class DiaryListServlet extends HttpServlet {
 		Global g = new Global(response);
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
-		ServletContext application = request.getSession().getServletContext();
+		
 		int desc = Integer.parseInt(request.getParameter("desc"));
 		Boolean descbool = false;
+		
+		//DataBase Connection String from web.xml 
+		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
+  	    
   	    String viewName = null;
   	    if(desc == 0) {
   	    	descbool = false;
@@ -76,10 +80,12 @@ public class DiaryListServlet extends HttpServlet {
   	  	  	    	}
   	  	    	}
   	  	    	else {
+  	  	    		session.invalidate(); 
   	  	    		g.errorcode(3217);
   	  	    	}
   	    	}
   	    	else {
+  	    		session.invalidate(); 
   	    		g.errorcode(3217);
   	    	}
   	    }catch(Exception ex) {

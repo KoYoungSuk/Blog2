@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <c:choose>
-<c:when test="${sessionScope.id eq 'admin'}">
+<c:when test="${sessionScope.id eq 'admin'}"> <!-- 관리자 모드로 이미 로그인되어 있을 때 -->
  <c:redirect url="diarylist?desc=0"></c:redirect>
 </c:when>
 <c:otherwise>

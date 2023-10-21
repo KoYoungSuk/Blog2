@@ -39,16 +39,19 @@ public class DeleteDailyServlet extends HttpServlet {
 		Global g = new Global(response);
 		String id = (String)session.getAttribute("id");
 		String title = request.getParameter("title"); 
+		
+		//DataBase Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
+  	    
 		try
 		{
 			if(id != null)
 			{
-				if(id.equals("admin"))
+				if(id.equals("admin")) //관리자 계정으로만 일정정보 삭제가능 
 				{
 					DailyDAO dailydao = new DailyDAO(JDBC_Driver, db_url, db_id, db_pw); 
 					int result = dailydao.deleteDailyInfo(title); 
@@ -59,11 +62,13 @@ public class DeleteDailyServlet extends HttpServlet {
 				}
 				else
 				{
+					session.invalidate(); 
 					g.errorcode(3217); 
 				}
 			}
 			else
 			{
+				session.invalidate(); 
 				g.errorcode(3217);
 			}
 		}

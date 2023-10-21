@@ -42,11 +42,14 @@ public class DeleteBoardServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		int number = Integer.parseInt(request.getParameter("serial"));
+		
+		//DataBase Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
 		String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
+  	    
 		String viewName = null;
   	    try {
   	    	BoardDAO boardDAO = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
@@ -90,11 +93,14 @@ public class DeleteBoardServlet extends HttpServlet {
 		int number = Integer.parseInt(request.getParameter("number"));
 		String userid = request.getParameter("id");
 		String session_userid = (String)session.getAttribute("id");
+		
+		//DataBase Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
 		String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
+  	    
 		BoardDAO boardDAO = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
   	    String viewName = null;
   	    try {
@@ -108,10 +114,12 @@ public class DeleteBoardServlet extends HttpServlet {
   	  				}
   	  	    	}
   	  	    	else {
+  	  	    		session.invalidate(); 
   	  	    	    g.errorcode(3217);
   	  	    	}
   	    	}
   	    	else {
+  	    		session.invalidate(); 
   	    		g.errorcode(3217);
   	    	}
 		} catch (ClassNotFoundException | SQLException e) {

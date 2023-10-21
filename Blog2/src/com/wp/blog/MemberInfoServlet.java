@@ -38,7 +38,8 @@ public class MemberInfoServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
-		String id = (String) session.getAttribute("id");
+		String id = (String) session.getAttribute("id"); //현재 로그인된 아이디(세션) 
+		
 		//DB 연결 준비 START (WEB.XML에서 정보를 가져온다.) 
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
@@ -46,6 +47,7 @@ public class MemberInfoServlet extends HttpServlet {
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
   	    //DB 연결 준비 END 
+  	    
 		MemberDAO memberdao = new MemberDAO(JDBC_Driver, db_url, db_id, db_pw);
 		String viewName = null;
 		Global g = new Global(response);
@@ -60,6 +62,7 @@ public class MemberInfoServlet extends HttpServlet {
 			{ 
 				g.jsmessage("MemberList is Null");
 			}
+			
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			g.jsmessage(e.getMessage());

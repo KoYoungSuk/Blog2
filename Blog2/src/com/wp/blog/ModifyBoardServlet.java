@@ -41,17 +41,21 @@ public class ModifyBoardServlet extends HttpServlet {
 		String number = request.getParameter("serial");
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
+		
+		//DataBase Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
 		String JDBC_Driver = application.getInitParameter("jdbc_driver");
 	  	String db_url = application.getInitParameter("db_url");
 	  	String db_id = application.getInitParameter("db_userid");
 	  	String db_pw = application.getInitParameter("db_password");
+	  	
 		Global g = new Global(response);
 		String viewName = null;
+		
 		try {
 		  BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
 		  if(id != null) {
-			  if(id.equals("admin")) {
+			  if(id.equals("admin")) { //관리자 계정으로만 게시글 수정가능 
 				  Map<String, String> totalboardlist = boarddao.getBoardByNum(Integer.parseInt(number), false, false);
 				  if(totalboardlist != null) {
 					  session.setAttribute("totalboardlist", totalboardlist);
@@ -84,28 +88,37 @@ public class ModifyBoardServlet extends HttpServlet {
 		 request.setCharacterEncoding("UTF-8");
 		 response.setCharacterEncoding("UTF-8");
 		 Global g = new Global(response);
-		 ServletContext application = request.getSession().getServletContext();
+		 
 		 HttpSession session = request.getSession();
+		 
+		 //Parameters from HTML 
 		 String number = request.getParameter("number");
 		 String id = request.getParameter("userid");
 		 String s_id = (String)session.getAttribute("id");
 		 String title = request.getParameter("title");
 		 String content = request.getParameter("content");
 		 String access = request.getParameter("access");
+		 
+		 //DataBase Connection String from web.xml
+		 ServletContext application = request.getSession().getServletContext();
 	     String JDBC_Driver = application.getInitParameter("jdbc_driver");
 	  	 String db_url = application.getInitParameter("db_url");
 	  	 String db_id = application.getInitParameter("db_userid");
 	  	 String db_pw = application.getInitParameter("db_password");
+	  	 
 	  	 String viewName = null;
 	  	 Timestamp modifydate = new Timestamp(System.currentTimeMillis());
+	  	 
+	  	 
 	  	 BoardDO boarddo = new BoardDO(Integer.parseInt(number), title, id, content, null, modifydate, access, 0);
 	  	 BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
 	  	 try {
-	  		if(id != null && s_id != null) {
-	  			if(id.equals(s_id)) {
+	  		if(s_id != null) {
+	  			if(s_id.equals("admin")) {
 	  				int result = boarddao.UpdateBoard(boarddo, false);
 					System.out.println(result);
 					if(result == 1){
+						session.removeAttribute("totalboardlist"); 
 						viewName = "main.do";
 					}
 					else{
@@ -113,10 +126,12 @@ public class ModifyBoardServlet extends HttpServlet {
 					}
 		  		}
 	  			else {
+	  				session.invalidate(); 
 	  				g.errorcode(3217);
 	  			}
 	  		}
 	  		else {
+	  			session.invalidate(); 
 	  			g.errorcode(3217);
 	  		}
 		} catch (ClassNotFoundException | SQLException e) {

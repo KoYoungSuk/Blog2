@@ -36,15 +36,14 @@ public class Global {
 		response.sendError(code);
 	}
 	
-	//SFTP 업로드 (현재는 비활성화)
-	
+	//SFTP 서버 업로드  
 	public void UploadSFTP(String localpath, String serverpath) throws JSchException, SftpException
 	{
 		JSch jsch = new JSch();
 		
 		String address = "192.168.55.126";
 		String id = "kys";
-		String password = "PASSWORD CENSORED";
+		String password = "password censored";
 		int port = 22;
 		
 		Session session = jsch.getSession(id, address, port);

@@ -41,16 +41,19 @@ public class InfoListServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		Global g = new Global(response);
+		
+		//Database Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
+  	    
   	    String viewName = null; 
   	    try
   	    {
   	    	if(id != null) {
-  	    		if(id.equals("admin")) {
+  	    		if(id.equals("admin")) { //관리자 계정으로만 버스 정보 볼수 있음. 
   	  	    		InfoDAO infodao = new InfoDAO(JDBC_Driver, db_url, db_id, db_pw);
   	  	  	    	List<InfoDO> totalinfolist = infodao.getInfoList(); 
   	  	  	    	if(totalinfolist != null) {

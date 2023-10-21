@@ -41,26 +41,32 @@ public class MemberManageServlet extends HttpServlet {
 		Global g = new Global(response);
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
+		
+		//DataBase Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
+  	    
 		MemberDAO memberdao = new MemberDAO(JDBC_Driver, db_url, db_id, db_pw);
 		List<MemberDO> memberlist = null;
 		String viewName = null;
+		
 	    try {
 	    	if(id != null) {
-	    		if(id.equals("admin")) {
+	    		if(id.equals("admin")) { //관리자 계정으로만 전체 회원 관리 가능 
 	    			memberlist = memberdao.getMemberList();
 	    			session.setAttribute("memberlist", memberlist);
 	    			viewName = "main.do?page=11";
 	    		}
 	    		else {
+	    			session.invalidate(); 
 	    			g.errorcode(3217);
 	    		}
 	    	}
 	    	else {
+	    		session.invalidate(); 
 	    		g.errorcode(3217);
 	    	}
 		} catch (ClassNotFoundException e) {

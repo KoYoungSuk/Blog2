@@ -31,8 +31,8 @@ public class MailSendClass {
 		p.put("mail.smtp.debug",  "true");
 		p.put("mail.smtp.starttls.enable", "true");
 		p.put("mail.smtp.socketFactory.port", "587");
-		//p.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-		p.put("mail.smtp.socketFactory.fallback", "false");
+		p.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		//p.put("mail.smtp.socketFactory.fallback", "false");
 		p.put("mail.smtp.ssl.protocols", "TLSv1.2"); //Change TLS Protocol Version to 1.2 
         //I typed this code because JavaMail 1.4.7 doesn't support TLS1.2, But OpenJDK 11 only supports TLS1.2 or higher. 
 		//JDK 8 support old TLS Version. But using old TLS version is dangerous for security reason.  
