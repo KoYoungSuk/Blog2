@@ -1,14 +1,14 @@
-# PersonalMemo Version 2.0 (2023-09-13) 
+# PersonalMemo Version 2.5 (2023-11-03) 
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 
-Apache Tomcat 9.0/Eclipse IDE for Java EE 2018-09/OpenJDK 8
+Apache Tomcat 9.0/Eclipse IDE for Java EE 2018-09/OpenJDK
 
 Actually development environment is not Ubuntu. it is Windows 10/11!.
 
 (Server environment is Ubuntu)
 
-This Site use Bootstrap 4.4 and PDF.js (https://mozilla.github.io/pdf.js) 
+This Site use Bootstrap 4.4
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
