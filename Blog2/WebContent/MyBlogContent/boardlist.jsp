@@ -30,14 +30,6 @@
       <form action="search.do" method="POST">
         <input type="text" class="form-control-sm"name="word" placeholder="Search Title" value= "${sessionScope.word}" />
         <button type="submit" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">search</span>Search</button>
-        <c:choose>
-        <c:when test="${param.desc == 1}">
-         <button type="button" class="btn btn-primary btn-sm" onclick="location.href='boardlist.do?desc=0'"><span class="material-symbols-outlined">trending_up</span>Ascend</button>
-        </c:when>
-        <c:otherwise>
-         <button type="button" class="btn btn-danger btn-sm" onclick="location.href='boardlist.do?desc=1'"><span class="material-symbols-outlined">trending_down</span>Descend</button> 
-        </c:otherwise>
-        </c:choose>
       </form>
       </div>
        <div style="text-align: left">
@@ -46,16 +38,16 @@
         <table class="table" style="background-color: lightyellow; ">
           <thead>
               <tr>
-                  <th>Number</th>
-                  <th>Title</th>
-                  <th>Save Date</th>
-                  <th>Modify Date</th>
-                  <th>Access Mode</th>
-                  <th>Clicks</th>
+                  <th>NUMBER</th>
+                  <th>TITLE</th>
+                  <th>SAVEDATE</th>
+                  <th>MODIFYDATE</th>
+                  <th>ACCESS</th>
+                  <th>CLICKS</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <c:forEach var="boardDO" items="${sessionScope.boardlist}" varStatus="status">       
+                  <c:forEach var="boardDO" items="${sessionScope.boardlist}" begin="${sessionScope.beginnumber}" end="${sessionScope.endnumber}">       
                   <tr>
                   <td><c:out value="${boardDO.serialnumber}" /></td>
                   <td><a href="detailboard.do?serial=${boardDO.serialnumber}"><c:out value="${boardDO.title}" /></a></td>
@@ -64,11 +56,18 @@
                   <td><c:out value="${boardDO.anonymous}" /></td>
                   <td><c:out value="${boardDO.clicks}" /></td>
                   <td>
-                  <!-- <a href="deleteboard.do?serial=${boardDO.serialnumber}">Delete</a>-->
                   <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='deleteboard.do?serial=${boardDO.serialnumber}'"><span class="material-symbols-outlined">delete</span></button>
                   </td>
                   </tr>
                </c:forEach>
            </tbody>
         </table>
+        <div style="text-align: center;">
+          <h4 style="weight: bold;">PAGE NUMBER</h4> 
+          <hr> 
+          <c:forEach var="num"  begin="1" end="${sessionScope.pagenum}"> 
+          <button type="button" class="btn btn-secondary" onclick="location.href='boardlist.do?desc=0&pagecount=${num}'">${num}</button>
+          </c:forEach> 
+        </div> 
+        <br> 
  </div>

@@ -38,7 +38,7 @@
 </head>
 <div class="container-fluid">
 <div class="row"> 
-  <div class="col-sm-4" style="background-color: #DCDCDC; padding: 0px; margin: 120px;">
+  <div class="col-lg-4" style="background-color: #DCDCDC; padding: 0px; margin: 120px;">
     <h3 class="htitle">Welcome to HomeProduct!</h3>
 	<p>&nbsp;&nbsp;Only Administrator can use HomeProduct Web Mode. Sorry.... </p>
 	<hr>

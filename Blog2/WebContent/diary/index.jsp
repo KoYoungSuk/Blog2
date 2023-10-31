@@ -45,7 +45,7 @@
 <hr>
 <div class="container-fluid">
 <div class="row">
-   <div class="col-sm-4" style="background-color: #DCDCDC; margin: 120px; padding: 0px;">
+   <div class="col-lg-4" style="background-color: #DCDCDC; margin: 120px; padding: 0px;">
     <H3 class="htitle"> Welcome to MyDiary! </H3>
 	<p>&nbsp;&nbsp;Only Administrator can use MyDiary(Web). (I'm Sorry!) </p>
 	<form action="diarylogin" method="POST">
@@ -69,7 +69,7 @@
   </div>
   </div>
   <div class="footer">
-	<p>Last updated: May 18th, 2023 </p>
+	<p>Last updated: October 31st, 2023 </p>
 	<p>This is not copyrighted. But don't use this illegally. </p>
   </div>
 <body>

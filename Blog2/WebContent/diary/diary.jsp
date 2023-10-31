@@ -14,7 +14,7 @@
 </c:choose>
 <c:choose>
 <c:when test="${sessionScope.id ne 'admin'}"> <!-- 관리자 모드로만 사용가능 -->
-<c:redirect url="/error_3217.html"></c:redirect>
+<c:redirect url="../3217.jsp"></c:redirect>
 </c:when>
 <c:otherwise></c:otherwise>
 </c:choose>

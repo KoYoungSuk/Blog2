@@ -15,7 +15,7 @@
 </c:choose>
 <c:choose>
 <c:when test="${sessionScope.id ne 'admin'}">
-  <c:redirect url="../error_3217.html"></c:redirect>
+  <c:redirect url="../3217.jsp"></c:redirect>
 </c:when>
 <c:otherwise></c:otherwise>
 </c:choose>
@@ -51,7 +51,7 @@
 </head>
 <body>
 
-<div class="col-sm-8" style="background-color: #DCDCDC; padding: 0px; margin: 50px; ">
+<div class="col-lg-6" style="background-color: #DCDCDC; padding: 0px; margin: 50px; ">
     <h3 class="htitle">
       (Current User: ${sessionScope.id}) ${titlename}
     </h3>

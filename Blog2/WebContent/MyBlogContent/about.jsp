@@ -2,17 +2,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <div class="col-lg-6" style="margin: 70px; padding: 0px; background-color: #DCDCDC;">
        <h3 class="htitle" style="border: ridge;">About PersonalMemo</h3>
-       <p>&nbsp;&nbsp;PersonalMemo Version 2.0 (Build 135) </p>
+       <p>&nbsp;&nbsp;PersonalMemo Version 2.5 (Build 150) </p>
        <p>&nbsp;&nbsp;First Updated: Tuesday, February 25th 2020 </p>
-       <p>&nbsp;&nbsp;Last Updated: Wednesday, September 13th, 2023 </p>
+       <p>&nbsp;&nbsp;Last Updated: Friday, November 3rd, 2023 </p>
        <hr> 
        <c:choose>
        <c:when test="${sessionScope.id ne null }">
-       <p>&nbsp;&nbsp;<a href="./pdfviewer/environment.html">Development/Server Environment</a></p>
+       <p>&nbsp;&nbsp;<a href="./pdfviewer/index.jsp?pdffile=Environment.pdf">Development/Server Environment</a></p>
        <p>&nbsp;&nbsp;<a href="https://github.com/KoYoungSuk/Blog2.git">GitHub Source</a></p>
-       <p>&nbsp;&nbsp;<a href="./pdfviewer/">Reason and History</a></p>
-       <p>&nbsp;&nbsp;<a href="./pdfviewer/old.html">Legacy Pictures About My WebSite. </a></p>
-       <p>&nbsp;&nbsp;<a href="./pdfviewer/portfoilo.html">Portfoilo</a></p>
+       <p>&nbsp;&nbsp;<a href="./pdfviewer/index.jsp?pdffile=WhyIMakethis.pdf">Reason and History</a></p>
+       <p>&nbsp;&nbsp;<a href="./pdfviewer/index.jsp?pdffile=old.pdf">Legacy Pictures About My WebSite. </a></p>
+       <p>&nbsp;&nbsp;<a href="./pdfviewer/index.jsp?pdffile=Portfoilo.pdf">Portfoilo</a></p>
        <hr>
        </c:when>
        </c:choose>

@@ -1,5 +1,7 @@
 package com.wp.blog;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 
 import java.sql.Timestamp;
@@ -108,6 +110,8 @@ public class ModifyDiaryServlet extends HttpServlet {
   	    
 		Global g = new Global(response);
 		String viewName = null;
+		//String localfilepath = "C://Temp//" ; //Windows
+		String localfilepath = "/home/kysserver/Temp/"; //Linux
 		
 		try {
 		  if(id != null) {
@@ -116,6 +120,22 @@ public class ModifyDiaryServlet extends HttpServlet {
 			      DiaryDO diarydo = new DiaryDO(title, content, null, modifydate);
 			      int result = diarydao.updateDiary(diarydo);
 			      if(result == 1) {
+			    	  g.deleteSFTP("/mnt/hdd3/Secret Documents/Diary/Before 2020-07/" + title + ".txt", request); //SFTP 파일 삭제
+			    	  
+			    	  File file = new File(localfilepath + title + ".txt");
+			    	  
+			    	  if(!file.exists()) //파일 경로가 존재하지 않으면 새로 만든다.
+	    			   {
+	    				  file.createNewFile(); 
+	    			   }
+	    			   FileWriter fw = new FileWriter(file); 
+	    			   fw.write(content); //파일 생성 
+	    			   fw.flush();
+	    			   fw.close(); 
+	
+	    			   //SFTP 서버에 파일 다시 업로드 
+	    			   g.UploadSFTP(localfilepath + title + ".txt", "/mnt/hdd3/Secret Documents/Diary/Before 2020-07/" + title + ".txt", request);
+	    			   
 			    	  viewName = "diarylist?desc=0";
 			      }
 			      else {

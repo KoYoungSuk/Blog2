@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<!-- FOR ERROR 404/500 PAGES  -->
+<!-- FOR ERROR 403/404/500 PAGES  -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +11,7 @@
 <style>
 body{
   background-color: black;
-  color: white; 
+  color: green; 
   font-family: 'VT323';
   font-size: 22px; 
 }
@@ -21,6 +21,9 @@ body{
 <div style="margin: auto; width: 90%; max-width: 500px; padding-top: 10%; text-align: center">
   <H2 style="background-color: lightgray; color: black; ">
   <c:choose> 
+  <c:when test="${param.page == 403}"> <!-- 403 -->
+  Error Message: 403 
+  </c:when> 
   <c:when test="${param.code == 404}">  <!--  404 -->
   Error Message: 404 
   </c:when>
@@ -36,6 +39,9 @@ body{
  <br> 
  <div style="margin: auto; width=90%; max-width: 700px; text-align: center;">
      <c:choose>
+     <c:when test="${param.code == 403}">
+     <p>Forbidden</p> 
+     </c:when>
      <c:when test="${param.code == 404}">
      <p>Page Not Found</p>
      </c:when>

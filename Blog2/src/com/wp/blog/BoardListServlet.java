@@ -39,8 +39,6 @@ public class BoardListServlet extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
-		String desc = request.getParameter("desc");
-		Boolean descbool = false;
 		String access = "admin"; 
 		String viewName = null;
 		
@@ -56,10 +54,13 @@ public class BoardListServlet extends HttpServlet {
 	    List<BoardDO> newboardlist = new ArrayList<BoardDO>();
 	    Global g = new Global(response);
 	
+	    String pagecount_str = request.getParameter("pagecount");
+	    int pagecount = 1;
 	    
-	    if(desc == null) {
-	    	desc = "0";
+	    if(pagecount_str != null) {
+	    	pagecount = Integer.parseInt(request.getParameter("pagecount"));
 	    }
+	   
 	    
 	    //현재 세션에 있는 아이디(로그인된 아이디)를 이용하여 권한 체크
 	    
@@ -72,15 +73,15 @@ public class BoardListServlet extends HttpServlet {
 	    	}
 	    }
 	    
-	    int descnum = Integer.parseInt(desc);
-	    if(descnum == 1) {
-	    	descbool = true;
-	    }
 	    try {
-	    	  List<BoardDO> boardlist = boarddao.getBoardList(descbool);
+	    	  List<BoardDO> boardlist = boarddao.getBoardList(false);
 		      if(boardlist != null){
 		    	  int count_board = boarddao.getBoardCount(access);
+		    	  int page_num = count_board / 10; //게시글 10개를 기준으로 페이지 나누기 
+		          int page_num_rest = count_board % 10;
+		          
 			      for(BoardDO boarddo: boardlist) {
+			    	  
 					if(access.equals("admin")) {  //관리자 모드로 접속한 경우 전체 게시물 조회 가능 
 					     newboardlist.add(boarddo);
 				    }
@@ -95,8 +96,12 @@ public class BoardListServlet extends HttpServlet {
 						}
 				    }
 			      }
+			      
 				  session.setAttribute("boardlist", newboardlist);
 				  session.setAttribute("count_board", count_board);
+				  session.setAttribute("pagenum", page_num); //페이지 개수 
+				  session.setAttribute("beginnumber", (pagecount-1) * 10); //시작번호 
+				  session.setAttribute("endnumber", ((pagecount-1) * 10) + 10 + page_num_rest); //끝번호 
 			      viewName = "main.do?page=3"; 
 			  }else {
 				  g.jsmessage("Not Found");

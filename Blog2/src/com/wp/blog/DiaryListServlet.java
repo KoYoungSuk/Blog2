@@ -47,8 +47,14 @@ public class DiaryListServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		
-		int desc = Integer.parseInt(request.getParameter("desc"));
-		Boolean descbool = false;
+		String page_num_diary_para_str = request.getParameter("page_count_diary");
+		int page_num_diary_para = 1;
+		
+		if(page_num_diary_para_str != null)
+		{
+			page_num_diary_para = Integer.parseInt(page_num_diary_para_str);
+		}
+		
 		
 		//DataBase Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
@@ -58,22 +64,21 @@ public class DiaryListServlet extends HttpServlet {
   	    String db_pw = application.getInitParameter("db_password");
   	    
   	    String viewName = null;
-  	    if(desc == 0) {
-  	    	descbool = false;
-  	    }
-  	    else {
-  	    	descbool = true;
-  	    }
   	    try {
   	    	if(id != null) {
   	    		if(id.equals("admin")) {
   	  	    		DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
-  	  	  	    	List<DiaryDO> diarylist = diarydao.getDiaryList(descbool);
+  	  	  	    	List<DiaryDO> diarylist = diarydao.getDiaryList(false);
   	  	  	    	int diarynumber = diarydao.getDiarynumber();
+  	  	  	    	int page_num_diary = diarynumber / 10; //10개씩 페이지 구분하기 
+  	  	  	    	int page_num_diary_rest = diarynumber % 10; 
   	  	  	    	if(diarylist != null) {
   	  	  	    		viewName = "diary.jsp?page=1";
   	  	  	    		session.setAttribute("diarylist", diarylist);
   	  	  	    		session.setAttribute("diarynumber", diarynumber);
+  	  	  	    		session.setAttribute("page_num_diary", page_num_diary); 
+  	  	  	    		session.setAttribute("beginnumber_diary", (page_num_diary_para - 1) * 10); //시작번호 
+  	  	  	    		session.setAttribute("endnumber_diary" , ((page_num_diary_para -1) * 10) + 10 + page_num_diary_rest); //끝번호 
   	  	  	    	}
   	  	  	    	else {
   	  	  	    		g.jsmessage("Null Error");

@@ -36,7 +36,7 @@
      }
 </style>
 </head>
-  <div class="col-sm-4" style="background-color: #DCDCDC; padding: 0px; margin: 120px;">
+  <div class="col-lg-4" style="background-color: #DCDCDC; padding: 0px; margin: 120px;">
     <h3 class="htitle"> Oracle DataBase Login Screen </h3>
 	<p>&nbsp;&nbsp; This is Administrator Only. </p>
 	<hr>

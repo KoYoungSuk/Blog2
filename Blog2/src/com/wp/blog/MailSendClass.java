@@ -40,9 +40,7 @@ public class MailSendClass {
 		Authenticator auth = new SMTPAuthenticator(request);
 		
 		Session session = Session.getInstance(p, auth); 
-		
-		//Session session = Session.getDefaultInstance(p, null); 
-		
+
 		Message message = new MimeMessage(session);
 		
 		message.setSubject(title); //제목 

@@ -107,6 +107,10 @@ public class DeleteDiaryServlet extends HttpServlet {
 	 			DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
 		 		int result = diarydao.deleteDiary(title);
 		 		if(result == 1) {
+		 			String serverpath = "/mnt/hdd3/Secret Documents/Diary/Before 2020-07/" + title + ".txt";
+		 			
+		 			g.deleteSFTP(serverpath, request); //SFTP 서버 파일 삭제
+		 			
 		 			session.removeAttribute("detaildiarylist");
 		 			viewName = "diarylist?desc=0";
 		 		}

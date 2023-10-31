@@ -1,7 +1,8 @@
 package com.wp.blog;
 
 import java.io.IOException;
-import java.util.List;
+
+//import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.wp.blog.DAO.DiaryDAO;
-import com.wp.blog.DTO.DiaryDO;
+//import com.wp.blog.DTO.DiaryDO;
 
 /**
  * Servlet implementation class DiaryDetailServlet
@@ -57,6 +58,16 @@ public class DiaryDetailServlet extends HttpServlet {
 					
 					DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
    
+					Map<String, String> detaildiarylist = diarydao.getDiaryListByTitle(title, true);
+					if(detaildiarylist != null) {
+						session.setAttribute("detaildiarylist", detaildiarylist);
+						viewName = "diary.jsp?page=2";
+					}
+					else {
+						g.jsmessage("Null Error");
+					}
+					
+					/*
 					if(title.length() == 10) //제목에 맞춰서 검색했을 경우 : 그 제목에 맞는 일기장 내용이 출력된다. 
 					{
 						Map<String, String> detaildiarylist = diarydao.getDiaryListByTitle(title, true);
@@ -70,6 +81,7 @@ public class DiaryDetailServlet extends HttpServlet {
 					}
 					else //제목에 맞춰서 검색하지 않고 제목에 있는 특정 키워드를 검색하면 거기에 따라서 목록이 출력된다. 
 					{
+						
 	  	  	  	    	List<DiaryDO> diarylist = diarydao.searchDiaryListByTitle(title); 
 	  	  	  	    	int diarynumber = diarydao.getDiarynumberByTitle(title);
 	  	  	  	    	if(diarylist != null)
@@ -83,6 +95,7 @@ public class DiaryDetailServlet extends HttpServlet {
 	  	  	  	    	    g.jsmessage("Result Not Found."); 
 	  	  	  	    	}
 					}
+					*/ 
 				}
 				else {
 					g.errorcode(3217);

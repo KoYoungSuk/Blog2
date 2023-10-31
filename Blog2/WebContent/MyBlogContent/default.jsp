@@ -7,7 +7,7 @@
         <form action="search.do" method="POST">
         <input type="text" class="form-control-sm" name="word" placeholder="Search Title" value= "${sessionScope.word}" />
         <button type="submit" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">search</span>Search</button>
-        <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='./pdfviewer/'"><span class="material-symbols-outlined">info</span>Reason and History</button>
+        <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='./pdfviewer/index.jsp?pdffile=WhyIMakethis.pdf'"><span class="material-symbols-outlined">info</span>Reason and History</button>
         <c:choose>
         <c:when test="${sessionScope.id eq 'admin'}">
             <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='main.do?page=12'"><span class="material-symbols-outlined">create</span>Write</button> 
@@ -20,13 +20,13 @@
       <table class="table" style="background-color: lightyellow;">
       <thead>
       <tr>
-       <th>Number</th>
-       <th>Title</th>
-       <th>Save Date</th>
-       <th>Modify Date</th>
-       <th>Access</th>
-       <th>Clicks</th>
-      <th>Delete</th>
+       <th>NUMBER</th>
+       <th>TITLE</th>
+       <th>SAVEDATE</th>
+       <th>MODIFYDATE</th>
+       <th>ACCESS</th>
+       <th>CLICKS</th>
+      <th>DELETE</th>
       </tr>
       </thead>
       <tbody>

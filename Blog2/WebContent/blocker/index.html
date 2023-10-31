@@ -3,28 +3,40 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title> Error 403: Forbidden (Please go back!!!) </title>
+<title> You're screwed </title>
 <style>
     body{
        background-color: black; 
-       color: white; 
+       color: red; 
+       weight: bold; 
+       font-family: "Bookman Old Style", Georgia, serif;
     }
-	.ghost{
-	    position: absolute; 
+	.ghost{ 
 		height:100vh; 
 		width:100%; 
 		display: none;
-		border:0px;
 		text-align: center; 
 	}
 	.normal{
-	    position: absolute; 
 	    height:100vh;
 	    width:100%;
 	    display: block;
-	    border: 0px; 
 	    text-align: center; 
 	}
+	button{
+	   background-color: black;
+	   color: red; 
+	   weight: bold; 
+	   font-family: "Bookman Old Style", Georgia, serif;
+	   border: none; 
+	   font-size: 20px; 
+	}
+	H1{
+	  font-size: 100px;
+	}
+	H2{
+	  font-size: 60px; 
+    }
 </style>
 </head>
 <body>
@@ -32,19 +44,12 @@
   <H1 id="times"></H1>
 </div>
 <div id="ghost" class="ghost" > 
-  <img src="http://192.168.55.126/nossl/pictures/computer.jpg" style="text-align: center;"> 
-  <br>
-  <div style="text-align: center;">
-  <button style="width: 100px; height: 50px;" onclick="history.go(-1); ">Back</button>
-  <button style="width: 100px; height: 50px;" onclick="location.href='http://home.yspersonal.com/main.do'">Back to Main Page</button>
-  </div>
+  <img src="https://home.yspersonal.com/pictures/ghost.jpg" style="text-align: center;"> 
 </div>
 <div id="normal" class="normal">
-  <H1> Error 403: Forbidden </H1>
-  <H3> Ghost will appear. You need to go back!! </H3> 
+  <H2>GHOST WILL BE APPEAR... </H2>
   <div style="text-align: center;">
-  <button type="button" style="text-align: center; width: 100px; height: 50px;" onclick="history.go(-1); ">Back</button> 
-  <button type="button" style="text-align: center; width: 100px; height: 50px;" onclick="location.href='http://home.yspersonal.com/main.do'">Back to Main Page</button>
+  <button type="button" style="text-align: center; padding: 10px 20px; " onclick="history.go(-1); ">Back</button> 
   </div>
 </div>
 <script>
@@ -52,20 +57,22 @@
     var remainedtimes = 60; 
     function remainedtimer(){
     	remainedtimes = remainedtimes - 1; 
-		document.getElementById("times").innerHTML = "REMAINED TIME: " + remainedtimes;
+		document.getElementById("times").innerHTML = remainedtimes;
 		if(remainedtimes <= 0)
 		{
 			remainedtimes = 60; 
 		}
     }
-	function summonzombie(){
-		if(check == 1){  
+	function summonghost(){
+		if(check == 1){  //Ghost will be appeared!  
+			var audio = new audio("https://home.yspersonal.com/music/ghost.mp3"); 
+			audio.play(); //Ghost Screaming 
 			check = 0;
 			document.getElementById("normal").style.display = "block";
 			document.getElementById("ghost").style.display = "none"; 
 		}
 		else if(check == 0){
-			check = 1; 
+			check = 1;  
 			document.getElementById("normal").style.display = "none"; 
 			document.getElementById("ghost").style.display = "block"; 
 		}
@@ -73,7 +80,7 @@
 	function init(){
 		remainedtimer();
 		setInterval(remainedtimer, 1000); //1 seconds 
-		setInterval(summonzombie, 60000); //60 seconds 
+		setInterval(summonghost, 60000); //60 seconds 
 	}
 	init(); 
 </script>

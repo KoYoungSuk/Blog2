@@ -1,10 +1,11 @@
 package com.wp.blog;
 
 import java.io.IOException;
-
 import java.io.PrintWriter;
 import java.util.Properties;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.jcraft.jsch.Channel;
@@ -17,6 +18,7 @@ import com.jcraft.jsch.SftpException;
 public class Global {
 
 	HttpServletResponse response;
+	
 	public Global(HttpServletResponse response) {
 		response.setContentType("text/html; charset=UTF-8");  //UTF-8 
 		this.response = response;
@@ -37,13 +39,15 @@ public class Global {
 	}
 	
 	//SFTP 서버 업로드  
-	public void UploadSFTP(String localpath, String serverpath) throws JSchException, SftpException
+	public void UploadSFTP(String localpath, String serverpath, HttpServletRequest request) throws JSchException, SftpException
 	{
 		JSch jsch = new JSch();
 		
-		String address = "192.168.55.126";
-		String id = "kys";
-		String password = "password censored";
+		ServletContext application = request.getSession().getServletContext();
+    	String address = application.getInitParameter("sftp_address");
+  	    String id = application.getInitParameter("sftp_id");
+  	    String password = application.getInitParameter("sftp_pw"); 
+  	    
 		int port = 22;
 		
 		Session session = jsch.getSession(id, address, port);
@@ -69,5 +73,36 @@ public class Global {
 	    session.disconnect(); 
 	}
 	
+	//SFTP 파일 삭제 
+	public void deleteSFTP(String serverpath, HttpServletRequest request) throws JSchException, SftpException{
+		JSch jsch = new JSch();
+		
+		ServletContext application = request.getSession().getServletContext();
+    	String address = application.getInitParameter("sftp_address");
+  	    String id = application.getInitParameter("sftp_id");
+  	    String password = application.getInitParameter("sftp_pw"); 
+  	    int port = 22; 
+  	    
+		Session session = jsch.getSession(id, address, port);
+		session.setPassword(password);
+		
+		Properties config = new Properties();
+		config.put("StrictHostKeyChecking", "no");
+		session.setConfig(config);
+		    
+	    session.connect();
+		    
+		ChannelSftp channelsftp = null;
+	    Channel channel = null;
+		    
+		channel = session.openChannel("sftp");
+	    channel.connect();
+	    
+	    channelsftp = (ChannelSftp) channel;
+	    channelsftp.rm(serverpath);
+	    channel.disconnect();
+	    session.disconnect(); 
+	    
+	}
 	
 }

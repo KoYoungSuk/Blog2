@@ -66,7 +66,8 @@ public class WriteDiaryServlet extends HttpServlet {
   	    String viewName = null;
   	    
   	     
-  	    String localfilepath = "/home/kysserver/Temp/" + title + ".txt"; 
+  	    String localfilepath = "/home/kysserver/Temp/" + title + ".txt";  //Linux 
+  	    //String localfilepath = "C://Temp//";    //Windows 
 	    File file = new File(localfilepath);
 	    
   	    
@@ -89,8 +90,8 @@ public class WriteDiaryServlet extends HttpServlet {
 	    			   fw.flush();
 	    			   fw.close(); 
 	
-	    			   //자꾸 읽기 전용 파일 시스템 오류가 남.... 
-	    			   g.UploadSFTP(localfilepath, "/mnt/hdd3/Secret Documents/Diary/Before 2020-07/" + title + ".txt");
+	    			   //SFTP 서버에 파일 업로드 
+	    			   g.UploadSFTP(localfilepath, "/mnt/hdd3/Secret Documents/Diary/Before 2020-07/" + title + ".txt", request);
 	    			   
 					   viewName = "diarylist?desc=0";
 					   
