@@ -21,7 +21,7 @@
   </context-param>
   <context-param>
     <param-name>db_password</param-name>
-    <param-value>password</param-value>
+    <param-value>DB_PASSWORD</param-value>
   </context-param>
   <context-param>
     <param-name>mail_id</param-name>
@@ -29,26 +29,38 @@
   </context-param>
   <context-param>
     <param-name>mail_password</param-name>
-    <param-value>password</param-value>
+    <param-value>MAIL PASSWORD</param-value>
+  </context-param>
+  <context-param>
+    <param-name>sftp_address</param-name>
+    <param-value>192.168.55.126</param-value>
+  </context-param>
+  <context-param>
+    <param-name>sftp_id</param-name>
+    <param-value>kys</param-value>
+  </context-param>
+  <context-param>
+    <param-name>sftp_pw</param-name>
+    <param-value>SFTP_PW</param-value>
   </context-param>
   <error-page>
     <error-code>418</error-code>
-    <location>/oldmain.jsp?num=3702</location>
+    <location>/3217</location>
   </error-page>
   <error-page>
     <error-code>403</error-code>
-    <location>/blocker/index.html</location>
+    <location>/error?code=403</location>
   </error-page>
   <error-page>
     <error-code>404</error-code>
-    <location>/error_new.jsp?code=404</location>
+    <location>/error?code=404</location>
   </error-page>
   <error-page>
     <error-code>500</error-code>
-    <location>/error_new.jsp?code=500</location>
+    <location>/error?code=500</location>
   </error-page>
   <error-page>
     <error-code>3217</error-code>
-    <location>/error.jsp?page=3217</location>
+    <location>/3217</location>
   </error-page>
 </web-app>
