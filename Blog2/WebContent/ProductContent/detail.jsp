@@ -6,6 +6,7 @@
 <button class="btn btn-secondary btn-sm" onclick="location.href='modifyproduct?product_no=${productnumber}'"><span class="material-symbols-outlined">create</span>Modify</button>
 <button class="btn btn-danger btn-sm" onclick="location.href='deleteproduct?product_no=${productnumber}'"><span class="material-symbols-outlined">delete</span>Delete</button>&nbsp;&nbsp; 
 </div>
+<br> 
 <table class="table" style="background-color: lightyellow;">
 <tr>
  <td>물품 번호:</td>

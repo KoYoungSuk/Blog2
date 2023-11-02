@@ -15,7 +15,7 @@
 </c:choose>
 <c:choose>
 <c:when test="${sessionScope.id ne 'admin'}"> <!-- 관리자 모드로만 사용가능 -->
-<c:redirect url="../3217.jsp"></c:redirect>
+<c:redirect url="../3217"></c:redirect>
 </c:when>
 <c:otherwise></c:otherwise>
 </c:choose>
@@ -50,7 +50,7 @@
 <body>
 <div class="container-fluid">
 <div class="row"> 
-<div class= "col-lg-6" style="padding: 0px; margin: 70px; background-color: #DCDCDC; ">
+<div class= "col-lg-8" style="padding: 0px; margin: 70px; background-color: #DCDCDC; ">
     <h3 class="htitle">
     DailyManager (Current User: ${sessionScope.id} ) ${titlename} 
     </h3>

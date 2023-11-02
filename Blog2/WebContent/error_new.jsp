@@ -21,7 +21,7 @@ body{
 <div style="margin: auto; width: 90%; max-width: 500px; padding-top: 10%; text-align: center">
   <H2 style="background-color: lightgray; color: black; ">
   <c:choose> 
-  <c:when test="${param.page == 403}"> <!-- 403 -->
+  <c:when test="${param.code == 403}"> <!-- 403 -->
   Error Message: 403 
   </c:when> 
   <c:when test="${param.code == 404}">  <!--  404 -->
@@ -58,7 +58,7 @@ body{
      <p id="time"></p>
      <br>
      <p><a style="color: white;" href="#" onclick="history.go(-1);">Click this to Back.</a></p> 
-     <p><a style="color: white;" href="http://home.yspersonal.com">Click this to go main page. </a></p> 
+     <p><a style="color: white;" href="${sessionScope.new_url2}">Click this to go main page. </a></p> 
 </div>
 </body>
 </html>

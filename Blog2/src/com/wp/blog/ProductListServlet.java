@@ -38,9 +38,6 @@ public class ProductListServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
-		int desc = Integer.parseInt(request.getParameter("desc"));
-		Boolean descbool = false;
-		String columnname = request.getParameter("columnname");
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		Global g = new Global(response);
@@ -53,22 +50,33 @@ public class ProductListServlet extends HttpServlet {
   	    String db_pw = application.getInitParameter("db_password");
   	    
   	    String viewName = null;
-  	    if(desc == 0) {
-  	    	descbool = false;
+  	    String product_page_num_str = request.getParameter("page_num");
+  	    int product_page_num =  1;
+  	    if(product_page_num_str != null) {
+  	    	product_page_num = Integer.parseInt(product_page_num_str); 
   	    }
-  	    else {
-  	    	descbool = true;
-  	    }
+  	    
   	    try {
   	    	if(id != null) {
   	    		if(id.equals("admin")) {
   	  	    		ProductDAO productdao = new ProductDAO(JDBC_Driver, db_url, db_id, db_pw);
-  	  	  	    	List<ProductDO> totalproductlist = productdao.getProductTotalList(descbool, columnname);
+  	  	  	    	List<ProductDO> totalproductlist = productdao.getProductTotalList();
   	  	  	    	int productnumber = productdao.getProductNumber();
+  	  	  	    	int pagecount_product = productnumber / 10;
+  	  	  	    	int pagecount_product_rest = productnumber % 10; 
+  	  	  	    	
   	  	  	    	if(totalproductlist != null) {
   	  	  	    		viewName = "product.jsp?page=1";
   	  	  	    		session.setAttribute("productnumber", productnumber);
   	  	  	    		session.setAttribute("totalproductlist", totalproductlist);
+  	  	  	    		session.setAttribute("pagecount_product", pagecount_product);
+  	  	  	    		session.setAttribute("beginnumber_product", (product_page_num -1) * 10);
+  	  	  	    		if(product_page_num == pagecount_product) { //마지막 페이지일때 
+  	  	  	    		session.setAttribute("endnumber_product", ((product_page_num - 1) * 10)  + 9 + pagecount_product_rest); 
+  	  	  	    		}
+  	  	  	    		else {
+  	  	  	    			session.setAttribute("endnumber_product", ((product_page_num - 1) * 10)  + 9); 
+  	  	  	    		}
   	  	  	    	}
   	  	    	}
   	  	    	else {

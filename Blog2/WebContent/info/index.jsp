@@ -60,7 +60,7 @@
 	<br> 
   </div>
   <div class="footer">
-	<p>Last updated: Friday, June 30th, 2023 </p>
+	<p>Last updated: Friday, November 3rd, 2023 </p>
 	<p>This is not copyrighted. But don't use this for illegally.</p>
   </div>
 <body>

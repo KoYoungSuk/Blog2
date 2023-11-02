@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-    <div class="col-lg-6" style="margin: 40px; padding: 0px; background-color: #DCDCDC; ">
+<c:choose>
+   <c:when test="${param.pagecount eq null}">
+      <c:set var="pagenumber" value="1" /> 
+   </c:when>
+   <c:otherwise>
+      <c:set var="pagenumber" value="${param.pagecount}" />
+   </c:otherwise>
+</c:choose> 
+    <div class="col-lg-8" style="margin: 40px; padding: 0px; background-color: #DCDCDC; ">
       <h3 class="htitle" style="border: ridge;">
       Memo List
       <c:choose>
@@ -33,7 +41,8 @@
       </form>
       </div>
        <div style="text-align: left">
-       <p>  &nbsp;&nbsp;&nbsp;&nbsp; Memo List Count : ${sessionScope.count_board} </p>
+       <p style="font-weight: bold;">  &nbsp;&nbsp;&nbsp;&nbsp; Number of Memoes : ${sessionScope.count_board} </p>
+       <p style="font-weight: bold;">  &nbsp;&nbsp;&nbsp;&nbsp; CURRENT PAGE:  PAGE ${pagenumber} </p>
        </div>
         <table class="table" style="background-color: lightyellow; ">
           <thead>
@@ -63,10 +72,26 @@
            </tbody>
         </table>
         <div style="text-align: center;">
-          <h4 style="weight: bold;">PAGE NUMBER</h4> 
+          <h4 style="weight: bold;">
+          <c:choose>
+          <c:when test="${pagenumber ne 1}"> <!-- 첫번째 페이지가 아닐때 -->
+          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='boardlist.do?pagecount=${pagenumber - 1}'"><span class="material-symbols-outlined">arrow_back_ios</span></button>
+          </c:when>
+          <c:otherwise></c:otherwise>
+          </c:choose>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          PAGE ${pagenumber} 
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <c:choose> 
+          <c:when test="${pagenumber ne sessionScope.pagenum}"> <!-- 마지막 페이지가 아닐때 -->
+          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='boardlist.do?pagecount=${pagenumber + 1}'"><span class="material-symbols-outlined">arrow_forward_ios</span></button>
+          </c:when>
+          <c:otherwise></c:otherwise> 
+          </c:choose>
+          </h4> 
           <hr> 
           <c:forEach var="num"  begin="1" end="${sessionScope.pagenum}"> 
-          <button type="button" class="btn btn-secondary" onclick="location.href='boardlist.do?desc=0&pagecount=${num}'">${num}</button>
+          <button type="button" class="btn btn-secondary" onclick="location.href='boardlist.do?pagecount=${num}'">${num}</button>
           </c:forEach> 
         </div> 
         <br> 

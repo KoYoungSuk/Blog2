@@ -6,6 +6,7 @@
       <button class="btn btn-danger btn-sm" type="submit"><span class="material-symbols-outlined">delete</span>Delete</button>
 	  &nbsp;&nbsp; 
  </div>
+ <br> 
 	<table class="table">
 	   <tr>
 	    <td><label for="title">제목:</label></td>

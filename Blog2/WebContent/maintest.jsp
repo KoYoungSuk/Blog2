@@ -42,7 +42,13 @@
 <c:when test="${param.page == 21}"><c:set var="titlename" value="Find ID" /></c:when>
 <c:when test="${param.page == 22}"><c:set var="titlename" value="Find Password" /></c:when> 
 <c:when test="${param.page == 23}"><c:set var="titlename" value="Change Password" /></c:when> 
-<c:when test="${param.page == 0}"><script>window.location.href="http://home.yspersonal.com/non.htm";</script></c:when>
+<c:when test="${param.page == 0}">
+  <script>
+        var host_url = window.location.host; 
+        console.log("url: " + host_url); 
+        window.location.href= "http://" + host_url + "/non.htm"; 
+ </script>
+</c:when>
 <c:otherwise><c:set var="titlename" value="Main Page" /></c:otherwise></c:choose>
 <!DOCTYPE HTML>
 <html>
@@ -197,7 +203,7 @@ ${defaultcontent}
 </div>
 </div> 
 <div class="footer">
-   <p> Last updated: Monday, October 9th, 2023 </p>
+   <p> Last updated: Friday, November 3rd, 2023 </p>
    <p> This is not copyrighted. But Don't use this web site to make illegal stuff. </p>
    <p id=currentDate></p>
 </div>

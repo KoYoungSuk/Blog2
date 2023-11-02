@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title> You're screwed </title>
+<title> You're screwed... </title>
 <style>
     body{
        background-color: black; 
@@ -44,43 +44,35 @@
   <H1 id="times"></H1>
 </div>
 <div id="ghost" class="ghost" > 
-  <img src="https://home.yspersonal.com/pictures/ghost.jpg" style="text-align: center;"> 
+  <img src="../pictures/ghost.jpg" style="text-align: center;"> 
 </div>
 <div id="normal" class="normal">
-  <H2>GHOST WILL BE APPEAR... </H2>
-  <div style="text-align: center;">
-  <button type="button" style="text-align: center; padding: 10px 20px; " onclick="history.go(-1); ">Back</button> 
-  </div>
+  <H2> GO BACK! </H2>
 </div>
 <script>
     var check = 0; 
-    var remainedtimes = 60; 
+    var randomNum = Math.floor(Math.random() * (60-10) + 10); 
+    var remainedtimes = randomNum; 
+    
     function remainedtimer(){
     	remainedtimes = remainedtimes - 1; 
 		document.getElementById("times").innerHTML = remainedtimes;
 		if(remainedtimes <= 0)
 		{
-			remainedtimes = 60; 
+			remainedtimes = randomNum; 
 		}
     }
 	function summonghost(){
-		if(check == 1){  //Ghost will be appeared!  
-			var audio = new audio("https://home.yspersonal.com/music/ghost.mp3"); 
-			audio.play(); //Ghost Screaming 
-			check = 0;
-			document.getElementById("normal").style.display = "block";
-			document.getElementById("ghost").style.display = "none"; 
-		}
-		else if(check == 0){
-			check = 1;  
-			document.getElementById("normal").style.display = "none"; 
-			document.getElementById("ghost").style.display = "block"; 
-		}
+		 var audio = new Audio("../music/ghost.mp3");
+		 audio.loop = true;
+		 audio.play(); //Ghost Screaming (크롬 보안정책에 따라 작동이 안될수 있음)
+	     document.getElementById("normal").style.display = "none"; 
+		 document.getElementById("ghost").style.display = "block";
     }
 	function init(){
 		remainedtimer();
 		setInterval(remainedtimer, 1000); //1 seconds 
-		setInterval(summonghost, 60000); //60 seconds 
+		setInterval(summonghost, 1000 * randomNum); //30 seconds 
 	}
 	init(); 
 </script>

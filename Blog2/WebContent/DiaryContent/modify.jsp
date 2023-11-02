@@ -6,7 +6,7 @@
 	<button class="btn btn-secondary btn-sm" type="button" onclick="openTextFile();"><span class="material-symbols-outlined">file_open</span>Open Text Document</button>
 	<button class="btn btn-secondary btn-sm" type="submit"><span class="material-symbols-outlined">create</span>Modify</button>&nbsp;&nbsp; 
   </div>
-  <hr> 
+  <br> 
    <table class="table" style="background-color: lightyellow;">
 	<tr>
 	  <td><label for="title">제목:</label></td>

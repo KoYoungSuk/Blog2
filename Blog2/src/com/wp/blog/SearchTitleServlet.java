@@ -44,8 +44,7 @@ public class SearchTitleServlet extends HttpServlet {
 		String desc = request.getParameter("desc"); 
 		List<BoardDO> newboardlist = new ArrayList<BoardDO>();
 		Global g = new Global(response);
-		
-		
+	   
 		//DataBase Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
 		String JDBC_Driver = application.getInitParameter("jdbc_driver");
@@ -97,6 +96,9 @@ public class SearchTitleServlet extends HttpServlet {
 				    session.setAttribute("boardlist", newboardlist);
 				    session.setAttribute("count_board", count_board);
 				    session.setAttribute("word", word);
+				    session.setAttribute("pagenum", 1); //페이지 개수 
+					session.setAttribute("beginnumber", 1); //시작번호 
+					session.setAttribute("endnumber", count_board); 
 					viewName = "main.do?page=3"; 
 			  }else {
 					g.jsmessage("No Result Found");

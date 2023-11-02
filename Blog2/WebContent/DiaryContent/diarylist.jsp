@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-	   <p>&nbsp;&nbsp;Diary Number: ${sessionScope.diarynumber} </p>
+<c:choose>
+   <c:when test="${param.page_count_diary eq null}">
+      <c:set var="pagenumber" value="1" /> 
+   </c:when>
+   <c:otherwise>
+      <c:set var="pagenumber" value="${param.page_count_diary}" />
+   </c:otherwise>
+</c:choose> 
+	   <p style="font-weight: bold;">&nbsp;&nbsp; Number of Total Diary:  ${sessionScope.diarynumber} </p>
+	   <p style="font-weight: bold;">&nbsp;&nbsp; CURRENT PAGE : PAGE ${pagenumber} </p>
        <hr>
        <div style="text-align: center;">
        <form action="detaildiary" method="POST">
@@ -17,7 +26,6 @@
                  <th>TITLE</th>
                  <th>SAVE DATE</th>
                  <th>MODIFY DATE</th>
-                 <th>DELETE</th>
                </tr>
                </thead>
             <tbody>
@@ -34,10 +42,26 @@
            </tbody>
         </table>
         <div style="text-align: center;">
-          <h4 style="weight: bold;">PAGE NUMBER </h4>
+          <h4 style="weight: bold;">
+          <c:choose>
+          <c:when test="${pagenumber ne 1}"> <!-- 첫번째 페이지가 아닐때 -->
+          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='diarylist?page_count_diary=${pagenumber - 1}'"><span class="material-symbols-outlined">arrow_back_ios</span></button>
+          </c:when>
+          <c:otherwise></c:otherwise>
+          </c:choose>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          PAGE ${pagenumber} 
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <c:choose> 
+          <c:when test="${pagenumber ne sessionScope.page_num_diary}"> <!-- 마지막 페이지가 아닐때 -->
+          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='diarylist?page_count_diary=${pagenumber + 1}'"><span class="material-symbols-outlined">arrow_forward_ios</span></button>
+          </c:when>
+          <c:otherwise></c:otherwise> 
+          </c:choose>
+          </h4>
           <hr> 
           <c:forEach var="num" begin="1" end="${sessionScope.page_num_diary}">
-            <button type="button" class="btn btn-secondary" onclick="location.href='diarylist?desc=0&page_count_diary=${num}'">${num}</button>
+            <button type="button" class="btn btn-secondary" onclick="location.href='diarylist?page_count_diary=${num}'">${num}</button>
           </c:forEach>
         </div> 
     <hr>

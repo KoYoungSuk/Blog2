@@ -10,6 +10,6 @@
 </style>
 </head>
 <body>
-    <iframe src="./pdf/${param.pdffile}" style="width: 100%; height: 100vh; "></iframe>
+    <iframe src="/pdf2/${param.pdffile}" style="width: 100%; height: 100vh; "></iframe>
 </body>
 </html>

@@ -46,7 +46,7 @@
 </style>
 </head>
 <hr>
-   <div class="col-sm-4" style="background-color: #DCDCDC; margin: 120px; padding: 0px;">
+   <div class="col-lg-4" style="background-color: #DCDCDC; margin: 120px; padding: 0px;">
     <H3 class="htitle"> Welcome to DailyManager! (Web) </H3>
 	<p>&nbsp;&nbsp; Only Administrator can use DailyManager(Web). (I'm Sorry!) </p>
 	<form action="dailylogin" method="POST">

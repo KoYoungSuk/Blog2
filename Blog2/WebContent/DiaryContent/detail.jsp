@@ -8,7 +8,7 @@
 	<button class="btn btn-danger btn-sm" onclick="location.href='deletediary?title=${diarytitle}'" type="button"><span class="material-symbols-outlined">delete</span>Delete</button>
 	&nbsp;&nbsp;&nbsp;
 </div>
-<hr> 
+<br> 
 	<table class="table" style="background-color: lightyellow;">
 	 <tr>
 	  <td><label for="title">제목:</label></td>

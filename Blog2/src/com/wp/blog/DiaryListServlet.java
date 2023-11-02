@@ -71,14 +71,21 @@ public class DiaryListServlet extends HttpServlet {
   	  	  	    	List<DiaryDO> diarylist = diarydao.getDiaryList(false);
   	  	  	    	int diarynumber = diarydao.getDiarynumber();
   	  	  	    	int page_num_diary = diarynumber / 10; //10개씩 페이지 구분하기 
-  	  	  	    	int page_num_diary_rest = diarynumber % 10; 
+  	  	  	    	int page_num_diary_rest = diarynumber % 10; //10개씩 나누고 남는 나머지 
+  	  	  	    	
   	  	  	    	if(diarylist != null) {
   	  	  	    		viewName = "diary.jsp?page=1";
   	  	  	    		session.setAttribute("diarylist", diarylist);
   	  	  	    		session.setAttribute("diarynumber", diarynumber);
   	  	  	    		session.setAttribute("page_num_diary", page_num_diary); 
   	  	  	    		session.setAttribute("beginnumber_diary", (page_num_diary_para - 1) * 10); //시작번호 
-  	  	  	    		session.setAttribute("endnumber_diary" , ((page_num_diary_para -1) * 10) + 10 + page_num_diary_rest); //끝번호 
+  	  	  	    		if(page_num_diary_para == page_num_diary) { //마지막일때 
+  	  	  	    		   session.setAttribute("endnumber_diary" , ((page_num_diary_para -1) * 10) + 9 + page_num_diary_rest); //끝번호 
+  	  	  	    		}
+  	  	  	    		else {
+  	  	  	    		   session.setAttribute("endnumber_diary" , ((page_num_diary_para -1) * 10) + 9); //끝번호 
+  	  	  	    		}
+  	  	  	    		
   	  	  	    	}
   	  	  	    	else {
   	  	  	    		g.jsmessage("Null Error");

@@ -84,35 +84,14 @@ public class ProductDAO {
 		disconnectDB();
 		return result; 
 	}
-    public List<ProductDO> getProductTotalList(Boolean desc, String columnname) throws ClassNotFoundException, SQLException {
+    public List<ProductDO> getProductTotalList() throws ClassNotFoundException, SQLException {
     	List<ProductDO> productlist = new ArrayList<ProductDO>();
     	String sql = null;
     	connectDB();
     	Statement sm = null;
     	ResultSet rs = null;
     	sm = conn.createStatement();
-    	if(desc) {
-    		if(columnname.equals("buy_date")) {
-    			sql = "select * from product order by buy_date desc";
-    		}
-    		else if(columnname.equals("buy_date_used")) {
-    			sql = "select * from product order by buy_date_used desc";
-    		}
-    		else {
-    			sql = "select * from product order by product_no desc";
-    		}
-    	}
-    	else {
-    		if(columnname.equals("buy_date")) {
-    			sql = "select * from product order by buy_date";
-    		}
-    		else if(columnname.equals("buy_date_used")) {
-    			sql = "select * from product order by buy_date_used";
-    		}
-    		else {
-    			sql = "select * from product order by product_no";
-    		}
-    	}
+    	sql = "select * from product order by product_no"; 
     	rs = sm.executeQuery(sql);
     	if(rs.isBeforeFirst()) {
     		while(rs.next()) {

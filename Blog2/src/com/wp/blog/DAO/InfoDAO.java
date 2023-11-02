@@ -168,4 +168,21 @@ public class InfoDAO {
 		   disconnectDB();
 		   return infolist;
 		}
+	   
+	   
+	   public int getCount() throws ClassNotFoundException, SQLException{
+		   int count = 0;
+		   String sql = "select count(*) as countnum from businfo";
+		   Statement sm = null;
+		   ResultSet rs = null;
+		   sm = conn.createStatement();
+		   rs = sm.executeQuery(sql);
+		   if(rs.next()) {
+			   count = Integer.parseInt(rs.getString("countnum")); 
+		   }
+		   rs.close();
+		   sm.close();
+		   disconnectDB();
+		   return count; 
+	   }
 }

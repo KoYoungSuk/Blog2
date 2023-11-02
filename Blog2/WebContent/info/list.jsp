@@ -15,7 +15,7 @@
 </c:choose>
 <c:choose>
 <c:when test="${sessionScope.id ne 'admin'}">
-  <c:redirect url="../3217.jsp"></c:redirect>
+  <c:redirect url="../3217"></c:redirect>
 </c:when>
 <c:otherwise></c:otherwise>
 </c:choose>
@@ -51,7 +51,7 @@
 </head>
 <body>
 
-<div class="col-lg-6" style="background-color: #DCDCDC; padding: 0px; margin: 50px; ">
+<div class="col-lg-8" style="background-color: #DCDCDC; padding: 0px; margin: 50px; ">
     <h3 class="htitle">
       (Current User: ${sessionScope.id}) ${titlename}
     </h3>
@@ -81,7 +81,7 @@
 </div>
  <hr>
 <div class="footer">
-	<p>Last updated: Monday, August 14th  2023 </p>
+	<p>Last updated: Friday, November 3rd, 2023 </p>
 	<p>This is not copyrighted. But don't use this illegally. </p>
 </div>
 </body>

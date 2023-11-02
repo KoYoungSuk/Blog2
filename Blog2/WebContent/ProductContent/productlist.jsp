@@ -1,6 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<p>&nbsp;&nbsp;Current Product Number: ${sessionScope.productnumber} </p>
+<c:choose>
+   <c:when test="${param.page_num eq null}">
+      <c:set var="pagenumber" value="1" /> 
+   </c:when>
+   <c:otherwise>
+      <c:set var="pagenumber" value="${param.page_num}" />
+   </c:otherwise>
+</c:choose> 
+<p style="font-weight: bold; ">&nbsp;&nbsp;Number of Products: ${sessionScope.productnumber} </p>
+<p style="font-weight: bold;" >&nbsp;&nbsp;PAGE ${pagenumber}</p>
 <hr>
 <form action="detailproduct" method="POST">
 <div style="text-align: center;">
@@ -12,38 +21,21 @@
 &nbsp;&nbsp; 
 <button type="button" class="btn btn-secondary btn-sm" onclick="window.location.reload();"><span class="material-symbols-outlined">refresh</span>Refresh</button>
 &nbsp;&nbsp; 
-<c:choose>
- <c:when test="${param.desc == 0}">
-  <button type="button" class="btn btn-warning btn-sm" onclick="location.href='productlist?desc=1&columnname=product_no'"><span class="material-symbols-outlined">trending_down</span>Descend By Number</button>
-  &nbsp;&nbsp; 
-  <button type="button" class="btn btn-warning btn-sm" onclick="location.href='productlist?desc=1&columnname=buy_date'"><span class="material-symbols-outlined">trending_down</span>Descend By Buydate</button>
-  &nbsp;&nbsp; 
-  <button type="button" class="btn btn-warning btn-sm" onclick="location.href='productlist?desc=1&columnname=buy_date_used'"><span class="material-symbols-outlined">trending_down</span>Descend By Buydate(Used)</button>
- </c:when>
- <c:otherwise>
-  <button type="button" class="btn btn-primary btn-sm" onclick="location.href='productlist?desc=0&columnname=product_no'"><span class="material-symbols-outlined">trending_up</span>Ascend By Number</button>
-  &nbsp;&nbsp; 
-  <button type="button" class="btn btn-primary btn-sm" onclick="location.href='productlist?desc=0&columnname=buy_date'"><span class="material-symbols-outlined">trending_up</span>Ascend By Buydate</button>
-  &nbsp;&nbsp; 
-  <button type="button" class="btn btn-primary btn-sm" onclick="location.href='productlist?desc=0&columnname=buy_date_used'"><span class="material-symbols-outlined">trending_up</span>Ascend By Buydate(Used)</button>
- </c:otherwise>
-</c:choose>
 </div>
 </form>
 <hr>
 <table class="table" style="background-color: lightyellow;">
   <thead>
    <tr>
-   <th>PRODUCT_NO</th>
-   <th>PRODUCT_NAME</th>
-   <th>BUY_DATE</th>
-   <th>BUY_DATE_USED</th>
+   <th>PRODUCT NUMBER</th>
+   <th>PRODUCT NAME</th>
+   <th>BUYDATE</th>
+   <th>BUYDATE (USED)</th>
    <th>PURPOSE</th>
-   <th>Delete</th>
    </tr>
   </thead>
   <tbody>
-  <c:forEach var="ProductDO" items= "${sessionScope.totalproductlist}">
+  <c:forEach var="ProductDO" items= "${sessionScope.totalproductlist}" begin="${sessionScope.beginnumber_product}" end="${sessionScope.endnumber_product}">
    <tr>
    <td><c:out value="${ProductDO.product_no}" /></td>
    <td><a href="detailproduct?page=2&product_no=${ProductDO.product_no}"><c:out value="${ProductDO.product_name}" /></a></td>
@@ -57,3 +49,27 @@
   </c:forEach>
   </tbody>
 </table>
+<div style="text-align: center;">
+          <h4 style="weight: bold;">
+          <c:choose>
+          <c:when test="${pagenumber ne 1}"> <!-- 첫번째 페이지가 아닐때 -->
+          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='productlist?desc=0&page_num=${pagenumber - 1}'"><span class="material-symbols-outlined">arrow_back_ios</span></button>
+          </c:when>
+          <c:otherwise></c:otherwise>
+          </c:choose>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          PAGE ${pagenumber} 
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <c:choose> 
+          <c:when test="${pagenumber ne sessionScope.pagecount_product}"> <!-- 마지막 페이지가 아닐때 -->
+          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='productlist?desc=0&page_num=${pagenumber + 1}'"><span class="material-symbols-outlined">arrow_forward_ios</span></button>
+          </c:when>
+          <c:otherwise></c:otherwise> 
+          </c:choose>
+          </h4>
+          <hr> 
+          <c:forEach var="num" begin="1" end="${sessionScope.pagecount_product}">
+            <button type="button" class="btn btn-secondary" onclick="location.href='productlist?desc=0&page_num=${num}'">${num}</button>
+          </c:forEach>
+</div> 
+<br> 

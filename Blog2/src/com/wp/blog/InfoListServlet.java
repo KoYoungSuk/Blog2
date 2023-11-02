@@ -49,16 +49,37 @@ public class InfoListServlet extends HttpServlet {
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
   	    
+  	    String pagenum_info_str = request.getParameter("pagenum_info");
+  	    int pagenum_info = 1;
+  	    
+  	    if(pagenum_info_str != null) {
+  	    	pagenum_info = Integer.parseInt(pagenum_info_str);
+  	    }
+  	    		
+  	  
   	    String viewName = null; 
   	    try
   	    {
   	    	if(id != null) {
   	    		if(id.equals("admin")) { //관리자 계정으로만 버스 정보 볼수 있음. 
+  	    			
   	  	    		InfoDAO infodao = new InfoDAO(JDBC_Driver, db_url, db_id, db_pw);
   	  	  	    	List<InfoDO> totalinfolist = infodao.getInfoList(); 
+  	  	  	    	int count = infodao.getCount();
+  	  	  	    	int pagecount_info = count / 10; //페이지 개수
+  	  	  	    	int pagecount_info_rest = count % 10; //나머지 
+  	  	  	    	
   	  	  	    	if(totalinfolist != null) {
   	  	  	    		viewName = "list.jsp?page=1";
   	  	  	    		session.setAttribute("totalinfolist", totalinfolist);
+  	  	  	    		session.setAttribute("pagecount_info", pagecount_info);
+  	  	  	    		session.setAttribute("beginnumber_info", (pagenum_info - 1) * 10);
+  	  	  	    		if(pagenum_info == pagecount_info) {
+  	  	  	    			session.setAttribute("endnumber_info", ((pagenum_info -1) * 10) + 9 + pagecount_info_rest);
+  	  	  	    		}
+  	  	  	    		else {
+  	  	  	    		    session.setAttribute("endnumber_info", ((pagenum_info -1) * 10) + 9);
+  	  	  	    		}
   	  	  	    	}
   	  	    	}
   	  	    	else {

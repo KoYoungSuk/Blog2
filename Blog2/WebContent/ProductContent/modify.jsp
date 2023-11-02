@@ -8,6 +8,7 @@
  <button class="btn btn-secondary btn-sm" type="button" onclick="location.href='productlist?desc=0&columnname=product_no'"><span class="material-symbols-outlined">arrow_back_ios</span>Back to ProductList</button>
  &nbsp;&nbsp; 
 </div>
+<br>
 <table class="table" style="background-color: lightyellow;">
  <tr>
   <td><label for="product_no">물품 번호: </label></td>
