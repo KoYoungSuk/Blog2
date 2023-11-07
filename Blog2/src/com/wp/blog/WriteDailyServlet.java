@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.nhncorp.lucy.security.xss.XssPreventer;
 import com.wp.blog.DAO.DailyDAO;
 import com.wp.blog.DTO.DailyDO;
 
@@ -53,6 +54,10 @@ public class WriteDailyServlet extends HttpServlet {
 		String title = request.getParameter("title");
 		String content = request.getParameter("content"); 
 		String status = request.getParameter("status"); 
+		
+		title = XssPreventer.escape(title); 
+		content = XssPreventer.escape(content); 
+		status = XssPreventer.escape(status);
 		
 		Timestamp savedate = new Timestamp(System.currentTimeMillis()); //현재 날짜/시각 (Timestamp) 
 		//START - 데이터베이스 연결 준비  

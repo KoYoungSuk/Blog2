@@ -45,7 +45,7 @@ public class DeleteMemberServlet extends HttpServlet {
   	    
 		MemberDAO memberdao = new MemberDAO(JDBC_Driver, db_url, db_id, db_pw);
 		try {
-			int result = memberdao.DeleteMember(id);
+			int result = memberdao.DeleteMember(id); //현재 로그인한 아이디의 정보를 삭제해야 한다. 
 			if(result == 1)
 			{ 
 				if(total) {

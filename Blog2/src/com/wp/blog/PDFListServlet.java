@@ -67,7 +67,8 @@ public class PDFListServlet extends HttpServlet {
 				}
 			}
 			else {
-				g.jsmessage("관리자만 PDF 파일 업로드가 가능합니다.");
+				session.invalidate();
+				g.errorcode(3217); 
 			}
 		}
 		catch(Exception ex) {

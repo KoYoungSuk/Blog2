@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.nhncorp.lucy.security.xss.XssPreventer;
 import com.wp.blog.DAO.BoardDAO;
 import com.wp.blog.DTO.BoardDO;
 
@@ -54,6 +55,9 @@ public class WriteBoardServlet extends HttpServlet {
 		String content = request.getParameter("content");
 		String anonymous = request.getParameter("access");
 		
+		title = XssPreventer.escape(title); 
+		content = XssPreventer.escape(content); 
+		anonymous = XssPreventer.escape(anonymous);
 		
 		Timestamp savedate = new Timestamp(System.currentTimeMillis());
 		

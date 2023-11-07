@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.nhncorp.lucy.security.xss.XssPreventer;
 import com.wp.blog.DAO.InfoDAO;
 import com.wp.blog.DTO.InfoDO;
 
@@ -108,7 +109,9 @@ public class ModifyinfoServlet extends HttpServlet {
 		String id = (String)session.getAttribute("id"); 
 		String title = request.getParameter("title"); 
 		String content = request.getParameter("content");
+		content = XssPreventer.escape(content); 
 		Timestamp modifydate = new Timestamp(System.currentTimeMillis());
+		
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");

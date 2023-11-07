@@ -43,9 +43,8 @@
 <c:when test="${param.page == 22}"><c:set var="titlename" value="Find Password" /></c:when> 
 <c:when test="${param.page == 23}"><c:set var="titlename" value="Change Password" /></c:when> 
 <c:when test="${param.page == 0}">
-  <script>
+<script>
         var host_url = window.location.host; 
-        console.log("url: " + host_url); 
         window.location.href= "http://" + host_url + "/non.htm"; 
  </script>
 </c:when>
@@ -91,7 +90,7 @@ body {
 <body>
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
       <a class="nav-item navbar-brand" href="./main.do?page=1"><span class="material-symbols-outlined">sticky_note_2</span>PersonalMemo</a>
-      <!-- 햄버거 버튼 -->
+      <!-- Hamburger Button -->
       <button class="navbar-toggler" type="button" data-toggle="collapse"
       data-target="#ToggleMenu" aria-controls="ToggleMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="material-symbols-outlined">menu</span></button>
@@ -112,7 +111,7 @@ body {
        <div class="navbar-nav ml-auto">
        <c:choose>
        <c:when test="${sessionScope.id ne null}"> <!-- 로그인 되어 있을때 -->
-         <button class="btn btn-dark" onclick="location.href='totalmember.do?id=${id}'"> Current User ID: ${id}, Current User Name: ${sessionScope.fullname} </button>
+         <button class="btn btn-dark" onclick="location.href='totalmember.do'"> Current User ID: ${id}, Current User Name: ${sessionScope.fullname} </button>
          <button class="btn btn-danger btn-sm" onclick="location.href='signout.do?check=1'"><span class="material-symbols-outlined">logout</span>Logout</button>
        </c:when>
        <c:otherwise>

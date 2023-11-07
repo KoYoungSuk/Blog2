@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.nhncorp.lucy.security.xss.XssPreventer;
 import com.wp.blog.DAO.DailyDAO;
 import com.wp.blog.DTO.DailyDO;
 
@@ -108,6 +109,9 @@ public class ModifyDailyServlet extends HttpServlet {
 		String title = request.getParameter("title"); 
 		String content = request.getParameter("content");  
 		String status = request.getParameter("status");
+		
+		content = XssPreventer.escape(content); 
+		status = XssPreventer.escape(status);
 		
 		Timestamp modifydate = new Timestamp(System.currentTimeMillis());
 		

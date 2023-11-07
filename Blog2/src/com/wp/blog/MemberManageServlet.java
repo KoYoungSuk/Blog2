@@ -1,8 +1,6 @@
 package com.wp.blog;
 
 import java.io.IOException;
-
-import java.sql.SQLException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -69,12 +67,10 @@ public class MemberManageServlet extends HttpServlet {
 	    		session.invalidate(); 
 	    		g.errorcode(3217);
 	    	}
-		} catch (ClassNotFoundException e) {
+		} 
+	    catch (Exception ex) {
 			// TODO Auto-generated catch block
-			g.jsmessage(e.getMessage());
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			g.jsmessage(e.getMessage());
+			g.jsmessage(ex.getMessage());
 		}
 		
 		if(viewName != null)

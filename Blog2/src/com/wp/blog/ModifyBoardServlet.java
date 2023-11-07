@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.nhncorp.lucy.security.xss.XssPreventer;
 import com.wp.blog.DAO.BoardDAO;
 import com.wp.blog.DTO.BoardDO;
 
@@ -66,9 +67,11 @@ public class ModifyBoardServlet extends HttpServlet {
 				  }
 			  }
 			  else {
+				 session.invalidate(); 
 				 g.errorcode(3217);
 			  }
 		  }else {
+			  session.invalidate(); 
 			  g.errorcode(3217);
 		  }		 
 		}catch(Exception ex) {
@@ -91,13 +94,18 @@ public class ModifyBoardServlet extends HttpServlet {
 		 
 		 HttpSession session = request.getSession();
 		 
+		 String s_id = (String)session.getAttribute("id"); //현재 로그인한 아이디 
+		 
 		 //Parameters from HTML 
 		 String number = request.getParameter("number");
-		 String id = request.getParameter("userid");
-		 String s_id = (String)session.getAttribute("id");
+		 String id = request.getParameter("userid"); 
 		 String title = request.getParameter("title");
 		 String content = request.getParameter("content");
 		 String access = request.getParameter("access");
+		 
+		 title = XssPreventer.escape(title); 
+		 content = XssPreventer.escape(content); 
+		 access = XssPreventer.escape(access); 
 		 
 		 //DataBase Connection String from web.xml
 		 ServletContext application = request.getSession().getServletContext();
@@ -112,9 +120,10 @@ public class ModifyBoardServlet extends HttpServlet {
 	  	 
 	  	 BoardDO boarddo = new BoardDO(Integer.parseInt(number), title, id, content, null, modifydate, access, 0);
 	  	 BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
+	  	 
 	  	 try {
 	  		if(s_id != null) {
-	  			if(s_id.equals("admin")) {
+	  			if(s_id.equals("admin")) { //현재 로그인한 아이디가 관리자이면 수정가능 
 	  				int result = boarddao.UpdateBoard(boarddo, false);
 					System.out.println(result);
 					if(result == 1){

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.nhncorp.lucy.security.xss.XssPreventer;
 import com.wp.blog.DAO.DiaryDAO;
 import com.wp.blog.DTO.DiaryDO;
 /**
@@ -53,6 +54,8 @@ public class WriteDiaryServlet extends HttpServlet {
         //Parameters from HTML 
 		String title = request.getParameter("title");
 		String context = request.getParameter("context");
+		title = XssPreventer.escape(title); 
+		context = XssPreventer.escape(context);
 		
 		Timestamp savedate = new Timestamp(System.currentTimeMillis());
 		

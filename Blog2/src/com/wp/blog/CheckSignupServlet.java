@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.mindrot.jbcrypt.BCrypt;
 
+import com.nhncorp.lucy.security.xss.XssPreventer;
 import com.wp.blog.DAO.MemberDAO;
 import com.wp.blog.DTO.MemberDO;
 
@@ -53,6 +54,12 @@ public class CheckSignupServlet extends HttpServlet {
 		String lastname = request.getParameter("last_name");
 		String birthday = request.getParameter("birthday");
 		String mailaddress = request.getParameter("mailaddress"); 
+		
+		id = XssPreventer.escape(id);
+		firstname = XssPreventer.escape(firstname);
+		lastname = XssPreventer.escape(lastname);
+		birthday = XssPreventer.escape(birthday);
+		mailaddress = XssPreventer.escape(mailaddress); 
 		
 		//비밀번호 암호화 (BCrypt HASH 함수) 
 		String password_hass = BCrypt.hashpw(password, BCrypt.gensalt(12));

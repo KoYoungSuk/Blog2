@@ -44,17 +44,24 @@
   <H1 id="times"></H1>
 </div>
 <div id="ghost" class="ghost" > 
-  <img src="../pictures/ghost.jpg" style="text-align: center;"> 
+  <img src="../pictures/ghost.jpg" style="text-align: center;"> <!-- 귀신사진 -->
 </div>
 <div id="normal" class="normal">
-  <H2> GO BACK! </H2>
+  <H2> PRESS B KEY TO GO BACK! </H2>
 </div>
 <script>
+    document.addEventListener('keydown', (event) => {
+    	console.log("event.key: " + event.key); 
+    	if(event.key == 'b'){
+    		
+    		history.go(-1); 
+    	}
+    }); 
     var check = 0; 
-    var randomNum = Math.floor(Math.random() * (60-10) + 10); 
+    var randomNum = Math.floor(Math.random() * (60-10) + 10);  //랜덤으로 10~60초 사이의 숫자 생성 
     var remainedtimes = randomNum; 
     
-    function remainedtimer(){
+    function remainedtimer(){ 
     	remainedtimes = remainedtimes - 1; 
 		document.getElementById("times").innerHTML = remainedtimes;
 		if(remainedtimes <= 0)
@@ -62,17 +69,18 @@
 			remainedtimes = randomNum; 
 		}
     }
-	function summonghost(){
+	function summonghost(){ //시간이 끝났을 경우 귀신 사진 및 비명소리 출력 
 		 var audio = new Audio("../music/ghost.mp3");
-		 audio.loop = true;
-		 audio.play(); //Ghost Screaming (크롬 보안정책에 따라 작동이 안될수 있음)
+		 audio.loop = true; //비명소리 반복 
+		 audio.play(); //비명소리 출력 (구글 크롬에서는  보안정책에 따라 작동이 안될수 있음, 이때는 화면 구석구석을 눌러줘야함) 
+		               //파이어폭스에서는 미리 허용을 해줘야함. 
 	     document.getElementById("normal").style.display = "none"; 
-		 document.getElementById("ghost").style.display = "block";
+		 document.getElementById("ghost").style.display = "block";  //귀신사진 출력 
     }
 	function init(){
 		remainedtimer();
 		setInterval(remainedtimer, 1000); //1 seconds 
-		setInterval(summonghost, 1000 * randomNum); //30 seconds 
+		setInterval(summonghost, 1000 * randomNum); //랜덤 초 세기 
 	}
 	init(); 
 </script>

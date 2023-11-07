@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.nhncorp.lucy.security.xss.XssPreventer;
 import com.wp.blog.DAO.ProductDAO;
 import com.wp.blog.DTO.ProductDO;
 
@@ -53,6 +54,12 @@ public class WriteProductServlet extends HttpServlet {
 		String buy_date = request.getParameter("buy_date");
 		String buy_date_used = request.getParameter("buy_date_used");
 		String purpose = request.getParameter("purpose");
+		product_no = XssPreventer.escape(product_no);
+		product_name = XssPreventer.escape(product_name);
+		buy_date = XssPreventer.escape(buy_date);
+		buy_date_used = XssPreventer.escape(buy_date_used);
+		purpose = XssPreventer.escape(purpose); 
+		
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");

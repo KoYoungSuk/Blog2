@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.nhncorp.lucy.security.xss.XssPreventer;
 import com.wp.blog.DAO.InfoDAO;
 import com.wp.blog.DTO.InfoDO;
 
@@ -51,6 +52,8 @@ public class WriteInfoServlet extends HttpServlet implements Servlet {
 		//Parameters from HTML 
 		String title = request.getParameter("title");
 		String content = request.getParameter("content"); 
+		title = XssPreventer.escape(title); 
+		content = XssPreventer.escape(content);
 		
 		Timestamp savedate = new Timestamp(System.currentTimeMillis());
 		ServletContext application = request.getSession().getServletContext();
