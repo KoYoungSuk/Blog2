@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<!-- JSP 모듈 파일 임포트  -->
 <c:import url="../DiaryContent/diarylist.jsp" var="diarylistcontent"></c:import>
 <c:import url="../DiaryContent/detail.jsp" var="detailcontent"></c:import>
 <c:import url="../DiaryContent/write.jsp" var="writecontent"></c:import>
 <c:import url="../DiaryContent/modify.jsp" var="modifycontent"></c:import>
 <c:import url="../DiaryContent/delete.jsp" var="deletecontent"></c:import>
+<!-- 파라미터에 따른 제목 설정 -->
 <c:choose>
 <c:when test="${param.page == 2}"><c:set var="titlename" value="(Detail Diary)" /></c:when>
 <c:when test="${param.page == 3}"><c:set var="titlename" value="(Write Diary)" /></c:when>
@@ -22,10 +24,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- Mobile Friendly Meta Tag -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!-- Bootstrap 4.4 CSS -->
 <link rel="stylesheet" href="../BS/bootstrap.min.css" />
 <link rel="stylesheet" href="../BS/bootstrap.css" />
+<!-- Google Span Buttons -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <title>MyDiary (Web) ${titlename} </title>
  <style>
@@ -82,6 +87,50 @@
 	  a.href = objURL;
 	  a.click();
   }
+ 
+  document.addEventListener('keydown', (event) => {
+	  
+      var address = window.location.href; 
+  
+      //방향키를 이용하여 페이지를 앞뒤로 왔다갔다 하는 기능 
+      if(address.includes("diary.jsp?page=1") || address.includes("diary/diarylist")){
+          if(event.key === "ArrowLeft"){ //왼쪽 방향키를 눌렀을때 
+        	  if(address.includes("?page_count_diary=")){
+        		  address = address.slice(0, -1);
+        		  var pagenum_minus = ${param.page_count_diary} - 1; //JSTL Code 
+        		  if(pagenum_minus >= 9){ //페이지 번호가 10자리수를 넘어갈때 
+        			  address = address.slice(0, -1); 
+        		  }
+        		  else if(pagenum_minus < 0){ //첫 페이지 번호에 도달했을때 
+        			  pagenum_minus = 0; 
+        		  }
+        		  address = address + pagenum_minus;
+        		  window.location.replace(address); 
+        	  }
+          }
+          else if(event.key === "ArrowRight"){ //오른쪽 방향키를 눌렀을때 
+              if(address.includes("?page_count_diary=")){
+            	  address = address.slice(0, -1);
+        		  var pagenum_plus = ${param.page_count_diary} + 1; //JSTL Code 
+                  if(pagenum_plus >= 11){ //페이지 번호가 10자리수를 넘어갈때 
+                	  address = address.slice(0, -1); 
+                  } 
+                  
+                  if(pagenum_plus > ${sessionScope.page_num_diary}){ //마지막 페이지 번호에 도달했을때 
+                	  pagenum_plus = pagenum; 
+                  }
+        		  address = address + pagenum_plus; 
+        		  window.location.replace(address); 
+        	  }
+        	  else{ //첫 페이지일때(첫 접속)
+        		  address = address + "?page_count_diary=2"; //2번째 페이지로 이동 
+        		  window.location.replace(address); 
+        	  }
+          }
+      }
+      
+  });
+
 </script>
 </head>
 <body>
@@ -96,7 +145,6 @@
 	<button type="button" onclick="location.href='../signout.do?check=2'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">logout</span>Logout</button>
 	<button type="button" onclick="location.href='../diary'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">home</span>Diary Main Page</button>
     </div>
-	<p>&nbsp;&nbsp;Only Administrator can use WebDiary Web Mode. Sorry.... </p>
 	<hr> 
 	<c:choose>
 	 <c:when test="${page.param == 1}"> <!--  Total Diary List -->
@@ -122,7 +170,7 @@
 </div>
 </div> 
 <div class="footer">
-	<p>Last updated: Monday, August 14th, 2023 </p>
+	<p>Last updated: Wednesday, November 8th, 2023 </p>
 	<p>This is not copyrighted. But Don't use this illegally.</p>
 </div>
 </body>

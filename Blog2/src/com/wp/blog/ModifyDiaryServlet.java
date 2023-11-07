@@ -138,7 +138,7 @@ public class ModifyDiaryServlet extends HttpServlet {
 	    			   //SFTP 서버에 파일 다시 업로드 
 	    			   g.UploadSFTP(localfilepath + title + ".txt", "/mnt/hdd3/Secret Documents/Diary/Before 2020-07/" + title + ".txt", request);
 	    			   
-			    	  viewName = "diarylist?desc=0";
+			    	  viewName = "diarylist";
 			      }
 			      else {
 			    	  g.jsmessage("Unknown Error Message");

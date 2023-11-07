@@ -3,7 +3,7 @@
 <!-- 이미 로그인되어 있으면 바로 리스트로 넘어감 -->
 <c:choose>
 <c:when test="${sessionScope.id eq 'admin'}">
-  <c:redirect url="productlist?desc=0&columnname=product_no"></c:redirect>
+  <c:redirect url="productlist"></c:redirect>
 </c:when>
 <c:otherwise>
 </c:otherwise>
@@ -64,7 +64,7 @@
   </div>
   </div> 
   <div class="footer">
-	<p>Last updated: Saturday, May 27th 2023 </p>
+	<p>Last updated: Wednesday, November 8th, 2023 </p>
 	<p>This is not copyrighted. But don't use this for illegally.</p>
   </div>
 <body>

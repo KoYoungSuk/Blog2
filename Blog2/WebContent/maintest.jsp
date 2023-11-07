@@ -44,8 +44,8 @@
 <c:when test="${param.page == 23}"><c:set var="titlename" value="Change Password" /></c:when> 
 <c:when test="${param.page == 0}">
 <script>
-        var host_url = window.location.host; 
-        window.location.href= "http://" + host_url + "/non.htm"; 
+   var host_url = window.location.host; 
+   window.location.href= "http://" + host_url + "/non.htm"; 
  </script>
 </c:when>
 <c:otherwise><c:set var="titlename" value="Main Page" /></c:otherwise></c:choose>
@@ -54,6 +54,7 @@
 <head>
 <title> PersonalMemo ( <c:out value="${titlename}" /> ) </title>
 <meta charset = "utf-8">
+<!-- Ignore Internet Explorer 8 Compatible Mode. (But I don't recommend any version of Internet Explorer. -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />	 
 <!--  Mobile Friendly Meta Tag -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -86,10 +87,56 @@ body {
   color: white; 
 }
 </style>
+<script>
+
+    document.addEventListener('keydown', (event) => {
+	  
+    var address = window.location.href; 
+
+    //방향키를 이용하여 페이지를 앞뒤로 왔다갔다 하는 기능 
+    if(address.includes("maintest.jsp?page=3") || address.includes("main.do?page=3") || address.includes("boardlist.do")){
+        if(event.key === "ArrowLeft"){ //왼쪽 방향키를 눌렀을때 
+      	  if(address.includes("?pagecount=")){
+      		  address = address.slice(0, -1);
+      		  var pagenum_minus = ${param.pagecount} - 1; //JSTL Code 
+      		  if(pagenum_minus >= 9){ //페이지 번호가 10자리수를 넘어갈때 
+      			  address = address.slice(0, -1); 
+      		  }
+      		  else if(pagenum_minus < 0){ //첫 페이지 번호에 도달했을때 
+      			  pagenum_minus = 0; 
+      		  }
+      		  address = address + pagenum_minus;
+      		  window.location.replace(address); 
+      	  }
+        }
+        else if(event.key === "ArrowRight"){ //오른쪽 방향키를 눌렀을때 
+            if(address.includes("?pagecount=")){
+          	  address = address.slice(0, -1);
+      		  var pagenum_plus = ${param.pagecount} + 1; //JSTL Code 
+                if(pagenum_plus >= 11){ //페이지 번호가 10자리수를 넘어갈때 
+              	  address = address.slice(0, -1); 
+                } 
+                
+                if(pagenum_plus > ${sessionScope.pagenum}){ //마지막 페이지 번호에 도달했을때 
+              	  pagenum_plus = pagenum; 
+                }
+      		  address = address + pagenum_plus; 
+      		  window.location.replace(address); 
+      	  }
+      	  else{ //첫 페이지일때(첫 접속)
+      		  address = address + "?pagecount=2"; //2번째 페이지로 이동 
+      		  window.location.replace(address); 
+      	  }
+        }
+    }
+    
+});
+
+</script>
 </head>
 <body>
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-      <a class="nav-item navbar-brand" href="./main.do?page=1"><span class="material-symbols-outlined">sticky_note_2</span>PersonalMemo</a>
+      <a class="nav-item navbar-brand" href="./main.do?page=1"><span class="material-symbols-outlined">sticky_note_2</span>PERSONALMEMO</a>
       <!-- Hamburger Button -->
       <button class="navbar-toggler" type="button" data-toggle="collapse"
       data-target="#ToggleMenu" aria-controls="ToggleMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -126,7 +173,7 @@ body {
    
 </nav>
 <div class="jumbotron" >
-   <H1> PersonalMemo </H1>
+   <H1> PERSONAL MEMO </H1>
    <H4><c:out value="${titlename}" /> </H4>
 </div>
 <!-- 파라미터에 따라 출력할 JSP 모듈 내용 지정 -->
@@ -202,7 +249,7 @@ ${defaultcontent}
 </div>
 </div> 
 <div class="footer">
-   <p> Last updated: Friday, November 3rd, 2023 </p>
+   <p> Last updated: Wednesday, November 8th, 2023 </p>
    <p> This is not copyrighted. But Don't use this web site to make illegal stuff. </p>
    <p id=currentDate></p>
 </div>

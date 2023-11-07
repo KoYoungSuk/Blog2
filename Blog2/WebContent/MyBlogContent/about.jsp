@@ -2,9 +2,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <div class="col-lg-6" style="margin: 70px; padding: 0px; background-color: #DCDCDC;">
        <h3 class="htitle" style="border: ridge;">About PersonalMemo</h3>
-       <p>&nbsp;&nbsp;PersonalMemo Version 2.5 (Build 150) </p>
+       <p>&nbsp;&nbsp;PersonalMemo Version 2.8 (Build 175) </p>
        <p>&nbsp;&nbsp;First Updated: Tuesday, February 25th 2020 </p>
-       <p>&nbsp;&nbsp;Last Updated: Friday, November 3rd, 2023 </p>
+       <p>&nbsp;&nbsp;Last Updated: Wednesday, November 8th, 2023 </p>
        <hr> 
        <c:choose>
        <c:when test="${sessionScope.id ne null }">

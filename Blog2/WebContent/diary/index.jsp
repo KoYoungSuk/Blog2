@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <c:choose>
 <c:when test="${sessionScope.id eq 'admin'}"> <!-- 관리자 모드로 이미 로그인되어 있을 때 -->
- <c:redirect url="diarylist?desc=0"></c:redirect>
+ <c:redirect url="diarylist"></c:redirect>
 </c:when>
 <c:otherwise>
 </c:otherwise>
@@ -69,7 +69,7 @@
   </div>
   </div>
   <div class="footer">
-	<p>Last updated: October 31st, 2023 </p>
+	<p>Last updated: Wednesday, November 8th, 2023 </p>
 	<p>This is not copyrighted. But don't use this illegally. </p>
   </div>
 <body>

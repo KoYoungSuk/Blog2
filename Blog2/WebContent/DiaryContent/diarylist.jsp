@@ -8,9 +8,6 @@
       <c:set var="pagenumber" value="${param.page_count_diary}" />
    </c:otherwise>
 </c:choose> 
-	   <p style="font-weight: bold;">&nbsp;&nbsp; Number of Total Diary:  ${sessionScope.diarynumber} </p>
-	   <p style="font-weight: bold;">&nbsp;&nbsp; CURRENT PAGE : PAGE ${pagenumber} </p>
-       <hr>
        <div style="text-align: center;">
        <form action="detaildiary" method="POST">
        <input type="text" class="form-control-sm" name="title" placeholder="Search Diary:" />&nbsp;&nbsp;
@@ -20,6 +17,28 @@
        </form>
        </div>
        <hr>
+       <div style="text-align: center;">
+          <H4 style="font-weight: bold;">&nbsp;&nbsp; Number of Total Diary:  ${sessionScope.diarynumber} </H4>
+          <hr> 
+          <H4 style="font-weight: bold;">
+          <c:choose>
+          <c:when test="${pagenumber ne 1}"> <!-- 첫번째 페이지가 아닐때 -->
+          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='diarylist?page_count_diary=${pagenumber - 1}'"><span class="material-symbols-outlined">arrow_back_ios</span></button>
+          </c:when>
+          <c:otherwise></c:otherwise>
+          </c:choose>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          CURRENT PAGE : PAGE ${pagenumber} 
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <c:choose> 
+          <c:when test="${pagenumber ne sessionScope.page_num_diary}"> <!-- 마지막 페이지가 아닐때 -->
+          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='diarylist?page_count_diary=${pagenumber + 1}'"><span class="material-symbols-outlined">arrow_forward_ios</span></button>
+          </c:when>
+          <c:otherwise></c:otherwise> 
+          </c:choose>
+          </H4>
+       </div>
+       <hr> 
         <table class="table" style="background-color: lightyellow;">
             <thead>
                 <tr>
@@ -42,23 +61,7 @@
            </tbody>
         </table>
         <div style="text-align: center;">
-          <h4 style="weight: bold;">
-          <c:choose>
-          <c:when test="${pagenumber ne 1}"> <!-- 첫번째 페이지가 아닐때 -->
-          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='diarylist?page_count_diary=${pagenumber - 1}'"><span class="material-symbols-outlined">arrow_back_ios</span></button>
-          </c:when>
-          <c:otherwise></c:otherwise>
-          </c:choose>
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          PAGE ${pagenumber} 
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <c:choose> 
-          <c:when test="${pagenumber ne sessionScope.page_num_diary}"> <!-- 마지막 페이지가 아닐때 -->
-          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='diarylist?page_count_diary=${pagenumber + 1}'"><span class="material-symbols-outlined">arrow_forward_ios</span></button>
-          </c:when>
-          <c:otherwise></c:otherwise> 
-          </c:choose>
-          </h4>
+
           <hr> 
           <c:forEach var="num" begin="1" end="${sessionScope.page_num_diary}">
             <button type="button" class="btn btn-secondary" onclick="location.href='diarylist?page_count_diary=${num}'">${num}</button>

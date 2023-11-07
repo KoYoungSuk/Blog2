@@ -73,7 +73,7 @@ public class ProductLoginServlet extends HttpServlet {
   	    			if(BCrypt.checkpw(password, password_db)) {
   	  	    			firstname = memberlist.get("firstname");
   	  	    			lastname = memberlist.get("lastname");
-  	  	    			viewName = "productlist?desc=0&columnname=product_no";
+  	  	    			viewName = "productlist ";
   	  	    		}
   	    		}
   	    	}

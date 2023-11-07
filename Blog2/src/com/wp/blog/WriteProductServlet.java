@@ -73,7 +73,7 @@ public class WriteProductServlet extends HttpServlet {
   	    			ProductDAO productdao = new ProductDAO(JDBC_Driver, db_url, db_id, db_pw);
   	    			int result = productdao.insertProduct(productdo);
   	    			if(result == 1) {
-  	    				viewName = "productlist?desc=0&columnname=product_no";
+  	    				viewName = "productlist";
   	    			}
   	    			else {
   	    				g.jsmessage("Unknown Error Message");

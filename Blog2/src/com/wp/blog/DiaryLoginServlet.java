@@ -74,7 +74,7 @@ public class DiaryLoginServlet extends HttpServlet {
         	    	   session.setAttribute("id", id);
         	    	   firstname = memberlist.get("firstname");
         	    	   lastname = memberlist.get("lastname");
-        	    	   viewName = "diarylist?desc=0";
+        	    	   viewName = "diarylist";
         	       }
     	       }
   	       }

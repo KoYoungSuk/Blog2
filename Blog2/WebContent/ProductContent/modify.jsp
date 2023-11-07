@@ -5,7 +5,7 @@
 <div style="text-align: right">
  <button class="btn btn-secondary btn-sm" type="button" onclick="history.go(-1);"><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>
  <button class="btn btn-secondary btn-sm" type="submit"><span class="material-symbols-outlined">create</span>Write</button>
- <button class="btn btn-secondary btn-sm" type="button" onclick="location.href='productlist?desc=0&columnname=product_no'"><span class="material-symbols-outlined">arrow_back_ios</span>Back to ProductList</button>
+ <button class="btn btn-secondary btn-sm" type="button" onclick="location.href='productlist'"><span class="material-symbols-outlined">arrow_back_ios</span>Back to ProductList</button>
  &nbsp;&nbsp; 
 </div>
 <br>

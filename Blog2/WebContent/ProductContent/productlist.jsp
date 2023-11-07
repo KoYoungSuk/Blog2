@@ -8,9 +8,6 @@
       <c:set var="pagenumber" value="${param.page_num}" />
    </c:otherwise>
 </c:choose> 
-<p style="font-weight: bold; ">&nbsp;&nbsp;Number of Products: ${sessionScope.productnumber} </p>
-<p style="font-weight: bold;" >&nbsp;&nbsp;PAGE ${pagenumber}</p>
-<hr>
 <form action="detailproduct" method="POST">
 <div style="text-align: center;">
 <input type="text" class="form-control-sm" name="product_no" placeholder="Search Product By Number" /> 
@@ -24,6 +21,29 @@
 </div>
 </form>
 <hr>
+<div style="text-align: center;">
+    <H4 style="font-weight: bold; ">&nbsp;&nbsp;Number of Products: ${sessionScope.productnumber} </H4>
+    <hr> 
+    <H4 style="font-weight: bold;">
+          <c:choose>
+          <c:when test="${pagenumber ne 1}"> <!-- 첫번째 페이지가 아닐때 -->
+          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='productlist?page_num=${pagenumber - 1}'"><span class="material-symbols-outlined">arrow_back_ios</span></button>
+          </c:when>
+          <c:otherwise></c:otherwise>
+          </c:choose>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          CURRENT PAGE :  PAGE ${pagenumber} 
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <c:choose> 
+          <c:when test="${pagenumber ne sessionScope.pagecount_product}"> <!-- 마지막 페이지가 아닐때 -->
+          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='productlist?page_num=${pagenumber + 1}'"><span class="material-symbols-outlined">arrow_forward_ios</span></button>
+          </c:when>
+          <c:otherwise></c:otherwise> 
+          </c:choose>
+    </H4>
+    <hr> 
+</div>
+<hr> 
 <table class="table" style="background-color: lightyellow;">
   <thead>
    <tr>
@@ -50,26 +70,8 @@
   </tbody>
 </table>
 <div style="text-align: center;">
-          <h4 style="weight: bold;">
-          <c:choose>
-          <c:when test="${pagenumber ne 1}"> <!-- 첫번째 페이지가 아닐때 -->
-          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='productlist?desc=0&page_num=${pagenumber - 1}'"><span class="material-symbols-outlined">arrow_back_ios</span></button>
-          </c:when>
-          <c:otherwise></c:otherwise>
-          </c:choose>
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          PAGE ${pagenumber} 
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <c:choose> 
-          <c:when test="${pagenumber ne sessionScope.pagecount_product}"> <!-- 마지막 페이지가 아닐때 -->
-          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='productlist?desc=0&page_num=${pagenumber + 1}'"><span class="material-symbols-outlined">arrow_forward_ios</span></button>
-          </c:when>
-          <c:otherwise></c:otherwise> 
-          </c:choose>
-          </h4>
-          <hr> 
-          <c:forEach var="num" begin="1" end="${sessionScope.pagecount_product}">
-            <button type="button" class="btn btn-secondary" onclick="location.href='productlist?desc=0&page_num=${num}'">${num}</button>
-          </c:forEach>
+     <c:forEach var="num" begin="1" end="${sessionScope.pagecount_product}">
+        <button type="button" class="btn btn-secondary" onclick="location.href='productlist?page_num=${num}'">${num}</button>
+     </c:forEach>
 </div> 
 <br> 

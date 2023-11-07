@@ -26,7 +26,6 @@
        <th>MODIFYDATE</th>
        <th>ACCESS</th>
        <th>CLICKS</th>
-      <th>DELETE</th>
       </tr>
       </thead>
       <tbody>
@@ -38,9 +37,6 @@
             <td><c:out value="${boardDO.modifydate}" /></td>
             <td><c:out value="${boardDO.anonymous}" /></td>
             <td><c:out value="${boardDO.clicks}" /></td>
-            <td>
-              <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='deleteboard.do?serial=${boardDO.serialnumber}'"><span class="material-symbols-outlined">delete</span></button>
-            </td>
           </tr>
        </c:forEach>
       </tbody>

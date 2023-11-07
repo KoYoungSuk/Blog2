@@ -40,10 +40,30 @@
         <button type="submit" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">search</span>Search</button>
       </form>
       </div>
-       <div style="text-align: left">
-       <p style="font-weight: bold;">  &nbsp;&nbsp;&nbsp;&nbsp; Number of Memoes : ${sessionScope.count_board} </p>
-       <p style="font-weight: bold;">  &nbsp;&nbsp;&nbsp;&nbsp; CURRENT PAGE:  PAGE ${pagenumber} </p>
-       </div>
+      <hr> 
+       <div style="text-align: center;">
+          <H4 style="font-weight: bold;">  &nbsp;&nbsp;&nbsp;&nbsp; Number of Memoes : ${sessionScope.count_board} </H4>
+          <hr> 
+          <H4 style="font-weight: bold;">
+          <c:choose>
+          <c:when test="${pagenumber ne 1}"> <!-- 첫번째 페이지가 아닐때 -->
+          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='boardlist.do?pagecount=${pagenumber - 1}'"><span class="material-symbols-outlined">arrow_back_ios</span></button>
+          </c:when>
+          <c:otherwise></c:otherwise>
+          </c:choose>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          CURRENT PAGE : PAGE ${pagenumber} 
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <c:choose> 
+          <c:when test="${pagenumber ne sessionScope.pagenum}"> <!-- 마지막 페이지가 아닐때 -->
+          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='boardlist.do?pagecount=${pagenumber + 1}'"><span class="material-symbols-outlined">arrow_forward_ios</span></button>
+          </c:when>
+          <c:otherwise></c:otherwise> 
+          </c:choose>
+          </H4> 
+          <hr> 
+          
+        </div> 
         <table class="table" style="background-color: lightyellow; ">
           <thead>
               <tr>
@@ -71,28 +91,11 @@
                </c:forEach>
            </tbody>
         </table>
+        <hr> 
         <div style="text-align: center;">
-          <h4 style="weight: bold;">
-          <c:choose>
-          <c:when test="${pagenumber ne 1}"> <!-- 첫번째 페이지가 아닐때 -->
-          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='boardlist.do?pagecount=${pagenumber - 1}'"><span class="material-symbols-outlined">arrow_back_ios</span></button>
-          </c:when>
-          <c:otherwise></c:otherwise>
-          </c:choose>
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          PAGE ${pagenumber} 
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <c:choose> 
-          <c:when test="${pagenumber ne sessionScope.pagenum}"> <!-- 마지막 페이지가 아닐때 -->
-          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='boardlist.do?pagecount=${pagenumber + 1}'"><span class="material-symbols-outlined">arrow_forward_ios</span></button>
-          </c:when>
-          <c:otherwise></c:otherwise> 
-          </c:choose>
-          </h4> 
-          <hr> 
           <c:forEach var="num"  begin="1" end="${sessionScope.pagenum}"> 
           <button type="button" class="btn btn-secondary" onclick="location.href='boardlist.do?pagecount=${num}'">${num}</button>
           </c:forEach> 
-        </div> 
+        </div>
         <br> 
  </div>

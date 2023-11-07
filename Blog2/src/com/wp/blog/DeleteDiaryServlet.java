@@ -112,7 +112,7 @@ public class DeleteDiaryServlet extends HttpServlet {
 		 			g.deleteSFTP(serverpath, request); //SFTP 서버 파일 삭제
 		 			
 		 			session.removeAttribute("detaildiarylist");
-		 			viewName = "diarylist?desc=0";
+		 			viewName = "diarylist";
 		 		}
 		 		else {
 		 			g.jsmessage("Unknown Error Message");
