@@ -50,13 +50,6 @@
   <H2> GO BACK! </H2>
 </div>
 <script>
-    document.addEventListener('keydown', (event) => {
-    	console.log("event.key: " + event.key); 
-    	if(event.key == 'b'){
-    		
-    		history.go(-1); 
-    	}
-    }); 
     var check = 0; 
     var randomNum = Math.floor(Math.random() * (60-10) + 10);  //랜덤으로 10~60초 사이의 숫자 생성 
     var remainedtimes = randomNum; 
