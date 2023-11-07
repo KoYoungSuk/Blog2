@@ -1,4 +1,4 @@
-# PersonalMemo Version 2.5 (2023-11-03) 
+# PersonalMemo Version 2.8 (2023-11-08)
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -25,24 +25,19 @@ This Site use Bootstrap 4.4
  
  Main Screen 
  
-![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/7eccb0fa-a46e-43a5-be50-04ab70f53026)
-
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/0832e9a0-2f23-4b5d-9bbd-096d56e926a4)
 
  Memo List
  
-![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/0f5c266c-1518-42c0-a4b6-8e8e36157ae8)
-
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/e542de06-ccbf-4dc5-992a-2e6935b0f1e5)
 
  Detail Memo
 
-![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/e26c7e80-42cf-4dd3-97c4-f5e67630149e)
-
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/5452c985-78b0-42ef-9198-ed97df581eff)
 
  Diary
  
-![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/2c46f095-1d02-45a9-bba1-5845a7a877ee)
-
-
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/605bc3cd-d35c-4da8-be34-01a5fd77f687)
 
 
  ------------------------------------------------------------------------------------------------------------------------------------------
