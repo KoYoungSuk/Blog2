@@ -25,28 +25,27 @@ This Site use Bootstrap 4.4
  
  Main Screen 
  
-![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/70359aae-b929-4826-b5d6-e19bf7e3e7c7)
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/7eccb0fa-a46e-43a5-be50-04ab70f53026)
 
 
  Memo List
  
-![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/3fdd4ede-fa40-4d93-bfd2-a5d3181a441c)
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/0f5c266c-1518-42c0-a4b6-8e8e36157ae8)
 
 
  Detail Memo
 
- ![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/9db728a0-8674-4032-ba06-c06fc717dadf)
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/e26c7e80-42cf-4dd3-97c4-f5e67630149e)
 
- 
+
  Diary
  
-![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/85214b63-0545-452c-94cf-4c00a6c81400)
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/2c46f095-1d02-45a9-bba1-5845a7a877ee)
+
+
 
 
  ------------------------------------------------------------------------------------------------------------------------------------------
- # NOTICE
- 
- You can find easter egg. (Hint: Hidden Mode) 
  
  # STRUCTURE
  
