@@ -32,6 +32,12 @@ Server Environment:
    ![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
 
 
+USED DATABASE SERVER: Oracle DataBase Server 18c XE 
+
+Database password is censored because database account used in this project contains my personal information. 
+
+You need to create your own Oracle database account and table, than connect this.(JDBC Driver and DAO, DTO integrated!) 
+
 --------------------------------------------------------------------------------------------------------------------------------------------
 
 # How to use this repository? :
