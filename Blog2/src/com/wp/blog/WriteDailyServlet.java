@@ -79,7 +79,7 @@ public class WriteDailyServlet extends HttpServlet {
   	    			int result = dailydao.insertDailyInfo(dailydo);
   	    			if(result != 0)
   	    			{
-  	    				viewName = "dailylist"; 
+  	    				viewName = "daily_new.jsp"; 
   	    			}
   	    			else
   	    			{

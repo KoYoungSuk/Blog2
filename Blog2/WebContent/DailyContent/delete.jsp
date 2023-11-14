@@ -1,31 +1,45 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
+<c:choose>
+<c:when test="${sessionScope.id eq 'admin'}">
 <form action="deletedaily" method="POST">
   <div style="text-align: right;">
       <button class="btn btn-secondary btn-sm" type="button" onclick="history.go(-1);"><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>
       <button class="btn btn-danger btn-sm" type="submit"><span class="material-symbols-outlined">delete</span>Delete</button>
 	  &nbsp;&nbsp; 
  </div>
-	<table class="table">
-	   <tr>
-	    <td><label for="title">날짜:</label></td>
-	    <td><input class="form-control mr-sm-10" type="text" name="title" value= "${sessionScope.detaildailylist['title']}" readonly /></td>
-	    </tr>
-	   <tr>
-	  <td><label for="context">내용:</label></td>
-	  <td><textarea class="form-control mr-sm-10" rows="20" cols="100" name="context" autofocus wrap="hard" readonly>${sessionScope.detaildailylist['content']}</textarea></td>
+ <hr> 
+ <table class="table">
+	  <tr>
+	  <td style="font-weight: bold; ">일정 날짜:</td>
+	  <td>
+	  ${sessionScope.detaildailylist['title']}
+	  <input type="hidden" name="title" value="${sessionScope.detaildailylist['title']}" />
+	  </td>
 	  </tr>
 	  <tr>
-	   <td><label for="savedate">작성 시간:</label></td>
-	   <td><input class="form-control mr-sm-10" type="text" name="savedate" value="${sessionScope.detaildailylist['savedate']}" readonly /></td>
+	  <td style="font-weight: bold;">일정 내용:</td>
+	  <td>${sessionScope.detaildailylist['content']}</td>
 	  </tr>
 	  <tr>
-	   <td><label for="savedate">수정 시간:</label></td>
-	   <td><input class="form-control mr-sm-10" type="text" name="modifydate" value="${sessionScope.detaildailylist['modifydate']}" readonly /></td>
+	   <td style="font-weight: bold;">작성 날짜:</td>
+	   <td>${sessionScope.detaildailylist['savedate']}</td>
 	  </tr>
 	  <tr>
-	   <td><label for="status">달성 여부:</label></td>
+	   <td style="font-weight: bold;">수정 날짜:</td>
+	   <td>${sessionScope.detaildailylist['modifydate']}</td>
+	  </tr>
+	  <tr>
+	   <td style="font-weight: bold;">달성 여부: </td>
 	   <td>${sessionScope.detaildailylist['status']}</td>
 	  </tr>
-	</table>
+</table>
 </form>
+</c:when>
+<c:otherwise>
+  <script>
+    alert("Administrator Only.");
+    history.go(-1); 
+  </script>
+</c:otherwise>
+</c:choose>

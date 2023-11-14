@@ -1,7 +1,6 @@
 package com.wp.blog;
 
 import java.io.IOException;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -14,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.wp.blog.DAO.InfoDAO;
-import com.wp.blog.DTO.InfoDO;
 
 /**
  * Servlet implementation class DetailInfoServlet
@@ -51,46 +49,38 @@ public class DetailInfoServlet extends HttpServlet {
   	    String db_pw = application.getInitParameter("db_password");
   	    String viewName = null; 
   	    
+  	    String year = title.split("-")[0];
+  	    String month = title.split("-")[1];
+  	    
+  	    String yearmonth = year + "-" + Integer.parseInt(month); 
+  	    
   	    try
   	    {
   	    	if(id != null)
   	    	{
   	    		if(id.equals("admin")) //관리자 모드일때 
   	    		{
-  	    			int title_size = title.length(); //제목 길이 
-  	    			
   	    			InfoDAO infodao = new InfoDAO(JDBC_Driver, db_url, db_id, db_pw);
   	    			
-  	    		
-  	    			if(title_size >= 10) //yyyy-MM-dd 
-  	    			{
-  	    				Map<String, String> infodetaillist = infodao.getInfoListByTitle(title, true); //HTML -> Br
+  	    			Map<String, String> infodetaillist = infodao.getInfoListByTitle(title, true); //HTML -> Br
   	  	    		    
-  	  	    		    if(infodetaillist != null)
-  	  	    		    {
-  	  	    		       session.setAttribute("infodetaillist", infodetaillist);
-  	  	    		       viewName = "list.jsp?page=2"; 
-  	  	    		    }
-  	  	    		    else
-  	  	    		    {
-  	  	    		    	g.jsmessage("Null Error"); 
-  	  	    		    }
-  	    			}
-  	    			else //키워드를 포함한 제목 리스트 출력 
-  	    			{
-  	    				List<InfoDO> infolist = infodao.searchInfoListByTitle(title);
-  	    				
-  	    				if(infolist != null)
-  	    				{
-  	    					session.setAttribute("totalinfolist", infolist);
-  	    					viewName = "list.jsp?page=1"; 
-  	    				}
-  	    				else
-  	    				{
-  	    					g.jsmessage("Search Result Not Found."); 
-  	    				}
-  	    			}
- 
+  	  	    		if(infodetaillist != null)
+  	  	    		{
+  	  	    			String title_new = infodetaillist.get("title"); 
+  	  	    			
+  	  	    			if(title_new != null) {
+  	  	    			    session.setAttribute("infodetaillist", infodetaillist);
+  	  	    		        viewName = "list.jsp?page=2"; 
+  	  	    			}
+  	  	    			else { //작성 모드 
+  	  	    			    session.setAttribute("errormessage_info", "Information Not Selected or Not Founded.");
+  	    	    		    viewName = "info_new.jsp?yearmonth=" + yearmonth + "&choosed_title=" + title; 
+  	  	    			}
+  	  	    	    }
+  	  	    		else
+  	  	    		{
+  	  	    		    g.jsmessage("Null Error"); 
+  	  	    	    }
   	    		}
   	    		else
   	    		{
@@ -109,8 +99,13 @@ public class DetailInfoServlet extends HttpServlet {
   	    
   	    if(viewName != null)
   	    {
-  	  	    RequestDispatcher view = request.getRequestDispatcher(viewName);
- 		    view.forward(request, response);
+  	    	if(viewName.equals("list.jsp?page=2")) {
+  	    		RequestDispatcher view = request.getRequestDispatcher(viewName);
+  	 		    view.forward(request, response);
+  	    	} 
+  	    	else if(viewName.contains("info_new.jsp")) {
+  	    		response.sendRedirect(viewName);
+  	    	}
   	    }
 	}
 

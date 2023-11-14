@@ -71,21 +71,15 @@ public class DiaryListServlet extends HttpServlet {
   	  	  	    	List<DiaryDO> diarylist = diarydao.getDiaryList(false);
   	  	  	    	int diarynumber = diarydao.getDiarynumber();
   	  	  	    	int page_num_diary = diarynumber / 10; //10개씩 페이지 구분하기 
-  	  	  	    	int page_num_diary_rest = diarynumber % 10; //10개씩 나누고 남는 나머지 
-  	  	  	    	
+
   	  	  	    	if(diarylist != null) {
   	  	  	    		viewName = "diary.jsp?page=1";
   	  	  	    		session.setAttribute("diarylist", diarylist);
   	  	  	    		session.setAttribute("diarynumber", diarynumber);
-  	  	  	    		session.setAttribute("page_num_diary", page_num_diary); 
+  	  	  	    		session.setAttribute("page_num_diary", page_num_diary + 1); //일기장 개수가 20개 이하이면 첫 페이지와 마지막 페이지 둘다 1이 되어버려서 다음 페이지로 넘어갈 수 없는 상황이 만들어진다.
+  	  	  	    		                                                            //그래서 1을 더한다. 
   	  	  	    		session.setAttribute("beginnumber_diary", (page_num_diary_para - 1) * 10); //시작번호 
-  	  	  	    		if(page_num_diary_para == page_num_diary) { //마지막일때 
-  	  	  	    		   session.setAttribute("endnumber_diary" , ((page_num_diary_para -1) * 10) + 9 + page_num_diary_rest); //끝번호 
-  	  	  	    		}
-  	  	  	    		else {
-  	  	  	    		   session.setAttribute("endnumber_diary" , ((page_num_diary_para -1) * 10) + 9); //끝번호 
-  	  	  	    		}
-  	  	  	    		
+  	  	  	    	    session.setAttribute("endnumber_diary" , ((page_num_diary_para -1) * 10) + 9); //끝번호 
   	  	  	    	}
   	  	  	    	else {
   	  	  	    		g.jsmessage("Null Error");

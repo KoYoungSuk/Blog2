@@ -63,20 +63,14 @@ public class ProductListServlet extends HttpServlet {
   	  	  	    	List<ProductDO> totalproductlist = productdao.getProductTotalList();
   	  	  	    	int productnumber = productdao.getProductNumber();
   	  	  	    	int pagecount_product = productnumber / 10;
-  	  	  	    	int pagecount_product_rest = productnumber % 10; 
   	  	  	    	
   	  	  	    	if(totalproductlist != null) {
   	  	  	    		viewName = "product.jsp?page=1";
   	  	  	    		session.setAttribute("productnumber", productnumber);
   	  	  	    		session.setAttribute("totalproductlist", totalproductlist);
-  	  	  	    		session.setAttribute("pagecount_product", pagecount_product);
+  	  	  	    		session.setAttribute("pagecount_product", pagecount_product + 1);
   	  	  	    		session.setAttribute("beginnumber_product", (product_page_num -1) * 10);
-  	  	  	    		if(product_page_num == pagecount_product) { //마지막 페이지일때 
-  	  	  	    		session.setAttribute("endnumber_product", ((product_page_num - 1) * 10)  + 9 + pagecount_product_rest); 
-  	  	  	    		}
-  	  	  	    		else {
-  	  	  	    			session.setAttribute("endnumber_product", ((product_page_num - 1) * 10)  + 9); 
-  	  	  	    		}
+  	  	  	    	    session.setAttribute("endnumber_product", ((product_page_num - 1) * 10)  + 9); 
   	  	  	    	}
   	  	    	}
   	  	    	else {

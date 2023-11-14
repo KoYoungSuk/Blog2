@@ -77,7 +77,7 @@ public class WriteInfoServlet extends HttpServlet implements Servlet {
   	    			int result = infodao.insertInfo(infodo);
   	    			if(result != 0)
   	    			{
-  	    				viewName = "infolist"; 
+  	    				viewName = "info_new.jsp"; 
   	    			}
   	    			else
   	    			{

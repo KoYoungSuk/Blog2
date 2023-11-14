@@ -1,7 +1,7 @@
 package com.wp.blog;
 
 import java.io.IOException;
-import java.util.List;
+
 import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.wp.blog.DAO.DailyDAO;
-import com.wp.blog.DTO.DailyDO;
 
 /**
  * Servlet implementation class DetailDailyServlet
@@ -44,50 +43,45 @@ public class DetailDailyServlet extends HttpServlet {
 	    String title = request.getParameter("title");
 	    String id = (String)session.getAttribute("id"); 
 	    
+	    String year = title.split("-")[0];
+	    String month = title.split("-")[1];
+	    
+	    String yearmonth = year + "-" + Integer.parseInt(month); 
+	    
 	    //DataBase Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
   	    String db_id = application.getInitParameter("db_userid");
   	    String db_pw = application.getInitParameter("db_password");
+  	    
 	    try
 	    {
-	    	int title_size = title.length(); 
 	    	DailyDAO dailydao = new DailyDAO(JDBC_Driver, db_url, db_id, db_pw); 
 	    	if(id != null)
 	    	{
-	    		if(id.equals("admin")) //관리자 
-	    		{
-	    			if(title_size >= 10) 
-	    	    	{
-	    	    		Map<String, String> dailylist = dailydao.getDetailDailyList(title, true); 
-	    	    		if(dailylist != null)
-	    	    		{
-	    	    			session.setAttribute("dailydetaillist", dailylist); 
-		    	    		viewName = "daily.jsp?page=2"; 
-	    	    		}
-	    	    		else
-	    	    		{
-	    	    			g.jsmessage("Null Error");
-	    	    		}
-	    	    	}
-	    	    	else
-	    	    	{
-	    	    		List<DailyDO> dailylist = dailydao.searchDailyListByWord(title);
-	    	    		if(dailylist != null)
-	    	    		{
-	    	    			session.setAttribute("totaldailylist", dailylist);
-		    	    		viewName = "daily.jsp?page=1"; 
-	    	    		}
-	    	    		else
-	    	    		{
-	    	    			g.jsmessage("Null Error");
-	    	    		}
-	    	    	}
+	    		if(id.equals("admin")) {
+	    			Map<String, String> dailylist = dailydao.getDetailDailyList(title, true); 
+	  	    	    if(dailylist != null)
+	  	    	    {
+	  	    	    	String newlist_title = dailylist.get("title");
+	  	    	    	
+	  	    	    	if(newlist_title != null) { //조회 모드 
+	  	    	    		session.setAttribute("dailydetaillist", dailylist); 
+		  		    	    viewName = "daily.jsp?page=2"; 
+	  	    	    	}
+	  	    	    	else { //작성 모드 
+	  	    	    		session.setAttribute("errormessage_daily", "Daily Information Not Selected or Not Founded.");
+	  	    	    		viewName = "daily_new.jsp?yearmonth=" + yearmonth + "&choosed_title=" + title; 
+	  	    	    	}
+	  	    	    }
+	  	    	    else 
+	  	    	    {
+	  	    	    	g.jsmessage("Null Error Message");
+	  	    	    }
 	    		}
-	    		else
-	    		{
-	    			session.invalidate(); 
+	    		else {
+	    			session.invalidate();
 	    			g.errorcode(3217);
 	    		}
 	    	}
@@ -96,8 +90,8 @@ public class DetailDailyServlet extends HttpServlet {
 	    		session.invalidate(); 
 	    		g.errorcode(3217);
 	    	}
-	    
 	    }
+	    
 	    catch(Exception e)
 	    {
 	    	g.jsmessage(e.getMessage()); 
@@ -105,8 +99,13 @@ public class DetailDailyServlet extends HttpServlet {
 	    
 	    if(viewName != null)
 	    {
-	    	 RequestDispatcher view = request.getRequestDispatcher(viewName);
-			 view.forward(request, response);
+	    	 if(viewName.equals("daily.jsp?page=2")) {  //조회 모드 
+	    		 RequestDispatcher view = request.getRequestDispatcher(viewName);
+				 view.forward(request, response);
+	    	 }
+	    	 else if(viewName.contains("daily_new.jsp")) { //작성 모드 
+	    		 response.sendRedirect(viewName); 
+	    	 }
 	    }
 	}
 

@@ -15,10 +15,6 @@
             <td><input class="form-control mr-sm-10" type="text" name="number" value="${sessionScope.totalboardlist['number']}" readonly /></td>
            </tr>
            <tr>
-            <td><label for="UserId">User ID:</label></td>
-            <td><input class="form-control mr-sm-10" type="text" name="userid" value="${sessionScope.totalboardlist['userid']}" readonly /></td>
-           </tr>
-           <tr>
             <td><label for="Title">Title:</label></td>
             <td><input class="form-control mr-sm-10" type="text" name="title" value="${sessionScope.totalboardlist['title']}" required /></td>
            </tr>

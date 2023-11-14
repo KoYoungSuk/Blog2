@@ -3,7 +3,7 @@
 <!-- 이미 로그인되어 있으면 바로 리스트로 넘어감 -->
 <c:choose>
 <c:when test="${sessionScope.id eq 'admin'}">
-  <c:redirect url="infolist"></c:redirect>
+  <c:redirect url="info_new.jsp"></c:redirect>
 </c:when>
 <c:otherwise>
 </c:otherwise>
@@ -12,12 +12,16 @@
 <html>
 <head>
 <meta charset="utf-8">
+<!-- Mobile friendly Meta -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Ignore Internet Explorer 8 Compatible Mode  -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!-- Bootstrap 4.4  -->
 <link rel="stylesheet" href="../BS/bootstrap.min.css" />
 <link rel="stylesheet" href="../BS/bootstrap.css" />
+<!-- Google Span Icon -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-<title> InfoList  </title>
+<title> Oracle DataBase </title>
 <style>
 	.footer{
 		text-align: right;
@@ -36,7 +40,7 @@
      }
 </style>
 </head>
-  <div class="col-lg-4" style="background-color: #DCDCDC; padding: 0px; margin: 120px;">
+  <div class="col-lg-6" style="background-color: #DCDCDC; padding: 0px; margin: 120px;">
     <h3 class="htitle"> Oracle DataBase Login Screen </h3>
 	<p>&nbsp;&nbsp; This is Administrator Only. </p>
 	<hr>
@@ -60,7 +64,7 @@
 	<br> 
   </div>
   <div class="footer">
-	<p>Last updated: Friday, November 3rd, 2023 </p>
+	<p>Last updated: Wednesday, November 15th,  2023 </p>
 	<p>This is not copyrighted. But don't use this for illegally.</p>
   </div>
 <body>

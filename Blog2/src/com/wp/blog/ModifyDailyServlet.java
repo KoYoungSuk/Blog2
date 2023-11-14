@@ -137,7 +137,7 @@ public class ModifyDailyServlet extends HttpServlet {
                      
                      if(result != 0)
                      {
-                     	viewName = "dailylist";
+                     	viewName = "daily_new.jsp";
                      }
                      else
                      {

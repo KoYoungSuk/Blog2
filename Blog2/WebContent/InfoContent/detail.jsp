@@ -6,21 +6,22 @@
 <button class="btn btn-secondary btn-sm" onclick="location.href='modifyinfo?title=${infotitle}'"><span class="material-symbols-outlined">create</span>Modify</button>
 <button class="btn btn-danger btn-sm" onclick="location.href='deleteinfo?title=${infotitle}'"><span class="material-symbols-outlined">delete</span>Delete</button>&nbsp;&nbsp; 
 </div>
+<br> 
 <table class="table" style="background-color: lightyellow;">
 <tr>
- <td>제목:</td>
+ <td style="font-weight: bold; font-size: 20px; ">제목:</td>
  <td>${sessionScope.infodetaillist['title']}</td>
 </tr>
 <tr>
- <td>내용:</td>
+ <td style="font-weight: bold; font-size: 20px; ">내용:</td>
  <td>${sessionScope.infodetaillist['content']}</td>
 </tr>
 <tr>
- <td>작성 날짜: </td>
+ <td style="font-weight: bold; font-size: 20px; ">작성 날짜: </td>
  <td>${sessionScope.infodetaillist['savedate']}</td>
 </tr>
 <tr>
- <td>수정 날짜: </td>
+ <td style="font-weight: bold; font-size: 20px; ">수정 날짜: </td>
  <td>${sessionScope.infodetaillist['modifydate']}</td>
 </tr>
 </table>

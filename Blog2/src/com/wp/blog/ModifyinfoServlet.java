@@ -65,7 +65,7 @@ public class ModifyinfoServlet extends HttpServlet {
 					if(infolist != null)
 					{
 						session.setAttribute("infodetaillist", infolist);
-						viewName = "list.jsp?page=4";
+						viewName = "info_new.jsp";
 					}
 					else
 					{

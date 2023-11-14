@@ -78,7 +78,6 @@ public class BoardListServlet extends HttpServlet {
 		      if(boardlist != null){
 		    	  int count_board = boarddao.getBoardCount(access);
 		    	  int page_num = count_board / 10; //게시글 10개를 기준으로 페이지 나누기 
-		          int page_num_rest = count_board % 10; //10개로 나누고 남는 나머지
 		          
 			      for(BoardDO boarddo: boardlist) {
 			    	  
@@ -99,14 +98,9 @@ public class BoardListServlet extends HttpServlet {
 			      
 				  session.setAttribute("boardlist", newboardlist);
 				  session.setAttribute("count_board", count_board);
-				  session.setAttribute("pagenum", page_num); //페이지 개수 
+				  session.setAttribute("pagenum", page_num + 1); //페이지 개수 
 				  session.setAttribute("beginnumber", (pagecount-1) * 10); //시작번호 
-				  if(pagecount == page_num) { //마지막 페이지일때 
-					  session.setAttribute("endnumber", ((pagecount-1) * 10) + 9 + page_num_rest); //끝번호 
-				  }
-				  else {
-					  session.setAttribute("endnumber", ((pagecount-1) * 10) + 9); //끝번호 
-				  }
+				  session.setAttribute("endnumber", ((pagecount-1) * 10) + 9); //끝번호
 			      viewName = "main.do?page=3"; 
 			  }else {
 				  g.jsmessage("Not Found");

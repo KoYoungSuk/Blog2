@@ -14,9 +14,6 @@
                      <td><p><label for="title">Title:</label></p></td>
                      <td><input class="form-control mr-sm-10" type="text" name="title" required /></td>
                      </tr>
-                     <tr>
-                     <td><p><label for="user">User ID:</label></td><td><input type="text" class="form-control mr-sm-10" name="id" value='${sessionScope.id}' readonly  /></p></td>
-                     <tr>
                      <td><p><label for="content">Content:</label></p></td>
                      <td><p><textarea class="form-control mr-sm-10" rows="20" cols="100" autofocus name="content" wrap="hard" ></textarea></p></td>
                      </tr>

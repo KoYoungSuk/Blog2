@@ -79,7 +79,7 @@ public class DailyLoginServlet extends HttpServlet {
 							   session.setAttribute("id", id);
 		        	    	   firstname = memberlist.get("firstname");
 		        	    	   lastname = memberlist.get("lastname");
-		        	    	   viewName = "dailylist"; 
+		        	    	   viewName = "daily_new.jsp"; 
 						}
 					}
 				}

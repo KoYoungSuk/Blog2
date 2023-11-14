@@ -70,7 +70,7 @@ public class InfoLoginServlet extends HttpServlet {
   	    			if(BCrypt.checkpw(password, password_db)) {
   	  	    			firstname = memberlist.get("firstname");
   	  	    			lastname = memberlist.get("lastname");
-  	  	    			viewName = "infolist";
+  	  	    			viewName = "info_new.jsp";
   	  	    		}
   	    		}
   	    	}

@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <c:choose>
 <c:when test="${sessionScope.id eq 'admin'}">
- <c:redirect url="dailylist"></c:redirect>
+ <c:redirect url="daily_new.jsp"></c:redirect>
 </c:when>
 <c:otherwise>
 </c:otherwise>
@@ -18,19 +18,9 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <title> DailyManager(Web) </title>
 <style>
-	.jumbotron{
-        padding-top: 0px;
-        padding-bottom: 0px;
-        text-align: center;
-		background-color: blue;
-		color: yellow;
-	}
 	.footer{
-	    left: 0;
-        bottom: 0;
-        width: 100%;
-		text-align: center;
-		background-color: lightblue;
+	    color: white; 
+		text-align: right;
 	}
     .htitle
     {
@@ -46,7 +36,7 @@
 </style>
 </head>
 <hr>
-   <div class="col-lg-4" style="background-color: #DCDCDC; margin: 120px; padding: 0px;">
+   <div class="col-lg-6" style="background-color: #DCDCDC; margin: 120px; padding: 0px;">
     <H3 class="htitle"> Welcome to DailyManager! (Web) </H3>
 	<p>&nbsp;&nbsp; Only Administrator can use DailyManager(Web). (I'm Sorry!) </p>
 	<form action="dailylogin" method="POST">
@@ -68,7 +58,7 @@
 	</form>
   </div>
   <div class="footer">
-	<p>Last updated: Saturday, July 8th, 2023  </p>
+	<p>Last updated: Tuesday, November 14nd,  2023  </p>
 	<p>This is not copyrighted. But don't use this illegally. </p>
   </div>
 <body>

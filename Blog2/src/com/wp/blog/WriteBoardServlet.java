@@ -1,7 +1,6 @@
 package com.wp.blog;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.sql.Timestamp;
 
 import javax.servlet.ServletContext;
@@ -10,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.nhncorp.lucy.security.xss.XssPreventer;
 import com.wp.blog.DAO.BoardDAO;
@@ -48,9 +48,9 @@ public class WriteBoardServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		Global g = new Global(response);
 		
-	
+		HttpSession session = request.getSession(); 
+	    String id = (String)session.getAttribute("id"); 
 	    //Parameters from HTML 
-		String userid = request.getParameter("id");
 		String title = request.getParameter("title");
 		String content = request.getParameter("content");
 		String anonymous = request.getParameter("access");
@@ -72,11 +72,11 @@ public class WriteBoardServlet extends HttpServlet {
   	    String viewName = null;
   	    int number = 0;
 			try {
-				if(userid != null) {
-					if(userid.equals("admin")) {
+				if(id != null) {
+					if(id.equals("admin")) {
 						BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
 					    number = boarddao.MaxBoardNumber() + 1;
-						BoardDO boarddo = new BoardDO(number, title, userid, content, savedate, savedate, anonymous, 0);
+						BoardDO boarddo = new BoardDO(number, title, id, content, savedate, savedate, anonymous, 0);
 					    int result = boarddao.insertBoard(boarddo);
 					    if(result == 1) {
 					    	viewName = "boardlist.do"; 
@@ -86,11 +86,12 @@ public class WriteBoardServlet extends HttpServlet {
 						}
 					}
 					else {
+						session.invalidate(); 
 						g.errorcode(3217);
 					}
 				}
 			  
-			} catch (ClassNotFoundException | SQLException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				g.jsmessage(e.getMessage());
 			}

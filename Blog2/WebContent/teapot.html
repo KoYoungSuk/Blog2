@@ -1,11 +1,65 @@
-<!DOCTYPE html>
+
+<!-- Internet Explorer  -->
+
 <html>
 <head>
-<meta charset="UTF-8">
-<title>I'm a Teapot </title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title> Error Page: You use Old System!! </title>
 </head>
 <body>
-   <H1>I'm a Teapot </H1>
-   <hr /> 
+  <div class="header">
+   <h1> Error Page: You use Old System!!!  </h1>
+   <hr>
+  </div>
+   <p>
+   </p>
+   <p> 
+   </p><h3> You use Old Web Browser and System!! </h3>
+   <h3> This Website is designed for latest webbrowser such as Google Chrome or Mozilla FireFox. </h3>  
+   <h3> If You use Microsoft Windows XP or Windows Vista,  use Chrome 49 or FireFox 52. </h3>
+   <h3> If You use Microsoft Windows Millennium Edition, 2000, 98 or 95, You must update your system. </h3>
+   <div class="footer">
+   Last updated: Monday, May 11th, 2020 
+  <p id="osver"></p>
+    <p id="browserver"></p> 
+      <p id="address"></p>
+      <p id="time"></p>
+ </div>
+<script>
+     var OSName="Unknown OS";
+    var address2 = window.location.href;
+    var currdate = new Date();
+    if (navigator.appVersion.indexOf("Windows NT 10.0")!=-1) OSName="Windows 10/Windows Server 2016/2019";
+    if (navigator.appVersion.indexOf("Windows NT 6.4") !=-1) OSName="Windows 10(Beta Ver)";
+    if (navigator.appVersion.indexOf("Windows NT 6.3") !=-1) OSName="Windows 8.1/Windows Server 2012 R2";
+    if (navigator.appVersion.indexOf("Windows NT 6.2") !=-1) OSName="Windows 8/Windows Server 2012";
+    if (navigator.appVersion.indexOf("Windows NT 6.1") !=-1) OSName="Windows 7/Windows Server 2008 R2";
+    if (navigator.appVersion.indexOf("Windows NT 6.0") !=-1) OSName="Windows Vista/Windows Server 2008";
+    if (navigator.appVersion.indexOf("Windows NT 5.2") !=-1) OSName="Windows Server 2003";
+    if (navigator.appVersion.indexOf("Windows NT 5.1") !=-1) OSName="Windows XP";
+    if (navigator.appVersion.indexOf("Windows 4.9") !=-1) OSName="Windows Me Millennium Edition";
+    if (navigator.appVersion.indexOf("Windows NT 5.0") !=-1) OSName="Windows 2000/NT 5.0";
+    if (navigator.appVersion.indexOf("Windows NT 5.5") !=-1) OSName="Windows Neptune";
+    if (navigator.appVersion.indexOf("Windows 98") !=-1) OSName="Windows 98";
+    if (navigator.appVersion.indexOf("Windows NT 4.0") !=-1) OSName="Windows NT 4.0";
+    if (navigator.appVersion.indexOf("Windows 95") !=-1) OSName="Windows 95";
+    if (navigator.appVersion.indexOf("Mac")!=-1) 
+    {
+          if (navigator.maxTouchPoints == 0) 
+          {
+             OSName = "Mac OS X/macOS/OSX";
+          }
+          else 
+          {
+             OSName = "iPad OS/iOS";
+          }
+    }
+    if (navigator.appVersion.indexOf("X11")!=-1) OSName="UNIX";
+    if (navigator.appVersion.indexOf("Linux")!=-1) OSName="Linux(Ubuntu, Redhat, ETC)";
+    document.getElementById("osver").innerHTML = "Your OS : " + OSName;
+    document.getElementById("browserver").innerHTML = "Your Browser : " + navigator.userAgent; 
+    document.getElementById("time").innerHTML = currdate + "";
+    document.getElementById("address").innerHTML = "Current Address : " + address2 + ""; 
+</script>
 </body>
 </html>

@@ -97,8 +97,7 @@ public class ModifyBoardServlet extends HttpServlet {
 		 String s_id = (String)session.getAttribute("id"); //현재 로그인한 아이디 
 		 
 		 //Parameters from HTML 
-		 String number = request.getParameter("number");
-		 String id = request.getParameter("userid"); 
+		 String number = request.getParameter("number"); 
 		 String title = request.getParameter("title");
 		 String content = request.getParameter("content");
 		 String access = request.getParameter("access");
@@ -118,7 +117,7 @@ public class ModifyBoardServlet extends HttpServlet {
 	  	 Timestamp modifydate = new Timestamp(System.currentTimeMillis());
 	  	 
 	  	 
-	  	 BoardDO boarddo = new BoardDO(Integer.parseInt(number), title, id, content, null, modifydate, access, 0);
+	  	 BoardDO boarddo = new BoardDO(Integer.parseInt(number), title, s_id, content, null, modifydate, access, 0);
 	  	 BoardDAO boarddao = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
 	  	 
 	  	 try {

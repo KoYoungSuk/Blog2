@@ -11,12 +11,16 @@
 <html>
 <head>
 <meta charset="utf-8">
+<!-- Mobile Friendly Meta  -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Ignore Internet Explorer 8 Compatible Mode  -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!-- Bootstrap 4.4  -->
 <link rel="stylesheet" href="../BS/bootstrap.min.css" />
 <link rel="stylesheet" href="../BS/bootstrap.css" />
+<!-- Google Span Icons -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-<title>Welcome to MyDiary (Web) !!! </title>
+<title>Welcome to MyDiary(Web) !!! </title>
 <style>
 	.jumbotron{
         padding-top: 0px;

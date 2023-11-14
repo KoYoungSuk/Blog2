@@ -152,6 +152,7 @@ public class DailyDAO {
 		return detaildailylist; 
 	}
 	
+	/*
 	public List<DailyDO> searchDailyListByWord(String word) throws ClassNotFoundException, SQLException
 	{
 		List<DailyDO> dailylist = null;
@@ -182,4 +183,5 @@ public class DailyDAO {
 		disconnectDB();
 		return dailylist; 
 	}
+	*/ 
 }
