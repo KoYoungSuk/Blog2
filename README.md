@@ -2,13 +2,47 @@
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 
-Apache Tomcat 9.0/Eclipse IDE for Java EE 2018-09/OpenJDK
+IDE
 
-Actually development environment is not Ubuntu. it is Windows 10/11!.
+-> Eclipse IDE for Java EE Developer 2018-09 
 
-(Server environment is Ubuntu)
+JDK
 
-This Site use Bootstrap 4.4
+-> OpenJDK
+
+Tomcat Server
+
+-> Apache Tomcat 9.0
+
+DataBase Server
+
+-> Oracle DataBase 18c XE 
+
+Operating System(Development)
+
+-> Microsoft Windows 10/11 64-bit
+
+Operating System(Web Server)
+
+-> Ubuntu 20.04 LTS 64-bit
+
+Operating System(DataBase Server)
+
+-> Microsoft Windows Server 2019 DataCenter 64-bit
+
+Framework/Library used in This project
+
+-> Bootstap 4.4 
+
+-> JQuery 
+
+-> JDBC Driver (Oracle) 
+
+-> JavaMail 
+
+-> Lucy XSS Filter By Naver (https://github.com/naver/lucy-xss-filter) 
+
+-> JSTL
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -19,7 +53,8 @@ This Site use Bootstrap 4.4
      If you use Linux: Open Terminal. 
   4. Select cloned Path. 
   5. Type command: git clone https://github.com/KoYoungSuk/Blog2.git
-  
+  6. You need to install OpenJDK, Apache Tomcat Server, Oracle DataBase Server and Eclipse EE IDE.
+
  ----------------------------------------------------------------------------------------------------------------------------------------
  # Screenshot
  
