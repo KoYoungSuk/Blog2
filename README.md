@@ -2,47 +2,35 @@
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 
-IDE
+IDE:
 
--> Eclipse IDE for Java EE Developer 2018-09 
+   ![Eclipse](https://img.shields.io/badge/Eclipse-FE7A16.svg?style=for-the-badge&logo=Eclipse&logoColor=white)
+   
+Server:
 
-JDK
+   ![Apache Tomcat](https://img.shields.io/badge/apache%20tomcat-%23F8DC75.svg?style=for-the-badge&logo=apache-tomcat&logoColor=black)
+   
+Language:
 
--> OpenJDK
+   ![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
+   ![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+   ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+   ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+   
+Framework&Libraries:
 
-Tomcat Server
+   ![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
+   ![jQuery](https://img.shields.io/badge/jquery-%230769AD.svg?style=for-the-badge&logo=jquery&logoColor=white)
+   
+Development Environment:
 
--> Apache Tomcat 9.0
+   ![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
+   ![Windows 11](https://img.shields.io/badge/Windows%2011-%230079d5.svg?style=for-the-badge&logo=Windows%2011&logoColor=white)
+   
+Server Environment:
 
-DataBase Server
+   ![Ubuntu](https://img.shields.io/badge/Ubuntu-E95420?style=for-the-badge&logo=ubuntu&logoColor=white)
 
--> Oracle DataBase 18c XE 
-
-Operating System(Development)
-
--> Microsoft Windows 10/11 64-bit
-
-Operating System(Web Server)
-
--> Ubuntu 20.04 LTS 64-bit
-
-Operating System(DataBase Server)
-
--> Microsoft Windows Server 2019 DataCenter 64-bit
-
-Framework/Library used in This project
-
--> Bootstap 4.4 
-
--> JQuery 
-
--> JDBC Driver (Oracle) 
-
--> JavaMail 
-
--> Lucy XSS Filter By Naver (https://github.com/naver/lucy-xss-filter) 
-
--> JSTL
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 
