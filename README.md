@@ -54,20 +54,35 @@ You need to create your own Oracle database account and table, than connect this
  
  Main Screen 
  
-![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/0832e9a0-2f23-4b5d-9bbd-096d56e926a4)
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/97900b21-90c3-49ce-9a6f-014cb70c6323)
 
  Memo List
  
-![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/e542de06-ccbf-4dc5-992a-2e6935b0f1e5)
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/32142b2e-c40b-4da0-b501-48a99f232498)
 
  Detail Memo
 
-![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/5452c985-78b0-42ef-9198-ed97df581eff)
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/6f4be3f9-caf0-4d65-a6c6-106c430ae1e3)
 
  Diary
  
-![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/605bc3cd-d35c-4da8-be34-01a5fd77f687)
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/4c8d92a5-8f1e-4762-90f2-5e67aa6601cc)
 
+ProductManager 
+
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/b8ef0ebf-50be-432c-ac17-8cba4fde4932)
+
+JavaScript Calendar(DailyManager)
+
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/ae050d30-fa55-40a9-bef9-87ffcbee10aa)
+
+Special! (Javascript Calendar) 
+
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/fd2d79f4-be31-4bef-86e9-4a39a7c63d17)
+
+Working Environment: Microsoft Windows 11 Home K 64bit/Google Chrome Web Browser 
+
+(2019-09 AMD Ryzen 5-3400G Custom-Built Desktop)
 
  ------------------------------------------------------------------------------------------------------------------------------------------
  
