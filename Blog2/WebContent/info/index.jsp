@@ -40,9 +40,9 @@
      }
 </style>
 </head>
-  <div class="col-lg-6" style="background-color: #DCDCDC; padding: 0px; margin: 120px;">
-    <h3 class="htitle"> Oracle DataBase Login Screen </h3>
-	<p>&nbsp;&nbsp; This is Administrator Only. </p>
+  <div class="col-lg-4" style="background-color: #DCDCDC; padding: 0px; margin: 120px;">
+    <h3 class="htitle"> Welcome </h3>
+	<p>&nbsp;&nbsp; Enter a username and password to enter this system. (Administrator Only) </p>
 	<hr>
 	<form action="infologin" method="POST">
 	<table>
@@ -55,7 +55,7 @@
 	   <td><input class="form-control" type="password" name="password" required /></td>
 	  </tr>
 	</table>
-	  <div style="text-align: right;">
+	  <div style="text-align: center;">
 	  <button type="button" class="btn btn-secondary btn-sm" onclick="history.go(-1);"><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>&nbsp;&nbsp;
 	  <button type="submit" class="btn btn-secondary btn-sm" ><span class="material-symbols-outlined">login</span>Login</button>&nbsp;&nbsp; 
 	  <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='../main.do'"><span class="material-symbols-outlined">arrow_back_ios</span>Back to List</button>&nbsp;&nbsp; 

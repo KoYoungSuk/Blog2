@@ -27,7 +27,10 @@
 </div>
 </c:when>
 <c:otherwise>
-<p>Actually Loginned.</p> 
+<script>
+  alert("Actually loginned.");
+  history.go(-1); 
+</script>
 </c:otherwise>
 </c:choose>
 <br> 

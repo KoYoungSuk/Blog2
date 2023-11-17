@@ -129,6 +129,7 @@ public class ModifyinfoServlet extends HttpServlet {
   	    		{
   	    			if(result != 0)
   	    			{
+  	    				session.removeAttribute("infodetaillist");
   	    				viewName = "infolist"; 
   	    			}
   	    			else
@@ -138,11 +139,13 @@ public class ModifyinfoServlet extends HttpServlet {
   	    		}
   	    		else
   	    		{
+  	    			session.invalidate(); 
   	    			g.errorcode(3217);
   	    		}
   	    	}
   	    	else
   	    	{
+  	    		session.invalidate(); 
   	    		g.errorcode(3217);
   	    	}
   	    }

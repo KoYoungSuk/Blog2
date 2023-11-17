@@ -66,16 +66,18 @@ public class ProductLoginServlet extends HttpServlet {
   	    try {
   	    	MemberDAO memberdao = new MemberDAO(JDBC_Driver, db_url, db_id, db_pw);
   	    	Map<String, String> memberlist = memberdao.getMemberById(id);
-  	    	if(id.equals("admin")) {
-  	    		String password_db = memberlist.get("password");
-  	    		if(password_db != null)
-  	    		{
-  	    			if(BCrypt.checkpw(password, password_db)) {
-  	  	    			firstname = memberlist.get("firstname");
-  	  	    			lastname = memberlist.get("lastname");
-  	  	    			viewName = "productlist ";
+  	    	if(id != null) {
+  	    		if(id.equals("admin")) {
+  	  	    		String password_db = memberlist.get("password");
+  	  	    		if(password_db != null)
+  	  	    		{
+  	  	    			if(BCrypt.checkpw(password, password_db)) {
+  	  	  	    			firstname = memberlist.get("firstname");
+  	  	  	    			lastname = memberlist.get("lastname");
+  	  	  	    			viewName = "productlist ";
+  	  	  	    		}
   	  	    		}
-  	    		}
+  	  	    	}
   	    	}
   	    }catch(Exception e) {
   	    	g.jsmessage(e.getMessage());

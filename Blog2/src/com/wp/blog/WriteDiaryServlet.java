@@ -54,9 +54,10 @@ public class WriteDiaryServlet extends HttpServlet {
         //Parameters from HTML 
 		String title = request.getParameter("title");
 		String context = request.getParameter("context");
+		String checkcal = request.getParameter("checkcalendar"); 
 		title = XssPreventer.escape(title); 
 		context = XssPreventer.escape(context);
-		
+
 		Timestamp savedate = new Timestamp(System.currentTimeMillis());
 		
 		//DataBase Connection String from web.xml 
@@ -96,7 +97,19 @@ public class WriteDiaryServlet extends HttpServlet {
 	    			   //SFTP 서버에 파일 업로드 
 	    			   g.UploadSFTP(localfilepath, "/mnt/hdd3/Secret Documents/Diary/Before 2020-07/" + title + ".txt", request);
 	    			   
-					   viewName = "diarylist";
+	    			  
+	    			   if(checkcal != null) {
+	    				   if(checkcal.equals("cal")) {
+	    					   viewName = "../diary_new/diary_new.jsp"; 
+	    				   }
+	    				   else {
+	    					   viewName = "diarylist"; 
+	    				   }
+	    			   }
+	    			   else {
+	    				   viewName = "diarylist";
+	    			   }
+					 
 					   
 					   if(file.exists())
 					   {

@@ -12,10 +12,16 @@
 </c:choose> 
        <div style="text-align: center;">
        <form action="detaildiary" method="POST">
-       <input type="text" class="form-control-sm" name="title" placeholder="Search Diary:" />&nbsp;&nbsp;
-       <button type="submit" class="btn btn-secondary btn-sm" ><span class="material-symbols-outlined">search</span>Search</button>&nbsp;&nbsp;
-       <button type="button" onclick="location.href='diary.jsp?page=3'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">create</span>Write</button>&nbsp;&nbsp; 
-       <button type="button" class="btn btn-primary btn-sm" onclick="window.location.reload();"><span class="material-symbols-outlined">refresh</span>Refresh</button>
+       <table style="margin: auto;">
+         <tr>
+           <td><input type="text" class="form-control" name="title" placeholder="Search Diary:" /></td>
+           <td>
+               <button type="submit" class="btn btn-secondary btn-sm" ><span class="material-symbols-outlined">search</span>Search</button>
+               <button type="button" onclick="location.href='diary.jsp?page=3'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">create</span>Write</button> 
+               <button type="button" class="btn btn-primary btn-sm" onclick="window.location.reload();"><span class="material-symbols-outlined">refresh</span>Refresh</button>
+           </td>
+         </tr>
+       </table>
        </form>
        </div>
        <hr>

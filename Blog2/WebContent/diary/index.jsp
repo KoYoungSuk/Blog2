@@ -50,8 +50,8 @@
 <div class="container-fluid">
 <div class="row">
    <div class="col-lg-4" style="background-color: #DCDCDC; margin: 120px; padding: 0px;">
-    <H3 class="htitle"> Welcome to MyDiary! </H3>
-	<p>&nbsp;&nbsp;Only Administrator can use MyDiary(Web). (I'm Sorry!) </p>
+    <H3 class="htitle"> Welcome </H3>
+	<p>&nbsp;&nbsp; Enter a username and password to enter MyDiary(Web) List System. (Administrator Only) </p>
 	<form action="diarylogin" method="POST">
 	<table>
 	  <tr>
@@ -63,7 +63,7 @@
 	    <td><input class="form-control" type="password" name="password" required /></td>
 	  </tr>
 	</table>
-	 <div style="text-align: right">
+	 <div style="text-align: center">
 	  <button type="button" class="btn btn-secondary btn-sm" onclick="history.go(-1);" ><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>&nbsp;&nbsp; 
 	  <button type="submit" class="btn btn-secondary btn-sm" ><span class="material-symbols-outlined">login</span>Login</button>&nbsp;&nbsp; 
 	 </div>

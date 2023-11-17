@@ -12,7 +12,10 @@
    <table class="table" style="background-color: lightyellow;">
 	<tr>
 	  <td><label for="title" style="font-weight: bold; font-size: 20px;">제목:</label></td>
-	  <td><input class="form-control" type="text" name="title" value= "${sessionScope.detaildiarylist['title']}" readonly /></td>
+	  <td>
+	  <input class="form-control" type="text" name="title" value= "${sessionScope.detaildiarylist['title']}" readonly />
+	  <input type="hidden" name="checkcalendar" value="${param.checkcal}" />
+	  </td>
 	</tr>
 	<tr>
 	  <td><label for="context" style="font-weight: bold; font-size: 20px;">내용:</label></td>

@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- Mobile Friendly Meta -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
   	.computer{

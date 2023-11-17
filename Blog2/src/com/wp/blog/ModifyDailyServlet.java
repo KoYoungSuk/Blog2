@@ -74,11 +74,13 @@ public class ModifyDailyServlet extends HttpServlet {
 				}
 				else
 				{
+					session.invalidate(); 
 					g.errorcode(3217); 
 				}
 			}
 			else
 			{
+				session.invalidate(); 
 				g.errorcode(3217);
 			}
 		}
@@ -137,6 +139,7 @@ public class ModifyDailyServlet extends HttpServlet {
                      
                      if(result != 0)
                      {
+                    	session.removeAttribute("detaildailylist");
                      	viewName = "daily_new.jsp";
                      }
                      else
@@ -147,6 +150,7 @@ public class ModifyDailyServlet extends HttpServlet {
             }
             else
             {
+            	session.invalidate(); 
             	g.errorcode(3217);
             }
            

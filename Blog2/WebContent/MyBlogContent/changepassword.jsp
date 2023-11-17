@@ -8,15 +8,15 @@
 <form action="changepassword.do" method="POST">
   <table class="table">
     <tr>
-     <td><label for="Current Password">Current Password:</label></td>
+     <td><label for="Current Password" style="font-weight: bold; font-size: 20px;">Current Password:</label></td>
      <td><input type="password" class="form-control" name="currentpassword" /></td> 
     </tr> 
     <tr>
-     <td><label for="Password">New Password:</label></td>
+     <td><label for="Password" style="font-weight: bold; font-size: 20px; ">New Password:</label></td>
      <td><input type="password" class="form-control" name="password" /></td> 
     </tr> 
     <tr>
-     <td><label for="Password Confirmed">New Password Confirmed:</label></td>
+     <td><label for="Password Confirmed" style="font-weight: bold; font-size: 20px; ">New Password Confirmed:</label></td>
      <td><input type="password" class="form-control" name="cpassword" /></td> 
     </tr> 
   </table>
@@ -30,7 +30,10 @@
 </form>
 </c:when>
 <c:otherwise>
-  <p>You need to Login. </p> 
+  <script>
+    alert("You need to login");
+    history.go(-1); 
+  </script>
 </c:otherwise> 
 </c:choose>
 </div> 

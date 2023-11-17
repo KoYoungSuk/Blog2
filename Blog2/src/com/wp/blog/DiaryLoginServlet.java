@@ -53,6 +53,7 @@ public class DiaryLoginServlet extends HttpServlet {
 		session.removeAttribute("id");
 		String id = request.getParameter("id");
 		String password = request.getParameter("password");
+		String calendarcheck = request.getParameter("calendarcheck"); 
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
   	    String db_url = application.getInitParameter("db_url");
@@ -63,10 +64,11 @@ public class DiaryLoginServlet extends HttpServlet {
   	    String viewName = null;
   	    //Boolean check = false;
   	    try {
+  	      
   	       MemberDAO memberdao = new MemberDAO(JDBC_Driver, db_url, db_id, db_pw);
   	       //List<MemberDO> memberlist = memberdao.getMemberList();
   	       if(id.equals("admin")) {
-  	    	 Map<String, String> memberlist = memberdao.getMemberById(id);
+  	    	   Map<String, String> memberlist = memberdao.getMemberById(id);
     	       String password_db = memberlist.get("password");
     	       if(password_db != null)
     	       {
@@ -74,7 +76,14 @@ public class DiaryLoginServlet extends HttpServlet {
         	    	   session.setAttribute("id", id);
         	    	   firstname = memberlist.get("firstname");
         	    	   lastname = memberlist.get("lastname");
-        	    	   viewName = "diarylist";
+        	    	   if(calendarcheck != null) {
+        	    		   if(calendarcheck.equals("calendarcheck")) {
+        	    			   viewName = "../diary_new/diary_new.jsp";
+        	    		   }
+        	    	   }
+        	    	   else {
+        	    		   viewName = "diarylist";
+        	    	   }
         	       }
     	       }
   	       }

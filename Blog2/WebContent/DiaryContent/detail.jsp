@@ -6,8 +6,8 @@
 <div style="text-align: right;">
     <button class="btn btn-secondary btn-sm" onclick="history.go(-1);" type="button"><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>
 	<button class="btn btn-secondary btn-sm" onclick="saveAsFile();" type="button"><span class="material-symbols-outlined">save_as</span>Save as TXT</button>
-	<button class="btn btn-secondary btn-sm" onclick="location.href='modifydiary?title=${diarytitle}'" type="button"><span class='material-symbols-outlined'>create</span>Modify</button>
-	<button class="btn btn-danger btn-sm" onclick="location.href='deletediary?title=${diarytitle}'" type="button"><span class="material-symbols-outlined">delete</span>Delete</button>
+	<button class="btn btn-secondary btn-sm" onclick="location.href='modifydiary?title=${diarytitle}&checkcal=${param.checkcal}'" type="button"><span class='material-symbols-outlined'>create</span>Modify</button>
+	<button class="btn btn-danger btn-sm" onclick="location.href='deletediary?title=${diarytitle}&checkcal=${param.checkcal}'" type="button"><span class="material-symbols-outlined">delete</span>Delete</button>
 	&nbsp;&nbsp;&nbsp;
 </div>
 <br> 

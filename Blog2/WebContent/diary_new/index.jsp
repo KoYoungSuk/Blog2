@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <c:choose>
 <c:when test="${sessionScope.id eq 'admin'}"> <!-- 관리자 모드로 이미 로그인되어 있을 때 -->
- <c:redirect url="diarylist"></c:redirect>
+ <c:redirect url="diary_new.jsp"></c:redirect>
 </c:when>
 <c:otherwise>
 </c:otherwise>
@@ -50,20 +50,24 @@
 <div class="container-fluid">
 <div class="row">
    <div class="col-lg-4" style="background-color: #DCDCDC; margin: 120px; padding: 0px;">
-    <H3 class="htitle"> Welcome to MyDiary! </H3>
-	<p>&nbsp;&nbsp;Only Administrator can use MyDiary(Web). (I'm Sorry!) </p>
-	<form action="diarylogin" method="POST">
+    <H3 class="htitle"> Welcome </H3>
+	<p>&nbsp;&nbsp; Enter a username and password to enter MyDiary(Web) Calendar System. (Administrator Only) </p>
+	<form action="../diary/diarylogin" method="POST">
 	<table>
 	  <tr>
 	    <td>&nbsp;&nbsp;<label for="ID">ID:</label></td>
-	    <td><input class="form-control" type="text" name="id" value="admin" readonly required /></td>
+	    <td>
+	    <input class="form-control" type="text" name="id" value="admin" readonly required />
+	    <input type="hidden" name="calendarcheck" value="calendarcheck" /> 
+	    </td>
 	  </tr>
 	  <tr>
 	    <td>&nbsp;&nbsp;<label for="Password">Password:</label></td>
 	    <td><input class="form-control" type="password" name="password" required /></td>
 	  </tr>
+	  
 	</table>
-	 <div style="text-align: right">
+	 <div style="text-align: center">
 	  <button type="button" class="btn btn-secondary btn-sm" onclick="history.go(-1);" ><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>&nbsp;&nbsp; 
 	  <button type="submit" class="btn btn-secondary btn-sm" ><span class="material-symbols-outlined">login</span>Login</button>&nbsp;&nbsp; 
 	 </div>
@@ -73,7 +77,7 @@
   </div>
   </div>
   <div class="footer">
-	<p>Last updated: Wednesday, November 8th, 2023 </p>
+	<p>Last updated: Thursday, November 16th, 2023 </p>
 	<p>This is not copyrighted. But don't use this illegally. </p>
   </div>
 <body>

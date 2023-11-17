@@ -19,7 +19,7 @@
 <!-- Google Span Buttons -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <script src="../JS/jquery-3.2.1.slim.min.js"></script> 
-<title>DailyManager (Web) </title>
+<title> DailyManager(Web) </title>
 <style>
  body{
          background-color: #008080; 
@@ -41,7 +41,19 @@
  <H3 class="htitle" id="htitle_id"> DailyManager (Web) </H3>
  <hr>
  <div style="text-align: center;">
- <button type="button" onclick="location.href='../signout.do?check=5'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">logout</span>Logout</button>
+ <form action="detaildaily" method="POST">
+ <table style="margin: auto;">
+   <tr>
+    <td>
+     <input type="text" name="title" class="form form-control" placeholder="Input Title Here" /> 
+    </td>
+    <td>
+      <button type="submit" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">search</span>Search</button>
+      <button type="button" onclick="location.href='../signout.do?check=5'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">logout</span>Logout</button>
+    </td>
+   </tr> 
+ </table> 
+ </form>
  <H5 style="font-weight: bold; ">DailyManager(Web) is Administrator Only! </H5>
  </div> 
  <hr> 

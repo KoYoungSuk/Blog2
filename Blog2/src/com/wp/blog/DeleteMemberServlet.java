@@ -87,8 +87,17 @@ public class DeleteMemberServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		HttpSession session = request.getSession(); 
 		String id = request.getParameter("id");
-		deleteMember(request, response, id, true);
+		String s_id = (String)session.getAttribute("id"); //현재 로그인한 아이디 
+		Global g = new Global(response); 
+		if(s_id.equals("admin")) { //관리자만 전체 회원정보 삭제가능 
+			deleteMember(request, response, id, true);
+		}
+		else {
+			session.invalidate();
+			g.errorcode(3217); 
+		}
 	}
 
 }

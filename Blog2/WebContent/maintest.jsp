@@ -249,7 +249,7 @@ ${defaultcontent}
 </div>
 </div> 
 <div class="footer">
-   <p> Last updated: Wednesday, November 8th, 2023 </p>
+   <p> Last updated: Friday, November 17th, 2023 </p>
    <p> This is not copyrighted. But Don't use this web site to make illegal stuff. </p>
    <p id=currentDate></p>
 </div>

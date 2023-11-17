@@ -28,7 +28,12 @@ public class Global {
 	public void jsmessage(String message) throws IOException {
 		PrintWriter out = response.getWriter();
 		out.println("<script>");
-		out.println("alert('" + message.replace('\n', ' ') + "');");
+		if(message != null) {
+			out.println("alert('" + message.replace('\n', ' ') + "');");
+		}
+		else {
+			out.println("alert('Null Error')"); 
+		}
 		out.println("history.go(-1);");
 		out.println("</script>");
 	}

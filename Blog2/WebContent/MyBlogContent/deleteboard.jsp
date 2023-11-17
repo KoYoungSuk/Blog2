@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
-<div class="col-lg-6" style="margin: 70px; padding: 0px; background-color: #DCDCDC; " >
+<div class="col-lg-8" style="margin: 70px; padding: 0px; background-color: #DCDCDC; " >
+      <c:choose>
+        <c:when test="${sessionScope.id eq 'admin'}">
            <h3 class="htitle" style="border: ridge;">Delete Memo</h3>
            <form action="deleteboard.do" method="POST">
            <h5>CAUTION: YOU CAN'T CANCEL THIS JOB. </h5>
@@ -13,38 +15,49 @@
            <br> 
            <table class="table" style="background-color: lightyellow;">
            <tr>
-            <td><Label for="id">작성자 ID:</Label></td>
-            <td><input class="form-control mr-sm-10" type="text" name="id" value="${sessionScope.totalboardlist['userid']}" readonly /></td>
+            <td><Label for="id" style="font-weight: bold; font-size: 20px;">작성자 ID:</Label></td>
+            <td>${sessionScope.totalboardlist['userid']}</td>
            </tr>
            <tr>
-            <td><Label for="number">글 번호:</Label></td>
-            <td><input class="form-control mr-sm-10" type="text" name="number" value="${sessionScope.totalboardlist['number']}" readonly /></td>
+            <td><Label for="number" style="font-weight: bold; font-size: 20px;">글 번호:</Label></td>
+            <td>
+            ${sessionScope.totalboardlist['number']}
+            <input type="hidden" name="number" value="${sessionScope.totalboardlist['number']}" /> 
+            </td>
            </tr>
            <tr>
-            <td><Label for="title">제목:</Label></td>
-            <td><input class="form-control mr-sm-10" type="text" name="title" value="${sessionScope.totalboardlist['title']}" readonly /></td>
+            <td><Label for="title" style="font-weight: bold; font-size: 20px;">제목:</Label></td>
+            <td>${sessionScope.totalboardlist['title']}</td>
            </tr>
            <tr>
-            <td><Label for="content">내용:</Label></td>
-            <td><textarea class="form-control mr-sm-10" rows="15" cols="68" autofocus name="content" wrap="hard" readonly>${sessionScope.totalboardlist['content']}</textarea></td>
+            <td><Label for="content" style="font-weight: bold; font-size: 20px;">내용:</Label></td>
+            <td>${sessionScope.totalboardlist['content']}</td>
            </tr>
            <tr>
-            <td><Label for="savedate">작성 시간:</Label></td>
-            <td><input class="form-control mr-sm-10" type="text" name="savedate" value="${sessionScope.totalboardlist['savedate']}" readonly /></td>
+            <td><Label for="savedate" style="font-weight: bold; font-size: 20px;">작성 시간:</Label></td>
+            <td>${sessionScope.totalboardlist['savedate']}</td>
            </tr>
            <tr>
-            <td><Label for="modifydate">수정 시간:</Label></td>
-            <td><input class="form-control mr-sm-10" type="text" name="modifydate" value="${sessionScope.totalboardlist['modifydate']}" readonly /></td>
+            <td><Label for="modifydate" style="font-weight: bold; font-size: 20px;">수정 시간:</Label></td>
+            <td>${sessionScope.totalboardlist['modifydate']}</td>
            </tr>
            <tr>
-            <td><Label for="access">접근 모드:</Label></td>
-            <td><input class="form-control mr-sm-10" type="text" name="access" value="${sessionScope.totalboardlist['anonymous']}" readonly /></td>
+            <td><Label for="access" style="font-weight: bold; font-size: 20px;">접근 모드:</Label></td>
+            <td>${sessionScope.totalboardlist['anonymous']}</td>
            </tr>
             <tr>
-             <td><Label for="clicks">조회수:</Label></td>
-             <td><input class="form-control mr-sm-10" type="text" name="clicks" value="${sessionScope.totalboardlist['clicks']}" readonly /></td>
+             <td><Label for="clicks" style="font-weight: bold; font-size: 20px;">조회수:</Label></td>
+             <td>${sessionScope.totalboardlist['clicks']}</td>
            </tr>
           </table>
           </form>
           <br> 
+       </c:when>
+       <c:otherwise>
+         <script>
+           alert("Administrator Only.");
+           history.go(-1); 
+         </script>
+       </c:otherwise>
+       </c:choose> 
  </div>

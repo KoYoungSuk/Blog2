@@ -138,13 +138,18 @@
 <div class="row"> 
 <div class= "col-lg-8" style="padding: 0px; margin: 70px; background-color: #DCDCDC; ">
     <h3 class="htitle">
-    MyDiary (Current User: ${sessionScope.id} ) ${titlename} 
+    MyDiary(Web) (Current User: ${sessionScope.id} ) ${titlename} 
     </h3>
+    <c:choose>
+    <c:when test="${param.checkcal ne 'cal'}">
     <div style="text-align: center;">
     <button type="button" onclick="history.go(-1);" class="btn btn-secondary btn-sm" ><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>
 	<button type="button" onclick="location.href='../signout.do?check=2'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">logout</span>Logout</button>
 	<button type="button" onclick="location.href='../diary'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">home</span>Diary Main Page</button>
     </div>
+    </c:when>
+    <c:otherwise></c:otherwise>
+    </c:choose>
 	<hr> 
 	<c:choose>
 	 <c:when test="${page.param == 1}"> <!--  Total Diary List -->

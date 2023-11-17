@@ -12,14 +12,16 @@
 </c:choose> 
 <form action="detailproduct" method="POST">
 <div style="text-align: center;">
-<input type="text" class="form-control-sm" name="product_no" placeholder="Search Product By Number" /> 
-&nbsp;&nbsp;
-<button class="btn btn-secondary btn-sm" type="submit"><span class="material-symbols-outlined">search</span>Search</button> 
-&nbsp;&nbsp; 
-<button type="button" onclick="location.href='product.jsp?page=3'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">create</span>Write</button>
-&nbsp;&nbsp; 
-<button type="button" class="btn btn-secondary btn-sm" onclick="window.location.reload();"><span class="material-symbols-outlined">refresh</span>Refresh</button>
-&nbsp;&nbsp; 
+<table style="margin: auto;">
+  <tr>
+    <td><input type="text" class="form-control" name="product_no" placeholder="Search Product By Number" /> </td>
+    <td>     
+      <button class="btn btn-secondary btn-sm" type="submit"><span class="material-symbols-outlined">search</span>Search</button> 
+      <button type="button" onclick="location.href='product.jsp?page=3'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">create</span>Write</button>
+      <button type="button" class="btn btn-secondary btn-sm" onclick="window.location.reload();"><span class="material-symbols-outlined">refresh</span>Refresh</button>
+    </td>
+  </tr> 
+</table> 
 </div>
 </form>
 <hr>

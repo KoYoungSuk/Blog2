@@ -19,7 +19,7 @@
 <!-- Google Span Buttons -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <script src="../JS/jquery-3.2.1.slim.min.js"></script> 
-<title>DailyManager (Web) </title>
+<title> SportReport(Web) </title>
 <style>
  body{
          background-color: #008080; 
@@ -38,7 +38,7 @@
 </head>
 <body>
  <div id="maindiv" class="col-lg-6" style="background-color: #DCDCDC; margin: 120px; padding: 0px;">
- <H3 class="htitle" id="htitle_id"> Oracle DataBase </H3>
+ <H3 class="htitle" id="htitle_id"> SportReport(Web) </H3>
  <hr>
  <div style="text-align: center;">
  <button type="button" onclick="location.href='../signout.do?check=5'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">logout</span>Logout</button>

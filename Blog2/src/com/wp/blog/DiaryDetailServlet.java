@@ -43,7 +43,13 @@ public class DiaryDetailServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("id");
 		String title = request.getParameter("title");
+		String checkcal = request.getParameter("checkcal"); 
 		
+	    String year = title.split("-")[0];
+		String month = title.split("-")[1];
+		    
+		String yearmonth = year + "-" + Integer.parseInt(month); 
+		    
 		//DataBase Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
@@ -52,6 +58,7 @@ public class DiaryDetailServlet extends HttpServlet {
   	    String db_pw = application.getInitParameter("db_password");
   	    
   	    String viewName = null;
+  	    String title_new = null; 
 		try {
 			if(id != null) {
 				if(id.equals("admin")) { //관리자 계정 
@@ -60,56 +67,56 @@ public class DiaryDetailServlet extends HttpServlet {
    
 					Map<String, String> detaildiarylist = diarydao.getDiaryListByTitle(title, true);
 					if(detaildiarylist != null) {
-						session.setAttribute("detaildiarylist", detaildiarylist);
-						viewName = "diary.jsp?page=2";
-					}
-					else {
-						g.jsmessage("Null Error");
-					}
-					
-					/*
-					if(title.length() == 10) //제목에 맞춰서 검색했을 경우 : 그 제목에 맞는 일기장 내용이 출력된다. 
-					{
-						Map<String, String> detaildiarylist = diarydao.getDiaryListByTitle(title, true);
-						if(detaildiarylist != null) {
+						title_new = detaildiarylist.get("title");
+						
+						if(title_new != null) {
 							session.setAttribute("detaildiarylist", detaildiarylist);
 							viewName = "diary.jsp?page=2";
 						}
 						else {
-							g.jsmessage("Null Error");
+							if(checkcal != null) {
+								if(checkcal.equals("cal")) {
+									session.setAttribute("errormessage_diary", "Diary Information Not Selected or Not Founded."); 
+									viewName = "../diary_new/diary_new.jsp?yearmonth=" + yearmonth +  "&choosed_title=" + title; 
+								}
+								else {
+									g.jsmessage("Diary Information Not Found.");
+								}
+							}
+							else {
+								g.jsmessage("Diary Information Not Found.");
+							}
 						}
 					}
-					else //제목에 맞춰서 검색하지 않고 제목에 있는 특정 키워드를 검색하면 거기에 따라서 목록이 출력된다. 
-					{
-						
-	  	  	  	    	List<DiaryDO> diarylist = diarydao.searchDiaryListByTitle(title); 
-	  	  	  	    	int diarynumber = diarydao.getDiarynumberByTitle(title);
-	  	  	  	    	if(diarylist != null)
-	  	  	  	    	{
-  	  	  	    		    session.setAttribute("diarylist", diarylist);
-  	  	  	    		    session.setAttribute("diarynumber", diarynumber);
-  	  	  	    		    viewName = "diary.jsp?page=1"; 
-	  	  	  	    	}
-	  	  	  	    	else
-	  	  	  	    	{
-	  	  	  	    	    g.jsmessage("Result Not Found."); 
-	  	  	  	    	}
+					else {
+						g.jsmessage("Null Error");
 					}
-					*/ 
 				}
 				else {
+					session.invalidate(); 
 					g.errorcode(3217);
 				}
 			}
 			else {
+				session.invalidate(); 
 				g.errorcode(3217);
 			}
 		}catch(Exception e) {
 			g.jsmessage(e.getMessage());
 		}
+		
 		if(viewName != null) {
-			RequestDispatcher view = request.getRequestDispatcher(viewName);
-		    view.forward(request, response);
+			if(title_new != null) {
+				RequestDispatcher view = request.getRequestDispatcher(viewName);
+			    view.forward(request, response);
+			}
+			else {
+				if(checkcal != null) {
+					if(checkcal.equals("cal")) {
+						response.sendRedirect(viewName);
+					}
+				}
+			}
 		}
 	}
 

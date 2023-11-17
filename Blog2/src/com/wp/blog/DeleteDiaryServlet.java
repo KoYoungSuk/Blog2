@@ -54,10 +54,17 @@ public class DeleteDiaryServlet extends HttpServlet {
 		  if(id != null) {
 			  if(id.equals("admin")) {
 				  DiaryDAO diarydao = new DiaryDAO(JDBC_Driver, db_url, db_id, db_pw);
-				  Map<String, String> diarylist = diarydao.getDiaryListByTitle(title, false);
+				  Map<String, String> diarylist = diarydao.getDiaryListByTitle(title, true);
 				  if(diarylist != null) {
-					  session.setAttribute("detaildiarylist", diarylist);
-					  viewName = "diary.jsp?page=5";
+					  String title_new = diarylist.get("title");
+					  
+					  if(title_new != null) {
+						  session.setAttribute("detaildiarylist", diarylist);
+						  viewName = "diary.jsp?page=5";
+					  }
+					  else {
+						  g.jsmessage("Diary Information Not Found");
+					  }
 				  }
 				  else {
 					  g.jsmessage("Null Error");
@@ -89,6 +96,8 @@ public class DeleteDiaryServlet extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 		String title = request.getParameter("title");
+		String checkcalendar = request.getParameter("checkcalendar"); 
+		
 		HttpSession session = request.getSession();
 		
 		String id = (String)session.getAttribute("id"); 
@@ -112,7 +121,19 @@ public class DeleteDiaryServlet extends HttpServlet {
 		 			g.deleteSFTP(serverpath, request); //SFTP 서버 파일 삭제
 		 			
 		 			session.removeAttribute("detaildiarylist");
-		 			viewName = "diarylist";
+		 			
+		 			if(checkcalendar != null) {
+		 				if(checkcalendar.equals("cal")) {
+	    					 viewName = "../diary_new/diary_new.jsp"; 
+	    				}
+		 				else {
+		 					 viewName = "diarylist"; 
+		 				}
+		 			}
+		 			else {
+		 				viewName = "diarylist";
+		 			}
+		 			
 		 		}
 		 		else {
 		 			g.jsmessage("Unknown Error Message");

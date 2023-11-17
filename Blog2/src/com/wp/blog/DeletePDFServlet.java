@@ -82,7 +82,8 @@ public class DeletePDFServlet extends HttpServlet {
 				}
 			}
 			else {
-				g.jsmessage("관리자만 PDF 업로드가 가능합니다.");
+			    session.invalidate();
+			    g.errorcode(3217);
 			}
 		}
 		catch(Exception ex) {

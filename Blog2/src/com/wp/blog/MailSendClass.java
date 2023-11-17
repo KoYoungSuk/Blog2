@@ -22,7 +22,7 @@ public class MailSendClass {
 	}
     public void sendMail(String mailaddress, String content, String title) throws MessagingException
     {
-    	//현재는 구글 메일서버를 사용하도록 되어있음.
+    	//현재는 구글 메일서버(vheh1936@gmail.com)를 사용하도록 되어있음.
     	
     	Properties p = new  Properties();
 		p.put("mail.smtp.host", "smtp.gmail.com"); 

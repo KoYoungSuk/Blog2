@@ -61,18 +61,26 @@ public class ModifyDiaryServlet extends HttpServlet {
 			   if(id.equals("admin")) { //관리자 모드일때만 일기장 수정 가능 
 				   Map<String, String> detaildiarylist = diarydao.getDiaryListByTitle(title, false);
 				   if(detaildiarylist != null) {
-					   session.setAttribute("detaildiarylist", detaildiarylist);
-					   viewName = "diary.jsp?page=4";
+					   String title_new = detaildiarylist.get("title");
+					   if(title_new != null) {
+						   session.setAttribute("detaildiarylist", detaildiarylist);
+						   viewName = "diary.jsp?page=4";
+					   }
+					   else {
+						   g.jsmessage("Diary Information Not Found.");
+					   }
 				   }
 				   else {
 					   g.jsmessage("Null Error");
 				   }
 			   }
 			   else {
+				   session.invalidate(); 
 				   g.errorcode(3217);
 			   }
 		   }
 		   else {
+			  session.invalidate(); 
 			  g.errorcode(3217);
 		   }
 		}
@@ -97,6 +105,8 @@ public class ModifyDiaryServlet extends HttpServlet {
 		//Parameters from HTML 
 		String title = request.getParameter("title");
 		String content = request.getParameter("context");
+		String checkcalendar = request.getParameter("checkcalendar"); 
+		title = XssPreventer.escape(title); 
 		content = XssPreventer.escape(content);
 		
 		String id = (String)session.getAttribute("id");
@@ -138,17 +148,32 @@ public class ModifyDiaryServlet extends HttpServlet {
 	    			   //SFTP 서버에 파일 다시 업로드 
 	    			   g.UploadSFTP(localfilepath + title + ".txt", "/mnt/hdd3/Secret Documents/Diary/Before 2020-07/" + title + ".txt", request);
 	    			   
-			    	  viewName = "diarylist";
+	    			   session.removeAttribute("detaildiarylist");
+	    			   
+	    			   if(checkcalendar != null) {
+	    				   if(checkcalendar.equals("cal")) {
+	    					   viewName = "../diary_new/diary_new.jsp"; 
+	    				   }
+	    				   else {
+	    					   viewName = "diarylist"; 
+	    				   }
+	    			   }
+	    			   else {
+	    				   viewName = "diarylist";
+	    			   }
+			    	   
 			      }
 			      else {
 			    	  g.jsmessage("Unknown Error Message");
 			      }
 			  }
 			  else {
+				  session.invalidate(); 
 				  g.errorcode(3217);
 			  }
 		  }
 		  else {
+			  session.invalidate(); 
 			  g.errorcode(3217);
 		  }
 		}catch(Exception e) {
@@ -156,7 +181,7 @@ public class ModifyDiaryServlet extends HttpServlet {
 		}
 		
 		if(viewName != null) {
-			response.sendRedirect("diary.jsp");
+			response.sendRedirect(viewName);
 		}
 	}
 

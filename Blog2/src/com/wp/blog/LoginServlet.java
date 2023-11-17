@@ -63,18 +63,23 @@ public class LoginServlet extends HttpServlet {
 		Map<String, String> memberlist;
 		
 		try {
-			memberlist = memberdao.getMemberById(id);
-			String password_db = memberlist.get("password");
-			if(password_db != null)
-			{
-				if(BCrypt.checkpw(password, password_db)) //비밀번호 검사(데이터베이스의 비밀번호와 입력받은 비밀번호를 비교) //BCrypt 사용
-				{ 
-					//맞으면 세션에 이름, 생년월일을 저장하고 리다이렉트 준비 
-					firstname = memberlist.get("firstname");
-					lastname = memberlist.get("lastname");
-					birthday = memberlist.get("birthday");
-					viewName = "main.do";
+			if(id != null) {
+				memberlist = memberdao.getMemberById(id);
+				String password_db = memberlist.get("password");
+				if(password_db != null)
+				{
+					if(BCrypt.checkpw(password, password_db)) //비밀번호 검사(데이터베이스의 비밀번호와 입력받은 비밀번호를 비교) //BCrypt 사용
+					{ 
+						//맞으면 세션에 이름, 생년월일을 저장하고 리다이렉트 준비 
+						firstname = memberlist.get("firstname");
+						lastname = memberlist.get("lastname");
+						birthday = memberlist.get("birthday");
+						viewName = "main.do";
+					}
 				}
+			}
+			else {
+				g.jsmessage("ID is Null!");
 			}
 		} catch (Exception e){
 		    g.jsmessage(e.getMessage());

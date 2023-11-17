@@ -36,8 +36,14 @@
        </div>
       <div style="text-align: center">
       <form action="search.do" method="POST">
-        <input type="text" class="form-control-sm"name="word" placeholder="Search Title" value= "${sessionScope.word}" />
-        <button type="submit" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">search</span>Search</button>
+        <table style="margin: auto;">
+          <tr>
+           <td><input type="text" class="form-control" name="word" placeholder="Search Title" value= "${sessionScope.word}" /></td>
+           <td>
+             <button type="submit" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">search</span>Search</button>
+           </td> 
+          </tr> 
+        </table>
       </form>
       </div>
       <hr> 

@@ -13,7 +13,7 @@
 <!-- Google Span Buttons -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <script src="../JS/jquery-3.2.1.slim.min.js"></script> 
-<title>DailyManager (Web) </title>
+<title> JavaScript Calendar </title>
 <style>
  body{
          background-color: #008080; 

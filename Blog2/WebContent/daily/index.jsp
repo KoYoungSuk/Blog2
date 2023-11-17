@@ -11,10 +11,14 @@
 <html>
 <head>
 <meta charset="utf-8">
+<!-- Mobile Friendly Meta -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Ignore Internet Explorer 8 Compatible Mode -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!-- Bootstrap 4.4 CSS  -->
 <link rel="stylesheet" href="../BS/bootstrap.min.css" />
 <link rel="stylesheet" href="../BS/bootstrap.css" />
+<!-- Google Span Icons -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <title> DailyManager(Web) </title>
 <style>
@@ -36,9 +40,9 @@
 </style>
 </head>
 <hr>
-   <div class="col-lg-6" style="background-color: #DCDCDC; margin: 120px; padding: 0px;">
-    <H3 class="htitle"> Welcome to DailyManager! (Web) </H3>
-	<p>&nbsp;&nbsp; Only Administrator can use DailyManager(Web). (I'm Sorry!) </p>
+   <div class="col-lg-4" style="background-color: #DCDCDC; margin: 120px; padding: 0px;">
+    <H3 class="htitle"> Welcome </H3>
+	<p>&nbsp;&nbsp; Enter a username and password to enter DailyManager(Web) Calendar System. (Administrator Only) </p>
 	<form action="dailylogin" method="POST">
 	<table>
 	  <tr>

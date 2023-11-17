@@ -88,9 +88,16 @@ public class DetailBoardServlet extends HttpServlet {
 			    }
 			    
 			    if(newdetailboardlist != null) {
-			    	session.setAttribute("detailboardlist", detailboardlist);
-					session.setAttribute("accessbool", accessbool);
-					viewName = "main.do?page=14";
+			    	String num_new = detailboardlist.get("number");
+			    	
+			    	if(num_new != null) {
+			    		session.setAttribute("detailboardlist", detailboardlist);
+						session.setAttribute("accessbool", accessbool);
+						viewName = "main.do?page=14";
+			    	}
+			    	else {
+			    		g.jsmessage("Board Information Not Found");
+			    	}
 			    }
 			    else {
 			        g.errorcode(3217);

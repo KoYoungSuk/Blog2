@@ -19,7 +19,7 @@
 <!-- Google Span Buttons -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <script src="../JS/jquery-3.2.1.slim.min.js"></script> 
-<title>DailyManager (Web) </title>
+<title> MyDiary(Web) </title>
 <style>
  body{
          background-color: #008080; 
@@ -35,13 +35,72 @@
         color: white; 
  }
 </style>
+<script>
+document.addEventListener('keydown', (event) => {
+	  
+    var address = window.location.href; 
+    
+    /*
+    //방향키를 이용하여 페이지를 앞뒤로 왔다갔다 하는 기능 
+    if(address.includes("diary_new.jsp")){
+        if(event.key === "ArrowLeft"){ //왼쪽 방향키를 눌렀을때 
+      	  if(address.includes("?yearmonth=")){
+      		  address = address.slice(0, -1);
+      		  var pagenum_minus = ${param.page_count_diary} - 1; //JSTL Code 
+      		  if(pagenum_minus >= 9){ //페이지 번호가 10자리수를 넘어갈때 
+      			  address = address.slice(0, -1); 
+      		  }
+      		  else if(pagenum_minus < 0){ //첫 페이지 번호에 도달했을때 
+      			  pagenum_minus = 0; 
+      		  }
+      		  address = address + pagenum_minus;
+      		  window.location.replace(address); 
+      	  }
+        }
+        else if(event.key === "ArrowRight"){ //오른쪽 방향키를 눌렀을때 
+            if(address.includes("?yearmonth=")){
+          	  address = address.slice(0, -1);
+      		  var pagenum_plus = ${param.page_count_diary} + 1; //JSTL Code 
+                if(pagenum_plus >= 11){ //페이지 번호가 10자리수를 넘어갈때 
+              	  address = address.slice(0, -1); 
+                } 
+                
+                if(pagenum_plus > ${sessionScope.page_num_diary}){ //마지막 페이지 번호에 도달했을때 
+              	  pagenum_plus = pagenum; 
+                }
+      		  address = address + pagenum_plus; 
+      		  window.location.replace(address); 
+      	  }
+      	  else{ //첫 페이지일때(첫 접속)
+      		  address = address + "?page_count_diary=2"; //2번째 페이지로 이동 
+      		  window.location.replace(address); 
+      	  }
+        }
+    }
+    */
+});
+
+</script>
 </head>
 <body>
  <div id="maindiv" class="col-lg-6" style="background-color: #DCDCDC; margin: 120px; padding: 0px;">
  <H3 class="htitle" id="htitle_id"> MyDiary(Web) Calendar Mode </H3>
  <hr>
  <div style="text-align: center;">
- <button type="button" onclick="location.href='../signout.do?check=5'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">logout</span>Logout</button>
+ <form action="../diary/detaildiary" method="POST">
+   <table style="margin: auto;">
+   <tr>
+   <td>
+   <input type="text" class="form form-control" name="title" placeholder="Input Title Here." /> 
+   <input type="hidden" name="checkcal" value="cal" />
+   </td>
+   <td>
+   <button type="submit" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">search</span>Search</button>
+   <button type="button" onclick="location.href='../signout.do?check=6'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">logout</span>Logout</button>
+   </td>
+   </tr>
+   </table>
+ </form>
  <H5 style="font-weight: bold; ">MyDiary(Web) is Administrator Only! </H5>
  </div> 
  <hr> 
@@ -56,7 +115,7 @@
    </c:when>
    <c:otherwise></c:otherwise> 
    </c:choose>
-   <button type="button" onclick="location.href='diary.jsp?page=3&title=${param.choosed_title}'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">create</span>Write</button>
+   <button type="button" onclick="location.href='../diary/diary.jsp?page=3&title=${param.choosed_title}&checkcal=cal'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">create</span>Write</button>
   </c:when>
   <c:otherwise></c:otherwise> 
  </c:choose> 
@@ -105,7 +164,7 @@
 			var html = "";
 			html += "<H3 style= \" font-weight: bold; text-align: center; \" >";
 			
-		    html += "<button type=\"button\" class= \" btn btn-secondary btn-sm \" onclick=\" location.href= \'diary_new.jsp?yearmonth=";
+		    html += "<button type=\"button\" class= \" btn btn-secondary btn-sm \" onclick=\" location.href=\'diary_new.jsp?yearmonth=";
 		    var calendarMonth_minus = 0;
 		    var calendarYear_minus = parseInt(calendarYear); 
 		    if(calendarMonth <= 1){
@@ -175,18 +234,18 @@
 						calendarDay++;
 						if(calendarDay < 10){ //10일 이하일때 
 							if(calendarMonth < 10){ //1~9월 
-								html += "<a href= \"detaildiary?title=" + calendarYear + "-0" + calendarMonth + "-0" + calendarDay +  " \">";
+								html += "<a href= \"../diary/detaildiary?title=" + calendarYear + "-0" + calendarMonth + "-0" + calendarDay +  "&checkcal=cal  \">";
 							}
 							else{ //10~12월 
-								html += "<a href= \"detaildiary?title=" + calendarYear + "-" + calendarMonth + "-0" + calendarDay +  " \">";
+								html += "<a href= \"../diary/detaildiary?title=" + calendarYear + "-" + calendarMonth + "-0" + calendarDay +  "&checkcal=cal \">";
 							}
 						}
 						else{
 							if(calendarMonth < 10){ //1~9월 
-								html += "<a href= \"detaildiary?title=" + calendarYear + "-0" + calendarMonth + "-" + calendarDay +  " \">";
+								html += "<a href= \"../diary/detaildiary?title=" + calendarYear + "-0" + calendarMonth + "-" + calendarDay +  "&checkcal=cal \">";
 							}
 							else{ //10~12월 
-								html += "<a href= \"detaildiary?title=" + calendarYear + "-" + calendarMonth + "-" + calendarDay +  " \">";
+								html += "<a href= \"../diary/detaildiary?title=" + calendarYear + "-" + calendarMonth + "-" + calendarDay +  "&checkcal=cal \">";
 							}
 						}
 						html += "<span "; 

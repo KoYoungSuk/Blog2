@@ -91,8 +91,7 @@ public class DeleteBoardServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		try {
 		int number = Integer.parseInt(request.getParameter("number"));
-		String userid = request.getParameter("id");
-		String session_userid = (String)session.getAttribute("id");
+		String id = (String)session.getAttribute("id");
 		
 		//DataBase Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
@@ -104,8 +103,9 @@ public class DeleteBoardServlet extends HttpServlet {
 		BoardDAO boardDAO = new BoardDAO(JDBC_Driver, db_url, db_id, db_pw);
   	    String viewName = null;
   	    try {
-  	    	if(session_userid != null && userid != null) {
-  	    		if(userid.equals(session_userid)) {
+  	    	if(id != null) {
+  	    		if(id.equals("admin")) {
+  	    			session.removeAttribute("totalboardlist"); 
   	  	    		int result = boardDAO.DeleteBoard(number);
   	  				if(result == 1) {
   	  				    viewName = "boardlist.do";

@@ -39,6 +39,9 @@ public class LogoutServlet extends HttpServlet {
 		//check 3: ProductManager
 		//check 4: Info
 		//check 5: DailyManager 
+		//check 6: Diary(Calendar)
+		//check 7: SportReport
+		
 		if(check == 1) {
 			viewName = "main.do";
 		}
@@ -53,6 +56,12 @@ public class LogoutServlet extends HttpServlet {
 		}
 		else if(check == 5) {
 			viewName = "daily"; 
+		}
+		else if(check == 6) {
+			viewName = "diary_new"; 
+		}
+		else if(check == 7) {
+			viewName = "sport"; 
 		}
 		else {
 			viewName = "main.do";

@@ -12,10 +12,14 @@
 <html>
 <head>
 <meta charset="utf-8">
+<!-- Mobile Friendly Meta -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- Ignore Internet Explorer 8 Compatible Mode -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<!-- Bootstrap 4.4 CSS -->
 <link rel="stylesheet" href="../BS/bootstrap.min.css" />
 <link rel="stylesheet" href="../BS/bootstrap.css" />
+<!-- Google Span Icons -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 <title>Welcome to HomeProduct (Web) !!!  </title>
 <style>
@@ -39,8 +43,8 @@
 <div class="container-fluid">
 <div class="row"> 
   <div class="col-lg-4" style="background-color: #DCDCDC; padding: 0px; margin: 120px;">
-    <h3 class="htitle">Welcome to HomeProduct!</h3>
-	<p>&nbsp;&nbsp;Only Administrator can use HomeProduct Web Mode. Sorry.... </p>
+    <h3 class="htitle">Welcome</h3>
+	<p>&nbsp;&nbsp;Enter a username and password to enter HomeProduct(Web). (Administrator Only) </p>
 	<hr>
 	<form action="productlogin" method="POST">
 	<table>
@@ -53,7 +57,7 @@
 	   <td><input class="form-control" type="password" name="password" required /></td>
 	  </tr>
 	</table>
-	  <div style="text-align: right;">
+	  <div style="text-align: center;">
 	  <button type="button" class="btn btn-secondary btn-sm" onclick="history.go(-1);"><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>&nbsp;&nbsp;
 	  <button type="submit" class="btn btn-secondary btn-sm" ><span class="material-symbols-outlined">login</span>Login</button>&nbsp;&nbsp; 
 	  <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='../main.do'"><span class="material-symbols-outlined">arrow_back_ios</span>Back to PersonalMemo</button>&nbsp;&nbsp; 

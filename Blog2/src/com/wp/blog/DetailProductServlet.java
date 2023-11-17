@@ -56,8 +56,14 @@ public class DetailProductServlet extends HttpServlet {
   	    			ProductDAO productdao = new ProductDAO(JDBC_Driver, db_url, db_id, db_pw);
   	    		    Map<String, String> detailproductlist = productdao.getProductListByNumber(product_no);
   	    		    if(detailproductlist != null) {
-  	    		    	viewName = "product.jsp?page=2";
-  	    		    	session.setAttribute("productdetaillist", detailproductlist);
+  	    		    	String product_no_new = detailproductlist.get("product_no"); 
+  	    		    	if(product_no_new != null) {
+  	    		    		viewName = "product.jsp?page=2";
+  	  	    		    	session.setAttribute("productdetaillist", detailproductlist);
+  	    		    	}
+  	    		    	else {
+  	    		    		g.jsmessage("Product Information Not Found");
+  	    		    	}
   	    		    }
   	    		    else {
   	    		    	g.jsmessage("Null Error");

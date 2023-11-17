@@ -5,9 +5,21 @@
          <h4>&nbsp;&nbsp;ETC Link</h4>
          <br> 
          <div style="text-align: center;">
-          <button class="btn btn-secondary btn-sm" onclick="location.href='timer.html'"><span class="material-symbols-outlined">timer</span>Timer(Javascript)</button>
-          <button class="btn btn-secondary btn-sm" onclick="location.href='diary'"><span class="material-symbols-outlined">book</span>MyDiary(Web)</button>
-          <button class="btn btn-secondary btn-sm" onclick="location.href='product'"><span class="material-symbols-outlined">category</span>HomeProduct(Web)</button>
+          <button class="btn btn-secondary btn-sm" style="width: 300px; height: 40px;" onclick="location.href='clock'"><span class="material-symbols-outlined">timer</span>Clock(Javascript)</button>
+          <br><br>
+          <button class="btn btn-secondary btn-sm" style="width: 300px; height: 40px;" onclick="location.href='clock_new'"><span class="material-symbols-outlined">timer</span>NewClock(Javascript)</button>
+          <br><br>
+          <button class="btn btn-secondary btn-sm" style="width: 300px; height: 40px;" onclick="location.href='calendar'"><span class="material-symbols-outlined">calendar_month</span>Calendar(Javascript)</button>
+          <br><br>
+          <button class="btn btn-secondary btn-sm" style="width: 300px; height: 40px;" onclick="location.href='diary'"><span class="material-symbols-outlined">book</span>MyDiary(Web) List System</button>
+          <br><br>
+          <button class="btn btn-secondary btn-sm" style="width: 300px; height: 40px;" onclick="location.href='diary_new'"><span class="material-symbols-outlined">book</span>MyDiary(Web) Calendar System</button>
+          <br><br>
+          <button class="btn btn-secondary btn-sm" style="width: 300px; height: 40px;" onclick="location.href='daily'"><span class="material-symbols-outlined">calendar_month</span>DailyManager(Web) Calendar System</button>
+          <br><br>
+          <button class="btn btn-secondary btn-sm" style="width: 300px; height: 40px;" onclick="location.href='sport'"><span class="material-symbols-outlined">fitness_center</span>SportReport(Web) Calendar System</button>
+          <br><br>
+          <button class="btn btn-secondary btn-sm" style="width: 300px; height: 40px;" onclick="location.href='product'"><span class="material-symbols-outlined">category</span>HomeProduct(Web) List System</button>
           &nbsp;&nbsp; 
          </div> 
          <br> 

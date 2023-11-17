@@ -3,7 +3,7 @@
 <!-- 이미 로그인되어 있으면 바로 리스트로 넘어감 -->
 <c:choose>
 <c:when test="${sessionScope.id eq 'admin'}">
-  <c:redirect url="info_new.jsp"></c:redirect>
+  <c:redirect url="sport2.jsp"></c:redirect>
 </c:when>
 <c:otherwise>
 </c:otherwise>
@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="../BS/bootstrap.css" />
 <!-- Google Span Icon -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-<title> Oracle DataBase </title>
+<title> SportReport(Web) </title>
 <style>
 	.footer{
 		text-align: right;
@@ -40,9 +40,9 @@
      }
 </style>
 </head>
-  <div class="col-lg-6" style="background-color: #DCDCDC; padding: 0px; margin: 120px;">
-    <h3 class="htitle"> Oracle DataBase Login Screen </h3>
-	<p>&nbsp;&nbsp; This is Administrator Only. </p>
+  <div class="col-lg-4" style="background-color: #DCDCDC; padding: 0px; margin: 120px;">
+    <h3 class="htitle"> Welcome </h3>
+	<p>&nbsp;&nbsp; Enter a username and password to enter SportReport(Web). (Administrator Only) </p>
 	<hr>
 	<form action="infologin" method="POST">
 	<table>
@@ -55,7 +55,7 @@
 	   <td><input class="form-control" type="password" name="password" required /></td>
 	  </tr>
 	</table>
-	  <div style="text-align: right;">
+	  <div style="text-align: center;">
 	  <button type="button" class="btn btn-secondary btn-sm" onclick="history.go(-1);"><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>&nbsp;&nbsp;
 	  <button type="submit" class="btn btn-secondary btn-sm" ><span class="material-symbols-outlined">login</span>Login</button>&nbsp;&nbsp; 
 	  <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='../main.do'"><span class="material-symbols-outlined">arrow_back_ios</span>Back to List</button>&nbsp;&nbsp; 
@@ -64,7 +64,7 @@
 	<br> 
   </div>
   <div class="footer">
-	<p>Last updated: Wednesday, November 15th,  2023 </p>
+	<p>Last updated: Friday, November 17th,  2023 </p>
 	<p>This is not copyrighted. But don't use this for illegally.</p>
   </div>
 <body>
