@@ -51,6 +51,8 @@ public class ProductListServlet extends HttpServlet {
   	    
   	    String viewName = null;
   	    String product_page_num_str = request.getParameter("page_num");
+  	    String expand = request.getParameter("expand");
+  	    
   	    int product_page_num =  1;
   	    if(product_page_num_str != null) {
   	    	product_page_num = Integer.parseInt(product_page_num_str); 
@@ -63,14 +65,22 @@ public class ProductListServlet extends HttpServlet {
   	  	  	    	List<ProductDO> totalproductlist = productdao.getProductTotalList();
   	  	  	    	int productnumber = productdao.getProductNumber();
   	  	  	    	int pagecount_product = productnumber / 10;
-  	  	  	    	
   	  	  	    	if(totalproductlist != null) {
   	  	  	    		viewName = "product.jsp?page=1";
-  	  	  	    		session.setAttribute("productnumber", productnumber);
-  	  	  	    		session.setAttribute("totalproductlist", totalproductlist);
-  	  	  	    		session.setAttribute("pagecount_product", pagecount_product + 1);
-  	  	  	    		session.setAttribute("beginnumber_product", (product_page_num -1) * 10);
-  	  	  	    	    session.setAttribute("endnumber_product", ((product_page_num - 1) * 10)  + 9); 
+  	  	  	  	        session.setAttribute("productnumber", productnumber);
+	  	    		    session.setAttribute("totalproductlist", totalproductlist);
+  	  	  	    		if(expand != null) {
+  	  	  	    		   if(expand.equals("yes")) {
+  	  	  	    		       session.setAttribute("pagecount_product", 1);
+	  	  	    		       session.setAttribute("beginnumber_product",0);
+						       session.setAttribute("endnumber_product", productnumber);
+  	  	  	    		   }
+  	  	  	    		}
+  	  	  	    		else {
+  	  	  	    		   session.setAttribute("pagecount_product", pagecount_product + 1);
+  	  	  	    		   session.setAttribute("beginnumber_product", (product_page_num -1) * 10);
+  	  	  	    	       session.setAttribute("endnumber_product", ((product_page_num - 1) * 10)  + 9); 
+  	  	  	    		}
   	  	  	    	}
   	  	    	}
   	  	    	else {

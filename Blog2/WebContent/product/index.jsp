@@ -57,6 +57,7 @@
 	   <td><input class="form-control" type="password" name="password" required /></td>
 	  </tr>
 	</table>
+	  <br /> 
 	  <div style="text-align: center;">
 	  <button type="button" class="btn btn-secondary btn-sm" onclick="history.go(-1);"><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>&nbsp;&nbsp;
 	  <button type="submit" class="btn btn-secondary btn-sm" ><span class="material-symbols-outlined">login</span>Login</button>&nbsp;&nbsp; 

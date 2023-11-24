@@ -11,16 +11,12 @@
 <br> 
 <table class="table" style="background-color: lightyellow;">
  <tr>
-  <td><label for="product_no" style="font-weight: bold; font-size: 20px;">물품 번호: </label></td>
-  <td><input class="form-control" type="text" name="product_no" required /></td>
- </tr>
- <tr>
   <td><label for="product_name" style="font-weight: bold; font-size: 20px;">물품 이름: </label></td>
   <td><input class="form-control" type="text" name="product_name" required /></td>
  </tr>
  <tr>
   <td><label for="buy_date" style="font-weight: bold; font-size: 20px;">구매 날짜(신품): </label></td>
-  <td><input class="form-control" type="text" name="buy_date" /></td>
+  <td><input class="form-control" type="text" name="buy_date" required /></td>
  </tr>
  <tr>
   <td><label for="buy_date_used" style="font-weight: bold; font-size: 20px;">구매 날짜(중고): </label></td>
@@ -30,6 +26,17 @@
   <td><label for="purpose" style="font-weight: bold; font-size: 20px;">용도: </label></td>
   <td><input class="form-control" type="text" name="purpose" /></td>
  </tr>
+ <tr>
+  <td><label for="division" style="font-weight: bold; font-size: 20px;">구분: </label></td>
+  <td>
+    <select class="form-control" name="Types" size="4" required>
+      <option value="Electronics">가전 제품</option>
+      <option value="IT">IT</option>
+      <option value="Vehicle">자동차</option>
+      <option value="ETC">기타</option>
+    </select> 
+  </td> 
+ </tr> 
 </table>
 </form>
 <br> 

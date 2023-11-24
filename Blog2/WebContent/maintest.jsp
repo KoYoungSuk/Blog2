@@ -106,7 +106,7 @@ body {
       			  pagenum_minus = 0; 
       		  }
       		  address = address + pagenum_minus;
-      		  window.location.replace(address); 
+      		  window.location.replace(address); va
       	  }
         }
         else if(event.key === "ArrowRight"){ //오른쪽 방향키를 눌렀을때 
@@ -257,6 +257,66 @@ ${defaultcontent}
 </html> 
 <!--Clock JavaScript Start -->
 <script>
+
+var date = new Date();
+var calendarMonth = date.getMonth() + 1;
+
+//Seasonal Easter Egg
+if(calendarMonth == 1){ //Jan 
+   document.getElementByClassName("htitle").innerHTML = "Happy New Year " + calendarYear + "!"; //Happy New Year! 
+   const body = document.querySelector("body"); 
+   const footer = document.getElementByClassName("footer"); 
+   
+   body.style.backgroundImage = "url('/pictures/happynewyear.jpg')"; 
+   footer.style.color = "black"; 
+}
+else if(calendarMonth == 12){ //December 
+   document.getElementByClassName("htitle").innerHTML = "Merry Christmas!"; 
+   const htitle = document.getElementByClassName("htitle"); 
+   const body = document.querySelector("body"); 
+   const table = document.querySelector("table"); 
+   /*
+     document.getElementById: id로 가져온다.
+     document.querySelector: 일반 태그 값(div, p 등)으로 가져온다. 
+   */
+   htitle.style.backgroundColor = "#c54245"; //Christmas Red HTITLE 
+   body.style.backgroundColor = "green"; //Christmas Green Wallpaper 
+   table.style.backgroundColor = "white"; //Christmas Card Style 
+}
+else if(calendarMonth >= 7 && calendarMonth <= 8){ //July and August (Beach Theme)
+	const body = document.querySelector("body"); 
+	const table = document.querySelector("table"); 
+	/*
+	     document.getElementById: id로 가져온다.
+	     document.querySelector: 일반 태그 값(div, p 등)으로 가져온다. 
+	*/
+	body.style.backgroundColor = "#186690"; //Blue 
+	table.style.backgroundColor = "#f6f0fc"; //Sand Color 2 
+}
+else if(calendarMonth == 10){ //Autumn Theme (October )
+	const htitle = document.getElementByClassName("htitle"); 
+	const body = document.querySelector("body"); 
+	   /*
+	     document.getElementById: id로 가져온다.
+	     document.querySelector: 일반 태그 값(div, p 등)으로 가져온다. 
+	   */
+	htitle.style.backgroundColor = "#cc9d3a";
+	body.style.backgroundColor = "#8f2323";  
+}
+else if(calendarMonth >= 3 && calendarMonth <= 4){ //March & April (Cherry Blossom Theme)
+	const htitle = document.getElementByClassName("htitle"); 
+	const body = document.querySelector("body"); 
+	const footer = document.getElementByClassName("footer"); 
+	   /*
+	     document.getElementById: id로 가져온다.
+	     document.querySelector: 일반 태그 값(div, p 등)으로 가져온다. 
+	   */
+	body.style.backgroundImage = "url('/pictures/cherrybloosm.jpg')"; 
+	body.style.color = "black"; 
+	htitle.style.backgroundColor ="#e3aab5"; //Cherry Blossom 
+	footer.style.color = "black"; 
+	footer.style.backgroundColor = "#87ceeb"; //skyblue 
+}
      function clock(){
      	var currdate = new Date();
      	var nowyear = currdate.getFullYear();	

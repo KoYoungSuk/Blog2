@@ -11,19 +11,19 @@
 <br> 
 <table class="table" style="background-color: lightyellow;">
 <tr>
- <td style="font-weight: bold; font-size: 20px;">물품 번호:</td>
+ <td style="font-weight: bold; font-size: 20px;">물품번호:</td>
  <td>${productnumber}</td>
 </tr>
 <tr>
- <td style="font-weight: bold; font-size: 20px;">물품 이름:</td>
+ <td style="font-weight: bold; font-size: 20px;">물품명:</td>
  <td>${sessionScope.productdetaillist['product_name']}</td>
 </tr>
 <tr>
- <td style="font-weight: bold; font-size: 20px;">물품 구매 날짜(신품): </td>
+ <td style="font-weight: bold; font-size: 20px;">구입날짜(신품): </td>
  <td>${sessionScope.productdetaillist['buy_date']}</td>
 </tr>
 <tr>
- <td style="font-weight: bold; font-size: 20px;">물품 구매 날짜(중고): </td>
+ <td style="font-weight: bold; font-size: 20px;">구입날짜(중고): </td>
  <td>${sessionScope.productdetaillist['buy_date_used']}</td>
 </tr>
 <tr>

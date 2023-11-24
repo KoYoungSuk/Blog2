@@ -78,7 +78,12 @@
 			var html = "";
 			html += "<H3 style= \" font-weight: bold; text-align: center; \" >";
 			
+			//바로 1월로 가기
+			html += "<button type=\"button\" class = \" btn btn-secondary btn-sm \" onclick=\"location.href=\'index.jsp?yearmonth=";
+			html += calendarYear + "-1\'\" ><span class=\"material-symbols-outlined\">keyboard_double_arrow_left</span></button>&nbsp;&nbsp;"; 
+			
 		    html += "<button type=\"button\" class= \" btn btn-secondary btn-sm \" onclick=\" location.href= \'index.jsp?yearmonth=";
+		    
 		    var calendarMonth_minus = 0;
 		    var calendarYear_minus = parseInt(calendarYear); 
 		    if(calendarMonth <= 1){
@@ -90,7 +95,7 @@
 		    }
 			html +=  calendarYear_minus + "-" + calendarMonth_minus; 
 			html += "\'\">"; 
-			html += "<span class= \"material-symbols-outlined\">arrow_back</span>"; 
+			html += "<span class= \"material-symbols-outlined\">chevron_left</span>"; 
 			html += "</button>&nbsp;&nbsp;&nbsp;&nbsp;"; 
 
 			if(calendarMonth < 10){
@@ -116,10 +121,13 @@
 		   
 		   html +=  calendarYear_plus + "-" + calendarMonth_plus; 
 		   html += " \" \' >"; 
-		   html += "<span class= \"material-symbols-outlined\">arrow_forward</span>"; 
+		   html += "<span class= \"material-symbols-outlined\">chevron_right</span>"; 
 		   html += "</button>"; 
 
-			
+		   //바로 12월로 가기 
+		   html += "&nbsp;&nbsp;<button type=\"button\" class = \" btn btn-secondary btn-sm \" onclick=\"location.href=\'index.jsp?yearmonth=";
+		   html += calendarYear + "-12\'\" ><span class=\"material-symbols-outlined\">keyboard_double_arrow_right</span></button>"; 
+		   
 		   html += "</H3>"; 
 		   html += "<hr>"; 
 			

@@ -110,6 +110,33 @@ public class ProductDAO {
     	return productlist;
     }
     
+    //Search by buy_date 
+    public List<ProductDO> getProductTotalList(String buy_date) throws ClassNotFoundException, SQLException {
+    	List<ProductDO> productlist = new ArrayList<ProductDO>();
+    	String sql = null;
+    	connectDB();
+    	PreparedStatement psm = null;
+    	ResultSet rs = null;
+    	sql = "select * from product where product_no like ?";
+    	psm = conn.prepareStatement(sql);
+    	psm.setString(1, "%" + buy_date + "%");
+    	rs = psm.executeQuery();
+    	if(rs.isBeforeFirst()) {
+    		while(rs.next()) {
+    			ProductDO productdo = new ProductDO();
+    			productdo.setProduct_no(rs.getString("product_no"));
+    			productdo.setProduct_name(rs.getString("product_name"));
+    			productdo.setBuy_date(rs.getString("buy_date"));
+    			productdo.setBuy_date_used(rs.getString("buy_date_used"));
+    			productdo.setPurpose(rs.getString("purpose"));
+    			productlist.add(productdo);
+    		}
+    	}
+    	psm.close();
+    	rs.close();
+    	disconnectDB();
+    	return productlist;
+    }
     public Map<String, String> getProductListByNumber(String product_no) throws ClassNotFoundException, SQLException{
     	Map<String, String> productlist = new HashMap<String, String> ();
     	connectDB();
@@ -150,4 +177,39 @@ public class ProductDAO {
         disconnectDB();
         return result;
     }
+    
+    //Search Product 
+    public int getProductNumber(String buy_date) throws ClassNotFoundException, SQLException{
+    	connectDB();
+    	int number = 0; 
+    	String sql = "select count(*) as productnumber from product where product_no like ?";
+    	PreparedStatement psm = conn.prepareStatement(sql);
+    	psm.setString(1, "%" + buy_date + "%");
+    	ResultSet rs = psm.executeQuery();
+    	if(rs.next()) {
+    		number = rs.getInt("productnumber");
+    	}
+    	psm.close();
+    	rs.close(); 
+    	disconnectDB();
+    	return number; 
+    }
+    
+    public String getMaxProductNumber(String initial_types) throws ClassNotFoundException, SQLException{
+    	connectDB();
+    	String sql = "select max(product_no) as maxnum from product where product_no like ?"; 
+    	PreparedStatement psm = conn.prepareStatement(sql); 
+        psm.setString(1, initial_types + "%");
+        ResultSet rs = psm.executeQuery();
+        String maxnum = null;
+        if(rs.next()) {
+        	maxnum = rs.getString("maxnum"); 
+        }
+    	psm.close();
+        rs.close();
+        disconnectDB();
+        return maxnum; 
+    }
+    
+    
 }

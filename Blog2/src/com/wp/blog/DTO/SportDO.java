@@ -3,12 +3,12 @@ package com.wp.blog.DTO;
 import java.sql.Timestamp;
 
 public class SportDO {
-     int num;
-     public int getNum() {
-		return num;
+     String title; 
+     public String getTitle() {
+		return title;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setTitle(String title) {
+		this.title = title; 
 	}
 	public Timestamp getSavedate() {
 		return savedate;
@@ -28,16 +28,17 @@ public class SportDO {
 	public void setCalories(int calories) {
 		this.calories = calories;
 	}
+	
 	Timestamp savedate;
-     int distance;
-     int calories; 
+    int distance;
+    int calories; 
      
     public SportDO() {
     	
     }
      
-    public SportDO(int num, Timestamp savedate, int distance, int calories) {
-    	this.num = num;
+    public SportDO(String title, Timestamp savedate, int distance, int calories) {
+    	this.title = title; 
     	this.savedate = savedate;
     	this.distance = distance;
     	this.calories = calories; 

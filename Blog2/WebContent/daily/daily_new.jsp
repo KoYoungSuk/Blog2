@@ -12,12 +12,14 @@
 <meta charset="UTF-8">
 <!-- Mobile Friendly Meta -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Ignore Internet Explorer 8 Compatible Mode -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <!-- Bootstrap 4.4 CSS -->
 <link rel="stylesheet" href="../BS/bootstrap.min.css" />
 <link rel="stylesheet" href="../BS/bootstrap.css" />
 <!-- Google Span Buttons -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<!-- JQuery for Javascript HTML  -->
 <script src="../JS/jquery-3.2.1.slim.min.js"></script> 
 <title> DailyManager(Web) </title>
 <style>
@@ -117,6 +119,10 @@
 			var html = "";
 			html += "<H3 style= \" font-weight: bold; text-align: center; \" >";
 			
+			//바로 1월로 가기
+			html += "<button type=\"button\" class = \" btn btn-secondary btn-sm \" onclick=\"location.href=\'daily_new.jsp?yearmonth=";
+			html += calendarYear + "-1\'\" ><span class=\"material-symbols-outlined\">keyboard_double_arrow_left</span></button>&nbsp;&nbsp;"; 
+			
 		    html += "<button type=\"button\" class= \" btn btn-secondary btn-sm \" onclick=\" location.href= \'daily_new.jsp?yearmonth=";
 		    var calendarMonth_minus = 0;
 		    var calendarYear_minus = parseInt(calendarYear); 
@@ -129,7 +135,7 @@
 		    }
 			html +=  calendarYear_minus + "-" + calendarMonth_minus; 
 			html += "\'\">"; 
-			html += "<span class= \"material-symbols-outlined\">arrow_back</span>"; 
+			html += "<span class= \"material-symbols-outlined\">chevron_left</span>"; 
 			html += "</button>&nbsp;&nbsp;&nbsp;&nbsp;"; 
 
 			if(calendarMonth < 10){
@@ -155,10 +161,13 @@
 		   
 		   html +=  calendarYear_plus + "-" + calendarMonth_plus; 
 		   html += " \" \' >"; 
-		   html += "<span class= \"material-symbols-outlined\">arrow_forward</span>"; 
+		   html += "<span class= \"material-symbols-outlined\">chevron_right</span>"; 
 		   html += "</button>"; 
 
-			
+		   //바로 12월로 가기 
+		   html += "&nbsp;&nbsp;<button type=\"button\" class = \" btn btn-secondary btn-sm \" onclick=\"location.href=\'daily_new.jsp?yearmonth=";
+		   html += calendarYear + "-12\'\" ><span class=\"material-symbols-outlined\">keyboard_double_arrow_right</span></button>"; 
+		   
 		   html += "</H3>"; 
 		   html += "<hr>"; 
 			

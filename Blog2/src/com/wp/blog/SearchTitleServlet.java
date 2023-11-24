@@ -97,7 +97,7 @@ public class SearchTitleServlet extends HttpServlet {
 				    session.setAttribute("count_board", count_board);
 				    session.setAttribute("word", word);
 				    session.setAttribute("pagenum", 1); //페이지 개수 
-					session.setAttribute("beginnumber", 1); //시작번호 
+					session.setAttribute("beginnumber", 0); //시작번호 
 					session.setAttribute("endnumber", count_board); 
 					viewName = "main.do?page=3"; 
 			  }else {

@@ -14,11 +14,19 @@
        <form action="detaildiary" method="POST">
        <table style="margin: auto;">
          <tr>
-           <td><input type="text" class="form-control" name="title" placeholder="Search Diary:" /></td>
+           <td><input type="text" class="form-control" name="title" placeholder="Search Diary" /></td>
            <td>
                <button type="submit" class="btn btn-secondary btn-sm" ><span class="material-symbols-outlined">search</span>Search</button>
                <button type="button" onclick="location.href='diary.jsp?page=3'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">create</span>Write</button> 
                <button type="button" class="btn btn-primary btn-sm" onclick="window.location.reload();"><span class="material-symbols-outlined">refresh</span>Refresh</button>
+               <c:choose> 
+               <c:when test="${param.expand ne 'yes'}">
+                      <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='diarylist?expand=yes'"><span class="material-symbols-outlined">expand_all</span>Expand All</button>
+               </c:when>
+               <c:otherwise>
+                       <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='diarylist'"><span class="material-symbols-outlined">collapse_all</span>Fold Again</button>
+               </c:otherwise> 
+               </c:choose>
            </td>
          </tr>
        </table>
@@ -26,24 +34,28 @@
        </div>
        <hr>
        <div style="text-align: center;">
-          <H4 style="font-weight: bold;">&nbsp;&nbsp; Number of Total Diary:  ${sessionScope.diarynumber} </H4>
+          <H4 style="font-weight: bold;">&nbsp;&nbsp; Total Diary:  ${sessionScope.diarynumber} </H4>
           <hr> 
           <H4 style="font-weight: bold;">
+          <!-- 바로 첫번째 페이지로 가기 -->
+          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='diarylist?page_count_diary=1'"><span class="material-symbols-outlined">keyboard_double_arrow_left</span></button>
           <c:choose>
           <c:when test="${pagenumber ne 1}"> <!-- 첫번째 페이지가 아닐때 -->
-          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='diarylist?page_count_diary=${pagenumber - 1}'"><span class="material-symbols-outlined">arrow_back</span></button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='diarylist?page_count_diary=${pagenumber - 1}'"><span class="material-symbols-outlined">chevron_left</span></button>
           </c:when>
           <c:otherwise></c:otherwise>
           </c:choose>
           &nbsp;&nbsp;&nbsp;&nbsp;
-          CURRENT PAGE : PAGE ${pagenumber} 
+          PAGE ${pagenumber} / ${sessionScope.page_num_diary}
           &nbsp;&nbsp;&nbsp;&nbsp;
           <c:choose> 
           <c:when test="${pagenumber ne sessionScope.page_num_diary}"> <!-- 마지막 페이지가 아닐때 -->
-          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='diarylist?page_count_diary=${pagenumber + 1}'"><span class="material-symbols-outlined">arrow_forward</span></button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='diarylist?page_count_diary=${pagenumber + 1}'"><span class="material-symbols-outlined">chevron_right</span></button>
           </c:when>
           <c:otherwise></c:otherwise> 
           </c:choose>
+          <!-- 마지막 페이지로 가기 -->
+          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='diarylist?page_count_diary=${sessionScope.page_num_diary}'"><span class="material-symbols-outlined">keyboard_double_arrow_right</span></button>
           </H4>
        </div>
        <hr> 

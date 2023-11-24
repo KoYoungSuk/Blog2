@@ -44,7 +44,7 @@
     <h3 class="htitle"> Welcome </h3>
 	<p>&nbsp;&nbsp; Enter a username and password to enter SportReport(Web). (Administrator Only) </p>
 	<hr>
-	<form action="infologin" method="POST">
+	<form action="sportlogin" method="POST">
 	<table>
 	  <tr>
 	    <td>&nbsp;&nbsp;<label for="ID">ID:</label></td>
@@ -58,13 +58,14 @@
 	  <div style="text-align: center;">
 	  <button type="button" class="btn btn-secondary btn-sm" onclick="history.go(-1);"><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>&nbsp;&nbsp;
 	  <button type="submit" class="btn btn-secondary btn-sm" ><span class="material-symbols-outlined">login</span>Login</button>&nbsp;&nbsp; 
-	  <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='../main.do'"><span class="material-symbols-outlined">arrow_back_ios</span>Back to List</button>&nbsp;&nbsp; 
+	  <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='../main.do'"><span class="material-symbols-outlined">arrow_back_ios</span>Back to PersonalMemo</button>&nbsp;&nbsp;
+	  <br />  
 	  </div>
 	</form>
 	<br> 
   </div>
   <div class="footer">
-	<p>Last updated: Friday, November 17th,  2023 </p>
+	<p>Last updated: Monday, November 20th, 2023 </p>
 	<p>This is not copyrighted. But don't use this for illegally.</p>
   </div>
 <body>

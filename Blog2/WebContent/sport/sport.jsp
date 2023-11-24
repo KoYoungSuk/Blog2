@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"  %>
 <!--  JSP 모듈 파일 임포트 -->
-<c:import url="../InfoContent/detail.jsp" var="detailcontent"></c:import>
-<c:import url="../InfoContent/write.jsp" var="writecontent"></c:import>
-<c:import url="../InfoContent/modify.jsp" var="modifycontent"></c:import>
+<c:import url="../SportContent/detail.jsp" var="detailcontent"></c:import>
+<c:import url="../SportContent/write.jsp" var="writecontent"></c:import>
+<c:import url="../SportContent/modify.jsp" var="modifycontent"></c:import>
 <!--  파라미터에 따라 사이트 제목 정하기 -->
 <c:choose>
    <c:when test="${param.page == 2}"><c:set var="titlename" value="(Detail Information)" /></c:when>
@@ -53,32 +53,32 @@
 </head>
 <body>
 
-<div class="col-lg-8" style="background-color: #DCDCDC; padding: 0px; margin: 50px; ">
+<div class="col-lg-6" style="background-color: #DCDCDC; padding: 0px; margin: 50px; ">
     <h3 class="htitle">
-      (Current User: ${sessionScope.id}) ${titlename}
+      SportReport(Web) | (Current User: ${sessionScope.id}) ${titlename}
     </h3>
     <div style="text-align: center;">
-	<button type="button" onclick="location.href='info_new.jsp'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">home</span>Info Main Page</button>
+	<button type="button" onclick="location.href='sport2.jsp'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">home</span>SportReport Main Page</button>
 	</div>
 	<!-- 파라미터에 따라 출력할 JSP 모듈 내용 지정 -->
 	<c:choose>
-	 <c:when test="${param.page == 2}"> <!--  Detail Info List -->
+	 <c:when test="${param.page == 2}"> <!--  Detail Sport List -->
 	 ${detailcontent}
 	</c:when>
-	<c:when test="${param.page == 3}"> <!--  Write Info List -->
+	<c:when test="${param.page == 3}"> <!--  Write Sport List -->
 	 ${writecontent}
 	</c:when>
-	<c:when test="${param.page == 4}"> <!--  Modify Info List -->
+	<c:when test="${param.page == 4}"> <!--  Modify Sport List -->
      ${modifycontent}
 	</c:when>
     <c:otherwise>
-     <c:redirect url="../info_new.jsp"></c:redirect>
+     <c:redirect url="../sport2.jsp"></c:redirect>
     </c:otherwise>
 	</c:choose>
 </div>
  <hr>
 <div class="footer">
-	<p>Last updated: Wednesday, November 15th, 2023 </p>
+	<p>Last updated: Monday, November 20th, 2023 </p>
 	<p>This is not copyrighted. But don't use this illegally. </p>
 </div>
 </body>

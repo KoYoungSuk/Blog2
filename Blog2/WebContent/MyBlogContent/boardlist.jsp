@@ -48,24 +48,26 @@
       </div>
       <hr> 
        <div style="text-align: center;">
-          <H4 style="font-weight: bold;">  &nbsp;&nbsp;&nbsp;&nbsp; Number of Memoes : ${sessionScope.count_board} </H4>
+          <H4 style="font-weight: bold;">  &nbsp;&nbsp;&nbsp;&nbsp; Total Memoes : ${sessionScope.count_board} </H4>
           <hr> 
           <H4 style="font-weight: bold;">
+            <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='boardlist.do?pagecount=1'"><span class="material-symbols-outlined">keyboard_double_arrow_left</span></button>
           <c:choose>
           <c:when test="${pagenumber ne 1}"> <!-- 첫번째 페이지가 아닐때 -->
-          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='boardlist.do?pagecount=${pagenumber - 1}'"><span class="material-symbols-outlined">arrow_back</span></button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='boardlist.do?pagecount=${pagenumber - 1}'"><span class="material-symbols-outlined">chevron_left</span></button>
           </c:when>
           <c:otherwise></c:otherwise>
           </c:choose>
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          CURRENT PAGE : PAGE ${pagenumber} 
-          &nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp;&nbsp;
+           PAGE ${pagenumber} / ${sessionScope.pagenum}
+          &nbsp;&nbsp; 
           <c:choose> 
           <c:when test="${pagenumber ne sessionScope.pagenum}"> <!-- 마지막 페이지가 아닐때 -->
-          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='boardlist.do?pagecount=${pagenumber + 1}'"><span class="material-symbols-outlined">arrow_forward</span></button>
+          <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='boardlist.do?pagecount=${pagenumber + 1}'"><span class="material-symbols-outlined">chevron_right</span></button>
           </c:when>
           <c:otherwise></c:otherwise> 
           </c:choose>
+            <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='boardlist.do?pagecount=${sessionScope.pagenum}'"><span class="material-symbols-outlined">keyboard_double_arrow_right</span></button>
           </H4> 
           <hr> 
           

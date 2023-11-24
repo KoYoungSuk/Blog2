@@ -48,6 +48,8 @@ public class DiaryListServlet extends HttpServlet {
 		String id = (String)session.getAttribute("id");
 		
 		String page_num_diary_para_str = request.getParameter("page_count_diary");
+		String expand = request.getParameter("expand");
+		
 		int page_num_diary_para = 1;
 		
 		if(page_num_diary_para_str != null)
@@ -64,6 +66,7 @@ public class DiaryListServlet extends HttpServlet {
   	    String db_pw = application.getInitParameter("db_password");
   	    
   	    String viewName = null;
+  	    
   	    try {
   	    	if(id != null) {
   	    		if(id.equals("admin")) {
@@ -76,10 +79,21 @@ public class DiaryListServlet extends HttpServlet {
   	  	  	    		viewName = "diary.jsp?page=1";
   	  	  	    		session.setAttribute("diarylist", diarylist);
   	  	  	    		session.setAttribute("diarynumber", diarynumber);
-  	  	  	    		session.setAttribute("page_num_diary", page_num_diary + 1); //일기장 개수가 20개 이하이면 첫 페이지와 마지막 페이지 둘다 1이 되어버려서 다음 페이지로 넘어갈 수 없는 상황이 만들어진다.
-  	  	  	    		                                                            //그래서 1을 더한다. 
-  	  	  	    		session.setAttribute("beginnumber_diary", (page_num_diary_para - 1) * 10); //시작번호 
-  	  	  	    	    session.setAttribute("endnumber_diary" , ((page_num_diary_para -1) * 10) + 9); //끝번호 
+  	  	  	    		
+  	  	  	    		if(expand != null) {
+  	  	  	    			  if(expand.equals("yes")) {
+  	  	  	    				  session.setAttribute("page_num_diary",1);
+  	  	  	    				  session.setAttribute("beginnumber_diary", 0);
+  	  	  	    				  session.setAttribute("endnumber_diary", diarynumber);
+  	  	  	    			  }
+  	  	  	    		}
+  	  	  	    		else {
+  	  	  	    		      session.setAttribute("page_num_diary", page_num_diary + 1); //일기장 개수가 20개 이하이면 첫 페이지와 마지막 페이지 둘다 1이 되어버려서 다음 페이지로 넘어갈 수 없는 상황이 만들어진다.
+                                                                                          //그래서 1을 더한다. 
+                              session.setAttribute("beginnumber_diary", (page_num_diary_para - 1) * 10); //시작번호 
+                              session.setAttribute("endnumber_diary" , ((page_num_diary_para -1) * 10) + 9); //끝번호 
+  	  	  	    		}
+  	  	  	    		
   	  	  	    	}
   	  	  	    	else {
   	  	  	    		g.jsmessage("Null Error");

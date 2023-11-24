@@ -70,10 +70,12 @@ public class DetailProductServlet extends HttpServlet {
   	    		    }
   	    		}
   	    		else {
+  	    			session.invalidate(); 
   	    			g.errorcode(3217);
   	    		}
   	    	}
   	    	else {
+  	    		session.invalidate(); 
   	    		g.errorcode(3217);
   	    	}
   	    }catch(Exception e) {

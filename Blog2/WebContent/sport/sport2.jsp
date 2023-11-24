@@ -12,12 +12,14 @@
 <meta charset="UTF-8">
 <!-- Mobile Friendly Meta -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Ignore Internet Explorer 8 Compatible Mode -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <!-- Bootstrap 4.4 CSS -->
 <link rel="stylesheet" href="../BS/bootstrap.min.css" />
 <link rel="stylesheet" href="../BS/bootstrap.css" />
 <!-- Google Span Buttons -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<!-- JQuery -->
 <script src="../JS/jquery-3.2.1.slim.min.js"></script> 
 <title> SportReport(Web) </title>
 <style>
@@ -41,22 +43,17 @@
  <H3 class="htitle" id="htitle_id"> SportReport(Web) </H3>
  <hr>
  <div style="text-align: center;">
- <button type="button" onclick="location.href='../signout.do?check=5'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">logout</span>Logout</button>
+ <button type="button" onclick="location.href='../signout.do?check=7'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">logout</span>Logout</button>
  <H5 style="font-weight: bold; "> This is Administrator Only. </H5>
  </div> 
  <hr> 
  <div id="calendar" style="text-align: center;"></div>
  <div style="text-align: center;">
- <H5 style="font-weight: bold;">${sessionScope.errormessage_info}</H5>
+ <H5 style="font-weight: bold;">CHOOSED DATE: ${param.choosed_date}</H5>
+ <H5 style="font-weight: bold;">${sessionScope.errormessage_sport}</H5>
  <c:choose>
-  <c:when test="${sessionScope.errormessage_info ne null}">
-   <c:choose> 
-   <c:when test="${param.choosed_title ne null}">
-   <H6 style="font-weight: bold; ">SELECTED TITLE : ${param.choosed_title}</H6> 
-   </c:when>
-   <c:otherwise></c:otherwise> 
-   </c:choose>
-   <button type="button" onclick="location.href='list.jsp?page=3&title=${param.choosed_title}'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">create</span>Write</button>
+  <c:when test="${sessionScope.errormessage_sport ne null}">
+   <button type="button" onclick="location.href='sport.jsp?page=3&date=${param.choosed_date}'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">create</span>Write</button>
   </c:when>
   <c:otherwise></c:otherwise> 
  </c:choose> 
@@ -64,7 +61,7 @@
  <br> 
 </div>
 <div class="footer" id="footerid">
-  <p>Last updated: Wednesday, November 15th, 2023 </p>
+  <p>Last updated: Monday, November 20, 2023 </p>
   <p>This is not Copyrighted, But don't use this for illegal purpose. </p> 
 </div>
  <script>
@@ -105,7 +102,11 @@
 			var html = "";
 			html += "<H3 style= \" font-weight: bold; text-align: center; \" >";
 			
-		    html += "<button type=\"button\" class= \" btn btn-secondary btn-sm \" onclick=\" location.href= \'info_new.jsp?yearmonth=";
+			//바로 1월로 가기
+			html += "<button type=\"button\" class = \" btn btn-secondary btn-sm \" onclick=\"location.href=\'sport2.jsp?yearmonth=";
+			html += calendarYear + "-1\'\" ><span class=\"material-symbols-outlined\">keyboard_double_arrow_left</span></button>&nbsp;&nbsp;"; 
+			
+		    html += "<button type=\"button\" class= \" btn btn-secondary btn-sm \" onclick=\" location.href= \'sport2.jsp?yearmonth=";
 		    var calendarMonth_minus = 0;
 		    var calendarYear_minus = parseInt(calendarYear); 
 		    if(calendarMonth <= 1){
@@ -117,7 +118,7 @@
 		    }
 			html +=  calendarYear_minus + "-" + calendarMonth_minus; 
 			html += "\'\">"; 
-			html += "<span class= \"material-symbols-outlined\">arrow_back</span>"; 
+			html += "<span class= \"material-symbols-outlined\">chevron_left</span>"; 
 			html += "</button>&nbsp;&nbsp;&nbsp;&nbsp;"; 
 
 			if(calendarMonth < 10){
@@ -127,10 +128,7 @@
 				html += calendarYear + "-" + calendarMonth; 
 			}
 			
-			
-			
-			
-		   html += "&nbsp;&nbsp;&nbsp;&nbsp;<button type=\"button\" class=\"btn btn-secondary btn-sm\" onclick=\'location.href=\"info_new.jsp?yearmonth=";
+		   html += "&nbsp;&nbsp;&nbsp;&nbsp;<button type=\"button\" class=\"btn btn-secondary btn-sm\" onclick=\'location.href=\"sport2.jsp?yearmonth=";
 		   var calendarMonth_plus = parseInt(calendarMonth) + 1; 
 		   var calendarYear_plus = parseInt(calendarYear); 
 		   if(calendarMonth >= 12){
@@ -143,10 +141,14 @@
 		   
 		   html +=  calendarYear_plus + "-" + calendarMonth_plus; 
 		   html += " \" \' >"; 
-		   html += "<span class= \"material-symbols-outlined\">arrow_forward</span>"; 
+		   html += "<span class= \"material-symbols-outlined\">chevron_right</span>"; 
 		   html += "</button>"; 
 
-			
+
+		   //바로 12월로 가기 
+		   html += "&nbsp;&nbsp;<button type=\"button\" class = \" btn btn-secondary btn-sm \" onclick=\"location.href=\'sport2.jsp?yearmonth=";
+		   html += calendarYear + "-12\'\" ><span class=\"material-symbols-outlined\">keyboard_double_arrow_right</span></button>"; 
+		   
 		   html += "</H3>"; 
 		   html += "<hr>"; 
 			
@@ -178,18 +180,18 @@
 						calendarDay++;
 						if(calendarDay < 10){ //10일 이하일때 
 							if(calendarMonth < 10){ //1~9월 
-								html += "<a href= \"detailinfo?title=" + calendarYear + "-0" + calendarMonth + "-0" + calendarDay +  " \">";
+								html += "<a href= \"detailsport?date=" + calendarYear + "-0" + calendarMonth + "-0" + calendarDay +  " \">";
 							}
 							else{ //10~12월 
-								html += "<a href= \"detailinfo?title=" + calendarYear + "-" + calendarMonth + "-0" + calendarDay +  " \">";
+								html += "<a href= \"detailsport?date=" + calendarYear + "-" + calendarMonth + "-0" + calendarDay +  " \">";
 							}
 						}
 						else{
 							if(calendarMonth < 10){ //1~9월 
-								html += "<a href= \"detailinfo?title=" + calendarYear + "-0" + calendarMonth + "-" + calendarDay +  " \">";
+								html += "<a href= \"detailsport?date=" + calendarYear + "-0" + calendarMonth + "-" + calendarDay +  " \">";
 							}
 							else{ //10~12월 
-								html += "<a href= \"detailinfo?title=" + calendarYear + "-" + calendarMonth + "-" + calendarDay +  " \">";
+								html += "<a href= \"detailsport?date=" + calendarYear + "-" + calendarMonth + "-" + calendarDay +  " \">";
 							}
 						}
 						html += "<span "; 
