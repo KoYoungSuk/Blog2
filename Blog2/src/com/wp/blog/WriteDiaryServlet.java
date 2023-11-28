@@ -68,10 +68,22 @@ public class WriteDiaryServlet extends HttpServlet {
   	    String db_pw = application.getInitParameter("db_password");
   	    
   	    String viewName = null;
+  	    String os = System.getProperty("os.name"); //OS 버전 체크
+  	    
   	    
   	     
-  	    String localfilepath = "/home/kysserver/Temp/" + title + ".txt";  //Linux 
-  	    //String localfilepath = "C://Temp//";    //Windows 
+  	    String localfilepath = null; 
+  	    
+  	    if(os.equals("Linux")) {
+  	    	localfilepath = "/home/kysserver/Temp/" + title + ".txt";  //Linux 
+  	    }
+  	    else if(os.contains("Windows")) { //Windows (Windows 11에서 JDK 11를 사용할때 Windows 10이 아닌 11이라고 나온다.) 
+  	    	localfilepath = "C://Temp//"; 
+  	    }
+  	    else if(os.equals("Mac")) {
+  	    	
+  	    }
+  	    
 	    File file = new File(localfilepath);
 	    
   	    

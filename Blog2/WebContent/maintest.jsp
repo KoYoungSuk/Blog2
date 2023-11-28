@@ -15,12 +15,16 @@
 <c:import url="MyBlogContent/detailboard.jsp" var="detailboardcontent"></c:import>
 <c:import url="MyBlogContent/modifyboard.jsp" var="modifyboardcontent"></c:import>
 <c:import url="MyBlogContent/deleteboard.jsp" var="deleteboardcontent"></c:import>
-<c:import url="MyBlogContent/whyimakethis.jsp" var="whyimakethiscontent"></c:import>
 <c:import url="MyBlogContent/login.jsp" var="logincontent"></c:import> 
 <c:import url="MyBlogContent/FindIDPasswordContent.jsp" var="FindIDPasswordContent"></c:import> 
 <c:import url="MyBlogContent/findid.jsp" var="findidcontent"></c:import>
 <c:import url="MyBlogContent/findpw.jsp" var="findpwcontent"></c:import> 
 <c:import url="MyBlogContent/changepassword.jsp" var="changepwcontent"></c:import> 
+<c:import url="MyBlogContent/filelist.jsp" var="filelistcontent"></c:import> 
+<c:import url="MyBlogContent/uploadfile.jsp" var="uploadfilecontent"></c:import> 
+<c:import url="MyBlogContent/downloadfile.jsp" var="downloadfilecontent"></c:import> 
+<c:import url="MyBlogContent/modifyfile.jsp" var="modifyfilecontent"></c:import> 
+<c:import url="MyBlogContent/deletefile.jsp" var="deletefilecontent"></c:import>
 <!-- 파라미터에 따라 사이트 제목 정하기 -->
 <c:choose>
 <c:when test="${param.page == 1}"><c:set var="titlename" value="Main Page" /></c:when>
@@ -42,6 +46,11 @@
 <c:when test="${param.page == 21}"><c:set var="titlename" value="Find ID" /></c:when>
 <c:when test="${param.page == 22}"><c:set var="titlename" value="Find Password" /></c:when> 
 <c:when test="${param.page == 23}"><c:set var="titlename" value="Change Password" /></c:when> 
+<c:when test="${param.page == 24}"><c:set var="titlename" value="Files" /></c:when>
+<c:when test="${param.page == 25}"><c:set var="titlename" value="Upload Files" /></c:when> 
+<c:when test="${param.page == 26}"><c:set var="titlename" value="Download Files"/></c:when> 
+<c:when test="${param.page == 27}"><c:set var="titlename" value="Modify Files" /></c:when> 
+<c:when test="${param.page == 28}"><c:set var="titlename" value="Delete Files" /></c:when>
 <c:when test="${param.page == 0}">
 <script>
    var host_url = window.location.host; 
@@ -146,6 +155,7 @@ body {
       <div class="navbar-nav">
            <a class="nav-item nav-link" href="./main.do?page=1"><span class="material-symbols-outlined">home</span>Home </a> 
            <a class="nav-item nav-link" href="./boardlist.do"> <span class="material-symbols-outlined">list</span>MemoList </a>
+           <a class="nav-item nav-link" href="./filelist.do"><span class="material-symbols-outlined">draft</span>Files</a>
         <c:choose>
         <c:when test="${sessionScope.id ne null}"> <!-- 로그인 되어 있을때 -->
            <a class="nav-item nav-link" href="./main.do?page=6"><span class="material-symbols-outlined">manage_accounts</span>Manage Center </a>
@@ -180,67 +190,77 @@ body {
 <div class="container-fluid">
 <div class="row">
 <c:choose>
-<c:when test="${param.page == 1}">
+<c:when test="${param.page == 1}"> <!-- Main Page -->
 ${defaultcontent}
 </c:when>
-<c:when test="${param.page ==2}"> 
+<c:when test="${param.page ==2}"> <!-- Sign up -->
 ${signupcontent}
 </c:when>
-<c:when test="${param.page == 3}">
+<c:when test="${param.page == 3}"> <!-- Board List -->
 ${boardlistcontent}
 </c:when> 
-<c:when test="${param.page == 4}">
-${whyimakethiscontent}
-</c:when>
-<c:when test="${param.page == 5}">
-</c:when>
-<c:when test="${param.page ==6}">
+<c:when test="${param.page == 6}"> <!-- Management Center (Administrator Only) -->
 ${homepagemanagecontent}
 </c:when> 
-<c:when test="${param.page ==7}">
+<c:when test="${param.page ==7}"> <!-- Member Information -->
 ${memberinfocontent}
 </c:when> 
-<c:when test="${param.page == 8}">
+<c:when test="${param.page == 8}"> <!-- Member Modify -->
 ${membermodifycontent}
 </c:when> 
-<c:when test="${param.page == 9}">
+<c:when test="${param.page == 9}"> <!-- Delete Member -->
 ${memberdeletecontent}
 </c:when>
-<c:when test="${param.page == 11 }">
+<c:when test="${param.page == 11 }"> <!-- Total Member List (Administrator Only) -->
 ${totalmembercontent}
 </c:when>
-<c:when test="${param.page == 12}">
+<c:when test="${param.page == 12}"> <!-- Write Board -->
 ${writeboardcontent}
 </c:when> 
-<c:when test="${param.page == 13}">
+<c:when test="${param.page == 13}"> <!-- ETC  -->
 ${etccontent}
 </c:when>
-<c:when test="${param.page == 14}">
+<c:when test="${param.page == 14}"> <!-- Detail Board -->
 ${detailboardcontent}
 </c:when>
-<c:when test="${param.page == 16}">
+<c:when test="${param.page == 16}"> <!-- About -->
 ${aboutcontent}
 </c:when>
-<c:when test="${param.page == 17}">
+<c:when test="${param.page == 17}"> <!-- Modify Board -->
 ${modifyboardcontent}
 </c:when>
-<c:when test="${param.page == 18}">
+<c:when test="${param.page == 18}"> <!-- Login -->
 ${logincontent}
 </c:when>
-<c:when test="${param.page == 19}">
+<c:when test="${param.page == 19}"> <!-- Find ID and Password -->
 ${FindIDPasswordContent}
 </c:when>
-<c:when test="${param.page == 20}">
+<c:when test="${param.page == 20}"> <!-- Delete Board -->
 ${deleteboardcontent}
 </c:when>
-<c:when test="${param.page == 21}">
+<c:when test="${param.page == 21}"> <!-- Find ID -->
 ${findidcontent}
 </c:when>
-<c:when test="${param.page == 22}">
+<c:when test="${param.page == 22}"> <!-- Find Password -->
 ${findpwcontent}
 </c:when> 
-<c:when test="${param.page == 23}">
+<c:when test="${param.page == 23}"> <!-- Change Password -->
 ${changepwcontent}
+</c:when>
+<c:when test="${param.page == 24}"> <!-- File List -->
+${filelistcontent}
+</c:when> 
+<c:when test="${param.page == 25}"> <!-- Upload File -->
+${uploadfilecontent}
+</c:when>
+<c:when test="${param.page == 26}"> <!-- Download File -->
+${downloadfilecontent}
+</c:when>
+<c:when test="${param.page == 27}"> <!-- Modify File -->
+${modifyfilecontent}
+</c:when>
+<c:when test="${param.page == 28}"> <!-- Delete File -->
+${deletefilecontent}
 </c:when>
 <c:otherwise>
 ${defaultcontent}
@@ -249,7 +269,7 @@ ${defaultcontent}
 </div>
 </div> 
 <div class="footer">
-   <p> Last updated: Friday, November 17th, 2023 </p>
+   <p> Last updated: Wednesday, November 29th, 2023 </p>
    <p> This is not copyrighted. But Don't use this web site to make illegal stuff. </p>
    <p id=currentDate></p>
 </div>

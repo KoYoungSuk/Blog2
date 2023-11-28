@@ -67,7 +67,7 @@ public class UploadPDFServlet extends HttpServlet {
 				String location = null;
 				int maxSize = 1024 * 1024 * 1024 * 5;
 				
-				if(os.equals("Windows 10")) {
+				if(os.contains("Windows")) { 
 					location = "C:\\Temp\\pdf2\\";
 				}
 				else if(os.equals("Linux")) {

@@ -122,9 +122,21 @@ public class ModifyDiaryServlet extends HttpServlet {
   	    
 		Global g = new Global(response);
 		String viewName = null;
-		//String localfilepath = "C://Temp//" ; //Windows
-		String localfilepath = "/home/kysserver/Temp/"; //Linux
+		String os = System.getProperty("os.name"); //OS 버전 체크
 		
+		String localfilepath =  null;
+		
+		if(os.equals("Linux")) {
+			localfilepath = "/home/kysserver/Temp/"; //Linux
+		}
+		else if(os.contains("Windows")) { //JDK11에서는 Windows 10이 아닌 11이라고 나온다.(Windows 11 환경)
+			localfilepath = "C://Temp//" ; //Windows
+		}
+		else if(os.equals("Mac")) {
+			
+		}
+		
+
 		try {
 		  if(id != null) {
 			  if(id.equals("admin")) { //관리자 계정에서만 일기장 수정가능 
