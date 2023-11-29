@@ -52,32 +52,32 @@ You need to create your own Oracle database account and table, than connect this
  ----------------------------------------------------------------------------------------------------------------------------------------
  # Screenshot
 
- Main Screen 
+1. Main Screen 
  
 ![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/0bfb0288-10b6-464d-97b1-30fafc4f0ae6)
 
- Memo List
- 
+2. Memo List
+   
 ![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/c6e6dd98-81cd-4bcd-831a-965bf8122975)
 
 
- Detail Memo
+3. Detail Memo 
 
 ![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/eba7fd8d-6a09-4006-ba5b-b2597adc536e)
 
- Diary
+4. MyDiary(Web) 
  
 ![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/1e249ed0-168e-429d-8df6-a5a1eaa09e3c)
 
-ProductManager 
+5. HomeProduct(Web) 
 
 ![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/f85f2302-7158-4e5e-b86e-7e05f6f31ac9)
 
-JavaScript Calendar(DailyManager)
+6. DailyManager(Web) with Javascript Calendar 
 
 ![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/a4ff63e4-d282-4c32-ae1e-c4c92318a5c5)
 
-Special! (Javascript Calendar) 
+7. Special! (Javascript Calendar) 
 
 ![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/fd2d79f4-be31-4bef-86e9-4a39a7c63d17)
 
