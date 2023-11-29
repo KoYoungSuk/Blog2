@@ -67,15 +67,15 @@ You need to create your own Oracle database account and table, than connect this
 
  Diary
  
-![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/4c8d92a5-8f1e-4762-90f2-5e67aa6601cc)
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/1e249ed0-168e-429d-8df6-a5a1eaa09e3c)
 
 ProductManager 
 
-![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/b8ef0ebf-50be-432c-ac17-8cba4fde4932)
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/f85f2302-7158-4e5e-b86e-7e05f6f31ac9)
 
 JavaScript Calendar(DailyManager)
 
-![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/ae050d30-fa55-40a9-bef9-87ffcbee10aa)
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/a4ff63e4-d282-4c32-ae1e-c4c92318a5c5)
 
 Special! (Javascript Calendar) 
 
