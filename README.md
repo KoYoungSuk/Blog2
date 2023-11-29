@@ -1,4 +1,4 @@
-# PersonalMemo Version 2.8 (2023-11-08)
+# PersonalMemo Version 3.1 (2023-11-29) 
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -47,22 +47,23 @@ You need to create your own Oracle database account and table, than connect this
      If you use Linux: Open Terminal. 
   4. Select cloned Path. 
   5. Type command: git clone https://github.com/KoYoungSuk/Blog2.git
-  6. You need to install OpenJDK, Apache Tomcat Server, Oracle DataBase Server and Eclipse EE IDE.
+  6. You need to install OpenJDK, Apache Tomcat Server, Oracle DataBase Server and Eclipse for Web IDE.
 
  ----------------------------------------------------------------------------------------------------------------------------------------
  # Screenshot
- 
+
  Main Screen 
  
-![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/97900b21-90c3-49ce-9a6f-014cb70c6323)
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/0bfb0288-10b6-464d-97b1-30fafc4f0ae6)
 
  Memo List
  
-![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/32142b2e-c40b-4da0-b501-48a99f232498)
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/c6e6dd98-81cd-4bcd-831a-965bf8122975)
+
 
  Detail Memo
 
-![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/6f4be3f9-caf0-4d65-a6c6-106c430ae1e3)
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/eba7fd8d-6a09-4006-ba5b-b2597adc536e)
 
  Diary
  
@@ -83,6 +84,8 @@ Special! (Javascript Calendar)
 Working Environment: Microsoft Windows 11 Home K 64bit/Google Chrome Web Browser 
 
 (2019-09 AMD Ryzen 5-3400G Custom-Built Desktop)
+
+Monitor: LG 27QN600(27-Inch QHD Display(2560x1440))
 
  ------------------------------------------------------------------------------------------------------------------------------------------
  
