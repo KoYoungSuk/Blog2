@@ -22,7 +22,7 @@
    </div>
    <div style="text-align: center;">
     <button type="button" style="text-align: center; padding: 15px 50px; " onclick="history.go(-1); ">Back</button> 
-    <button type="button" style="text-align: center; padding: 15px 50px;" onclick="location.href='${sessionScope.new_back_url}'">Back to Main Page</button>
+    <button type="button" style="text-align: center; padding: 15px 50px;" onclick="location.href='${sessionScope.new_back_url}'">Back to PersonalWeb</button>
    </div>
 </body>
 </html>

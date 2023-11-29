@@ -44,6 +44,7 @@
  <hr>
  <div style="text-align: center;">
  <button type="button" onclick="location.href='../signout.do?check=7'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">logout</span>Logout</button>
+ <button type="button" onclick="location.href='calculatesport?yearmonth=${param.yearmonth}'" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">calculate</span>Calculate</button>
  <H5 style="font-weight: bold; "> This is Administrator Only. </H5>
  </div> 
  <hr> 

@@ -4,8 +4,13 @@
      <h3 class="htitle" style="border: ridge;">Download File</h3>
      <div style="text-align: right;">
        <button type="button" class="btn btn-secondary btn-sm" onclick="history.go(-1);"><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>
+       <c:choose>
+       <c:when test="${sessionScope.id eq 'admin'}">
        <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='modifyfile.do?num=${sessionScope.detaildownloadlist['num']}'"><span class="material-symbols-outlined">create</span>Modify</button>
        <button type="button" class="btn btn-danger btn-sm" onclick="location.href='deletefile.do?num=${sessionScope.detaildownloadlist['num']}'"><span class="material-symbols-outlined">delete</span>Delete</button>
+       </c:when>
+       <c:otherwise></c:otherwise>
+       </c:choose> 
        &nbsp;&nbsp; 
      </div>
      <br> 

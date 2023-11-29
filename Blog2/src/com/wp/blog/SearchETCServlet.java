@@ -35,10 +35,12 @@ public class SearchETCServlet extends HttpServlet {
 		String service_search = request.getParameter("ServiceSearch");
 		String service = request.getParameter("Services"); 
 		
-		System.out.println("service_search: " + service_search); 
+		if(service_search == null || service_search.isEmpty()) {
+			service_search = service; 
+		}
 		
 		try {
-				switch(service) {
+				switch(service_search) {
 				case "Clock":
 					viewName = "clock"; 
 					break;

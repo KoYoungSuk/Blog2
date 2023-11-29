@@ -61,7 +61,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title> PersonalMemo ( <c:out value="${titlename}" /> ) </title>
+<title> PersonalWeb ( <c:out value="${titlename}" /> ) </title>
 <meta charset = "utf-8">
 <!-- Ignore Internet Explorer 8 Compatible Mode. (But I don't recommend any version of Internet Explorer. -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />	 
@@ -183,7 +183,7 @@ body {
    
 </nav>
 <div class="jumbotron" >
-   <H1> PERSONAL MEMO </H1>
+   <H1> PERSONAL WEB </H1>
    <H4><c:out value="${titlename}" /> </H4>
 </div>
 <!-- 파라미터에 따라 출력할 JSP 모듈 내용 지정 -->
@@ -261,6 +261,9 @@ ${modifyfilecontent}
 </c:when>
 <c:when test="${param.page == 28}"> <!-- Delete File -->
 ${deletefilecontent}
+</c:when>
+<c:when test="${param.page == 29}"> <!-- Customize Settings -->
+
 </c:when>
 <c:otherwise>
 ${defaultcontent}

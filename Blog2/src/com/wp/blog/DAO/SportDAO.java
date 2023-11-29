@@ -101,4 +101,170 @@ public class SportDAO {
 		 return sportlist; 
 	 }
 	 
+	 //달별 평균 칼로리 계산 
+	 public int getAverageCaloriesByMonth(String daymonth) throws ClassNotFoundException, SQLException
+	 {
+		 connectDB();
+		 String sql = "select avg(calories) as avgcalories from sport where title like ?"; 
+		 int calories = 0;
+		 PreparedStatement psm = null;
+		 ResultSet rs = null;
+		 psm = conn.prepareStatement(sql);
+		 psm.setString(1, daymonth + "%"); 
+		 rs = psm.executeQuery();
+		 if(rs.next()) {
+			 calories = rs.getInt("avgcalories"); 
+		 }
+		 rs.close();
+		 psm.close();
+		 disconnectDB();
+		 return calories; 
+	 }
+	 
+	 //달별 평균 이동거리 계산 
+	 public int getAverageDistance(String daymonth) throws ClassNotFoundException, SQLException{
+		 connectDB();
+		 String sql  = "select avg(distance) as avgdistance from sport where title like ?";
+		 int distance = 0;
+		 PreparedStatement psm = null;
+		 ResultSet rs = null;
+		 psm = conn.prepareStatement(sql);
+		 psm.setString(1, daymonth + "%");
+		 rs = psm.executeQuery();
+		 if(rs.next()) {
+			 distance = rs.getInt("avgdistance"); 
+		 }
+		 rs.close();
+		 psm.close();
+		 disconnectDB();
+		 return distance; 
+	 }
+	 
+	 //달별 최소 소모 칼로리 계산 
+	 public Map<String, Object> getMinCalories(String daymonth) throws ClassNotFoundException, SQLException{
+		 connectDB();
+		 String sql = "select min(calories) as mincalories from sport where title like ?";
+		 int calories = 0;
+		 String title = null;
+		 Map<String, Object> caloriesandtitle = new HashMap<String, Object>(); 
+		 PreparedStatement psm = null;
+		 ResultSet rs = null;
+		 psm = conn.prepareStatement(sql);
+		 psm.setString(1, daymonth + "%");
+		 rs = psm.executeQuery();
+		 if(rs.next()) {
+			 calories = rs.getInt("mincalories");
+		 }
+		 rs.close();
+		 psm.close();
+		 sql = "select title from sport where calories = ?";
+		 PreparedStatement psm2 = conn.prepareStatement(sql);
+		 psm2.setInt(1, calories);
+		 ResultSet rs2 = psm2.executeQuery();
+		 if(rs2.next()) {
+			 title = rs2.getString("title"); 
+		 }
+		 caloriesandtitle.put("title", title);
+		 caloriesandtitle.put("calories", calories);
+		 rs2.close();
+		 psm2.close();
+		 disconnectDB();
+		 return caloriesandtitle; 
+	 }
+	 
+	 //달별 최대 소모 칼로리 계산
+	 public Map<String, Object> getMaxCalories(String daymonth) throws ClassNotFoundException, SQLException{
+		 connectDB();
+		 String sql = "select max(calories) as maxcalories from sport where title like ?";
+		 int calories = 0;
+		 String title = null;
+		 Map<String, Object> caloriesandtitle = new HashMap<String, Object>(); 
+		 PreparedStatement psm = null;
+		 ResultSet rs = null;
+		 psm = conn.prepareStatement(sql);
+		 psm.setString(1, daymonth + "%");
+		 rs = psm.executeQuery();
+		 if(rs.next()) {
+			 calories = rs.getInt("maxcalories");
+		 }
+		 rs.close();
+		 psm.close();
+		 sql = "select title from sport where calories = ?";
+		 PreparedStatement psm2 = conn.prepareStatement(sql);
+		 psm2.setInt(1, calories);
+		 ResultSet rs2 = psm2.executeQuery();
+		 if(rs2.next()) {
+			 title = rs2.getString("title"); 
+		 }
+		 caloriesandtitle.put("title", title);
+		 caloriesandtitle.put("calories", calories);
+		 rs2.close();
+		 psm2.close();
+		 disconnectDB();
+		 return caloriesandtitle; 
+	 }
+	 
+	 //달별 최소 이동거리 계산
+	 public Map<String, Object> getMinDistance(String daymonth) throws ClassNotFoundException, SQLException{
+		 connectDB();
+		 String sql = "select min(distance) as mindistance from sport where title like ?";
+		 int distance = 0;
+		 String title = null;
+		 Map<String, Object> distanceandtitle = new HashMap<String, Object>(); 
+		 PreparedStatement psm = null;
+		 ResultSet rs = null;
+		 psm = conn.prepareStatement(sql);
+		 psm.setString(1, daymonth + "%");
+		 rs = psm.executeQuery();
+		 if(rs.next()) {
+			 distance = rs.getInt("mindistance");
+		 }
+		 rs.close();
+		 psm.close();
+		 sql = "select title from sport where distance = ?";
+		 PreparedStatement psm2 = conn.prepareStatement(sql);
+		 psm2.setInt(1, distance);
+		 ResultSet rs2 = psm2.executeQuery();
+		 if(rs2.next()) {
+			 title = rs2.getString("title"); 
+		 }
+		 distanceandtitle.put("title", title);
+		 distanceandtitle.put("distance", distance);
+		 rs2.close();
+		 psm2.close();
+		 disconnectDB();
+		 return distanceandtitle; 
+	 }
+	 
+	 //달별 최대 이동거리 계산
+	 public Map<String, Object> getMaxDistance(String daymonth) throws ClassNotFoundException, SQLException{
+		 connectDB();
+		 String sql = "select max(distance) as maxdistance from sport where title like ?";
+		 int distance = 0;
+		 String title = null;
+		 Map<String, Object> distanceandtitle = new HashMap<String, Object>(); 
+		 PreparedStatement psm = null;
+		 ResultSet rs = null;
+		 psm = conn.prepareStatement(sql);
+		 psm.setString(1, daymonth + "%");
+		 rs = psm.executeQuery();
+		 if(rs.next()) {
+			 distance = rs.getInt("maxdistance");
+		 }
+		 rs.close();
+		 psm.close();
+		 sql = "select title from sport where distance = ?";
+		 PreparedStatement psm2 = conn.prepareStatement(sql);
+		 psm2.setInt(1, distance); 
+		 ResultSet rs2 = psm2.executeQuery();
+		 if(rs2.next()) {
+			 title = rs2.getString("title"); 
+		 }
+		 distanceandtitle.put("title", title);
+		 distanceandtitle.put("distance", distance);
+		 rs2.close();
+		 psm2.close();
+		 disconnectDB();
+		 return distanceandtitle; 
+	 }
 }

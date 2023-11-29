@@ -14,13 +14,17 @@
       </h3>
        <div style="text-align: right;">
         <button class="btn btn-secondary btn-sm" onclick="history.go(-1);"><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>
+        <c:choose> 
+        <c:when test="${sessionScope.id eq 'admin'}">
         <button class="btn btn-secondary btn-sm" onclick="location.href='main.do?page=25'"><span class="material-symbols-outlined">create</span>Write</button>
+        </c:when>
+        <c:otherwise></c:otherwise> 
+        </c:choose>
         <button class="btn btn-secondary btn-sm" onclick="location.href='filelist.do'"><span class="material-symbols-outlined">refresh</span>Refresh</button>
        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
        </div>
       <div style="text-align: center">
-      <!-- 
-      <form action="search.do" method="POST">
+      <form action="search_files.do" method="POST">
         <table style="margin: auto;">
           <tr>
            <td><input type="text" class="form-control" name="word" placeholder="Search Title" value= "${sessionScope.word}" /></td>
@@ -30,7 +34,6 @@
           </tr> 
         </table>
       </form>
-      --> 
       </div>
       <hr> 
        <div style="text-align: center;">
@@ -75,7 +78,12 @@
                   <td><c:out value="${downloadDO.savedate}" /></td>
                   <td><c:out value="${downloadDO.modifydate}" /></td>
                   <td>
+                  <c:choose> 
+                  <c:when test="${sessionScope.id eq 'admin'}">
                   <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='deletefile.do?num=${downloadDO.num}'"><span class="material-symbols-outlined">delete</span></button>
+                  </c:when>
+                  <c:otherwise></c:otherwise> 
+                  </c:choose>
                   </td>
                   </tr>
                </c:forEach>

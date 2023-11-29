@@ -4,11 +4,13 @@
 <c:import url="../SportContent/detail.jsp" var="detailcontent"></c:import>
 <c:import url="../SportContent/write.jsp" var="writecontent"></c:import>
 <c:import url="../SportContent/modify.jsp" var="modifycontent"></c:import>
+<c:import url="../SportContent/calculate.jsp" var="calculatecontent"></c:import> 
 <!--  파라미터에 따라 사이트 제목 정하기 -->
 <c:choose>
    <c:when test="${param.page == 2}"><c:set var="titlename" value="(Detail Information)" /></c:when>
    <c:when test="${param.page == 3}"><c:set var="titlename" value="(Write Information)" /></c:when>
    <c:when test="${param.page == 4}"><c:set var="titlename" value="(Modify Information)" /></c:when>
+   <c:when test="${param.page == 5}"><c:set var="titlename" value="(Calculate Sport Month)" /></c:when>
    <c:otherwise><c:set var="titlename" value="" /></c:otherwise>
 </c:choose>
 <c:choose>
@@ -71,6 +73,9 @@
 	<c:when test="${param.page == 4}"> <!--  Modify Sport List -->
      ${modifycontent}
 	</c:when>
+	<c:when test="${param.page == 5}"> <!-- Calculate Avg and Max&Min As Month... -->
+	 ${calculatecontent}
+	</c:when>
     <c:otherwise>
      <c:redirect url="../sport2.jsp"></c:redirect>
     </c:otherwise>
@@ -78,7 +83,7 @@
 </div>
  <hr>
 <div class="footer">
-	<p>Last updated: Monday, November 20th, 2023 </p>
+	<p>Last updated: Wednesday, November 29th, 2023 </p>
 	<p>This is not copyrighted. But don't use this illegally. </p>
 </div>
 </body>
