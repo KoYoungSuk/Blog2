@@ -1,4 +1,4 @@
-# PersonalMemo Version 2.8 (2023-11-08)
+# PersonalMemo Version 3.1 (2023-11-29) 
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -47,42 +47,45 @@ You need to create your own Oracle database account and table, than connect this
      If you use Linux: Open Terminal. 
   4. Select cloned Path. 
   5. Type command: git clone https://github.com/KoYoungSuk/Blog2.git
-  6. You need to install OpenJDK, Apache Tomcat Server, Oracle DataBase Server and Eclipse EE IDE.
+  6. You need to install OpenJDK, Apache Tomcat Server, Oracle DataBase Server and Eclipse for Web IDE.
 
  ----------------------------------------------------------------------------------------------------------------------------------------
  # Screenshot
+
+1. Main Screen 
  
- Main Screen 
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/0bfb0288-10b6-464d-97b1-30fafc4f0ae6)
+
+2. Memo List
+   
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/c6e6dd98-81cd-4bcd-831a-965bf8122975)
+
+
+3. Detail Memo 
+
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/eba7fd8d-6a09-4006-ba5b-b2597adc536e)
+
+4. MyDiary(Web) 
  
-![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/97900b21-90c3-49ce-9a6f-014cb70c6323)
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/1e249ed0-168e-429d-8df6-a5a1eaa09e3c)
 
- Memo List
- 
-![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/32142b2e-c40b-4da0-b501-48a99f232498)
+5. HomeProduct(Web) 
 
- Detail Memo
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/f85f2302-7158-4e5e-b86e-7e05f6f31ac9)
 
-![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/6f4be3f9-caf0-4d65-a6c6-106c430ae1e3)
+6. DailyManager(Web) with Javascript Calendar 
 
- Diary
- 
-![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/4c8d92a5-8f1e-4762-90f2-5e67aa6601cc)
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/a4ff63e4-d282-4c32-ae1e-c4c92318a5c5)
 
-ProductManager 
-
-![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/b8ef0ebf-50be-432c-ac17-8cba4fde4932)
-
-JavaScript Calendar(DailyManager)
-
-![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/ae050d30-fa55-40a9-bef9-87ffcbee10aa)
-
-Special! (Javascript Calendar) 
+7. Special! (Javascript Calendar) 
 
 ![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/fd2d79f4-be31-4bef-86e9-4a39a7c63d17)
 
 Working Environment: Microsoft Windows 11 Home K 64bit/Google Chrome Web Browser 
 
 (2019-09 AMD Ryzen 5-3400G Custom-Built Desktop)
+
+Monitor: LG 27QN600(27-Inch QHD Display(2560x1440))
 
  ------------------------------------------------------------------------------------------------------------------------------------------
  
