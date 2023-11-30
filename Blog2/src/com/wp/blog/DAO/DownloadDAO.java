@@ -126,6 +126,31 @@ public class DownloadDAO {
 		   return downloadtablelist; 
 	   }
 	   
+	   public List<DownloadDO> Searchfilelist(String word) throws ClassNotFoundException, SQLException{
+		   connectDB();
+		   String sql = "select * from download where title like ?";
+		   List<DownloadDO> downloadtablelist = new ArrayList<DownloadDO>();
+		   PreparedStatement psm = conn.prepareStatement(sql);
+		   psm.setString(1, "%" + word + "%");
+		   ResultSet rs = psm.executeQuery();
+		   if(rs.isBeforeFirst()) {
+			   while(rs.next()) {
+				   DownloadDO downloaddo = new DownloadDO();
+				   downloaddo.setNum(rs.getInt("num"));
+				   downloaddo.setTitle(rs.getString("title"));
+				   downloaddo.setContent(rs.getString("content"));
+				   downloaddo.setFilename(rs.getString("filename"));
+				   downloaddo.setSavedate(rs.getTimestamp("savedate"));
+				   downloaddo.setModifydate(rs.getTimestamp("modifydate"));
+				   downloadtablelist.add(downloaddo); 
+			   }
+		   }
+		   rs.close();
+		   psm.close();
+		   disconnectDB();
+		   return downloadtablelist; 
+	   }
+	   
 	   public Map<String, String> getDownloadTableByNum(int num, Boolean br) throws ClassNotFoundException, SQLException{
 		   connectDB();
 		   Map<String, String> downloadtablelist = new HashMap<String, String>(); 
@@ -172,6 +197,25 @@ public class DownloadDAO {
 		   return count; 
 	   }
 	   
+	   //검색결과 개수 
+	   public int getCountNum(String word) throws ClassNotFoundException, SQLException{
+		   connectDB();
+		   String sql = "select count(*) as countnum from download where title like ?";
+		   int count = 0;
+		   PreparedStatement psm = conn.prepareStatement(sql);
+		   psm.setString(1, "%" + word + "%");
+		   ResultSet rs = psm.executeQuery();
+		   if(rs.next()) {
+			   count = rs.getInt("countnum");
+		   }
+		   rs.close();
+		   psm.close();
+		   disconnectDB();
+		   return count; 
+	   }
+	   
+	   
+	   //최대값 
 	   public int getMaxnum() throws ClassNotFoundException, SQLException{
 		   connectDB();
 		   String sql = "select max(num) as maxnum from download";

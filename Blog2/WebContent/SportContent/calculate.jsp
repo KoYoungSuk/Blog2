@@ -4,6 +4,7 @@
 <c:when test="${sessionScope.id eq 'admin'}">
 <div style="text-align: right;">
 <button class="btn btn-secondary btn-sm" onclick="history.go(-1);"><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>
+
 <button class="btn btn-primary btn-sm" onclick="location.href='window.location.refresh();"><span class="material-symbols-outlined">refresh</span>Refresh</button>
 &nbsp;&nbsp; 
 </div>

@@ -15,10 +15,6 @@
            <br> 
            <table class="table" style="background-color: lightyellow;">
            <tr>
-            <td><Label for="id" style="font-weight: bold; font-size: 20px;">작성자 ID:</Label></td>
-            <td>${sessionScope.totalboardlist['userid']}</td>
-           </tr>
-           <tr>
             <td><Label for="number" style="font-weight: bold; font-size: 20px;">글 번호:</Label></td>
             <td>
             ${sessionScope.totalboardlist['number']}

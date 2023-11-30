@@ -21,13 +21,21 @@
         <c:otherwise></c:otherwise> 
         </c:choose>
         <button class="btn btn-secondary btn-sm" onclick="location.href='filelist.do'"><span class="material-symbols-outlined">refresh</span>Refresh</button>
+        <c:choose> 
+        <c:when test="${param.expand ne 'yes'}">
+           <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='filelist.do?expand=yes'"><span class="material-symbols-outlined">expand_all</span>Expand All</button>
+        </c:when>
+        <c:otherwise>
+           <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='filelist.do'"><span class="material-symbols-outlined">collapse_all</span>Fold Again</button>
+        </c:otherwise> 
+        </c:choose>
        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
        </div>
       <div style="text-align: center">
       <form action="search_files.do" method="POST">
         <table style="margin: auto;">
           <tr>
-           <td><input type="text" class="form-control" name="word" placeholder="Search Title" value= "${sessionScope.word}" /></td>
+           <td><input type="text" class="form-control" name="word" placeholder="Search Filename" /></td>
            <td>
              <button type="submit" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">search</span>Search</button>
            </td> 

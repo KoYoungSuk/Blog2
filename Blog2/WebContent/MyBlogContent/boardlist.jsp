@@ -32,13 +32,21 @@
         <button class="btn btn-secondary btn-sm" onclick="history.go(-1);"><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>
         <button class="btn btn-secondary btn-sm" onclick="location.href='main.do?page=12'"><span class="material-symbols-outlined">create</span>Write</button>
         <button class="btn btn-secondary btn-sm" onclick="location.href='boardlist.do'"><span class="material-symbols-outlined">refresh</span>Refresh</button>
-       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;
+        <c:choose> 
+          <c:when test="${param.expand ne 'yes'}">
+             <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='boardlist.do?expand=yes'"><span class="material-symbols-outlined">expand_all</span>Expand All</button>
+          </c:when>
+          <c:otherwise>
+             <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='boardlist.do'"><span class="material-symbols-outlined">collapse_all</span>Fold Again</button>
+          </c:otherwise> 
+       </c:choose>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
        </div>
       <div style="text-align: center">
       <form action="search.do" method="POST">
         <table style="margin: auto;">
           <tr>
-           <td><input type="text" class="form-control" name="word" placeholder="Search Title" value= "${sessionScope.word}" /></td>
+           <td><input type="text" class="form-control" name="word" placeholder="Search Title" /></td>
            <td>
              <button type="submit" class="btn btn-secondary btn-sm"><span class="material-symbols-outlined">search</span>Search</button>
            </td> 
@@ -93,7 +101,12 @@
                   <td><c:out value="${boardDO.anonymous}" /></td>
                   <td><c:out value="${boardDO.clicks}" /></td>
                   <td>
+                  <c:choose> 
+                  <c:when test="${sessionScope.id eq 'admin'}">
                   <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='deleteboard.do?serial=${boardDO.serialnumber}'"><span class="material-symbols-outlined">delete</span></button>
+                  </c:when>
+                  <c:otherwise></c:otherwise> 
+                  </c:choose>
                   </td>
                   </tr>
                </c:forEach>

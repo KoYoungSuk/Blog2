@@ -25,6 +25,7 @@
 <c:import url="MyBlogContent/downloadfile.jsp" var="downloadfilecontent"></c:import> 
 <c:import url="MyBlogContent/modifyfile.jsp" var="modifyfilecontent"></c:import> 
 <c:import url="MyBlogContent/deletefile.jsp" var="deletefilecontent"></c:import>
+<c:import url="MyBlogContent/customize.jsp" var="customizecontent"></c:import> 
 <!-- 파라미터에 따라 사이트 제목 정하기 -->
 <c:choose>
 <c:when test="${param.page == 1}"><c:set var="titlename" value="Main Page" /></c:when>
@@ -51,6 +52,7 @@
 <c:when test="${param.page == 26}"><c:set var="titlename" value="Download Files"/></c:when> 
 <c:when test="${param.page == 27}"><c:set var="titlename" value="Modify Files" /></c:when> 
 <c:when test="${param.page == 28}"><c:set var="titlename" value="Delete Files" /></c:when>
+<c:when test="${param.page == 29}"><c:set var="titlename" value="Site Customize" /></c:when> 
 <c:when test="${param.page == 0}">
 <script>
    var host_url = window.location.host; 
@@ -145,14 +147,13 @@ body {
 </head>
 <body>
   <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-      <a class="nav-item navbar-brand" href="./main.do?page=1"><span class="material-symbols-outlined">sticky_note_2</span>PERSONALMEMO</a>
-      <!-- Hamburger Button -->
+       <!-- Hamburger Button -->
       <button class="navbar-toggler" type="button" data-toggle="collapse"
       data-target="#ToggleMenu" aria-controls="ToggleMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="material-symbols-outlined">menu</span></button>
-      
+      <a class="nav-item navbar-brand" href="./main.do?page=1"><span class="material-symbols-outlined">sticky_note_2</span>PERSONAL WEB</a>
       <div class="collapse navbar-collapse" id="ToggleMenu">
-      <div class="navbar-nav">
+       <div class="navbar-nav">
            <a class="nav-item nav-link" href="./main.do?page=1"><span class="material-symbols-outlined">home</span>Home </a> 
            <a class="nav-item nav-link" href="./boardlist.do"> <span class="material-symbols-outlined">list</span>MemoList </a>
            <a class="nav-item nav-link" href="./filelist.do"><span class="material-symbols-outlined">draft</span>Files</a>
@@ -163,24 +164,22 @@ body {
         <c:otherwise></c:otherwise>
         </c:choose>
         <a class="nav-item nav-link" href="./main.do?page=13"><span class="material-symbols-outlined">more</span>ETC</a>
+        <a class="nav-item nav-link" href="./main.do?page=29"><span class="material-symbols-outlined"><span class="material-symbols-outlined">tune</span></span>Site Customize</a>
         <a class="nav-item nav-link" href="./main.do?page=16"><span class="material-symbols-outlined">info</span>About </a>
+        </div>
        </div>
-       <div class="navbar-nav ml-auto">
        <c:choose>
        <c:when test="${sessionScope.id ne null}"> <!-- 로그인 되어 있을때 -->
          <button class="btn btn-dark" onclick="location.href='totalmember.do'"> Current User ID: ${id}, Current User Name: ${sessionScope.fullname} </button>
          <button class="btn btn-danger btn-sm" onclick="location.href='signout.do?check=1'"><span class="material-symbols-outlined">logout</span>Logout</button>
        </c:when>
        <c:otherwise>
-          <!-- 로그인 되어 있지 않을때 아이디 및 비밀번호 입력창 출력  -->
+          <!-- 로그인 되어 있지 않을때  -->
             <button class="btn btn-secondary btn-sm" type="button" onclick="location.href= './main.do?page=18'"><span class="material-symbols-outlined">login</span>Login</button>
-            &nbsp;&nbsp; 
+            &nbsp;
             <button class="btn btn-secondary btn-sm" type="button" onclick="location.href='./main.do?page=2'"><span class="material-symbols-outlined">person_add</span>Sign up</button>
       </c:otherwise>
       </c:choose>
-      </div>
-   </div>
-   
 </nav>
 <div class="jumbotron" >
    <H1> PERSONAL WEB </H1>
@@ -263,7 +262,7 @@ ${modifyfilecontent}
 ${deletefilecontent}
 </c:when>
 <c:when test="${param.page == 29}"> <!-- Customize Settings -->
-
+${customizecontent}
 </c:when>
 <c:otherwise>
 ${defaultcontent}
@@ -284,76 +283,93 @@ ${defaultcontent}
 var date = new Date();
 var calendarMonth = date.getMonth() + 1;
 
-//Seasonal Easter Egg
-if(calendarMonth == 1){ //Jan 
-   document.getElementByClassName("htitle").innerHTML = "Happy New Year " + calendarYear + "!"; //Happy New Year! 
-   const body = document.querySelector("body"); 
-   const footer = document.getElementByClassName("footer"); 
-   
-   body.style.backgroundImage = "url('/pictures/happynewyear.jpg')"; 
-   footer.style.color = "black"; 
-}
-else if(calendarMonth == 12){ //December 
-   document.getElementByClassName("htitle").innerHTML = "Merry Christmas!"; 
-   const htitle = document.getElementByClassName("htitle"); 
-   const body = document.querySelector("body"); 
-   const table = document.querySelector("table"); 
-   /*
-     document.getElementById: id로 가져온다.
-     document.querySelector: 일반 태그 값(div, p 등)으로 가져온다. 
-   */
-   htitle.style.backgroundColor = "#c54245"; //Christmas Red HTITLE 
-   body.style.backgroundColor = "green"; //Christmas Green Wallpaper 
-   table.style.backgroundColor = "white"; //Christmas Card Style 
-}
-else if(calendarMonth >= 7 && calendarMonth <= 8){ //July and August (Beach Theme)
-	const body = document.querySelector("body"); 
-	const table = document.querySelector("table"); 
-	/*
-	     document.getElementById: id로 가져온다.
-	     document.querySelector: 일반 태그 값(div, p 등)으로 가져온다. 
-	*/
-	body.style.backgroundColor = "#186690"; //Blue 
-	table.style.backgroundColor = "#f6f0fc"; //Sand Color 2 
-}
-else if(calendarMonth == 10){ //Autumn Theme (October )
-	const htitle = document.getElementByClassName("htitle"); 
-	const body = document.querySelector("body"); 
+//Javascript에서 ==와 === 연산자 차이 => ==는 그냥 값만 같으면 됨, ===는 자료형까지 같아야 함(엄격하게 비교)
+//사실 여기서는 ==만 써도 됨(자료형 상관없음.)
+
+if("${cookie.colorcode.value}" === null || "${cookie.colorcode.value}".length === 0){ //기본값 
+	//Seasonal Easter Egg
+	if(calendarMonth == 1){ //Jan 
+	   document.getElementByClassName("htitle").innerHTML = "Happy New Year " + calendarYear + "!"; //Happy New Year! 
+	   const body = document.querySelector("body"); 
+	   const footer = document.getElementByClassName("footer"); 
+	   
+	   body.style.backgroundImage = "url('/pictures/happynewyear.jpg')"; 
+	   footer.style.color = "black"; 
+	}
+	else if(calendarMonth == 12){ //December 
+	   document.getElementByClassName("htitle").innerHTML = "Merry Christmas!"; 
+	   const htitle = document.getElementByClassName("htitle"); 
+	   const body = document.querySelector("body"); 
+	   const table = document.querySelector("table"); 
 	   /*
 	     document.getElementById: id로 가져온다.
 	     document.querySelector: 일반 태그 값(div, p 등)으로 가져온다. 
 	   */
-	htitle.style.backgroundColor = "#cc9d3a";
-	body.style.backgroundColor = "#8f2323";  
+	   htitle.style.backgroundColor = "#c54245"; //Christmas Red HTITLE 
+	   body.style.backgroundColor = "green"; //Christmas Green Wallpaper 
+	   table.style.backgroundColor = "white"; //Christmas Card Style 
+	}
+	else if(calendarMonth >= 7 && calendarMonth <= 8){ //July and August (Beach Theme)
+		const body = document.querySelector("body"); 
+		const table = document.querySelector("table"); 
+		/*
+		     document.getElementById: id로 가져온다.
+		     document.querySelector: 일반 태그 값(div, p 등)으로 가져온다. 
+		*/
+		body.style.backgroundColor = "#186690"; //Blue 
+		table.style.backgroundColor = "#f6f0fc"; //Sand Color 2 
+	}
+	else if(calendarMonth == 10){ //Autumn Theme (October )
+		const htitle = document.getElementByClassName("htitle"); 
+		const body = document.querySelector("body"); 
+		   /*
+		     document.getElementById: id로 가져온다.
+		     document.querySelector: 일반 태그 값(div, p 등)으로 가져온다. 
+		   */
+		htitle.style.backgroundColor = "#cc9d3a";
+		body.style.backgroundColor = "#8f2323";  
+	}
+	else if(calendarMonth >= 3 && calendarMonth <= 4){ //March & April (Cherry Blossom Theme)
+		const htitle = document.getElementByClassName("htitle"); 
+		const body = document.querySelector("body"); 
+		const footer = document.getElementByClassName("footer"); 
+		   /*
+		     document.getElementById: id로 가져온다.
+		     document.querySelector: 일반 태그 값(div, p 등)으로 가져온다. 
+		   */
+		body.style.backgroundImage = "url('/pictures/cherrybloosm.jpg')"; 
+		body.style.color = "black"; 
+		htitle.style.backgroundColor ="#e3aab5"; //Cherry Blossom 
+		footer.style.color = "black"; 
+		footer.style.backgroundColor = "#87ceeb"; //skyblue 
+	}
+	else{ //기본 색깔 
+		const body = document.querySelector("body");
+	
+		body.style.backgroundColor = "#008080"; //Microsoft Windows 9x/NT Background Color 
+	}
 }
-else if(calendarMonth >= 3 && calendarMonth <= 4){ //March & April (Cherry Blossom Theme)
-	const htitle = document.getElementByClassName("htitle"); 
-	const body = document.querySelector("body"); 
-	const footer = document.getElementByClassName("footer"); 
-	   /*
-	     document.getElementById: id로 가져온다.
-	     document.querySelector: 일반 태그 값(div, p 등)으로 가져온다. 
-	   */
-	body.style.backgroundImage = "url('/pictures/cherrybloosm.jpg')"; 
-	body.style.color = "black"; 
-	htitle.style.backgroundColor ="#e3aab5"; //Cherry Blossom 
-	footer.style.color = "black"; 
-	footer.style.backgroundColor = "#87ceeb"; //skyblue 
+else{ //색깔 변경
+	const body = document.querySelector("body");
+	
+	body.style.backgroundColor = "${cookie.colorcode.value}"; 
 }
-     function clock(){
-     	var currdate = new Date();
-     	var nowyear = currdate.getFullYear();	
-        var nowmonth = currdate.getMonth()+1;
-        var nowdate = currdate.getDate();
-        var nowhour = currdate.getHours();
-        var nowminute = currdate.getMinutes();
-        var nowsecond = currdate.getSeconds();
-        document.getElementById("currentDate").innerHTML = "현재 날짜/시간: " + nowyear + "년 " + nowmonth + "월 " + nowdate + "일 " + nowhour + "시 " + nowminute + "분 " + nowsecond + "초";
-     }
-    function init(){
-     	clock();
-     	setInterval(clock,1000);
-     }
-     init();
+
+ //자바스크립트 시계(Javascript Clock)
+ function clock(){
+    var currdate = new Date();
+    var nowyear = currdate.getFullYear();	
+    var nowmonth = currdate.getMonth()+1;
+    var nowdate = currdate.getDate();
+    var nowhour = currdate.getHours();
+    var nowminute = currdate.getMinutes();
+    var nowsecond = currdate.getSeconds();
+    document.getElementById("currentDate").innerHTML = "현재 날짜/시간: " + nowyear + "년 " + nowmonth + "월 " + nowdate + "일 " + nowhour + "시 " + nowminute + "분 " + nowsecond + "초";
+ }
+ function init(){
+    clock();
+    setInterval(clock,1000);
+ }
+ init();
 </script>
 <!--Clock JavaScript Ends -->

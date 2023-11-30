@@ -44,6 +44,14 @@
             <td><c:out value="${boardDO.modifydate}" /></td>
             <td><c:out value="${boardDO.anonymous}" /></td>
             <td><c:out value="${boardDO.clicks}" /></td>
+            <td>
+            <c:choose> 
+              <c:when test="${sessionScope.id eq 'admin'}">
+                 <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='deleteboard.do?serial=${boardDO.serialnumber}'"><span class="material-symbols-outlined">delete</span></button>
+              </c:when>
+              <c:otherwise></c:otherwise> 
+            </c:choose>
+            </td> 
           </tr>
        </c:forEach>
       </tbody>

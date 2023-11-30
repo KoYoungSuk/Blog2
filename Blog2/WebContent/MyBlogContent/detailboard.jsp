@@ -5,16 +5,17 @@
      <h3 class="htitle" style="border: ridge;">Detail Memo</h3>
      <div style="text-align: right;">
        <button type="button" class="btn btn-secondary btn-sm" onclick="history.go(-1);"><span class="material-symbols-outlined">arrow_back_ios</span>Back</button>
+       <c:choose>
+       <c:when test="${sessionScope.id eq 'admin'}">
        <button type="button" class="btn btn-secondary btn-sm" onclick="location.href='modifyboard.do?serial=${boardnumber}'"><span class="material-symbols-outlined">create</span>Modify</button>
        <button type="button" class="btn btn-danger btn-sm" onclick="location.href='deleteboard.do?serial=${boardnumber}'"><span class="material-symbols-outlined">delete</span>Delete</button>
+       </c:when>
+       <c:otherwise></c:otherwise> 
+       </c:choose>
        &nbsp;&nbsp; 
      </div>
      <br> 
          <table class="table" style="background-color: lightyellow;">
-           <tr>
-            <td style="font-weight: bold; font-size: 20px;">작성자 ID:</td>
-            <td>${sessionScope.detailboardlist["userid"]}</td>
-           </tr>
            <tr>
             <td style="font-weight: bold; font-size: 20px;">글 번호:</td>
             <td>${boardnumber}</td>

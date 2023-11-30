@@ -48,6 +48,12 @@ public class FileListServlet extends HttpServlet {
 			param_page_count = Integer.parseInt(param_page_count_str); 
 		}
 		
+		String expand = request.getParameter("expand");
+		
+		if(expand == null || expand.isEmpty()) {
+			expand = "no"; 
+		}
+		
 		//Database Connection String from web.xml 
 		ServletContext application = request.getSession().getServletContext();
     	String JDBC_Driver = application.getInitParameter("jdbc_driver");
@@ -65,9 +71,16 @@ public class FileListServlet extends HttpServlet {
   	        	
   	        	session.setAttribute("totaldownloadlist", totaldownloadlist);
   	        	session.setAttribute("count_files", countnum);
-  	        	session.setAttribute("pagenum_files", pagenum + 1);
-  	        	session.setAttribute("beginnumber_files", (param_page_count-1) * 10); //시작 페이지 지점
-  	        	session.setAttribute("endnumber_files", ((param_page_count-1) * 10) + 9); //끝 페이지 지점 
+                if(expand.equals("yes")) { //전체로 펼쳐서 보여주기 
+                	session.setAttribute("pagenum_files", 1);
+  	  	        	session.setAttribute("beginnumber_files", 0); //시작 페이지 지점
+  	  	        	session.setAttribute("endnumber_files", countnum); //끝 페이지 지점 
+  	        	}
+  	        	else if(expand.equals("no")) { //10개씩 한 페이지로 묶어서 보여주기 
+  	        		session.setAttribute("pagenum_files", pagenum + 1);
+  	  	        	session.setAttribute("beginnumber_files", (param_page_count-1) * 10); //시작 페이지 지점
+  	  	        	session.setAttribute("endnumber_files", ((param_page_count-1) * 10) + 9); //끝 페이지 지점 
+  	        	}
   	        	viewName = "main.do?page=24"; 
   	        }
   	        else {
