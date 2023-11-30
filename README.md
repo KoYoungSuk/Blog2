@@ -1,4 +1,4 @@
-# PersonalMemo Version 3.1 (2023-11-29) 
+# PersonalMemo Version 3.2 (2023-12-03) 
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -59,7 +59,6 @@ You need to create your own Oracle database account and table, than connect this
 2. Memo List
    
 ![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/c6e6dd98-81cd-4bcd-831a-965bf8122975)
-
 
 3. Detail Memo 
 
