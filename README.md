@@ -80,6 +80,12 @@ You need to create your own Oracle database account and table, than connect this
 
 ![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/fd2d79f4-be31-4bef-86e9-4a39a7c63d17)
 
+8. Site Customizing(Change Background Color using Cookie)
+
+![image](https://github.com/KoYoungSuk/Blog2/assets/58511486/2d11fbb5-8e72-412d-9e4d-63a4029eaea3)
+
+NOTICE: Reset after 1 years. 
+
 Working Environment: Microsoft Windows 11 Home K 64bit/Google Chrome Web Browser 
 
 (2019-09 AMD Ryzen 5-3400G Custom-Built Desktop)
